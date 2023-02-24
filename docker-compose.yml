@@ -1,0 +1,37 @@
+version: "3"
+services:
+  hitch:
+    image: "hitch:latest"
+    container_name: hitch
+    volumes:
+      - "./etc/hitch:/etc/hitch"
+      - "./run:/var/run"
+    tmpfs:
+      - "/var/lib/hitch:exec"
+    ports:
+      - "8443:443"
+    depends_on:
+      - "varnish"
+  varnish:
+    image: "varnish:latest"
+    container_name: varnish
+    ports:
+      - "6085:6085"
+    volumes:
+      - "./etc/varnish:/etc/varnish"
+      - "./run:/var/run"
+    tmpfs:
+      - "/var/lib/varnish/varnishd:exec"
+    environment:
+      - VARNISH_SIZE=8G
+    command:
+      - "-a /var/run/varnish.sock,PROXY,user=varnish,group=varnish,mode=666"
+    depends_on:
+      - "nginx"
+  nginx:
+    image: "nginx:latest"
+    container_name: nginx
+    volumes:
+      - "./etc/nginx:/etc/nginx"
+      - "./run:/var/run"
+      - "./log/nginx:/var/log/nginx"

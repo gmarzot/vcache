@@ -20,8 +20,11 @@ backend default {
     }
 }
 
-sub vcl_recv { 
-    if (req.url ~ "(?i)\.(ts|mp4|mp3|m3u8|mpd)" && req.method != "OPTIONS") {
+sub vcl_recv {
+        if (req.method == "OPTIONS") {
+                return(synth(200));
+        }
+    if (req.url ~ "(?i)\.(ts|mp4|mp3|m3u8|mpd)") {
        unset req.http.Cookie;
        set req.url = regsub(req.url, "\?[-_A-z0-9+()=%.&]*$", "");
        return (hash);
@@ -33,6 +36,7 @@ sub vcl_deliver {
     # Uncomment the following line to NOT send the "Cache-Tags" header to the client (prevent using CloudFlare cache tags)
     unset resp.http.Cache-Tags;
 
+    set resp.http.Access-Control-Allow-Local-Network = "true";
     set resp.http.Access-Control-Allow-Origin = req.http.Origin;
     if (resp.http.Vary) {
       set resp.http.Vary = resp.http.Vary + ",Origin";
@@ -54,7 +58,7 @@ sub vcl_deliver {
 sub vcl_backend_response {
     if (bereq.method != "OPTIONS") {
     if (bereq.url ~ "(?i)\.(m3u8|mpd)$") {
-       set beresp.ttl = 2s;
+       set beresp.ttl = 1s;
        return(deliver);
     } else if (bereq.url ~ "(?i)\.(ts|mp4|mp3)$") {
        set beresp.ttl = 300s;
@@ -67,4 +71,16 @@ sub vcl_hash {
     if (req.method) {
         hash_data(req.method);
     } 
+}
+
+sub vcl_synth {
+    if (req.method == "OPTIONS") {
+        set resp.http.Access-Control-Allow-Headers = "Content-Type,Content-Length,Authorization,Accept,X-Requested-With";
+        set resp.http.Access-Control-Allow-Methods = "GET,HEAD,OPTIONS";
+        set resp.http.Access-Control-Allow-Local-Network = "true";
+        set resp.http.Allow-Credentials = "true";
+        set resp.http.ETag = "123456";
+        set resp.http.Access-Control-Allow-Origin = req.http.Origin;
+        return(deliver);
+    }
 }

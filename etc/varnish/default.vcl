@@ -25,15 +25,11 @@ sub vcl_recv {
     if (req.method == "OPTIONS") {
        return(synth(200));
     }
-    if (req.http.host ~ "customer-gokzt9h2p9dpbdy7.cloudflarestream.com") {
+    if (req.http.host ~ "customer-gokzt9h2p9dpbdy7.cloudflarestream.com" ||
+        req.http.host ~ "customer-qztrqeec4n9lncb4.cloudflarestream.com") {
+            set req.url = "/cache/" + req.http.host + req.url;
             set req.http.host = "vivoh-cache.home.marzot.net";
-            set req.url = "/cache/customer-gokzt9h2p9dpbdy7.cloudflarestream.com" + req.url;
     }
-    #if (req.url ~ "(?i)\.(ts|mp4|mp3|m3u8|mpd)") {
-       #unset req.http.Cookie;
-       #set req.url = regsub(req.url, "\?[-_A-z0-9+()=%.&]*$", "");
-     #  return (hash);
-    #}
 }
 sub vcl_deliver {
     # Don't send cache tags related headers to the client
@@ -45,20 +41,23 @@ sub vcl_deliver {
 
     if (req.http.Origin) {
        set resp.http.Access-Control-Allow-Origin = req.http.Origin;
+    } else {
+       set resp.http.Access-Control-Allow-Origin = "*";
     }
 
     if (obj.hits > 0) { # Add debug header to see if it's a HIT/MISS and the number of hits, disable when not needed
         set resp.http.X-Vivoh-Cache = "HIT";
+        set resp.http.X-Vivoh-Cache-Hits = obj.hits;
     } else {
         set resp.http.X-Vivoh-Cache = "MISS";
     }
     # Please note that obj.hits behaviour changed in 4.0, now it counts per objecthead, not per object
     # and obj.hits may not be reset in some cases where bans are in use. See bug 1492 for details.
     # So take hits with a grain of salt
-    set resp.http.X-Vivoh-Cache-Hits = obj.hits;
 }
 
 sub vcl_backend_response {
+    # do not cache 404's
     if (beresp.status == 404) { 
        set beresp.ttl = 0s;
        return(deliver);
@@ -99,7 +98,11 @@ sub vcl_synth {
         set resp.http.Access-Control-Allow-Local-Network = "true";
         set resp.http.Allow-Credentials = "true";
         set resp.http.ETag = "123456";
-        set resp.http.Access-Control-Allow-Origin = req.http.Origin;
+        if (req.http.Origin) {
+           set resp.http.Access-Control-Allow-Origin = req.http.Origin;
+        } else {
+           set resp.http.Access-Control-Allow-Origin = "*";
+        }
         return(deliver);
     }
 }

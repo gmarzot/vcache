@@ -1,6 +1,7 @@
 version: "3"
 services:
   hitch:
+    restart: always
     image: "hitch:latest"
     container_name: hitch
     volumes:
@@ -9,10 +10,11 @@ services:
     tmpfs:
       - "/var/lib/hitch:exec"
     ports:
-      - "8443:443"
+      - "443:443"
     depends_on:
       - "varnish"
   varnish:
+    restart: always
     image: "varnish:latest"
     container_name: varnish
     ports:
@@ -29,9 +31,11 @@ services:
     depends_on:
       - "nginx"
   nginx:
+    restart: always
     image: "nginx:latest"
     container_name: nginx
     volumes:
       - "./etc/nginx:/etc/nginx"
       - "./run:/var/run"
       - "./log/nginx:/var/log/nginx"
+    network_mode: "host"

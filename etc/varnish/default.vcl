@@ -77,7 +77,9 @@ sub vcl_hash {
     if (req.method) {
         hash_data(req.method);
     }
-    if (req.url ~ "(?i)\.(ts|mp4|mp3|m3u8|mpd)") {
+    if (req.url ~ "\.mp4\?.*(range=\d+=\d+)") {
+        var.set("url_path", regsub(req.url, "\?[-_A-z0-9+()=%.&]*$", "\1"));
+    } else if (req.url ~ "(?i)\.(ts|mp4|mp3|m3u8|mpd)") {
         var.set("url_path", regsub(req.url, "\?[-_A-z0-9+()=%.&]*$", ""));
     } else {
         var.set("url_path", req.url);

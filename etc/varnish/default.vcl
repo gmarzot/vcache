@@ -2,6 +2,11 @@ vcl 4.1;
 
 import std;
 import var;
+import re;
+import cookie;
+import blob;
+import crypto;
+import digest;
 
 backend default {
 #    .host = "127.0.0.1";
@@ -21,39 +26,91 @@ backend default {
     }
 }
 
+acl purge {
+   "localhost";
+}
+
+sub vcl_init {
+        new query_str_regex = re.regex("^([^\?]*)(\?.*)?$");
+        new vimeo_range_regex = re.regex("^([^\?]*\.mp4)\?.*(range=\d+-\d+).*$");
+        new manifest_path_regex = re.regex("\.(mpd|m3u8)$");
+        new segment_path_regex = re.regex("\.(ts|mp3|mp4)$");
+        new media_path_regex = re.regex("\.(mpd|m3u8|ts|mp3|mp4)");
+        new jwt_value_regex = re.regex("^([^\.]+)\.([^\.]+)\.([^\.]+)$");
+}
+
+sub validate_auth_jwt {
+      var.set("auth_jwt", cookie.get("by"));
+      if (jwt_value_regex.match(var.get("auth_jwt"))) {       
+         var.set("auth_jwt_hdr", jwt_value_regex.backref(1));
+         var.set("auth_jwt_pld", jwt_value_regex.backref(2));
+         var.set("auth_jwt_sig", jwt_value_regex.backref(3));
+      } else {
+         return(synth(400, "bad JWT format"));  
+      }
+      # decode JWT header
+      var.set("auth_jwt_hdr", digest.base64url_decode(var.get("auth_jwt_hdr")));
+      var.set("auth_jwt_typ", regsub(var.get("auth_jwt_hdr"),{"^.*?"typ"\s*:\s*"(\w+)".*?$"},"\1"));
+      var.set("auth_jwt_alg", regsub(var.get("auth_jwt_hdr"),{"^.*?"alg"\s*:\s*"(\w+)".*?$"},"\1"));
+
+      if(var.get("auth_jwt_typ") != "JWT") {
+         return(synth(400, "unrecognized JWT type: " + var.get("auth_jwt_typ")));
+      }
+      if(var.get("auth_jwt_alg") != "HS256") {
+         return(synth(400, "unsupported JWT sig algorithm: " + var.get("auth_jwt_alg")));
+      }
+
+      var.set("jwt_sig", digest.base64url_nopad_hex(digest.hmac_sha256("1209381203918309128103981039213", var.get("auth_jwt_pld")))); 
+      if(var.get("jwt_sig") != var.get("auth_jwt_sig")) {
+         return(synth(403, "invalid HS256 JWT signature(" + var.get("auth_jwt_sig") + ")"));
+      }
+}
+
 sub vcl_recv {
+    # short-circuit pre-flight OPTIONS requests
     if (req.method == "OPTIONS") {
        return(synth(200));
     }
+    if (req.method == "PURGE") {
+       if (!client.ip ~ purge) {
+          return(synth(405,"method not allowed: PURGE"));
+       }
+       return (purge);
+    }
+    # for DNS host spoofing - specific host URL is rewritten in canonical cache format
     if (req.http.host ~ "customer-gokzt9h2p9dpbdy7.cloudflarestream.com" ||
         req.http.host ~ "customer-qztrqeec4n9lncb4.cloudflarestream.com") {
-            set req.url = "/cache/" + req.http.host + req.url;
-            set req.http.host = "vivoh-cache.home.marzot.net";
+       set req.url = "/cache/" + req.http.host + req.url;
+       set req.http.host = "vivoh-cache.home.marzot.net";
+    }
+    cookie.parse(req.http.cookie);
+    # if Vivoh auth token present - validate JWT
+    if(cookie.isset("by")) {
+       call validate_auth_jwt;
+    }
+    if (query_str_regex.match(req.url) && media_path_regex.match(query_str_regex.backref(1))) {
+       return(hash);
     }
 }
+
 sub vcl_deliver {
-    # Don't send cache tags related headers to the client
-    # unset resp.http.url;
-    # Uncomment the following line to NOT send the "Cache-Tags" header to the client (prevent using CloudFlare cache tags)
+    # prevent using CloudFlare cache tags
     unset resp.http.Cache-Tags;
-
+    # satisfy PNA pre-flight requirements
     set resp.http.Access-Control-Allow-Local-Network = "true";
-
-    if (req.http.Origin) {
-       set resp.http.Access-Control-Allow-Origin = req.http.Origin;
+    # promiscuously allow content delivered from cache to be included in request origin 
+    if (req.http.origin) {
+       set resp.http.Access-Control-Allow-Origin = req.http.origin;
     } else {
        set resp.http.Access-Control-Allow-Origin = "*";
     }
-
-    if (obj.hits > 0) { # Add debug header to see if it's a HIT/MISS and the number of hits, disable when not needed
+    # track HIT/MISS telemetry in response header
+    if (obj.hits > 0) {
         set resp.http.X-Vivoh-Cache = "HIT";
         set resp.http.X-Vivoh-Cache-Hits = obj.hits;
     } else {
         set resp.http.X-Vivoh-Cache = "MISS";
     }
-    # Please note that obj.hits behaviour changed in 4.0, now it counts per objecthead, not per object
-    # and obj.hits may not be reset in some cases where bans are in use. See bug 1492 for details.
-    # So take hits with a grain of salt
 }
 
 sub vcl_backend_response {
@@ -63,10 +120,10 @@ sub vcl_backend_response {
        return(deliver);
     }
     if (bereq.method != "OPTIONS") {
-       if (bereq.url ~ "(?i)\.(m3u8|mpd)$") {
+       if (bereq.url ~ "(?i)\.(m3u8|mpd)(\?|$)") {
           set beresp.ttl = 1s;
           return(deliver);
-       } else if (bereq.url ~ "(?i)\.(ts|mp4|mp3)$") {
+       } else if (bereq.url ~ "(?i)\.(ts|mp3|mp4)(\?|$)") {
           set beresp.ttl = 300s;
           return(deliver);
        }
@@ -77,10 +134,13 @@ sub vcl_hash {
     if (req.method) {
         hash_data(req.method);
     }
-    if (req.url ~ "\.mp4\?.*(range=\d+=\d+)") {
-        var.set("url_path", regsub(req.url, "\?[-_A-z0-9+()=%.&]*$", "\1"));
-    } else if (req.url ~ "(?i)\.(ts|mp4|mp3|m3u8|mpd)") {
-        var.set("url_path", regsub(req.url, "\?[-_A-z0-9+()=%.&]*$", ""));
+    query_str_regex.match(req.url);
+    # cache key should include vimeo non-standard range query parameters
+    # for typical video content, the entire query string is stripped
+    if (vimeo_range_regex.match(req.url)) {
+        var.set("url_path", vimeo_range_regex.backref(1) + "?" + vimeo_range_regex.backref(2));
+    } else if (media_path_regex.match(query_str_regex.backref(1))) {
+        var.set("url_path", query_str_regex.backref(1));
     } else {
         var.set("url_path", req.url);
     }
@@ -89,6 +149,10 @@ sub vcl_hash {
         hash_data(req.http.host);
     } else {
         hash_data(server.ip);
+    }
+    # require "by" cookie for access to cache
+    if(cookie.isset("by")) {
+       hash_data("vivoh_auth_token");
     }
     return (lookup);
 }
@@ -100,8 +164,8 @@ sub vcl_synth {
         set resp.http.Access-Control-Allow-Local-Network = "true";
         set resp.http.Allow-Credentials = "true";
         set resp.http.ETag = "123456";
-        if (req.http.Origin) {
-           set resp.http.Access-Control-Allow-Origin = req.http.Origin;
+        if (req.http.origin) {
+           set resp.http.Access-Control-Allow-Origin = req.http.origin;
         } else {
            set resp.http.Access-Control-Allow-Origin = "*";
         }

@@ -60,6 +60,13 @@ RUN set -e; \
 	./configure; \
 	make; \
 	make install; \
+	cd ..; \
+	git clone https://code.uplex.de/uplex-varnish/libvmod-re.git; \
+	cd libvmod-re; \
+	./autogen.sh; \
+	./configure; \
+	make; \
+	make install; \
     # clean up
     apt-get -y purge --auto-remove varnish-build-deps $BASE_PKGS; \
     rm -rf /var/lib/apt/lists/* /work/ /usr/lib/varnish/vmods/libvmod_*.la; \

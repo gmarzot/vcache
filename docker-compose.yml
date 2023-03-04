@@ -16,6 +16,8 @@ services:
   varnish:
     restart: always
     image: "varnish:latest"
+    build:
+      context: varnish
     container_name: varnish
     ports:
       - "6085:6085"

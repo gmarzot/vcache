@@ -6,6 +6,6 @@
 1. Change nginx server hostname (perl -pi -e 's/home.marzot.net/vivoh.io/' etc/nginx/sites-enabled/vivoh-cache.cfg)
 1. Start cache containers (sudo docker-compose up or sudo docker-compose up -d)
 
-**note:** docker-compse version <= 1.29 required. see https://github.com/docker/compose
+**note:** docker-compse version >= 1.29 required. see https://github.com/docker/compose
 
 **note:** you may need to make the run directory writable (chmod o+w run)

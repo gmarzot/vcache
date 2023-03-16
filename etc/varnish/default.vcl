@@ -7,11 +7,13 @@ import cookie;
 import blob;
 import crypto;
 import digest;
+#import frozen;
+#import taskvar;
 
 backend default {
 #    .host = "127.0.0.1";
 #    .port = "8888";
-    .path = "/var/run/nginx.sock";
+    .path = "/var/run/nginx-backend.sock";
     .max_connections = 100;
     .probe = {
         .request =
@@ -37,7 +39,10 @@ sub vcl_init {
         new segment_path_regex = re.regex("\.(ts|mp3|mp4)$");
         new media_path_regex = re.regex("\.(mpd|m3u8|ts|mp3|mp4)");
         new jwt_value_regex = re.regex("^([^\.]+)\.([^\.]+)\.([^\.]+)$");
+        new v = crypto.verifier(sha256,std.fileread("/etc/varnish/jwtRS256.key.pub"));
 }
+
+
 
 sub validate_auth_jwt {
       var.set("auth_jwt", cookie.get("by"));
@@ -49,22 +54,24 @@ sub validate_auth_jwt {
          return(synth(400, "bad JWT format"));  
       }
       # decode JWT header
-      var.set("auth_jwt_hdr", digest.base64url_decode(var.get("auth_jwt_hdr")));
-      var.set("auth_jwt_typ", regsub(var.get("auth_jwt_hdr"),{"^.*?"typ"\s*:\s*"(\w+)".*?$"},"\1"));
-      var.set("auth_jwt_alg", regsub(var.get("auth_jwt_hdr"),{"^.*?"alg"\s*:\s*"(\w+)".*?$"},"\1"));
+      var.set("auth_jwt_hdr_decoded", digest.base64url_decode(var.get("auth_jwt_hdr")));
+      var.set("auth_jwt_typ", regsub(var.get("auth_jwt_hdr_decoded"),{"^.*?"typ"\s*:\s*"(\w+)".*?$"},"\1"));
+      var.set("auth_jwt_alg", regsub(var.get("auth_jwt_hdr_decoded"),{"^.*?"alg"\s*:\s*"(\w+)".*?$"},"\1"));
 
       if(var.get("auth_jwt_typ") != "JWT") {
          return(synth(400, "unrecognized JWT type: " + var.get("auth_jwt_typ")));
       }
-      if(var.get("auth_jwt_alg") != "HS256") {
+      if(var.get("auth_jwt_alg") != "RS256") {
          return(synth(400, "unsupported JWT sig algorithm: " + var.get("auth_jwt_alg")));
       }
 
-      var.set("jwt_sig", digest.base64url_nopad_hex(digest.hmac_sha256("1209381203918309128103981039213", var.get("auth_jwt_pld")))); 
-      if(var.get("jwt_sig") != var.get("auth_jwt_sig")) {
-         return(synth(403, "invalid HS256 JWT signature(" + var.get("auth_jwt_sig") + ")"));
+      v.reset();  // need this if request restart
+      v.update(var.get("auth_jwt_hdr") + "." + var.get("auth_jwt_pld"));
+
+      if (!v.valid(blob.decode(BASE64URLNOPAD, encoded=var.get("auth_jwt_sig")))) {
+         return(synth(403, "invalid " + var.get("auth_jwt_typ") + " " + var.get("auth_jwt_alg") + " signature [" + var.get("auth_jwt_sig") + "]"));
       }
-}
+ }
 
 sub vcl_recv {
     # short-circuit pre-flight OPTIONS requests
@@ -77,16 +84,12 @@ sub vcl_recv {
        }
        return (purge);
     }
-    # for DNS host spoofing - specific host URL is rewritten in canonical cache format
-    if (req.http.host ~ "customer-gokzt9h2p9dpbdy7.cloudflarestream.com" ||
-        req.http.host ~ "customer-qztrqeec4n9lncb4.cloudflarestream.com") {
-       set req.url = "/cache/" + req.http.host + req.url;
-       set req.http.host = "vivoh-cache.home.marzot.net";
-    }
+
     cookie.parse(req.http.cookie);
     # if Vivoh auth token present - validate JWT
     if(cookie.isset("by")) {
        call validate_auth_jwt;
+       return(hash);
     }
     if (query_str_regex.match(req.url) && media_path_regex.match(query_str_regex.backref(1))) {
        return(hash);

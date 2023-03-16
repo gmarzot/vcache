@@ -67,6 +67,8 @@ RUN set -e; \
 	./configure; \
 	make; \
 	make install; \
+    cd /usr/local/bin; \
+    curl -sL https://github.com/jonnenauha/prometheus_varnish_exporter/releases/download/1.6.1/prometheus_varnish_exporter-1.6.1.linux-amd64.tar.gz | tar xz --strip-components=1; \	
     # clean up
     apt-get -y purge --auto-remove varnish-build-deps $BASE_PKGS; \
     rm -rf /var/lib/apt/lists/* /work/ /usr/lib/varnish/vmods/libvmod_*.la; \
@@ -74,9 +76,11 @@ RUN set -e; \
 
 WORKDIR /etc/varnish
 
+VOLUME /var/lib/varnish
+
 COPY scripts/ /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/docker-varnish-entrypoint"]
 
 USER varnish
-EXPOSE 80 8443
+EXPOSE 80 8443 9131
 CMD []

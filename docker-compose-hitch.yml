@@ -1,0 +1,74 @@
+version: "3"
+services:
+  hitch:
+    restart: always
+    image: "hitch:latest"
+    container_name: hitch
+    volumes:
+      - "./etc/hitch:/etc/hitch"
+      - "./run:/var/run"
+    tmpfs:
+      - "/var/lib/hitch:exec"
+    ports:
+      - "443:443"
+    depends_on:
+      - "varnish"
+
+  varnish:
+    restart: always
+    image: "varnish"
+    build:
+      context: varnish
+    container_name: varnish
+    ports:
+      - "6085:6085"
+    volumes:
+      - "./etc/varnish:/etc/varnish"
+      - "./run:/var/run"
+      - "varnish_tmpfs:/var/lib/varnish"
+    environment:
+      - VARNISH_SIZE=12G
+    command:
+      - "-a /var/run/nginx-frontend.sock,PROXY,user=varnish,group=varnish,mode=666"
+    depends_on:
+      - "nginx"
+
+# https://github.com/jonnenauha/prometheus_varnish_exporter/releases/download/1.6.1/prometheus_varnish_exporter-1.6.1.linux-amd64.tar.gz
+  varnishstat:
+    restart: always
+    build:
+      context: varnish
+    container_name: varnishstat
+    ports:
+      - "9131:9131"
+    mem_limit: 100m
+    environment:
+      VSM_NOPID: 1
+    depends_on:
+      - varnish
+    volumes:
+      - ./src:/etc/varnish:ro
+      - varnish_tmpfs:/var/lib/varnish:ro
+    command: prometheus_varnish_exporter
+
+  nginx:
+    restart: always
+    image: "nginx-perl"
+    build:
+      context: nginx
+    container_name: nginx
+    volumes:
+      - "./run:/var/run"
+      - "./log/nginx:/var/log/nginx"
+      - "./etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "./etc/nginx/pki:/etc/nginx/pki:ro"
+      - "./etc/nginx/sites-enabled/vivoh-cache.cfg:/etc/nginx/sites-enabled/vivoh-cache.cfg"
+      - "./etc/nginx/modules-enabled/80-mod-http-perl.conf:/etc/nginx/modules-enabled/80-mod-http-perl.conf"
+      - "./nginx/perl:/var/lib/nginx/perl"
+    network_mode: "host"
+
+volumes:
+  varnish_tmpfs:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs

@@ -3,7 +3,9 @@
 1. Install prerequisites (sudo apt install -y docker.io docker-compose)
 1. Determine installation cache host hostname (e.g., vivoh-cache.vivoh.io)
 1. Generate appropriate SSL keys/certs and add to ./nginx/pki (e.g., vivoh-cache.vivoh.io.pub vivoh-cache.vivoh.io.key)
+1. Add the key paths above to ./etc/nginx/sites-enabled/vivoh-cache-frontend.cfg
 1. Change nginx server hostname (perl -pi -e 's/home.marzot.net/vivoh.io/' etc/nginx/sites-enabled/vivoh-cache-*.cfg)
+1. Build the images (sudo docker-compose build --pull)
 1. Start cache containers (sudo docker-compose up or sudo docker-compose up -d)
 
 **note:** docker-compse version >= 1.29 required. see https://github.com/docker/compose
@@ -20,7 +22,7 @@ time curl -v  "https://vivoh-cache.home.marzot.net/cache/vivoh-cache.vivoh.io/ca
 
 **note:** cache x-vivoh-cache: MISS and subsequent HIT
 
-gmarzot@typhoon:~$ time curl -v  "https://vivoh-cache.home.marzot.net/cache/vivoh-cache.home.marzot.net/cache/teststream.rampecdn.com/ramptv/video/stream-12072016/0500026413_player.hls-500k.split.44.ts" -o test-2.ts 2>&1 | grep "^[\<\>]"
+gmarzot@typhoon:~$ time curl -v  "https://vivoh-cache.home.marzot.net/cache/teststream.rampecdn.com/ramptv/video/stream-12072016/0500026413_player.hls-500k.split.44.ts" -o test-1.ts 2>&1 | grep "^[\<\>]"
 > GET /cache/vivoh-cache.home.marzot.net/cache/teststream.rampecdn.com/ramptv/video/stream-12072016/0500026413_player.hls-500k.split.44.ts HTTP/2
 > Host: vivoh-cache.home.marzot.net
 > user-agent: curl/7.81.0
@@ -51,7 +53,7 @@ gmarzot@typhoon:~$ time curl -v  "https://vivoh-cache.home.marzot.net/cache/vivo
 real    0m0.048s
 user    0m0.047s
 sys     0m0.000s
-gmarzot@typhoon:~$ time curl -v  "https://vivoh-cache.home.marzot.net/cache/vivoh-cache.home.marzot.net/cache/teststream.rampecdn.com/ramptv/video/stream-12072016/0500026413_player.hls-500k.split.37.ts" -o test-2.ts 2>&1 | grep "^[\<\>]"
+gmarzot@typhoon:~$ time curl -v  "https://vivoh-cache.home.marzot.net/cache/teststream.rampecdn.com/ramptv/video/stream-12072016/0500026413_player.hls-500k.split.37.ts" -o test-2.ts 2>&1 | grep "^[\<\>]"
 > GET /cache/vivoh-cache.home.marzot.net/cache/teststream.rampecdn.com/ramptv/video/stream-12072016/0500026413_player.hls-500k.split.37.ts HTTP/2
 > Host: vivoh-cache.home.marzot.net
 > user-agent: curl/7.81.0
@@ -112,3 +114,4 @@ gmarzot@typhoon:~$ time curl -v  "https://vivoh-cache.home.marzot.net/cache/vivo
 real    0m0.047s
 user    0m0.042s
 sys     0m0.005s
+gmarzot@typhoon:~$ diff test-1.ts test-2.ts

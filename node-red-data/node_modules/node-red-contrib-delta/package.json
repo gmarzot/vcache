@@ -1,0 +1,30 @@
+{
+  "name": "node-red-contrib-delta",
+  "version": "1.0.0",
+  "description": "Node-RED node that computes the difference between the current input message and the previous one",
+  "main": "delta/delta.js",
+  "node-red": {
+    "nodes": {
+      "delta": "delta/delta.js"
+    }
+  },
+  "engines": { "node" : ">=4.0.0" },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/myfreeweb/node-red-contrib-delta"
+  },
+  "keywords": [
+    "node-red",
+    "node-red-contrib",
+    "delta",
+    "metrics"
+  ],
+  "author": "Greg V <greg@unrelenting.technology>",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/myfreeweb/node-red-contrib-delta/issues"
+  },
+  "homepage": "https://github.com/myfreeweb/node-red-contrib-delta#readme",
+  "dependencies": { }
+}

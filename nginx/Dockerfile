@@ -75,6 +75,11 @@ RUN set -x \
                         $nginxPackages \
                         gettext-base \
                         curl \
+						libredis-perl \
+						libjson-perl \
+						libdatetime-perl \
+						libdevel-dumpvar-perl \
+						libgoogle-protocolbuffers-perl \
     && apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx.list \
     \
 # if we have leftovers from building, let's purge them (including extra, unnecessary build deps)

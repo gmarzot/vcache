@@ -2,7 +2,7 @@
 
 1. Install prerequisites (sudo apt install -y docker.io docker-compose)
 1. Determine installation cache host hostname (e.g., vivoh-cache.vivoh.io)
-1. Generate appropriate SSL keys/certs and add to ./nginx/pki (e.g., vivoh-cache.vivoh.io.pub vivoh-cache.vivoh.io.key)
+1. Generate appropriate SSL keys/certs and add to ./etc/nginx/pki (e.g., vivoh-cache.vivoh.io.pub vivoh-cache.vivoh.io.key)
 1. Add the key paths above to ./etc/nginx/sites-enabled/vivoh-cache-frontend.cfg
 1. Change nginx server hostname (perl -pi -e 's/home.marzot.net/vivoh.io/' etc/nginx/sites-enabled/vivoh-cache-*.cfg)
 1. Build the images (sudo docker-compose build --pull)

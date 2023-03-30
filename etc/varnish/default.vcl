@@ -7,12 +7,8 @@ import cookie;
 import blob;
 import crypto;
 import digest;
-#import frozen;
-#import taskvar;
 
 backend default {
-#    .host = "127.0.0.1";
-#    .port = "8888";
     .path = "/var/run/nginx-backend.sock";
     .max_connections = 100;
     .probe = {
@@ -28,7 +24,7 @@ backend default {
     }
 }
 
-acl purge {
+acl purge_acl {
    "localhost";
 }
 
@@ -41,8 +37,6 @@ sub vcl_init {
         new jwt_value_regex = re.regex("^([^\.]+)\.([^\.]+)\.([^\.]+)$");
         new v = crypto.verifier(sha256,std.fileread("/etc/varnish/jwtRS256.key.pub"));
 }
-
-
 
 sub validate_auth_jwt {
       var.set("auth_jwt", cookie.get("by"));
@@ -78,20 +72,22 @@ sub vcl_recv {
     if (req.method == "OPTIONS") {
        return(synth(200));
     }
+    # XXX need to allow purge from container cluster/mgmt
     if (req.method == "PURGE") {
-       if (!client.ip ~ purge) {
+       if (!client.ip ~ purge_acl) {
           return(synth(405,"method not allowed: PURGE"));
        }
        return (purge);
     }
 
     cookie.parse(req.http.cookie);
-    # if Vivoh auth token present - validate JWT
+    # if Vivoh auth token present - validate JWT - XXX suggest more unique cookie name
     if(cookie.isset("by")) {
        call validate_auth_jwt;
        return(hash);
     }
-    if (query_str_regex.match(req.url) && media_path_regex.match(query_str_regex.backref(1))) {
+    # only cache supported methods for video media - XXX add content type as well url patter - derive from config
+    if ((req.method == "GET" || req.method == "HEAD") && query_str_regex.match(req.url) && media_path_regex.match(query_str_regex.backref(1))) {
        return(hash);
     }
 }
@@ -107,7 +103,7 @@ sub vcl_deliver {
     } else {
        set resp.http.Access-Control-Allow-Origin = "*";
     }
-    # track HIT/MISS telemetry in response header
+    # track HIT/MISS status in response header
     if (obj.hits > 0) {
         set resp.http.X-Vivoh-Cache = "HIT";
         set resp.http.X-Vivoh-Cache-Hits = obj.hits;
@@ -138,7 +134,7 @@ sub vcl_hash {
         hash_data(req.method);
     }
     query_str_regex.match(req.url);
-    # cache key should include vimeo non-standard range query parameters
+    # cache key should include vimeo non-standard range query parameters (XXX is this redally true)
     # for typical video content, the entire query string is stripped
     if (vimeo_range_regex.match(req.url)) {
         var.set("url_path", vimeo_range_regex.backref(1) + "?" + vimeo_range_regex.backref(2));
@@ -147,13 +143,15 @@ sub vcl_hash {
     } else {
         var.set("url_path", req.url);
     }
+
     hash_data(var.get("url_path"));
     if (req.http.host) {
         hash_data(req.http.host);
     } else {
         hash_data(server.ip);
     }
-    # require "by" cookie for access to cache
+
+    # if Vivoh "by" cookie is present - enforce presence for cache access (XXX ensure not spoofable in URL path)
     if(cookie.isset("by")) {
        hash_data("vivoh_auth_token");
     }
@@ -165,8 +163,8 @@ sub vcl_synth {
         set resp.http.Access-Control-Allow-Headers = "Content-Type,Content-Length,Authorization,Accept,X-Requested-With";
         set resp.http.Access-Control-Allow-Methods = "GET,HEAD,OPTIONS";
         set resp.http.Access-Control-Allow-Local-Network = "true";
-        set resp.http.Allow-Credentials = "true";
-        set resp.http.ETag = "123456";
+        set resp.http.Allow-Credentials = "true"; # XXX huh?
+        set resp.http.ETag = "123456"; # XXX huh?
         if (req.http.origin) {
            set resp.http.Access-Control-Allow-Origin = req.http.origin;
         } else {

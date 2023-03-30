@@ -67,10 +67,10 @@ RUN set -e; \
 	./configure; \
 	make; \
 	make install; \
-    cd /usr/local/bin; \
-    curl -sL https://github.com/jonnenauha/prometheus_varnish_exporter/releases/download/1.6.1/prometheus_varnish_exporter-1.6.1.linux-amd64.tar.gz | tar xz --strip-components=1; \	
     # clean up
     apt-get -y purge --auto-remove varnish-build-deps $BASE_PKGS; \
+    # add python run environment
+	apt-get install -y python3 python3-pip python3-venv expect; \
     rm -rf /var/lib/apt/lists/* /work/ /usr/lib/varnish/vmods/libvmod_*.la; \
     chown varnish /var/lib/varnish;
 

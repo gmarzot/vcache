@@ -76,7 +76,7 @@ services:
     container_name: backend
     volumes:
       - "./run:/var/run"
-      - "./log/backend:/var/log/nginx"
+      - "./log/nginx:/var/log/nginx"
       - "./etc/nginx/nginx-be.conf:/etc/nginx/nginx.conf:ro"
       - "./etc/nginx/sites-enabled/backend.cfg:/etc/nginx/sites-enabled/backend.cfg"
       - "./etc/nginx/modules-enabled/80-mod-http-perl.conf:/etc/nginx/modules-enabled/80-mod-http-perl.conf"

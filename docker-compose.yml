@@ -81,7 +81,6 @@ services:
       - "./etc/nginx/sites-enabled/backend.cfg:/etc/nginx/sites-enabled/backend.cfg"
       - "./etc/nginx/modules-enabled/80-mod-http-perl.conf:/etc/nginx/modules-enabled/80-mod-http-perl.conf"
       - "./perl:/var/lib/nginx/perl"
-    network_mode: "host"
     pid: "service:mgmt"
     restart: always
 

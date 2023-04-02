@@ -45,8 +45,8 @@ RUN set -e; \
     install-vmod https://github.com/varnish/varnish-modules/releases/download/$VARNISH_MODULES_VERSION/varnish-modules-$VARNISH_MODULES_VERSION.tar.gz $VARNISH_MODULES_SHA512SUM; \
     \
     # vmod-dynamic
-    install-vmod https://github.com/nigoroll/libvmod-dynamic/archive/$VMOD_DYNAMIC_COMMIT.tar.gz $VMOD_DYNAMIC_SHA512SUM; \
-    \
+    # install-vmod https://github.com/nigoroll/libvmod-dynamic/archive/$VMOD_DYNAMIC_COMMIT.tar.gz $VMOD_DYNAMIC_SHA512SUM; \
+    # \
 	cd ..; \
 	git clone https://code.uplex.de/uplex-varnish/libvmod-crypto.git; \
 	cd libvmod-crypto; \

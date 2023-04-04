@@ -15,6 +15,14 @@
         "env": []
     },
     {
+        "id": "6e1fffded33ce50f",
+        "type": "tab",
+        "label": "Configuration",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "d898c7987d10b482",
         "type": "ui_group",
         "name": "System Metrics",
@@ -780,6 +788,25 @@
         "order": 66,
         "width": 1,
         "height": 1
+    },
+    {
+        "id": "94c965dfa02ebec9",
+        "type": "ui_tab",
+        "name": "Configuration",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "27ef1ca5c2551459",
+        "type": "ui_group",
+        "name": "Configuration",
+        "tab": "94c965dfa02ebec9",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "8c7bd56ed2204041",
@@ -3092,6 +3119,30 @@
                 "57b723ae0cdb1fd5",
                 "466c448c79a215b2"
             ]
+        ]
+    },
+    {
+        "id": "b8eb1678b935b37c",
+        "type": "ui_text_input",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "label": "Hostname: ",
+        "tooltip": "main cache hostname",
+        "group": "27ef1ca5c2551459",
+        "order": 0,
+        "width": "6",
+        "height": "2",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 470,
+        "y": 80,
+        "wires": [
+            []
         ]
     }
 ]

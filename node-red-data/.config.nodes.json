@@ -771,36 +771,6 @@
             }
         }
     },
-    "node-red-contrib-moment": {
-        "name": "node-red-contrib-moment",
-        "version": "4.0.0",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "moment": {
-                "name": "moment",
-                "types": [
-                    "moment"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-moment",
-                "file": "/data/node_modules/node-red-contrib-moment/moment/nrmoment.js"
-            },
-            "humanizer": {
-                "name": "humanizer",
-                "types": [
-                    "humanizer"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-moment",
-                "file": "/data/node_modules/node-red-contrib-moment/moment/nrhumanizer.js"
-            }
-        }
-    },
     "node-red-contrib-cpu": {
         "name": "node-red-contrib-cpu",
         "version": "0.0.4",
@@ -817,44 +787,6 @@
                 "user": false,
                 "module": "node-red-contrib-cpu",
                 "file": "/data/node_modules/node-red-contrib-cpu/cpu.js"
-            }
-        }
-    },
-    "node-red-contrib-moving-average": {
-        "name": "node-red-contrib-moving-average",
-        "version": "1.3.0",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "moving-average": {
-                "name": "moving-average",
-                "types": [
-                    "moving-average"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-moving-average",
-                "file": "/data/node_modules/node-red-contrib-moving-average/moving-average.js"
-            }
-        }
-    },
-    "node-red-contrib-rate-avg": {
-        "name": "node-red-contrib-rate-avg",
-        "version": "0.0.3",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "rate-avg": {
-                "name": "rate-avg",
-                "types": [
-                    "rate-avg"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-rate-avg",
-                "file": "/data/node_modules/node-red-contrib-rate-avg/rate-avg.js"
             }
         }
     },
@@ -896,25 +828,6 @@
             }
         }
     },
-    "node-red-contrib-delta": {
-        "name": "node-red-contrib-delta",
-        "version": "1.0.0",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "delta": {
-                "name": "delta",
-                "types": [
-                    "delta"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-delta",
-                "file": "/data/node_modules/node-red-contrib-delta/delta/delta.js"
-            }
-        }
-    },
     "node-red-node-redis": {
         "name": "node-red-node-redis",
         "version": "0.0.5",
@@ -931,44 +844,6 @@
                 "user": false,
                 "module": "node-red-node-redis",
                 "file": "/data/node_modules/node-red-node-redis/65-redisout.js"
-            }
-        }
-    },
-    "node-red-contrib-ui-artless-gauge": {
-        "name": "node-red-contrib-ui-artless-gauge",
-        "version": "0.3.12",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "ui-value-trail": {
-                "name": "ui-value-trail",
-                "types": [
-                    "ui_artlessgauge"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-ui-artless-gauge",
-                "file": "/data/node_modules/node-red-contrib-ui-artless-gauge/ui-artless-gauge.js"
-            }
-        }
-    },
-    "node-red-contrib-ui-value-trail": {
-        "name": "node-red-contrib-ui-value-trail",
-        "version": "0.2.3",
-        "local": true,
-        "user": true,
-        "nodes": {
-            "ui-value-trail": {
-                "name": "ui-value-trail",
-                "types": [
-                    "ui_valuetrail"
-                ],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-contrib-ui-value-trail",
-                "file": "/data/node_modules/node-red-contrib-ui-value-trail/ui-value-trail.js"
             }
         }
     }

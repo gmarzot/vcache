@@ -29,8 +29,10 @@ if [ $? == 0 ]; then
 fi
 echo "cleaning up previous deployment..."
 sudo docker-compose down
-echo "building images if needed..."
-sudo docker-compose build
+
+chmod ugo+rwx run
+chmod ugo+rwx etc/varnishstats
+
 echo "starting vivoh-cache..."
 sudo docker-compose up -d
 
@@ -39,7 +41,6 @@ if [[ $? != 0 ]]; then
 	exit 2
 else
 	echo "vivoh-cache started..."
-	sudo docker-compose ps --services --filter "status=running"
 fi
 
 exit 0

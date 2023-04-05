@@ -1414,14 +1414,14 @@
         "id": "9f179518aa2a884c",
         "type": "exec",
         "z": "f6f2187d.f17ca8",
-        "command": "echo -n $GIT_REVISION",
+        "command": "echo -n $CACHE_VERSION",
         "addpay": "",
         "append": "",
         "useSpawn": "false",
         "timer": "5",
         "winHide": true,
         "oldrc": false,
-        "name": "GIT_REVISION",
+        "name": "cache version",
         "x": 500,
         "y": 140,
         "wires": [
@@ -3141,6 +3141,41 @@
         "topicType": "msg",
         "x": 470,
         "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d53d35f434b721be",
+        "type": "ui_form",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "label": "test form",
+        "group": "27ef1ca5c2551459",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "a",
+                "value": "b",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "b": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 480,
+        "y": 160,
         "wires": [
             []
         ]

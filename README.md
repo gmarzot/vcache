@@ -15,7 +15,9 @@
 
 ## Test
 
-curl -v  "https://cache-01.vivoh.net/cache/teststream.rampecdn.com/ramptv/video/stream-12072016/0500026413_player.hls-500k.split.44.ts" -o test-2.ts 2>&1 | grep "^[\<\>]"
+run this twice and observe MISS then HIT
+
+curl -v  "https://cache-01.vivoh.net/cache/releases.vivoh.com/videos/adena.mp4" -o /dev/null 2>&1 | grep "^[\<\>]" | grep -i vivoh-cache
 
 
 

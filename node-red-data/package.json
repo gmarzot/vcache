@@ -6,6 +6,7 @@
     "dependencies": {
         "node-red-contrib-cpu": "~0.0.4",
         "node-red-contrib-rate": "~1.4.0",
+        "node-red-contrib-uuid": "~0.0.4",
         "node-red-node-redis": "~0.0.5",
         "node-red-node-smooth": "~0.1.2"
     }

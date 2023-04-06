@@ -19,6 +19,13 @@ services:
     restart: always
     depends_on:
       - redis
+
+  # mgmt-agent:
+  #   image: "saltstack/salt"
+  #   volumes:
+  #     - "./run:/var/run"
+  #     - "./log/salt:/var/log/salt"
+  #     - "./etc/salt:/etc/salt"
   
   frontend:
     image: nginx-perl
@@ -34,6 +41,7 @@ services:
       - "./etc/nginx/pki:/etc/nginx/pki:ro"
       - "./etc/nginx/sites-enabled/frontend.cfg:/etc/nginx/sites-enabled/frontend.cfg"
       - "./etc/nginx/modules-enabled/80-mod-http-perl.conf:/etc/nginx/modules-enabled/80-mod-http-perl.conf"
+      - "./etc/nginx/modules-enabled/50-mod-http-subs-filter.conf:/etc/nginx/modules-enabled/50-mod-http-subs-filter.conf"
       - "./perl:/var/lib/nginx/perl"
     networks:
       - main
@@ -131,5 +139,6 @@ volumes:
 
 networks:
   main:
+    name: vivoh-cache-net
     driver: bridge
     enable_ipv6: false

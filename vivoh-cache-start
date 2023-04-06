@@ -3,7 +3,7 @@
 sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "redis\|mgmt\|backend\|cache\|stats\|frontend" > /dev/null
 
 if [ $? == 0 ]; then
-	echo "a vivoh-cache instance is already running..."
+	echo "vivoh-cache containers already running..."
 	exit 1
 fi
 
@@ -32,8 +32,9 @@ sudo docker-compose down
 
 chmod ugo+rwx run
 chmod ugo+rwx etc/varnishstats
+rm -f run/*.sock run/*.pid
 
-echo "starting vivoh-cache..."
+echo "starting vivoh-cache containers..."
 sudo docker-compose up -d
 
 if [[ $? != 0 ]]; then

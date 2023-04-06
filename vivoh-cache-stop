@@ -1,0 +1,20 @@
+#!/bin/bash
+
+sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "redis\|mgmt\|backend\|cache\|stats\|frontend" > /dev/null
+
+if [ $? != 0 ]; then
+	echo "vivoh-cache containers are not running..."
+	exit 1
+fi
+
+echo "stopping vivoh-cache containers..."
+sudo docker-compose down
+
+if [[ $? != 0 ]]; then
+	echo "[$?] an error occured stopping vivoh-cache, exiting..."
+	exit 2
+else
+	echo "vivoh-cache stopped..."
+fi
+
+exit 0

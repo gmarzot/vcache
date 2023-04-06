@@ -75,12 +75,22 @@ RUN set -x \
                         $nginxPackages \
                         gettext-base \
                         curl \
+						wget \
+						git \
+						build-essential \
+						libpcre2-dev \
+						zlib1g-dev \
 						libredis-perl \
 						libjson-perl \
 						libdatetime-perl \
 						libdevel-dumpvar-perl \
-						libgoogle-protocolbuffers-perl \
-    && apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx.list \
+						libgoogle-protocolbuffers-perl
+RUN git clone https://github.com/yaoweibin/ngx_http_substitutions_filter_module.git
+RUN wget https://nginx.org/download/nginx-1.23.3.tar.gz
+RUN tar xzvf nginx-1.23.3.tar.gz
+RUN cd nginx-1.23.3 && ./configure --with-compat --add-dynamic-module=../ngx_http_substitutions_filter_module && make modules && cp objs/ngx_http_subs_filter_module.so /etc/nginx/modules/
+
+RUN apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx.list \
     \
 # if we have leftovers from building, let's purge them (including extra, unnecessary build deps)
     && if [ -n "$tempDir" ]; then \

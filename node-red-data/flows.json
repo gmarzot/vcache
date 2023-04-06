@@ -3139,7 +3139,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 470,
+        "x": 450,
         "y": 80,
         "wires": [
             []
@@ -3174,10 +3174,139 @@
         "topicType": "msg",
         "splitLayout": "",
         "className": "",
-        "x": 480,
+        "x": 440,
         "y": 160,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "f773b77e37a40bb6",
+        "type": "uuid",
+        "z": "6e1fffded33ce50f",
+        "uuidVersion": "v4",
+        "namespaceType": "custom",
+        "namespace": "VIVOH_CACHE",
+        "namespaceCustom": "VIVOH",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "x": 430,
+        "y": 260,
+        "wires": [
+            [
+                "51ab9183e6c445ee"
+            ]
+        ]
+    },
+    {
+        "id": "73a0cc391e21289f",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 40,
+        "wires": [
+            [
+                "b8eb1678b935b37c",
+                "d53d35f434b721be",
+                "9c1cae2c8cd579f1"
+            ]
+        ]
+    },
+    {
+        "id": "51ab9183e6c445ee",
+        "type": "file",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "filename": "/var/run/uuid.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 640,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b2c4d123f4a19816",
+        "type": "switch",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c1cae2c8cd579f1",
+        "type": "fs-ops-access",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "path": "/var/run",
+        "pathType": "str",
+        "filename": "uuid.txt",
+        "filenameType": "str",
+        "read": true,
+        "write": true,
+        "throwerror": false,
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "853322637d910bf6"
+            ],
+            [
+                "f773b77e37a40bb6"
+            ]
+        ]
+    },
+    {
+        "id": "853322637d910bf6",
+        "type": "debug",
+        "z": "6e1fffded33ce50f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 480,
+        "wires": []
     }
 ]

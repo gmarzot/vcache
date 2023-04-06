@@ -13,8 +13,8 @@ if [ $? != 0 ]; then
 	exit 1
 fi
 
-logfile=$(date '+%Y-%m-%d:%H:%M:%S')
-sudo docker-compose build | tee log/vivoh-cache-build-${logfile}.log
+logfile=log/vivoh-cache-build-$(date '+%Y-%m-%d:%H:%M:%S').log
+sudo docker-compose build | tee ${logfile}
 
 if [ $? != 0 ]; then
 	echo "sudo docker-compose build failed($?): see ${logfile} for details"

@@ -1,12 +1,11 @@
 #!/bin/bash
 
-
 DC_VERSION=$(sudo docker-compose version)
 if [ $? != 0 ]; then
     echo "please install docker-compose..."
     exit 1
 else
-	echo "running docker-compose version: ${DC_VERSION}"
+	echo "running docker-compose version: ${DC_VERSION} (>= 1.29 required)"
 fi
 
 sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "redis\|mgmt\|backend\|cache\|stats\|frontend" > /dev/null
@@ -27,24 +26,25 @@ else
 	hostname=${hostname:-$HOSTNAME}
 	CACHE_VERSION=`git describe 2> /dev/null`
 	if [[ $? != 0 ]]; then
-		if [[ -r ./run/version.txt ]]; then
-			CACHE_VERSION=`cat ./run/version.txt`
+		if [[ -r version.txt ]]; then
+			CACHE_VERSION=`cat version.txt`
 		else
 		    echo "[$?]no git revision or version.txt file detected, using: 0.0.0"
 		    CACHE_VERSION="0.0.0"
 		fi
-	else
-        echo "detected git revision: $CACHE_VERSION"
-    fi
-	echo "CACHE_HOSTNAME=${hostname}" > .env
+	fi
+    echo "running vivoh-cache version: $CACHE_VERSION"
+    echo "CACHE_HOSTNAME=${hostname}" > .env
 	echo "CACHE_VERSION=${CACHE_VERSION}" >> .env
 fi
 
 echo "cleaning up previous deployment..."
 sudo docker-compose down
 
+# these may not be necessary anymore
 chmod ugo+rwx run
 chmod ugo+rwx etc/varnishstats
+
 rm -f run/*.sock run/*.pid
 
 echo "starting vivoh-cache containers..."

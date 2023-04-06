@@ -5,7 +5,7 @@ if [ $? != 0 ]; then
     echo "please install docker-compose..."
     exit 1
 else
-	echo "running docker-compose version: ${DC_VERSION} (>= 1.29 required)"
+	echo "running docker-compose version(>= 1.29 required): ${DC_VERSION}"
 fi
 
 sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "redis\|mgmt\|backend\|cache\|stats\|frontend" > /dev/null

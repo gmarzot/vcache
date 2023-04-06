@@ -33,6 +33,8 @@ services:
       context: nginx
     container_name: frontend
     hostname: ${CACHE_HOSTNAME}
+    environment:
+      - CACHE_HOSTNAME=${CACHE_HOSTNAME}
     volumes:
       - "./run:/var/run"
       - "./log/nginx:/var/log/nginx"

@@ -9,4 +9,9 @@ rm -f run/*.sock run/uuid.txt  run/*.sock
 mkdir release
 
 GIT_REVISION=$(git describe)
-./makeself.sh --nox11 --notemp --tar-extra "--exclude=make* --exclude=.git --exclude=.gitignore --exclude=.venv --exclude=.npm --exclude=release" . release/vivoh-cache-${GIT_REVISION}.run "Vivoh Video Cache" ./vivoh-cache-setup.sh
+
+cd ..
+mv vivoh-cache vivoh-cache-${GIT_REVISION}
+./vivoh-cache-${GIT_REVISION}/makeself.sh --nox11 --notemp --tar-extra "--exclude=make* --exclude=.venv --exclude=.npm --exclude=release --exclude=log/* --exclude=run/* --exclude=.git --exclude=.gitignore ./log ./run" --license LICENSE vivoh-cache-${GIT_REVISION} vivoh-cache-${GIT_REVISION}/release/vivoh-cache-${GIT_REVISION}.run "Vivoh Video Cache" ./vivoh-cache-setup.sh
+
+mv vivoh-cache-${GIT_REVISION} vivoh-cache

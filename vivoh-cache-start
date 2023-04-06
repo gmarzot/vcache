@@ -1,5 +1,14 @@
 #!/bin/bash
 
+
+DC_VERSION=$(sudo docker-compose version)
+if [ $? != 0 ]; then
+    echo "please install docker-compose..."
+    exit 1
+else
+	echo "running docker-compose version: ${DC_VERSION}"
+fi
+
 sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "redis\|mgmt\|backend\|cache\|stats\|frontend" > /dev/null
 
 if [ $? == 0 ]; then

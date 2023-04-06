@@ -27,8 +27,12 @@ else
 	hostname=${hostname:-$HOSTNAME}
 	CACHE_VERSION=`git describe 2> /dev/null`
 	if [[ $? != 0 ]]; then
-		echo "[$?]no git revision detected, using: 0.0.0"
-		CACHE_VERSION="0.0.0"
+		if [[ -r ./run/version.txt ]]; then
+			CACHE_VERSION=`cat ./run/version.txt`
+		else
+		    echo "[$?]no git revision or version.txt file detected, using: 0.0.0"
+		    CACHE_VERSION="0.0.0"
+		fi
 	else
         echo "detected git revision: $CACHE_VERSION"
     fi

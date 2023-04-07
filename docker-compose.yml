@@ -144,5 +144,6 @@ volumes:
 
 networks:
   vcache_net:
+    name: vcache_net
     driver: bridge
     enable_ipv6: false

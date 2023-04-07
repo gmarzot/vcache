@@ -2,10 +2,10 @@
 
 DC_VERSION=$(sudo docker-compose version)
 if [ $? != 0 ]; then
-    echo "please install docker-compose..."
+    echo "please install docker-compose and provide sudo access..."
     exit 1
 else
-	echo "running docker-compose version(>= 1.29 required): ${DC_VERSION}"
+	echo "running docker-compose (>= 1.29 required): ${DC_VERSION}"
 fi
 
 sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache" > /dev/null
@@ -24,7 +24,6 @@ else
 	echo "generating .env file..."
 	read -p "enter the vivoh-cache hostname[$HOSTNAME]: " hostname
 	hostname=${hostname:-$HOSTNAME}
-    echo "running vivoh-cache version: $VCACHE_VERSION"
     echo "VCACHE_HOSTNAME=${hostname}" > .env
 	echo "VCACHE_MEM_SIZE=12G" >> .env
 fi
@@ -38,21 +37,21 @@ if [[ $? != 0 ]]; then
 	    VCACHE_VERSION="0.0.0"
 	fi
 fi
-echo ${VCACHE_VERSION} > vcache-version.txt
+echo -n ${VCACHE_VERSION} > vcache-version.txt
 
 echo "cleaning up previous deployment..."
 sudo docker-compose down
 
 rm -f run/*.sock run/*.pid
 
-echo "starting vivoh-cache containers..."
+echo "starting vivoh-cache (${VCACHE_VERSION}) ..."
 sudo docker-compose up -d
 
 if [[ $? != 0 ]]; then
 	echo "[$?] an error occured starting vivoh-cache, exiting..."
 	exit 2
 else
-	echo "vivoh-cache started..."
+	echo "vivoh-cache started!"
 fi
 
 exit 0

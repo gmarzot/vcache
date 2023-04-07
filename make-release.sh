@@ -7,7 +7,7 @@ find . -name '.#*' | xargs rm -f
 mkdir release
 
 GIT_REVISION=$(git describe)
-echo ${GIT_REVISION} > version.txt
+echo -n ${GIT_REVISION} > vcache-version.txt
 
 cd ..
 mv vivoh-cache vivoh-cache-${GIT_REVISION}

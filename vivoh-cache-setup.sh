@@ -9,7 +9,7 @@ fi
 sudo docker-compose version
 
 if [ $? != 0 ]; then
-	echo "sudo support for docker-compose required..."
+	echo "sudo access to docker-compose required, exiting..."
 	exit 1
 fi
 

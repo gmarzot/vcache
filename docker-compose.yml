@@ -1,24 +1,24 @@
 version: "3"
 services:
-  mgmt:
+  vcache_mgmt:
+    image: node-red
     build:
       context: node-red
-    container_name: mgmt
-    hostname: ${CACHE_HOSTNAME}
-    environment:
-      - CACHE_VERSION=${CACHE_VERSION}
+    container_name: vcache_mgmt
+    hostname: ${VCACHE_HOSTNAME}
     volumes:
       - "./node-red-data:/data"
       - "./run:/var/run"
+      - "./vcache-version.txt:/data/vcache-version.txt"
     networks:
-      - main
+      - vcache_net
     # close this for production
     ports:
       - "1880:1880"
     pid: shareable
     restart: always
     depends_on:
-      - redis
+      - vcache_redis
 
   # mgmt-agent:
   #   image: "saltstack/salt"
@@ -27,14 +27,14 @@ services:
   #     - "./log/salt:/var/log/salt"
   #     - "./etc/salt:/etc/salt"
   
-  frontend:
+  vcache_frontend:
     image: nginx-perl
     build:
       context: nginx
-    container_name: frontend
-    hostname: ${CACHE_HOSTNAME}
+    container_name: vcache_frontend
+    hostname: ${VCACHE_HOSTNAME}
     environment:
-      - CACHE_HOSTNAME=${CACHE_HOSTNAME}
+      - VCACHE_HOSTNAME=${VCACHE_HOSTNAME}
     volumes:
       - "./run:/var/run"
       - "./log/nginx:/var/log/nginx"
@@ -46,11 +46,11 @@ services:
       - "./etc/nginx/modules-enabled/50-mod-http-subs-filter.conf:/etc/nginx/modules-enabled/50-mod-http-subs-filter.conf"
       - "./perl:/var/lib/nginx/perl"
     networks:
-      - main
+      - vcache_net
     ports:
       - "443:443"
       - "8443:8443"
-    pid: "service:mgmt"
+    pid: "service:vcache_mgmt"
     ulimits:
        memlock: -1
        nofile:
@@ -58,39 +58,39 @@ services:
          hard: 262144
     restart: always
     depends_on:
-      - cache
-      - mgmt
+      - vcache_engine
+      - vcache_mgmt
 
-  cache:
+  vcache_engine:
     image: varnish
     build:
       context: varnish
-    container_name: cache
+    container_name: vcache_engine
     volumes:
       - "./etc/varnish:/etc/varnish"
       - "./run:/var/run"
       - "varnish_tmpfs:/var/lib/varnish"
     networks:
-      - main
-    pid: "service:mgmt"
+      - vcache_net
+    pid: "service:vcache_mgmt"
     ulimits:
        memlock: -1
        nofile:
          soft: 262144
          hard: 262144
     environment:
-      - VARNISH_SIZE=12G
+      - VARNISH_SIZE=${VCACHE_MEM_SIZE}
     command:
       - "-a /var/run/varnish.sock,HTTP,user=varnish,group=varnish,mode=666"
     restart: always
     depends_on:
-      - backend
+      - vcache_backend
 
-  backend:
+  vcache_backend:
     image: nginx-perl
     build:
       context: nginx
-    container_name: backend
+    container_name: vcache_backend
     volumes:
       - "./run:/var/run"
       - "./log/nginx:/var/log/nginx"
@@ -98,15 +98,18 @@ services:
       - "./etc/nginx/sites-enabled/backend.cfg:/etc/nginx/sites-enabled/backend.cfg"
       - "./etc/nginx/modules-enabled/80-mod-http-perl.conf:/etc/nginx/modules-enabled/80-mod-http-perl.conf"
       - "./perl:/var/lib/nginx/perl"
+    environment:
+      - VCACHE_HOSTNAME=${VCACHE_HOSTNAME}
     networks:
-      - main
-    pid: "service:mgmt"
+      - vcache_net
+    pid: "service:vcache_mgmt"
     restart: always
 
-  stats:
+  vcache_stats:
+    image: varnish
     build:
       context: varnish
-    container_name: stats
+    container_name: vcache_stats
     volumes:
       - ./etc/varnishstats:/etc/varnish
       - varnish_tmpfs:/var/lib/varnish:ro
@@ -114,19 +117,19 @@ services:
       VSM_NOPID: 1
     command: "start-varnishstats-exporter"
     networks:
-      - main
+      - vcache_net
     restart: always
     depends_on:
-      - cache
-      - redis
+      - vcache_engine
+      - vcache_redis
 
-  redis:
+  vcache_redis:
     image: redis:latest
-    container_name: redis
+    container_name: vcache_redis
     volumes:
       - "redis_data:/data"
     networks:
-      - main
+      - vcache_net
     # close this for production
     ports:
       - "6379:6379"
@@ -140,7 +143,6 @@ volumes:
       device: tmpfs
 
 networks:
-  main:
-    name: vivoh-cache-net
+  vcache_net:
     driver: bridge
     enable_ipv6: false

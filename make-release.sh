@@ -4,9 +4,6 @@ find . -name '*~' | xargs rm -f
 find . -name '#*' | xargs rm -f
 find . -name '.#*' | xargs rm -f
 
-rm -f log/*/*.log
-rm -f run/*.sock run/uuid.txt  run/*.sock
-
 mkdir release
 
 GIT_REVISION=$(git describe)

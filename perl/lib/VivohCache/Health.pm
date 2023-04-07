@@ -29,9 +29,10 @@ sub handler {
 	$cache_health{'uuid'} = $uuid;
 
 	if (!defined $redis) {
-		$redis = Redis->new(server => 'redis:6379',
+		$redis = Redis->new(server => 'vcache_redis:6379',
 							reconnect => 60, every => 1000,
 							read_timeout => 2);
+		return HTTP_INTERNAL_SERVER_ERROR unless defined($redis);
 	}
 
 	my @data = ();

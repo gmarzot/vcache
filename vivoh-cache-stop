@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "redis\|mgmt\|backend\|cache\|stats\|frontend" > /dev/null
+sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache" > /dev/null
 
 if [ $? != 0 ]; then
 	echo "vivoh-cache containers are not running..."

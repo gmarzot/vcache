@@ -8,7 +8,7 @@ else
 	echo "running docker-compose version(>= 1.29 required): ${DC_VERSION}"
 fi
 
-sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "redis\|mgmt\|backend\|cache\|stats\|frontend" > /dev/null
+sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache" > /dev/null
 
 if [ $? == 0 ]; then
 	echo "vivoh-cache containers already running..."
@@ -24,26 +24,24 @@ else
 	echo "generating .env file..."
 	read -p "enter the vivoh-cache hostname[$HOSTNAME]: " hostname
 	hostname=${hostname:-$HOSTNAME}
-	CACHE_VERSION=`git describe 2> /dev/null`
-	if [[ $? != 0 ]]; then
-		if [[ -r version.txt ]]; then
-			CACHE_VERSION=`cat version.txt`
-		else
-		    echo "[$?]no git revision or version.txt file detected, using: 0.0.0"
-		    CACHE_VERSION="0.0.0"
-		fi
-	fi
-    echo "running vivoh-cache version: $CACHE_VERSION"
-    echo "CACHE_HOSTNAME=${hostname}" > .env
-	echo "CACHE_VERSION=${CACHE_VERSION}" >> .env
+    echo "running vivoh-cache version: $VCACHE_VERSION"
+    echo "VCACHE_HOSTNAME=${hostname}" > .env
+	echo "VCACHE_MEM_SIZE=12G" >> .env
 fi
+
+VCACHE_VERSION=`git describe 2> /dev/null`
+if [[ $? != 0 ]]; then
+	if [[ -r vcache-version.txt ]]; then
+		VCACHE_VERSION=`cat vcache-version.txt`
+	else
+	    echo "[$?]no git revision or version.txt file detected, using: 0.0.0"
+	    VCACHE_VERSION="0.0.0"
+	fi
+fi
+echo ${VCACHE_VERSION} > vcache-version.txt
 
 echo "cleaning up previous deployment..."
 sudo docker-compose down
-
-# these may not be necessary anymore
-chmod ugo+rwx run
-chmod ugo+rwx etc/varnishstats
 
 rm -f run/*.sock run/*.pid
 

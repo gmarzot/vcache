@@ -29,13 +29,13 @@ acl purge_acl {
 }
 
 sub vcl_init {
-        new query_str_regex = re.regex("^([^\?]*)(\?.*)?$");
-        new vimeo_range_regex = re.regex("^([^\?]*\.mp4)\?.*(range=\d+-\d+).*$");
-        new manifest_path_regex = re.regex("\.(mpd|m3u8)$");
-        new segment_path_regex = re.regex("\.(ts|mp3|mp4)$");
-        new media_path_regex = re.regex("\.(mpd|m3u8|ts|mp3|mp4)");
-        new jwt_value_regex = re.regex("^([^\.]+)\.([^\.]+)\.([^\.]+)$");
-        new v = crypto.verifier(sha256,std.fileread("/etc/varnish/jwtRS256.key.pub"));
+      new query_str_regex = re.regex("^([^\?]*)(\?.*)?$");
+      new vimeo_range_regex = re.regex("^([^\?]*\.mp4)\?.*(range=\d+-\d+).*$");
+      new manifest_path_regex = re.regex("(\.mpd|\.m3u8|\(format=m3u8-aapl\))$");
+      new segment_path_regex = re.regex("\.(ts|mp3|mp4|webvtt|acc)$");
+      new media_path_regex = re.regex("(\.mpd|\.m3u8|\(format=m3u8-aapl\)|\.ts|\.mp3|\.mp4|\.webvtt|\.acc)");
+      new jwt_value_regex = re.regex("^([^\.]+)\.([^\.]+)\.([^\.]+)$");
+      new v = crypto.verifier(sha256,std.fileread("/etc/varnish/jwtRS256.key.pub"));
 }
 
 sub validate_auth_jwt {
@@ -119,10 +119,10 @@ sub vcl_backend_response {
        return(deliver);
     }
     if (bereq.method != "OPTIONS") {
-       if (bereq.url ~ "(?i)\.(m3u8|mpd)(\?|$)") {
+       if (manifest_path_regex.match(bereq.url)) {
           set beresp.ttl = 1s;
           return(deliver);
-       } else if (bereq.url ~ "(?i)\.(ts|mp3|mp4)(\?|$)") {
+       } else if (segment_path_regex.match(bereq.url)) {
           set beresp.ttl = 300s;
           return(deliver);
        }

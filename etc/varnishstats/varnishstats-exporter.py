@@ -5,7 +5,7 @@ import os
 import subprocess
 import time
 
-redis = redis.Redis(host='redis', port=6379, db=0)
+redis = redis.Redis(host='vcache_redis', port=6379, db=0)
 
 while True:
     stats_json = subprocess.check_output("/usr/bin/varnishstat -j; exit 0", stderr=subprocess.STDOUT, shell=True)

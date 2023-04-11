@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SOURCE_DIR=$( dirname -- "$0"; )
+SOURCE_DIR==$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 cd $SOURCE_DIR
 

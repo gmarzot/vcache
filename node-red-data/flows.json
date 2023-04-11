@@ -804,9 +804,39 @@
         "tab": "94c965dfa02ebec9",
         "order": 1,
         "disp": true,
-        "width": "6",
+        "width": 24,
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "02280ae61db2a0bc",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 3,
+        "width": 14,
+        "height": 1
+    },
+    {
+        "id": "b876c109d145d3b5",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 4,
+        "width": 14,
+        "height": 1
+    },
+    {
+        "id": "ae233343c32f66fe",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 5,
+        "width": 24,
+        "height": 1
     },
     {
         "id": "8c7bd56ed2204041",
@@ -861,8 +891,8 @@
         "topic": "",
         "payload": "5",
         "payloadType": "num",
-        "x": 190,
-        "y": 100,
+        "x": 90,
+        "y": 60,
         "wires": [
             [
                 "f09f387bfc7e4550",
@@ -1455,8 +1485,8 @@
         "name": "",
         "key": "disk_use",
         "structtype": "string",
-        "x": 1080,
-        "y": 1000,
+        "x": 1160,
+        "y": 1160,
         "wires": []
     },
     {
@@ -3129,9 +3159,9 @@
         "label": "Hostname: ",
         "tooltip": "main cache hostname",
         "group": "27ef1ca5c2551459",
-        "order": 0,
-        "width": "6",
-        "height": "2",
+        "order": 2,
+        "width": 6,
+        "height": 2,
         "passthru": true,
         "mode": "text",
         "delay": 300,
@@ -3139,8 +3169,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 450,
-        "y": 80,
+        "x": 1030,
+        "y": 40,
         "wires": [
             []
         ]
@@ -3153,8 +3183,8 @@
         "label": "test form",
         "group": "27ef1ca5c2551459",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": 4,
+        "height": 2,
         "options": [
             {
                 "label": "a",
@@ -3174,8 +3204,8 @@
         "topicType": "msg",
         "splitLayout": "",
         "className": "",
-        "x": 440,
-        "y": 160,
+        "x": 1020,
+        "y": 80,
         "wires": [
             []
         ]
@@ -3191,8 +3221,8 @@
         "name": "",
         "field": "payload",
         "fieldType": "msg",
-        "x": 430,
-        "y": 260,
+        "x": 290,
+        "y": 100,
         "wires": [
             [
                 "51ab9183e6c445ee"
@@ -3241,31 +3271,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "utf8",
-        "x": 640,
-        "y": 260,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "b2c4d123f4a19816",
-        "type": "switch",
-        "z": "6e1fffded33ce50f",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 730,
-        "y": 320,
+        "x": 460,
+        "y": 100,
         "wires": [
             []
         ]
@@ -3282,31 +3289,13 @@
         "read": true,
         "write": true,
         "throwerror": false,
-        "x": 430,
-        "y": 360,
+        "x": 110,
+        "y": 140,
         "wires": [
-            [
-                "853322637d910bf6"
-            ],
+            [],
             [
                 "f773b77e37a40bb6"
             ]
         ]
-    },
-    {
-        "id": "853322637d910bf6",
-        "type": "debug",
-        "z": "6e1fffded33ce50f",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 760,
-        "y": 480,
-        "wires": []
     }
 ]

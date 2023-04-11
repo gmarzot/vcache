@@ -482,6 +482,7 @@ module.exports = {
      */
     //ui: { path: "ui" },
     ui: {
+		path: "ui",
 		middleware: function (req, res, next) {
         path = require('path')
         if (['/icon64x64.png', '/icon120x120.png', '/icon192x192.png'].includes(req.url)) {

@@ -3,7 +3,7 @@
 type -a docker-compose  > /dev/null
 
 if [ $? != 0 ]; then
-	echo "WARNING: vivoh-cache requires docker.io and docker-compose. please install these packages before running vivoh-cache-start"
+	echo "WARNING: vcache requires docker.io and docker-compose. please install these packages before running vcache-start"
 fi
 
 sudo docker-compose version
@@ -13,7 +13,7 @@ if [ $? != 0 ]; then
 	exit 1
 fi
 
-logfile=log/vivoh-cache-build-$(date '+%Y-%m-%d:%H:%M:%S').log
+logfile=log/vcache-build-$(date '+%Y-%m-%d:%H:%M:%S').log
 sudo docker-compose build | tee ${logfile}
 
 if [ $? != 0 ]; then

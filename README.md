@@ -3,7 +3,7 @@
 1. Install prerequisites (sudo apt install -y docker.io docker-compose)
 1. Determine desired cache hostname supplied start .env (e.g., cache-01.demo.vivoh.net) 
 1. Generate appropriate SSL keys/certs and add to ./etc/nginx/pki (e.g., cache-cert.pem cache-cert.key)
-1. Start cache containers: ./vivoh-cache-start and supply desired hostname (requires sudo priviledges)
+1. Start cache containers: ./vcache-start and supply desired hostname (requires sudo priviledges)
 
 **note:** existing keys work for *.demo.vivoh.net
 
@@ -11,7 +11,7 @@
 
 **note:** cache frontend comes up on port 443 by default, and supports TLS 1.2 and 1.3 only
 
-**note:** cache supplies a custom response header: x-vivoh-cache: MISS| HIT
+**note:** cache supplies a custom response header: x-vcache: MISS| HIT
 
 **note:** standard URL path for accesing upstream video source: https://<cache-hostname>/cache/<upstream-host>/<upstream-path-to-manifest>
 
@@ -23,7 +23,7 @@
 
 run this twice and observe MISS then HIT
 
-curl -v  "https://cache-01.vivoh.net/cache/releases.vivoh.com/videos/adena.mp4" -o /dev/null 2>&1 | grep "^[\<\>]" | grep -i vivoh-cache
+curl -v  "https://cache-01.vivoh.net/cache/releases.vivoh.com/videos/adena.mp4" -o /dev/null 2>&1 | grep "^[\<\>]" | grep -i vcache
 
 observe absolute URLs are rewritten to stay on cache
 

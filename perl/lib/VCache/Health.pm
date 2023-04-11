@@ -1,4 +1,4 @@
-package VivohCache::Health;
+package VCache::Health;
 
 use nginx;
 use Redis;

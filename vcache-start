@@ -1,4 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+SOURCE_DIR=$( dirname -- "$0"; )
+
+cd $SOURCE_DIR
+
+if [[ $? != 0 ]]; then
+	echo "[$?] unable to cd to source directory..."
+	exit 1
+fi
 
 DC_VERSION=$(sudo docker-compose version)
 if [ $? != 0 ]; then
@@ -11,7 +20,7 @@ fi
 sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache" > /dev/null
 
 if [ $? == 0 ]; then
-	echo "vivoh-cache containers already running..."
+	echo "vcache containers already running..."
 	exit 1
 fi
 
@@ -22,7 +31,7 @@ if [[ -f .env && -r .env ]]; then
 	echo "--------------"
 else
 	echo "generating .env file..."
-	read -p "enter the vivoh-cache hostname[$HOSTNAME]: " hostname
+	read -p "enter the vcache hostname[$HOSTNAME]: " hostname
 	hostname=${hostname:-$HOSTNAME}
     echo "VCACHE_HOSTNAME=${hostname}" > .env
 	echo "VCACHE_MEM_SIZE=12G" >> .env
@@ -44,14 +53,14 @@ sudo docker-compose down
 
 rm -f run/*.sock run/*.pid
 
-echo "starting vivoh-cache (${VCACHE_VERSION}) ..."
+echo "starting vcache (${VCACHE_VERSION}) ..."
 sudo docker-compose up -d
 
 if [[ $? != 0 ]]; then
-	echo "[$?] an error occured starting vivoh-cache, exiting..."
+	echo "[$?] an error occured starting vcache, exiting..."
 	exit 2
 else
-	echo "vivoh-cache started!"
+	echo "vcache started!"
 fi
 
 exit 0

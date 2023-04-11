@@ -1,16 +1,29 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-find . -name '*~' | xargs rm -f
-find . -name '#*' | xargs rm -f
-find . -name '.#*' | xargs rm -f
+SOURCE_DIR=$( dirname -- "$0"; )
+
+cd $SOURCE_DIR
+
+if [[ $? != 0 ]]; then
+	echo "[$?] unable to cd to source directory..."
+	exit 1
+fi
 
 mkdir release
 
 GIT_REVISION=$(git describe)
+
+if [[ $? != 0 ]]; then
+    echo "[$?] unabl,e to run `git describe`..."
+    exit 2
+fi
+
 echo -n ${GIT_REVISION} > vcache-version.txt
 
 cd ..
-mv vivoh-cache vivoh-cache-${GIT_REVISION}
-./vivoh-cache-${GIT_REVISION}/makeself.sh --sha256 --nox11 --notemp --tar-extra "--exclude=make* --exclude=.venv --exclude=.npm --exclude=release --exclude=log/* --exclude=run/* --exclude=.git --exclude=.env --exclude=.gitignore ./log ./run" --license LICENSE vivoh-cache-${GIT_REVISION} vivoh-cache-${GIT_REVISION}/release/vivoh-cache-${GIT_REVISION}.run "Vivoh Cache" ./vivoh-cache-setup.sh
 
-mv vivoh-cache-${GIT_REVISION} vivoh-cache
+mv $SOURCE_DIR vcache-${GIT_REVISION}
+
+./vcache-${GIT_REVISION}/makeself.sh --sha256 --nox11 --notemp --tar-extra "--exclude=make* --exclude=.venv --exclude=.npm --exclude=release --exclude=log/* --exclude=run/* --exclude=.git --exclude=.env --exclude=.gitignore" --license LICENSE vcache-${GIT_REVISION} vcache-${GIT_REVISION}/release/vcache-${GIT_REVISION}.run "VCache Deployment" ./vcache-setup.sh
+
+mv vcache-${GIT_REVISION} $SOURCE_DIR

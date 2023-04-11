@@ -30,10 +30,9 @@ acl purge_acl {
 
 sub vcl_init {
       new query_str_regex = re.regex("^([^\?]*)(\?.*)?$");
-      new vimeo_range_regex = re.regex("^([^\?]*\.mp4)\?.*(range=\d+-\d+).*$");
-      new manifest_path_regex = re.regex("(\.mpd|\.m3u8|\(format=m3u8-aapl\))$");
-      new segment_path_regex = re.regex("\.(ts|mp3|mp4|webvtt|acc)$");
-      new media_path_regex = re.regex("(\.mpd|\.m3u8|\(format=m3u8-aapl\)|\.ts|\.mp3|\.mp4|\.webvtt|\.acc)");
+
+      include "regexp_init.vcl";
+      
       new jwt_value_regex = re.regex("^([^\.]+)\.([^\.]+)\.([^\.]+)$");
       new v = crypto.verifier(sha256,std.fileread("/etc/varnish/jwtRS256.key.pub"));
 }
@@ -105,10 +104,10 @@ sub vcl_deliver {
     }
     # track HIT/MISS status in response header
     if (obj.hits > 0) {
-        set resp.http.X-Vivoh-Cache = "HIT";
-        set resp.http.X-Vivoh-Cache-Hits = obj.hits;
+        set resp.http.X-VCache = "HIT";
+        set resp.http.X-VCache-Hits = obj.hits;
     } else {
-        set resp.http.X-Vivoh-Cache = "MISS";
+        set resp.http.X-VCache = "MISS";
     }
 }
 
@@ -119,13 +118,7 @@ sub vcl_backend_response {
        return(deliver);
     }
     if (bereq.method != "OPTIONS") {
-       if (manifest_path_regex.match(bereq.url)) {
-          set beresp.ttl = 1s;
-          return(deliver);
-       } else if (segment_path_regex.match(bereq.url)) {
-          set beresp.ttl = 300s;
-          return(deliver);
-       }
+       include "cache_rules.vcl";       
     }
 }
 
@@ -133,18 +126,9 @@ sub vcl_hash {
     if (req.method) {
         hash_data(req.method);
     }
-    query_str_regex.match(req.url);
-    # cache key should include vimeo non-standard range query parameters (XXX is this redally true)
-    # for typical video content, the entire query string is stripped
-    if (vimeo_range_regex.match(req.url)) {
-        var.set("url_path", vimeo_range_regex.backref(1) + "?" + vimeo_range_regex.backref(2));
-    } else if (media_path_regex.match(query_str_regex.backref(1))) {
-        var.set("url_path", query_str_regex.backref(1));
-    } else {
-        var.set("url_path", req.url);
-    }
 
-    hash_data(var.get("url_path"));
+    include "cache_key_rules.vcl";
+
     if (req.http.host) {
         hash_data(req.http.host);
     } else {
@@ -153,7 +137,7 @@ sub vcl_hash {
 
     # if Vivoh "by" cookie is present - enforce presence for cache access (XXX ensure not spoofable in URL path)
     if(cookie.isset("by")) {
-       hash_data("vivoh_auth_token");
+       hash_data("^^^vivoh_auth_token^^^");
     }
     return (lookup);
 }

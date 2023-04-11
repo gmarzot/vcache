@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+SOURCE_DIR=$( dirname -- "$0"; )
+
+cd $SOURCE_DIR
+
+if [[ $? != 0 ]]; then
+	echo "[$?] unable to cd to source directory..."
+	exit 1
+fi
+
+sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache" > /dev/null
+
+if [ $? != 0 ]; then
+	echo "vcache containers are not running..."
+	exit 1
+fi
+
+echo "stopping vcache containers..."
+sudo docker-compose down
+
+if [[ $? != 0 ]]; then
+	echo "[$?] an error occured stopping vcache, exiting..."
+	exit 2
+else
+	echo "vcache stopped..."
+fi
+
+exit 0

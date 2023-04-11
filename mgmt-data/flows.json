@@ -133,7 +133,7 @@
     {
         "id": "a568a74c7e4761e6",
         "type": "ui_tab",
-        "name": "Vivoh Cache Dashboard",
+        "name": "VCache Dashboard",
         "icon": "fa-vimeo",
         "order": 2,
         "disabled": false,

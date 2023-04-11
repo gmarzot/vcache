@@ -3,11 +3,11 @@ services:
   vcache_mgmt:
     image: node-red
     build:
-      context: context/node-red
+      context: ./docker-context/node-red
     container_name: vcache_mgmt
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - "./node-red-data:/data"
+      - "./mgmt-data:/data"
       - "./run:/var/run"
       - "./vcache-version.txt:/data/vcache-version.txt"
     networks:
@@ -30,7 +30,7 @@ services:
   vcache_frontend:
     image: nginx-perl
     build:
-      context: context/nginx
+      context: ./docker-context/nginx
     container_name: vcache_frontend
     hostname: ${VCACHE_HOSTNAME}
     environment:
@@ -64,7 +64,7 @@ services:
   vcache_engine:
     image: varnish
     build:
-      context: context/varnish
+      context: ./docker-context/varnish
     container_name: vcache_engine
     volumes:
       - "./etc/varnish:/etc/varnish"
@@ -89,7 +89,7 @@ services:
   vcache_backend:
     image: nginx-perl
     build:
-      context: context/nginx
+      context: ./docker-context/nginx
     container_name: vcache_backend
     volumes:
       - "./run:/var/run"
@@ -108,7 +108,7 @@ services:
   vcache_stats:
     image: varnish
     build:
-      context: context/varnish
+      context: ./docker-context/varnish
     container_name: vcache_stats
     volumes:
       - ./etc/varnishstats:/etc/varnish

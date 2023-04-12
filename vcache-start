@@ -52,6 +52,8 @@ echo "cleaning up previous deployment..."
 sudo docker-compose down
 
 rm -f run/*.sock run/*.pid
+# XXX there must be a better way to grant write perms to containers
+chmod ugo+rwx log run etc/varnishstats
 
 echo "starting vcache (${VCACHE_VERSION}) ..."
 sudo docker-compose up -d

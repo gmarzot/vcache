@@ -866,7 +866,8 @@
                 "18c68b74898c536f",
                 "b47ed9d6965cf619",
                 "abbb31eb4b46bee5",
-                "0a5a15dfae62e4e6"
+                "1748fdbd2dd3eb46",
+                "da0aa089ba25ac3d"
             ]
         ]
     },
@@ -1061,11 +1062,11 @@
         "height": 1,
         "name": "",
         "label": "Memory:  ",
-        "format": "<font size=3>{{msg.payload}}</font>",
+        "format": "<font size=3>{{msg.value}}</font>",
         "layout": "row-left",
         "className": "def",
         "x": 1060,
-        "y": 380,
+        "y": 360,
         "wires": []
     },
     {
@@ -1073,17 +1074,18 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "total mem - format units",
-        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.payload = formatBytes(msg.payload.totalmem);\n\nreturn msg;",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\nmsg.value = formatBytes(msg.payload.totalmem);\nmsg.payload = msg.payload.totalmem;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 790,
-        "y": 380,
+        "x": 770,
+        "y": 360,
         "wires": [
             [
-                "f4aa44582aec2ee6"
+                "f4aa44582aec2ee6",
+                "faf3cd28d97af559"
             ]
         ]
     },
@@ -1132,7 +1134,7 @@
         "diff": false,
         "className": "def",
         "x": 1050,
-        "y": 880,
+        "y": 940,
         "wires": []
     },
     {
@@ -1140,7 +1142,7 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "used mem format units",
-        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.payload = formatBytes(msg.payload.totalmem - msg.payload.freemem);\n\nreturn msg;",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload.totalmem - msg.payload.freemem);\nmsg.payload = msg.payload.totalmem - msg.payload.freemem;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1150,7 +1152,8 @@
         "y": 820,
         "wires": [
             [
-                "3fe4b364fdaec2bb"
+                "3fe4b364fdaec2bb",
+                "7929109cc5bdc85e"
             ]
         ]
     },
@@ -1164,11 +1167,11 @@
         "height": 1,
         "name": "",
         "label": "Used: ",
-        "format": "{{msg.payload}}",
+        "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
         "x": 1050,
-        "y": 820,
+        "y": 900,
         "wires": []
     },
     {
@@ -1366,7 +1369,7 @@
         "layout": "row-center",
         "className": "def",
         "x": 1050,
-        "y": 960,
+        "y": 1020,
         "wires": []
     },
     {
@@ -1436,7 +1439,7 @@
         "wires": [
             [
                 "cc60b6c3e5fb14d9",
-                "d8a80b5025b557a3"
+                "d23168e787472af1"
             ]
         ]
     },
@@ -1470,9 +1473,9 @@
         "hostname": "vcache_redis",
         "port": 6379,
         "name": "",
-        "key": "mem_info",
+        "key": "mem_use_pct",
         "structtype": "string",
-        "x": 1090,
+        "x": 1100,
         "y": 760,
         "wires": []
     },
@@ -1485,8 +1488,8 @@
         "name": "",
         "key": "disk_use",
         "structtype": "string",
-        "x": 1160,
-        "y": 1160,
+        "x": 1080,
+        "y": 1080,
         "wires": []
     },
     {
@@ -1496,9 +1499,9 @@
         "hostname": "vcache_redis",
         "port": 6379,
         "name": "",
-        "key": "load_avg",
+        "key": "cpu_load_avg",
         "structtype": "string",
-        "x": 1090,
+        "x": 1100,
         "y": 680,
         "wires": []
     },
@@ -1577,7 +1580,7 @@
         "key": "disk_use_pct",
         "structtype": "string",
         "x": 1100,
-        "y": 920,
+        "y": 980,
         "wires": []
     },
     {
@@ -1615,6 +1618,86 @@
         "wires": [
             [
                 "50f9790b.49c718"
+            ]
+        ]
+    },
+    {
+        "id": "d23168e787472af1",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "get hostname",
+        "func": "msg.payload = msg.payload.hostname;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 80,
+        "wires": [
+            [
+                "d8a80b5025b557a3"
+            ]
+        ]
+    },
+    {
+        "id": "1748fdbd2dd3eb46",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1280,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "faf3cd28d97af559",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "mem_total",
+        "structtype": "string",
+        "x": 1090,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7929109cc5bdc85e",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "mem_use",
+        "structtype": "string",
+        "x": 1090,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "da0aa089ba25ac3d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "msg.payload = msg.payload.memusage;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 760,
+        "wires": [
+            [
+                "0a5a15dfae62e4e6"
             ]
         ]
     },
@@ -2482,9 +2565,9 @@
         "hostname": "vcache_redis",
         "port": 6379,
         "name": "",
-        "key": "cache_eff",
+        "key": "cache_eff_pct",
         "structtype": "string",
-        "x": 1230,
+        "x": 1240,
         "y": 440,
         "wires": []
     },
@@ -2508,9 +2591,9 @@
         "hostname": "vcache_redis",
         "port": 6379,
         "name": "",
-        "key": "req_eff",
+        "key": "req_eff_pct",
         "structtype": "string",
-        "x": 1220,
+        "x": 1230,
         "y": 680,
         "wires": []
     },

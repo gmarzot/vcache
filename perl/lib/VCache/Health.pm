@@ -8,9 +8,10 @@ use JSON;
 my $json = JSON->new->utf8->canonical;
 
 # should be parsing these from keys with glob - XXX
-my @keys = qw(host version uptime disk_total cpu_use_pct load_avg 
-			  mem_info disk_use_pct disk_use client_sess cache_eff
-			  client_bw req_eff req_rate upstream_bw upstream_req_rate);
+my @keys = qw(
+host version client_sess cache_eff_pct client_bw req_eff_pct req_rate upstream_bw upstream_req_rate
+uptime cpu_use_pct cpu_load_avg mem_total mem_use mem_use_pct disk_total disk_use disk_use_pct 
+	);
 	
 sub handler {
     my $r = shift;

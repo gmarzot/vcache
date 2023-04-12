@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+
+use strict;
+use FindBin;
+use lib "$FindBin::Bin/../lib";
+
+use JSON::Relaxed;
+use Getopt::Long qw(:config gnu_getopt pass_through);
+use File::Basename;
+
+
+my $opts;
+my $cfg_file;
+
+GetOptions($opts,'debug|d+', 'cfg-file|f=s', 'output-dir|o=s');
+
+
+$/ = undef;
+open(F, "./conf/vcache.cfg") || die; $rjson = <F>; $p = new JSON::Relaxed::Parser; $json = $p->parse("{$rjson}"); print Dumper($json); print "$JSON::Relaxed::err_msg\n";

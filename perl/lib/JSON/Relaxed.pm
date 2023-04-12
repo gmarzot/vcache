@@ -1413,7 +1413,19 @@ sub build {
 			}
 			
 			# set key and value in return hash
-			$rv->{$key} = $value;
+			# XXX auto create array from repeated structures XXX
+			if (exists $rv->{$key}) {
+				my $cv = $rv->{$key};
+				if (ref($cv) eq 'HASH') {
+					$rv->{$key} = [$cv, $value];
+				} elsif (ref($cv) eq 'ARRAY') {
+					push(@{$rv->{$key}}, $value);
+				} else {
+					return $parser->error('unexpected-value-type', "expected HASH or ARRAY, but got: " . ref($cv));
+				}
+			} else {
+				$rv->{$key} = $value;
+			}
 		}
 		
 		# anything else is an error

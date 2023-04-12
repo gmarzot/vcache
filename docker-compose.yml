@@ -42,6 +42,7 @@ services:
       - "./etc/nginx/.htpasswd:/etc/nginx/.htpasswd"
       - "./etc/nginx/pki:/etc/nginx/pki:ro"
       - "./etc/nginx/sites-enabled/frontend.cfg:/etc/nginx/sites-enabled/frontend.cfg"
+      - "./etc/nginx/sites-enabled/host-cache.incl:/etc/nginx/sites-enabled/host-cache.incl"
       - "./etc/nginx/modules-enabled/80-mod-http-perl.conf:/etc/nginx/modules-enabled/80-mod-http-perl.conf"
       - "./etc/nginx/modules-enabled/50-mod-http-subs-filter.conf:/etc/nginx/modules-enabled/50-mod-http-subs-filter.conf"
       - "./perl:/var/lib/nginx/perl"

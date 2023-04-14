@@ -42,7 +42,7 @@ services:
       - "./etc/nginx/sites-enabled/host-cache.incl:/etc/nginx/sites-enabled/host-cache.incl"
       - "./etc/nginx/modules-enabled/80-mod-http-perl.conf:/etc/nginx/modules-enabled/80-mod-http-perl.conf"
       - "./etc/nginx/modules-enabled/50-mod-http-subs-filter.conf:/etc/nginx/modules-enabled/50-mod-http-subs-filter.conf"
-      - "./perl:/var/lib/nginx/perl"
+      - "./perllib:/var/lib/nginx/perllib"
     networks:
       - vcache_net
     ports:
@@ -134,7 +134,9 @@ services:
 
 volumes:
   redis_data:
+    name: vcache_redis_data
   varnish_tmpfs:
+    name: vcache_varnish_tmpfs
     driver_opts:
       type: tmpfs
       device: tmpfs

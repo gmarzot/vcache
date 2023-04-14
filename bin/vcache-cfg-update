@@ -2,7 +2,7 @@
 
 use strict;
 use FindBin;
-use lib "$FindBin::Bin/../perl/lib";
+use lib "$FindBin::Bin/../perllib";
 
 use JSON;
 use JSON::Relaxed;

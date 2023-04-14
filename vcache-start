@@ -39,8 +39,8 @@ fi
 
 VCACHE_VERSION=`git describe 2> /dev/null`
 if [[ $? != 0 ]]; then
-	if [[ -r vcache-version.txt ]]; then
-		VCACHE_VERSION=`cat vcache-version.txt`
+	if [[ -r ./run/vcache-version.txt ]]; then
+		VCACHE_VERSION=`cat ./run/vcache-version.txt`
 	else
 	    echo "[$?]no git revision or version.txt file detected, using: 0.0.0"
 	    VCACHE_VERSION="0.0.0"

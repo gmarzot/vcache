@@ -46,7 +46,7 @@ if [[ $? != 0 ]]; then
 	    VCACHE_VERSION="0.0.0"
 	fi
 fi
-echo -n ${VCACHE_VERSION} > vcache-version.txt
+echo -n ${VCACHE_VERSION} > ./run/vcache-version.txt
 
 echo "cleaning up previous deployment..."
 sudo docker-compose down

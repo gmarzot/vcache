@@ -112,7 +112,7 @@
             }
         },
         "site": {
-            "name": "Vivoh Cache Dashboard",
+            "name": "VCache Dashboard",
             "hideToolbar": "false",
             "allowSwipe": "false",
             "lockMenu": "false",
@@ -866,7 +866,6 @@
                 "18c68b74898c536f",
                 "b47ed9d6965cf619",
                 "abbb31eb4b46bee5",
-                "1748fdbd2dd3eb46",
                 "da0aa089ba25ac3d"
             ]
         ]
@@ -1032,7 +1031,7 @@
         "diff": false,
         "className": "def",
         "x": 1050,
-        "y": 720,
+        "y": 740,
         "wires": []
     },
     {
@@ -1080,8 +1079,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 770,
-        "y": 360,
+        "x": 790,
+        "y": 380,
         "wires": [
             [
                 "f4aa44582aec2ee6",
@@ -1101,7 +1100,7 @@
         "finalize": "",
         "libs": [],
         "x": 760,
-        "y": 900,
+        "y": 960,
         "wires": [
             [
                 "b833a78279a06e8c",
@@ -1149,7 +1148,7 @@
         "finalize": "",
         "libs": [],
         "x": 780,
-        "y": 820,
+        "y": 860,
         "wires": [
             [
                 "3fe4b364fdaec2bb",
@@ -1369,7 +1368,7 @@
         "layout": "row-center",
         "className": "def",
         "x": 1050,
-        "y": 1020,
+        "y": 1040,
         "wires": []
     },
     {
@@ -1384,7 +1383,7 @@
         "finalize": "",
         "libs": [],
         "x": 760,
-        "y": 980,
+        "y": 1060,
         "wires": [
             [
                 "11b451e51ccf5739",
@@ -1426,7 +1425,7 @@
         "layout": "row-left",
         "className": "def",
         "x": 1050,
-        "y": 40,
+        "y": 20,
         "wires": []
     },
     {
@@ -1447,7 +1446,7 @@
         "id": "9f179518aa2a884c",
         "type": "exec",
         "z": "f6f2187d.f17ca8",
-        "command": "cat /data/vcache-version.txt",
+        "command": "cat /var/run/vcache-version.txt",
         "addpay": "",
         "append": "",
         "useSpawn": "false",
@@ -1456,7 +1455,7 @@
         "oldrc": false,
         "name": "cache version",
         "x": 500,
-        "y": 140,
+        "y": 160,
         "wires": [
             [
                 "fbc058e4a2725b9d",
@@ -1476,7 +1475,7 @@
         "key": "mem_use_pct",
         "structtype": "string",
         "x": 1100,
-        "y": 760,
+        "y": 780,
         "wires": []
     },
     {
@@ -1528,7 +1527,7 @@
         "key": "host",
         "structtype": "string",
         "x": 1070,
-        "y": 80,
+        "y": 60,
         "wires": []
     },
     {
@@ -1632,29 +1631,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 800,
+        "x": 760,
         "y": 80,
         "wires": [
             [
                 "d8a80b5025b557a3"
             ]
         ]
-    },
-    {
-        "id": "1748fdbd2dd3eb46",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1280,
-        "y": 740,
-        "wires": []
     },
     {
         "id": "faf3cd28d97af559",
@@ -1679,7 +1662,7 @@
         "key": "mem_use",
         "structtype": "string",
         "x": 1090,
-        "y": 820,
+        "y": 840,
         "wires": []
     },
     {
@@ -1694,7 +1677,7 @@
         "finalize": "",
         "libs": [],
         "x": 740,
-        "y": 760,
+        "y": 780,
         "wires": [
             [
                 "0a5a15dfae62e4e6"
@@ -3304,8 +3287,8 @@
         "name": "",
         "field": "payload",
         "fieldType": "msg",
-        "x": 290,
-        "y": 100,
+        "x": 270,
+        "y": 120,
         "wires": [
             [
                 "51ab9183e6c445ee"
@@ -3354,8 +3337,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "utf8",
-        "x": 460,
-        "y": 100,
+        "x": 440,
+        "y": 120,
         "wires": [
             []
         ]
@@ -3373,7 +3356,7 @@
         "write": true,
         "throwerror": false,
         "x": 110,
-        "y": 140,
+        "y": 120,
         "wires": [
             [],
             [

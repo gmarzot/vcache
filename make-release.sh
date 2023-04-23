@@ -24,6 +24,6 @@ cd ..
 
 mv $SOURCE_DIR vcache-${GIT_REVISION}
 
-./vcache-${GIT_REVISION}/makeself.sh --sha256 --nox11 --notemp --tar-extra "--exclude=make* --exclude=.venv --exclude=.npm --exclude=release --exclude=log/* --exclude=uuid.txt --exclude=run/*.pid --exclude=run/*.sock --exclude=.git --exclude=.env --exclude=.gitignore ./log" --license LICENSE vcache-${GIT_REVISION} vcache-${GIT_REVISION}/release/vcache-${GIT_REVISION}.run "VCache Deployment" ./bin/vcache-setup.sh
+./vcache-${GIT_REVISION}/makeself.sh --sha256 --nox11 --notemp --tar-extra "--exclude=.env --exclude=uuid.txt --exclude=run/*.pid --exclude=run/*.sock --exclude=log/* --exclude=*.incl --exclude=frontend.cfg --exclude=.git --exclude=.gitignore --exclude=make* --exclude=.venv --exclude=.npm --exclude=release --exclude=*~ ./log" --license LICENSE vcache-${GIT_REVISION} vcache-${GIT_REVISION}/release/vcache-${GIT_REVISION}.run "VCache Deployment" ./bin/vcache-setup.sh
 
 mv vcache-${GIT_REVISION} $SOURCE_DIR

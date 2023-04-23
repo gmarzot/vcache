@@ -1,34 +1,26 @@
-#!/usr/bin/env perl
+#!/usr/bin/env bash
 
-use strict;
-use FindBin;
-use lib "$FindBin::Bin/../perllib";
 
-use JSON;
-use JSON::Relaxed;
-use Getopt::Long qw(:config gnu_getopt pass_through);
-use File::Basename;
-use Data::Dumper;
+./bin/vcache-tmpl-eval -f ./conf/vcache.cfg -t ./etc/varnish/regexp_init.tmpl -o ./etc/varnish/regexp_init.incl
+if [[ $? != 0 ]]; then
+	echo "error updating regexp_init.incl..."
+	exit 1
+fi
 
-my $VCACHE_ROOT = "$FindBin::Bin/..";
+./bin/vcache-tmpl-eval -f ./conf/vcache.cfg -t ./etc/varnish/cache_rules.tmpl -o ./etc/varnish/cache_rules.incl
+if [[ $? != 0 ]]; then
+	echo "erroru[dating cache_rules.incl..."
+	exit 1
+fi
 
-my $opts = {};
-my $cfg_file;
+./bin/vcache-tmpl-eval -f ./conf/vcache.cfg -t ./etc/varnish/cache_key_rules.tmpl -o ./etc/varnish/cache_key_rules.incl
+if [[ $? != 0 ]]; then
+	echo "error updating cache_key_rules.incl..."
+	exit 1
+fi
 
-GetOptions($opts,'debug|d+', 'cfg-file|f=s', 'output-dir|o=s');
-
-my $cfg_file = $opts->{'cfg-file'} || "$VCACHE_ROOT/conf/vcache.cfg";
-
-open(F, $cfg_file) || die("unable to open conf file");
-
-$/ = undef;
-my $rjson = <F>;
-
-my $p = new JSON::Relaxed::Parser;
-my $json = $p->parse("{$rjson}");
-
-print Dumper($json);
-
-print "$JSON::Relaxed::err_msg\n";
-
-print JSON::to_json($json);
+./bin/vcache-tmpl-eval -f ./conf/vcache.cfg -t ./etc/nginx/sites-enabled/frontend.cfg.tmpl -o ./etc/nginx/sites-enabled/frontend.cfg
+if [[ $? != 0 ]]; then
+	echo "error updating nginx frontend.cfg..."
+	exit 1
+fi

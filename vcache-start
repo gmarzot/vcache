@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
 
+die() { echo "$*" >&2; exit 6; }  # complain to STDERR and exit with error
+needs_arg() { if [ -z "$OPTARG" ]; then die "No arg for --$OPT option"; fi; }
+
+while getopts d-: OPT; do
+  # support long options: https://stackoverflow.com/a/28466267/519360
+  if [ "$OPT" = "-" ]; then   # long option: reformulate OPT and OPTARG
+    OPT="${OPTARG%%=*}"       # extract long option name
+    OPTARG="${OPTARG#$OPT}"   # extract long option argument (may be empty)
+    OPTARG="${OPTARG#=}"      # if long option argument, remove assigning `=`
+  fi
+  case "$OPT" in
+    d | debug )    debug=true ;;
+#    b | bravo )    needs_arg; bravo="$OPTARG" ;;
+#    c | charlie )  needs_arg; charlie="$OPTARG" ;;
+    ??* )          die "Illegal option --$OPT" ;;  # bad long option
+    ? )            exit 5 ;;  # bad short option (error reported via getopts)
+  esac
+done
+shift $((OPTIND-1)) # remove parsed options and args from $@ list
+
+
 SOURCE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 cd $SOURCE_DIR
@@ -12,7 +33,7 @@ fi
 DC_VERSION=$(sudo docker-compose version)
 if [ $? != 0 ]; then
     echo "please install docker-compose and provide sudo access..."
-    exit 1
+    exit 2
 else
 	echo "running docker-compose (>= 1.29 required): ${DC_VERSION}"
 fi
@@ -21,7 +42,7 @@ sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "
 
 if [ $? == 0 ]; then
 	echo "vcache containers already running..."
-	exit 1
+	exit 3
 fi
 
 if [[ -f .env && -r .env ]]; then
@@ -48,6 +69,12 @@ if [[ $? != 0 ]]; then
 fi
 echo -n ${VCACHE_VERSION} > ./run/vcache-version.txt
 
+./bin/vcache-cfg-update
+if [[ $? != 0 ]]; then
+	echo "error updating vache cfg files ($?)"
+	exit 7
+fi
+
 echo "cleaning up previous deployment..."
 sudo docker-compose down
 
@@ -56,11 +83,16 @@ rm -f run/*.sock run/*.pid
 chmod ugo+rwx log run etc/varnishstats
 
 echo "starting vcache (${VCACHE_VERSION}) ..."
-sudo docker-compose up -d
+
+if [[ $debug ]]; then
+	sudo docker-compose up
+else
+	sudo docker-compose up -d
+fi
 
 if [[ $? != 0 ]]; then
 	echo "[$?] an error occured starting vcache, exiting..."
-	exit 2
+	exit 4
 else
 	echo "vcache started!"
 fi

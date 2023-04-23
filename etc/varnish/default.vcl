@@ -29,12 +29,12 @@ acl purge_acl {
 }
 
 sub vcl_init {
-      new query_str_regex = re.regex("^([^\?]*)(\?.*)?$");
-
-      include "regexp_init.vcl";
-      
       new jwt_value_regex = re.regex("^([^\.]+)\.([^\.]+)\.([^\.]+)$");
       new v = crypto.verifier(sha256,std.fileread("/etc/varnish/jwtRS256.key.pub"));
+
+      new query_str_regex = re.regex("^([^\?]*)(\?.*)?$");
+
+      include "regexp_init.incl";      
 }
 
 sub validate_auth_jwt {
@@ -85,8 +85,9 @@ sub vcl_recv {
        call validate_auth_jwt;
        return(hash);
     }
+
     # only cache supported methods for video media - XXX add content type as well url patter - derive from config
-    if ((req.method == "GET" || req.method == "HEAD") && query_str_regex.match(req.url) && media_path_regex.match(query_str_regex.backref(1))) {
+    if (req.method == "GET" || req.method == "HEAD") {
        return(hash);
     }
 }
@@ -117,9 +118,8 @@ sub vcl_backend_response {
        set beresp.ttl = 0s;
        return(deliver);
     }
-    if (bereq.method != "OPTIONS") {
-       include "cache_rules.vcl";       
-    }
+    
+    include "cache_rules.incl";
 }
 
 sub vcl_hash {
@@ -127,7 +127,7 @@ sub vcl_hash {
         hash_data(req.method);
     }
 
-    include "cache_key_rules.vcl";
+    include "cache_key_rules.incl";
 
     if (req.http.host) {
         hash_data(req.http.host);

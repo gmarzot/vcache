@@ -96,7 +96,7 @@ services:
       - "./etc/nginx/nginx-be.conf:/etc/nginx/nginx.conf:ro"
       - "./etc/nginx/sites-enabled/backend.cfg:/etc/nginx/sites-enabled/backend.cfg"
       - "./etc/nginx/modules-enabled/80-mod-http-perl.conf:/etc/nginx/modules-enabled/80-mod-http-perl.conf"
-      - "./perl:/var/lib/nginx/perl"
+      - "./perllib:/var/lib/nginx/perllib"
     networks:
       - vcache_net
     pid: "service:vcache_mgmt"
@@ -135,8 +135,8 @@ services:
 volumes:
   redis_data:
     name: vcache_redis_data
+    external: true
   varnish_tmpfs:
-    name: vcache_varnish_tmpfs
     driver_opts:
       type: tmpfs
       device: tmpfs

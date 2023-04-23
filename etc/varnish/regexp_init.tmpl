@@ -1,0 +1,48 @@
+new vimeo_range_regex = re.regex("^([^\?]*\.mp4)\?.*(range=\d+-\d+).*$");
+# cfg global cache-rule's
+{{ my $index = 0; foreach my $rule (@cache_rule) { $index++;
+      if (exists $rule->{url}) {
+         $OUT .= "new url_$index = re.regex(\"$rule->{url}\");\n";
+      }
+	  if (exists $rule->{content_type}) {
+         $OUT .= "new ct_$index = re.regex(\"$rule->{content_type}\");\n";
+      }
+} }}
+# cfg global cache-key-rule's
+{{ my $index = 0; foreach my $rule (@cache_key_rule) { $index++;
+      $OUT .= "new key_$index = re.regex(\"$rule->{key}\");\n";
+} }}
+# cfg proxy-cache cache-rule's
+{{ my $index = 0; if (exists $proxy_cache{cache_rule}) {
+   foreach my $rule (@{ $proxy_cache{cache_rule} }) { $index++;
+      if (exists $rule->{url}) {
+         $OUT .= "new proxy_url_$index = re.regex(\"$rule->{url}\");";
+      }
+	  if (exists $rule->{content_type}) {
+         $OUT .= "new proxy_ct_$index = re.regex(\"$rule->{content_type}\");\n";
+      }
+   }
+} }}
+# cfg proxy-cache cache-key-rule'
+{{ my $index = 0; if (exists $proxy_cache{cache_key_rule}) {
+    foreach my $rule (@{ $proxy_cache{cache_key_rule} }) { $index++;
+      $OUT .= "new proxy_key_$index = re.regex(\"$rule->{key}\");\n";
+} } }}
+# cfg vhost-cache cache-rule's
+{{ my $host = "a"; foreach my $h (@vhost_cache) { next unless exists $h->{cache_rule};
+   my $index = 0; foreach my $rule (@{ $h->{cache_rule} }) { $index++;
+   if (exists $rule->{url}) {
+      $OUT .= "\nnew host_url_$host$index = re.regex(\"$rule->{url}\");";
+   }
+   if (exists $rule->{content_type}) {
+      $OUT .= "\nnew host_ct_$host$index = re.regex(\"$rule->{content_type}\");\n";
+   }
+} $host++; } }}
+# cfg vhost-cache cache-key-rule's
+{{ my $host = "a"; foreach my $h (@vhost_cache) {  next unless exists $h->{cache_key_rule};
+   my $index = 0; foreach my $rule (@{ $h->{cache_key_rule} }) { $index++;
+      $OUT .= "new host_key_$host$index = re.regex(\"$rule->{url}\");\n";
+} $host++; } }}
+new manifest_path_regex = re.regex("(\.mpd|\.m3u8|\(format=m3u8-aapl\))$");
+new segment_path_regex = re.regex("\.(ts|mp3|mp4|webvtt|acc)$");
+new media_path_regex = re.regex("(\.mpd|\.m3u8|\(format=m3u8-aapl\)|\.ts|\.mp3|\.mp4|\.webvtt|\.acc)");

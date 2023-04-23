@@ -135,7 +135,6 @@ services:
 volumes:
   redis_data:
     name: vcache_redis_data
-    external: true
   varnish_tmpfs:
     driver_opts:
       type: tmpfs

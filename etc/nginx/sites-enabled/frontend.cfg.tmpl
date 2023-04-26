@@ -65,63 +65,44 @@ server {
    }
 }
 
-# main reverse cache server 
+# proxy template
+{{ my $ind = 0; foreach my $proxy (@proxy) {
+  my $dflt = ($ind++ == 0 ? 'default' : '');
+  my $path = ($proxy->{'mode'} eq 'reverse' ? '/cache/([^/]*)/(.*)' : '/(.*)');
+  my $pass = ($proxy->{'mode'} eq 'reverse' ? 'http://vcache/$2$is_args$args' : 'http://vcache/$1$is_args$args');
+  my $host = ($proxy->{'mode'} eq 'reverse' ? '$1' : $proxy->{'hostname'});
+  $OUT .=<<"TMPL_END";
 server {
-   listen 443 ssl http2 default;
-   server_name  $hostname;
+   listen 443 ssl http2 $dflt;
+   server_name $proxy->{hostname};
 
-   ssl_certificate     /etc/nginx/pki/{{ $proxy_cache{ssl_cert} }};
-   ssl_certificate_key /etc/nginx/pki/{{ $proxy_cache{ssl_key} }};
+   ssl_certificate     /etc/nginx/pki/$proxy->{ssl_cert};
+   ssl_certificate_key /etc/nginx/pki/$proxy->{ssl_key};
 
-   access_log /var/log/nginx/frontend-request.log custom buffer=32k flush=3s;
+   access_log /var/log/nginx/$proxy->{hostname}-request.log custom buffer=32k flush=3s;
+   error_log /var/log/nginx/$proxy->{hostname}-error.log;
 
-   add_header Access-Control-Allow-Origin $hdr_access_control_allow_origin;
-	
-   location ~ /cache/([^/]*)/(.*) {
+   location ~ $path {
       proxy_http_version 1.1;
+      proxy_set_header "Connection" "";
       proxy_set_header "Authorization" "";
-      proxy_pass "http://vcache/$2$is_args$args";
-      proxy_set_header X-Real-IP  $remote_addr;
+      proxy_pass "$pass";
+      proxy_set_header X-Real-IP  \$remote_addr;
       proxy_set_header X-Forwarded-Proto https;
-      proxy_set_header X-Forwarded-Port 443;
-      proxy_set_header Host $1;
+      proxy_set_header X-Forwarded-Port $proxy->{port};
+      proxy_set_header Host $host;
 
       # ensure absolute URL manifest stays on cache (only tested w/ HLS)
 	  # XXX this needs to be generalized and supported in cfg. relates to routing
-	  subs_filter_types application/x-mpegurl application/vnd.apple.mpegurl;
-	  subs_filter "https://(.+)" "https://$server_name/cache/$1" rgi;
+      subs_filter_types application/x-mpegurl application/vnd.apple.mpegurl;
+      subs_filter "https://(.+)" "https://$server_name/cache/$1" rgi;
    }
 
    # simple health endpoint (returns client ip)
    location = / {
       add_header Content-Type application/json;
-	  return 200 '{"ip": "$remote_addr"}';
+      return 200 '{"ip": "$remote_addr"}';
    }
-}
-
-# vhost-cache - hostname redirected origin
-{{ foreach my $vhost (@vhost_cache) {
-  $OUT .=<<"TMPL_END";
-server {
-   listen 443 ssl http2;
-   server_name $vhost->{hostname};
-
-   ssl_certificate     /etc/nginx/pki/$vhost->{ssl_cert};
-   ssl_certificate_key /etc/nginx/pki/$vhost->{ssl_key};
-
-   access_log /var/log/nginx/$vhost->{hostname}-request.log custom buffer=32k flush=3s;
-   error_log /var/log/nginx/$vhost->{hostname}-frontend-error.log;
-
-   location ~ /(.*) {
-      proxy_http_version 1.1;
-      proxy_set_header   "Connection" "";
-      proxy_pass "http://vcache/\$1\$is_args\$args";
-      proxy_set_header X-Real-IP  \$remote_addr;
-      proxy_set_header X-Forwarded-Proto https;
-      proxy_set_header X-Forwarded-Port 443;
-      proxy_set_header Host $vhost->{hostname};
-   }
-
 }
 
 TMPL_END

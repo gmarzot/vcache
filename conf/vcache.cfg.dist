@@ -1,7 +1,7 @@
 admin-server: {
    hostname: "${VCACHE_HOSTNAME}"
    port: 8443
-   ssl-cert: cache-cert.pem
+   ssl-cert: cache-cert.crt
    ssl-key: cache-cert.key
 }
 
@@ -12,41 +12,44 @@ cache-rule: {
 }
 
 cache-rule: {
-   content-type: (video|audio)
+   url: \.(ts|mp3|mp4|webvtt|acc)
    ttl: 10m
 }
 
-proxy-cache: {
+cache-rule: {
+   content-type: (video|audio)/.*
+   ttl: 10m
+}
+
+proxy: {
    hostname: "${VCACHE_HOSTNAME}"
    port: 443
-   ssl-cert: cache-cert.pem
+//   mode: reverse
+   ssl-cert: cache-cert.crt
    ssl-key: cache-cert.key
 
    cache-rule: {
    	  content-type: application/dash\+xml
-	  ttl: 1
-   }
-   cache-rule: {
-      url: \.(ts|mp3|mp4|webvtt|acc)
-	  ttl: 300
+	  ttl: 1s
    }
 }
 
-vhost-cache: {
+proxy: {
    hostname: live-ak.vimeocdn.com
    port: 443
-   ssl-cert: live-ak.vimeocdn.com.pem
+   mode: transparent
+   ssl-cert: live-ak.vimeocdn.com.crt
    ssl-key: live-ak.vimeocdn.com.key
-
    cache-key-rule: {
-      url: "/exp=\d+(~acl=[^~]+)~hmac=[^/]+(/.*)"
+      url: "/exp=\\d+(~acl=[^~]+)~hmac=[^/]+(/.*)"
       key: "/$1$2"
    }
 }
 
-vhost-cache: {
+proxy: {
    hostname: ontime.demo.vivoh.com
    port: 443
-   ssl-cert: ontime.demo.vivoh.com.pem
+   mode: transparent
+   ssl-cert: ontime.demo.vivoh.com.crt
    ssl-key: ontime.demo.vivoh.com.key
 }

@@ -2139,7 +2139,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "upstream response bytes",
-        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = msg.payload.counters[\"VBE.boot.default.beresp_hdrbytes\"].value + msg.payload.counters[\"VBE.boot.default.beresp_bodybytes\"].value\nreturn msg;",
+        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nlet sum = 0\nfor (let key in msg.payload.counters) {\n    if (key.endsWith(\".beresp_hdrbytes\") || key.endsWith(\".beresp_bodybytes\")) {\n        sum += msg.payload.counters[key].value;\n    }\n}\nmsg.payload = sum;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2443,7 +2443,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "bytes saved",
-        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nvar client_bytes = msg.payload.counters[\"MAIN.s_resp_hdrbytes\"].value + msg.payload.counters[\"MAIN.s_resp_bodybytes\"].value;\nvar upstream_bytes = msg.payload.counters[\"VBE.boot.default.beresp_hdrbytes\"].value + msg.payload.counters[\"VBE.boot.default.beresp_bodybytes\"].value;\nvar bytes_saved = client_bytes - upstream_bytes;\nif (bytes_saved < 0) bytes_saved = 0;\nmsg.payload = formatBytes(client_bytes - upstream_bytes)\nreturn msg;",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nvar client_bytes = msg.payload.counters[\"MAIN.s_resp_hdrbytes\"].value + msg.payload.counters[\"MAIN.s_resp_bodybytes\"].value;\nlet sum = 0\nfor (let key in msg.payload.counters) {\n    if (key.endsWith(\".beresp_hdrbytes\") || key.endsWith(\".beresp_bodybytes\")) {\n        sum += msg.payload.counters[key].value;\n    }\n}\nvar upstream_bytes = sum;\nvar bytes_saved = client_bytes - upstream_bytes;\nif (isNaN(bytes_saved)) { bytes_saved = 0 }\nif (bytes_saved < 0) bytes_saved = 0;\nmsg.payload = formatBytes(client_bytes - upstream_bytes)\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2963,7 +2963,8 @@
         "y": 260,
         "wires": [
             [
-                "bd2fcc08d0e8fa1b"
+                "bd2fcc08d0e8fa1b",
+                "a123cb1254cc4a7c"
             ]
         ]
     },
@@ -3216,6 +3217,22 @@
                 "466c448c79a215b2"
             ]
         ]
+    },
+    {
+        "id": "a123cb1254cc4a7c",
+        "type": "debug",
+        "z": "f6922bafc800b831",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 960,
+        "wires": []
     },
     {
         "id": "b8eb1678b935b37c",

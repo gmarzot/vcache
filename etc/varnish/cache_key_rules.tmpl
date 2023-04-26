@@ -10,34 +10,20 @@ var.set("url_path", req.url);
    }
 }}
 
-# cfg proxy-cache cache-key-rule's
+# cfg proxy cache-key-rule's
 {{
-   my $index = 0;
-   if (exists $proxy_cache{cache_key_rule}) {
-      $OUT .= "if (req.http.Host == \"$proxy_cache{hostname}\") {\n";  
-      foreach my $rule (@{ $proxy_cache{cache_key_rule} }) {
-         $index++;
-         my $key = &$vcl_br("proxy_key_${index}", $rule->{key});
-         $OUT .= "   if (proxy_key_${index}.match(req.url)) { var.set(\"url_path\", $key); }\n";
-      }
-      $OUT .= "}\n";
-   }
-}}
-
-# cfg vhost-cache cache-key-rule's
-{{
-   my $host = "a";
-   foreach my $h (@vhost_cache) {
-      next unless exists $h->{cache_key_rule};
+   my $pindex = "a";
+   foreach my $proxy (@proxy) {
+      next unless exists $proxy->{cache_key_rule};
       my $index = 0;
-      $OUT .= "if (req.http.Host == \"$h->{hostname}\") {\n";  
-      foreach my $rule (@{ $h->{cache_key_rule} }) {
+      $OUT .= "if (req.http.Host == \"$proxy->{hostname}\") {\n";  
+      foreach my $rule (@{ $proxy->{cache_key_rule} }) {
          $index++;
-         my $key = vcl_br("host_key_${host}${index}",$rule->{key});
-         $OUT .= "   if (host_key_${host}${index}.match(req.url)) { var.set(\"url_path\", $key); }\n";
+         my $key = vcl_br("proxy_key_${pindex}${index}",$rule->{key});
+         $OUT .= "   if (proxy_key_${pindex}${index}.match(req.url)) { var.set(\"url_path\", $key); }\n";
       }
       $OUT .= "}\n";
-	  $host++;
+	  $pindex++;
    }
 }}
 

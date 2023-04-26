@@ -30,4 +30,5 @@ fi
 # XXX there must be a better way to grant write perms to containers
 chmod ugo+rwx log run etc/varnishstats
 
+
 exit 0

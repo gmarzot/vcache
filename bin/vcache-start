@@ -21,7 +21,7 @@ done
 shift $((OPTIND-1)) # remove parsed options and args from $@ list
 
 
-SOURCE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SOURCE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && pwd )
 
 cd $SOURCE_DIR
 
@@ -69,7 +69,14 @@ if [[ $? != 0 ]]; then
 fi
 echo -n ${VCACHE_VERSION} > ./run/vcache-version.txt
 
+
+# read the config and eval templates for nginx and varnish
+if [[ ! -e ./conf/vcache.cfg && -e ./conf/vcache.cfg.dist ]]; then
+	cp ./conf/vcache.cfg.dist ./conf/vcache.cfg
+fi
+									  
 ./bin/vcache-cfg-update
+
 if [[ $? != 0 ]]; then
 	echo "error updating vache cfg files ($?)"
 	exit 7

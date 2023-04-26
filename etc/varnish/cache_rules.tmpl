@@ -1,40 +1,22 @@
 
-# cfg proxy-cache cache-rule's
+# cfg proxy cache-rule's
 {{
-   my $index = 0;
-   if (exists $proxy_cache{cache_rule}) {
-      $OUT .= "if (bereq.http.Host == \"$proxy_cache{hostname}\") {\n";  
-      foreach my $rule (@{ $proxy_cache{cache_rule} }) {
-         $index++;
-         if (exists $rule->{url}) {
-            $OUT .= "  if (proxy_url_${index}.match(bereq.url)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
-         }
-	     if (exists $rule->{content_type}) {
-            $OUT .= "  if (proxy_ct_${index}.match(bereq.url)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
-         }
-      }
-      $OUT .= "}\n";
-   }
-}}
-
-# cfg vhost-cache cache-rule's
-{{
-   my $host = "a";
-   foreach my $h  (@vhost_cache) {
-      next unless exists $h->{cache_rule};
+   my $pindex = "a";
+   foreach my $proxy (@proxy) {
+      next unless exists $proxy->{cache_rule};
       my $index = 0;
-      $OUT .= "if (bereq.http.Host == \"$h->{hostname}\") {\n";  
-      foreach my $rule (@{ $h->{cache_rule} }) {
+      $OUT .= "if (bereq.http.Host == \"$proxy->{hostname}\") {\n";  
+      foreach my $rule (@{ $proxy->{cache_rule} }) {
 	     $index++;
          if (exists $rule->{url}) {
-            $OUT .= "  if (host_url_${host}${index}.match(bereq.url)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
+            $OUT .= "  if (proxy_url_${pindex}${index}.match(bereq.url)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
          }
 	     if (exists $rule->{content_type}) {
-            $OUT .= "  if (host_ct_${host}${index}.match(bereq.url)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
+            $OUT .= "  if (proxy_ct_${pindex}${index}.match(bereq.url)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
          }
       }
       $OUT .= "}\n";
-	  $host++;
+	  $pindex++;
    }
 }}
 

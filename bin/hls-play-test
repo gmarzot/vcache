@@ -1,0 +1,49 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use LWP::UserAgent;
+use URI;
+
+my $ua = LWP::UserAgent->new();
+
+my $manifest_url = shift || "https://cache1.vivoh.io/cache/origin.vivoh.io/live/test/index.m3u8";
+my $base_url = $manifest_url; $base_url =~ s|/[^/]+$||;
+
+my %seen_segments;
+while (1) {
+  # Get the HLS manifest
+  print "fetching manifest: $manifest_url\n";
+  my $response = $ua->get($manifest_url);
+  if (!$response->is_success) {
+	warn "Failed to retrieve HLS manifest: " . $response->status_line;
+	next;
+  }
+  my $manifest = $response->decoded_content();
+
+  my ($target_duration) = ($manifest =~ /^#EXT-X-TARGETDURATION:\s*(\d+)/m);
+
+  # Extract the segments from the manifest
+  my (@segments) = ($manifest =~ m/^\s*((?:https?:\/\/)?[^# ]+)\s*$/gm);
+
+  # find the next segment from the manifest
+  my $segment_url;
+  while (@segments) {
+	$segment_url = shift @segments; chomp $segment_url;
+	$segment_url = "$base_url/$segment_url" unless $segment_url =~ /^https?:\/\//;
+	next if exists $seen_segments{$segment_url};
+
+	# Fetch the next available segment
+	print "fetching segment: $segment_url\n";
+	my $response = $ua->get($segment_url);
+	if (!$response->is_success) {
+	  warn "Failed to retrieve HLS segment: " . $response->status_line;
+	  next;
+	}
+	$seen_segments{$segment_url}++;
+	print "fetched: $segment_url\n";
+  }
+  my $interval = int($target_duration/2);
+  print "sleeping: $interval\n";
+  sleep($interval);
+}

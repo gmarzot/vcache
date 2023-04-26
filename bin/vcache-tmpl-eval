@@ -20,10 +20,11 @@ sub ukeys {
   } elsif (ref($h) eq 'HASH') {
 	foreach my $k (keys %{$h}) {
 	  my $u = $k;
+	  my $v = ukeys($h->{$k});
 	  if ($u =~ s/-/_/g) {
-		$h->{$u} = ukeys($h->{$k});
 		delete $h->{$k};
 	  }
+	  $h->{$u} = $v;
 	}
   }
   return $h;
@@ -136,7 +137,9 @@ $cfg = ukeys($cfg);
 # normalize config to array for entries that can be repeated
 varr($cfg, 'cache_rule');
 varr($cfg, 'cache_key_rule');
-varr($cfg, 'vhost_cache');
+varr($cfg, 'proxy');
+# default proxy mode to reverse
+foreach my $p (@{$cfg->{'proxy'}}) { $p->{'mode'} = 'reverse' unless defined $p->{'mode'} }
 # default any bare ttl values to seconds (time suffixes: s,m,h,d,y)
 vsub($cfg, 'ttl', sub {$_[0] =~ s/^\d+$/$&s/});
 # import any environment interpolate any env vars

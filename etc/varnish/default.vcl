@@ -126,7 +126,6 @@ sub vcl_hash {
     if (req.method) {
         hash_data(req.method);
     }
-
     include "cache_key_rules.incl";
 
     if (req.http.host) {

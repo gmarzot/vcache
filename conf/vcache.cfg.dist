@@ -41,7 +41,7 @@ proxy: {
    ssl-cert: live-ak.vimeocdn.com.crt
    ssl-key: live-ak.vimeocdn.com.key
    cache-key-rule: {
-      url: "/exp=\\d+(~acl=[^~]+)~hmac=[^/]+(/.*)"
+      url: "/exp=\\d+(~acl=[^~]+)~hmac=[^/]+(/.*)/(chunklist|media)_[^_]+_(.*)"
       key: "/$1$2"
    }
 }

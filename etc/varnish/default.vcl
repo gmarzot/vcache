@@ -71,6 +71,7 @@ sub vcl_recv {
     if (req.method == "OPTIONS") {
        return(synth(200));
     }
+
     # XXX need to allow purge from container cluster/mgmt
     if (req.method == "PURGE") {
        if (!client.ip ~ purge_acl) {
@@ -113,19 +114,23 @@ sub vcl_deliver {
 }
 
 sub vcl_backend_response {
-    # do not cache 404's
-    if (beresp.status == 404) { 
-       set beresp.ttl = 0s;
-       return(deliver);
+    # do not cache 400's - enable hit-for-miss
+    if (beresp.status >= 400 ) { 
+        set beresp.ttl = 2s;
+        set beresp.uncacheable = true;
+        return(deliver);
     }
-    
-    include "cache_rules.incl";
+    if (bereq.method != "OPTIONS") {
+       include "cache_rules.incl";
+    }
 }
 
 sub vcl_hash {
     if (req.method) {
         hash_data(req.method);
     }
+
+    # include cache key rules from cfg
     include "cache_key_rules.incl";
 
     if (req.http.host) {
@@ -145,7 +150,7 @@ sub vcl_synth {
     if (req.method == "OPTIONS") {
         set resp.http.Access-Control-Allow-Headers = "Content-Type,Content-Length,Authorization,Accept,X-Requested-With";
         set resp.http.Access-Control-Allow-Methods = "GET,HEAD,OPTIONS";
-        set resp.http.Access-Control-Allow-Local-Network = "true";
+        set resp.http.Access-Control-Allow-Private-Network = "true";
         set resp.http.Allow-Credentials = "true"; # XXX huh?
         set resp.http.ETag = "123456"; # XXX huh?
         if (req.http.origin) {

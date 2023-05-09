@@ -12,7 +12,7 @@
             $OUT .= "  if (proxy_url_${pindex}${index}.match(bereq.url)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
          }
 	     if (exists $rule->{content_type}) {
-            $OUT .= "  if (proxy_ct_${pindex}${index}.match(bereq.url)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
+            $OUT .= "  if (proxy_ct_${pindex}${index}.match(beresp.http.Content-Type)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
          }
       }
       $OUT .= "}\n";
@@ -29,7 +29,7 @@
          $OUT .= "if (url_${index}.match(bereq.url)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
       }
 	  if (exists $rule->{content_type}) {
-         $OUT .= "if (ct_${index}.match(bereq.url)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
+         $OUT .= "if (ct_${index}.match(beresp.http.Content-Type)) { set beresp.ttl = $rule->{ttl}; return(deliver); }\n";
       }
    }
 }}

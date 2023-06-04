@@ -63,6 +63,7 @@ RUN set -e; \
 	cd ..; \
 	git clone https://code.uplex.de/uplex-varnish/libvmod-re.git; \
 	cd libvmod-re; \
+	git checkout 2c683cd46e7ad025b84713749d43b1adffabe7af; \
 	./autogen.sh; \
 	./configure; \
 	make; \

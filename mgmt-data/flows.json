@@ -1446,7 +1446,7 @@
         "id": "9f179518aa2a884c",
         "type": "exec",
         "z": "f6f2187d.f17ca8",
-        "command": "cat /var/run/vcache-version.txt",
+        "command": "echo -n ${VCACHE_VERSION}",
         "addpay": "",
         "append": "",
         "useSpawn": "false",
@@ -2963,8 +2963,7 @@
         "y": 260,
         "wires": [
             [
-                "bd2fcc08d0e8fa1b",
-                "a123cb1254cc4a7c"
+                "bd2fcc08d0e8fa1b"
             ]
         ]
     },
@@ -3176,7 +3175,8 @@
         "y": 40,
         "wires": [
             [
-                "bb8e27c46b8ff662"
+                "bb8e27c46b8ff662",
+                "2a6e9a6f8cdc153a"
             ]
         ]
     },
@@ -3233,6 +3233,32 @@
         "x": 480,
         "y": 960,
         "wires": []
+    },
+    {
+        "id": "2a6e9a6f8cdc153a",
+        "type": "exec",
+        "z": "f6922bafc800b831",
+        "command": "salt-minion",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "salt-minion",
+        "x": 550,
+        "y": 40,
+        "wires": [
+            [
+                "a123cb1254cc4a7c"
+            ],
+            [
+                "a123cb1254cc4a7c"
+            ],
+            [
+                "a123cb1254cc4a7c"
+            ]
+        ]
     },
     {
         "id": "b8eb1678b935b37c",

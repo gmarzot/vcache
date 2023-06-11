@@ -7,10 +7,12 @@ services:
     container_name: vcache_mgmt
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - "./mgmt-data:/data"
-      - "./run:/var/run"
+      - ./mgmt-data:/data
+      - var_run:/var/run:rw
     networks:
       - vcache_net
+    environment:
+      - VCACHE_VERSION=${VCACHE_VERSION}
     # close this for production
     ports:
       - "1880:1880"
@@ -19,13 +21,6 @@ services:
     depends_on:
       - vcache_redis
 
-  # mgmt-agent:
-  #   image: "saltstack/salt"
-  #   volumes:
-  #     - "./run:/var/run"
-  #     - "./log/salt:/var/log/salt"
-  #     - "./etc/salt:/etc/salt"
-  
   vcache_frontend:
     image: nginx-perl
     build:
@@ -33,8 +28,8 @@ services:
     container_name: vcache_frontend
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - "./run:/var/run"
-      - "./log/nginx:/var/log/nginx"
+      - var_run:/var/run:rw
+      - frontend_log:/var/log/nginx:rw
       - "./etc/nginx/nginx-fe.conf:/etc/nginx/nginx.conf:ro"
       - "./etc/nginx/.htpasswd:/etc/nginx/.htpasswd"
       - "./etc/nginx/pki:/etc/nginx/pki:ro"
@@ -66,8 +61,8 @@ services:
     container_name: vcache_engine
     volumes:
       - "./etc/varnish:/etc/varnish"
-      - "./run:/var/run"
-      - "varnish_tmpfs:/var/lib/varnish"
+      - var_run:/var/run:rw
+      - varnish_tmpfs:/var/lib/varnish:rw
     networks:
       - vcache_net
     pid: "service:vcache_mgmt"
@@ -91,8 +86,8 @@ services:
     container_name: vcache_backend
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - "./run:/var/run"
-      - "./log/nginx:/var/log/nginx"
+      - var_run:/var/run:rw
+      - backend_log:/var/log/nginx:rw
       - "./etc/nginx/nginx-be.conf:/etc/nginx/nginx.conf:ro"
       - "./etc/nginx/sites-enabled/backend.cfg:/etc/nginx/sites-enabled/backend.cfg"
       - "./etc/nginx/modules-enabled/80-mod-http-perl.conf:/etc/nginx/modules-enabled/80-mod-http-perl.conf"
@@ -124,7 +119,7 @@ services:
     image: redis:latest
     container_name: vcache_redis
     volumes:
-      - "redis_data:/data"
+      - redis_data:/data
     networks:
       - vcache_net
     # close this for production
@@ -133,6 +128,12 @@ services:
     restart: always
 
 volumes:
+  var_run:
+    name: vcache_var_run
+  frontend_log:
+    name: vcache_frontend_log
+  backend_log:
+    name: vcache_backend_log
   redis_data:
     name: vcache_redis_data
   varnish_tmpfs:

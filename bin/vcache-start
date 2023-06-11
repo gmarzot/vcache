@@ -45,6 +45,17 @@ if [ $? == 0 ]; then
 	exit 3
 fi
 
+VCACHE_VERSION=`git describe 2> /dev/null`
+if [[ $? != 0 ]]; then
+	if [[ -r .version ]]; then
+		VCACHE_VERSION=`cat .version`
+	else
+	    echo "[$?]no git revision or .version file detected, using: 0.0.0"
+	    VCACHE_VERSION="0.0.0"
+	fi
+fi
+export VCACHE_VERSION
+
 if [[ -f .env && -r .env ]]; then
 	echo "using existing .env file..."
 	echo "----- .env ----"
@@ -57,18 +68,6 @@ else
     echo "VCACHE_HOSTNAME=${hostname}" > .env
 	echo "VCACHE_MEM_SIZE=12G" >> .env
 fi
-
-VCACHE_VERSION=`git describe 2> /dev/null`
-if [[ $? != 0 ]]; then
-	if [[ -r ./run/vcache-version.txt ]]; then
-		VCACHE_VERSION=`cat ./run/vcache-version.txt`
-	else
-	    echo "[$?]no git revision or version.txt file detected, using: 0.0.0"
-	    VCACHE_VERSION="0.0.0"
-	fi
-fi
-echo -n ${VCACHE_VERSION} > ./run/vcache-version.txt
-
 
 # read the config and eval templates for nginx and varnish
 if [[ ! -e ./conf/vcache.cfg && -e ./conf/vcache.cfg.dist ]]; then

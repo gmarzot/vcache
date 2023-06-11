@@ -18,7 +18,7 @@ if [[ $? != 0 ]]; then
     exit 2
 fi
 
-echo -n ${GIT_REVISION} > ./run/vcache-version.txt
+echo -n ${GIT_REVISION} > ./.version
 
 cd ..
 

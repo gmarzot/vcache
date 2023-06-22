@@ -1,4 +1,4 @@
-version: "3"
+
 services:
   vcache_mgr_agent:
     image: node-red
@@ -9,16 +9,17 @@ services:
     volumes:
       - ./docker-context/node-red/mgmt-data:/data # comment out for production
       - var_run:/var/run:rw
-      - frontend_etc:/etc/nginx-fe
-      - varnish_etc:/etc/varnish
-      - backend_etc:/etc/nginx-be
+      - etc_salt:/etc/salt
+      - etc_frontend:/etc/nginx-fe
+      - etc_varnish:/etc/varnish
+      - etc_backend:/etc/nginx-be
     networks:
       - vcache_net
     environment:
       - VCACHE_VERSION=${VCACHE_VERSION}
       - SALT_MASTER=${VCACHE_MGR_ADDR}
     ports:
-      - "1881:1880"     # comment out for production
+      - 1881:1880 # comment out for production
     pid: shareable
     restart: always
     depends_on:
@@ -35,13 +36,13 @@ services:
     volumes:
       - var_run:/var/run:rw
       - frontend_log:/var/log/nginx:rw
-      - frontend_etc:/etc/nginx-fe
+      - etc_frontend:/etc/nginx-fe
     networks:
       - vcache_net
     ports:
-      - "443:443"
-      - "8443:8443"
-    pid: "service:vcache_mgr_agent"
+      - 443:443
+      - 8443:8443
+    pid: service:vcache_mgr_agent
     ulimits:
        memlock: -1
        nofile:
@@ -59,11 +60,11 @@ services:
     container_name: vcache_engine
     volumes:
       - var_run:/var/run:rw
-      - varnish_etc:/etc/varnish
+      - etc_varnish:/etc/varnish
       - varnish_tmpfs:/var/lib/varnish:exec
     networks:
       - vcache_net
-    pid: "service:vcache_mgr_agent"
+    pid: service:vcache_mgr_agent
     ulimits:
        memlock: -1
        nofile:
@@ -88,10 +89,10 @@ services:
     volumes:
       - var_run:/var/run:rw
       - backend_log:/var/log/nginx:rw
-      - backend_etc:/etc/nginx
+      - etc_backend:/etc/nginx
     networks:
       - vcache_net
-    pid: "service:vcache_mgr_agent"
+    pid: service:vcache_mgr_agent
     restart: always
 
   vcache_stats:
@@ -103,7 +104,7 @@ services:
       - varnish_tmpfs:/var/lib/varnish:ro
     environment:
       VSM_NOPID: 1
-    command: "start-varnishstats-exporter"
+    command: start-varnishstats-exporter
     networks:
       - vcache_net
     restart: always
@@ -120,19 +121,19 @@ services:
       - vcache_net
     # close this for production
     ports:
-      - "6379:6379"
+      - 6379:6379
     restart: always
 
 volumes:
   var_run:
     name: vcache_var_run
-  frontend_etc:
-    name: vcache_frontend_etc
+  etc_frontend:
+    name: vcache_etc_frontend
   frontend_log:
     name: vcache_frontend_log
-  varnish_etc:
+  etc_varnish:
     name: vcache_varnish_etc
-  backend_etc:
+  etc_backend:
     name: vcache_backend_etc
   backend_log:
     name: vcache_backend_log

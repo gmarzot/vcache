@@ -50,7 +50,7 @@ if [[ $? != 0 ]]; then
 	if [[ -r .version ]]; then
 		VCACHE_VERSION=`cat .version`
 	else
-	    echo "[$?]no git revision or .version file detected, using: 0.0.0"
+	    echo "unable to determine vcache version: using 0.0.0"
 	    VCACHE_VERSION="0.0.0"
 	fi
 fi
@@ -82,7 +82,7 @@ if [[ $? != 0 ]]; then
 fi
 
 echo "cleaning up previous deployment..."
-sudo docker-compose down
+sudo -E docker-compose down
 
 rm -f run/*.sock run/*.pid
 # XXX there must be a better way to grant write perms to containers
@@ -91,9 +91,9 @@ chmod ugo+rwx log run etc/varnishstats
 echo "starting vcache (${VCACHE_VERSION}) ..."
 
 if [[ $debug ]]; then
-	sudo docker-compose up
+	sudo -E docker-compose up
 else
-	sudo docker-compose up -d
+	sudo -E docker-compose up -d
 fi
 
 if [[ $? != 0 ]]; then

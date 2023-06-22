@@ -1,0 +1,3410 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "System Metrics",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f6922bafc800b831",
+        "type": "tab",
+        "label": "Cache Metrics",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6e1fffded33ce50f",
+        "type": "tab",
+        "label": "Configuration",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d898c7987d10b482",
+        "type": "ui_group",
+        "name": "System Metrics",
+        "tab": "a568a74c7e4761e6",
+        "order": 1,
+        "disp": true,
+        "width": "23",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "28bf51b43d3c2328",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "Lucida Sans Typewriter,Lucida Console,Monaco,monospace",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "Lucida Sans Typewriter,Lucida Console,Monaco,monospace"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "dark"
+            }
+        },
+        "site": {
+            "name": "VCache Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 0,
+                "gy": 0,
+                "cx": 0,
+                "cy": 0,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "a568a74c7e4761e6",
+        "type": "ui_tab",
+        "name": "vCache Dashboard",
+        "icon": "fa-vimeo",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3a38c87d0066b087",
+        "type": "ui_group",
+        "name": "Cache Metrics",
+        "tab": "a568a74c7e4761e6",
+        "order": 3,
+        "disp": true,
+        "width": 23,
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "129ea38b0b9c5445",
+        "type": "redis-config",
+        "name": "vcache_redis:6379",
+        "options": "{\"host\":\"vcache_redis\",\"db\":0}",
+        "cluster": false,
+        "optionsType": "json"
+    },
+    {
+        "id": "3733aad54f7e21ab",
+        "type": "ui_group",
+        "name": "Operational Metrics",
+        "tab": "a568a74c7e4761e6",
+        "order": 2,
+        "disp": true,
+        "width": 23,
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "0d57fdf40703c5ad",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 4,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "6b144b70ecdcd3fa",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b6523324d7f4c821",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "983a575aa3a5ae37",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b3b0d0487198d244",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 16,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4fc63384cfc1fdb7",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 18,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "a0f5a7e69acdcd4f",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 20,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "609fccda794eb7b1",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 23,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "0c2aabbb829b4d0c",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "e867b713a4e29cc6",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2369129b70edcac6",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2db539e4491d0126",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4d80669a8ff5e2cc",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 7,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "49cd1854a511d75c",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d4e4e94fcede3d63",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "65b67691aaf464f2",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 10,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "ae99dda9bbf08c27",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "5161d962ea4cf789",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b2cc6efe6ff4f1f1",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 13,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b7c7e01a768e1f1e",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 14,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "5ef03b684f214a92",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 15,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "354f44a1ebb28079",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 17,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d764bb3aede271db",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 19,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "07aa6797051471cf",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 20,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1796d942d99ead18",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 21,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "cfc0667b114fc35f",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 22,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "fe02be2c0fc3bc50",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 23,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "f7180955f90f4b96",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 24,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "45afe59be6cb6dcc",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 25,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "9f42d93ce63c96d3",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 26,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "03f0b4fa26a4a0ee",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 27,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "491a8fd87add1f30",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 28,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b388b7338ca3aa71",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 29,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "309bb62b29d6b599",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 31,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "9e35dd4fe5e5086e",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 33,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "a5d73f4a9f36a025",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 34,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "47d5851ee07799f0",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 36,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "956151d4df871024",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 38,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "5068b5196a82b33c",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 39,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "100af5aa31f9b7be",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 40,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "20070e8834e24c2b",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 41,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "69e8d6bbc223cfdc",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 42,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c9eb872a4849dce1",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 43,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "74aa8284e98fbc61",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 44,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "dee7b6fc168d77d3",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 45,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b0fd5f38394f79e3",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 46,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "73beee7f6620be32",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 47,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "80c4e4be88f0695a",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 48,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "0375beb2994a5701",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 50,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d6f1f3fcf93c88fb",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 52,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2432772048afc03e",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 53,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d826cde7e6304080",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 55,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "cadffe0842f8c284",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 57,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2013842579c69785",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 58,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2d6d0e2e6bf47475",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 59,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "555887b0a7d7b6bc",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 60,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "df98cbcffb2feb27",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 61,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "3b8bf2a8ca240573",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 62,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "ab4dbb660cfea9ee",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 63,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d4f6cfe94c89eb1d",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 64,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "264e126b744b9897",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 65,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "dd7581957019eabf",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 66,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "94c965dfa02ebec9",
+        "type": "ui_tab",
+        "name": "Configuration",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "27ef1ca5c2551459",
+        "type": "ui_group",
+        "name": "Configuration",
+        "tab": "94c965dfa02ebec9",
+        "order": 1,
+        "disp": true,
+        "width": 24,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "02280ae61db2a0bc",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 3,
+        "width": 14,
+        "height": 1
+    },
+    {
+        "id": "b876c109d145d3b5",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 4,
+        "width": 14,
+        "height": 1
+    },
+    {
+        "id": "ae233343c32f66fe",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 5,
+        "width": 24,
+        "height": 1
+    },
+    {
+        "id": "8c7bd56ed2204041",
+        "type": "Drives",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "x": 470,
+        "y": 840,
+        "wires": [
+            [
+                "f29cd079ba2bd3e7",
+                "cc0bb701d1ad35db",
+                "2c4efc4e2ad833bb"
+            ]
+        ]
+    },
+    {
+        "id": "f09f387bfc7e4550",
+        "type": "Memory",
+        "z": "f6f2187d.f17ca8",
+        "name": "Memory",
+        "scale": "Byte",
+        "x": 480,
+        "y": 740,
+        "wires": [
+            [
+                "18c68b74898c536f",
+                "b47ed9d6965cf619",
+                "abbb31eb4b46bee5",
+                "da0aa089ba25ac3d"
+            ]
+        ]
+    },
+    {
+        "id": "177ae28f.b66a45",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 90,
+        "y": 60,
+        "wires": [
+            [
+                "f09f387bfc7e4550",
+                "61936b4003e1e050",
+                "8c7bd56ed2204041",
+                "f6b5723097fbc821",
+                "c2a1b5f7989ff616",
+                "38c877c9b55d681d",
+                "0e93632552682542",
+                "e1e13788026a662b"
+            ]
+        ]
+    },
+    {
+        "id": "50f9790b.49c718",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "format time HH:mm:ss",
+        "func": " var totalNumberOfSeconds = msg.payload;\n var days = parseInt( totalNumberOfSeconds / 86400 );\n var hours = parseInt (( totalNumberOfSeconds - ( days * 86400 )) / 3600  );\n var minutes = parseInt ((totalNumberOfSeconds - ((hours * 3600)+( days * 86400 ))) / 60 );\n var seconds = parseInt(totalNumberOfSeconds - ((hours * 3600) + (minutes * 60)+( days * 86400 )));\n var result = (days < 10 ? \"0\" + days : days) + \":\" + (hours < 10 ? \"0\" + hours : hours) + \":\" + (minutes < 10 ? \"0\" + minutes : minutes) + \":\" + (seconds  < 10 ? \"0\" + seconds : seconds);\n msg.payload=result;\n return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 220,
+        "wires": [
+            [
+                "4f6abcf.71f1a44",
+                "e227095f9e1bf773"
+            ]
+        ]
+    },
+    {
+        "id": "4f6abcf.71f1a44",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 5,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "UpTime: ",
+        "format": "<font size=3>{{msg.payload}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "x": 1060,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "61936b4003e1e050",
+        "type": "cpu",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "msgCore": false,
+        "msgOverall": true,
+        "msgArray": false,
+        "msgTemp": false,
+        "x": 490,
+        "y": 540,
+        "wires": [
+            [
+                "53516185218f0489",
+                "7983da4d453a8c52",
+                "7ddb76afd18f4087"
+            ]
+        ]
+    },
+    {
+        "id": "c0a13984a398e6d7",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "CPU Historic",
+        "group": "d898c7987d10b482",
+        "order": 14,
+        "width": 7,
+        "height": 4,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1070,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "18c68b74898c536f",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "d898c7987d10b482",
+        "order": 3,
+        "width": 7,
+        "height": 3,
+        "gtype": "gage",
+        "title": "RAM",
+        "label": "",
+        "format": "{{msg.payload.memusage | number:1}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "80",
+        "seg2": "90",
+        "diff": false,
+        "className": "def",
+        "x": 1050,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "fbc058e4a2725b9d",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 7,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Version: ",
+        "format": "<font size=3>{{msg.payload}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1060,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f4aa44582aec2ee6",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 17,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Memory:  ",
+        "format": "<font size=3>{{msg.value}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "x": 1060,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b47ed9d6965cf619",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "total mem - format units",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\nmsg.value = formatBytes(msg.payload.totalmem);\nmsg.payload = msg.payload.totalmem;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 380,
+        "wires": [
+            [
+                "f4aa44582aec2ee6",
+                "faf3cd28d97af559"
+            ]
+        ]
+    },
+    {
+        "id": "f29cd079ba2bd3e7",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "disk use percent",
+        "func": "msg.payload = msg.payload[0].capacity * 100.0\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 960,
+        "wires": [
+            [
+                "b833a78279a06e8c",
+                "9a8f2aa6f1991221"
+            ]
+        ]
+    },
+    {
+        "id": "b833a78279a06e8c",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "d898c7987d10b482",
+        "order": 15,
+        "width": 7,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Disk",
+        "label": "",
+        "format": "{{value | number:1}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "80",
+        "seg2": "90",
+        "diff": false,
+        "className": "def",
+        "x": 1050,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "abbb31eb4b46bee5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "used mem format units",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload.totalmem - msg.payload.freemem);\nmsg.payload = msg.payload.totalmem - msg.payload.freemem;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 860,
+        "wires": [
+            [
+                "3fe4b364fdaec2bb",
+                "7929109cc5bdc85e"
+            ]
+        ]
+    },
+    {
+        "id": "3fe4b364fdaec2bb",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 11,
+        "width": 7,
+        "height": 1,
+        "name": "",
+        "label": "Used: ",
+        "format": "{{msg.value}}",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1050,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "2bd8b9bfd2a1d534",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 10,
+        "width": 7,
+        "height": 1,
+        "name": "",
+        "label": "Load: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1050,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "39b8930ee2a9adf4",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "load avg string",
+        "func": "msg.payload = msg.payload.loadavg.join(', ')\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 660,
+        "wires": [
+            [
+                "2bd8b9bfd2a1d534",
+                "93b0626f686f5d89"
+            ]
+        ]
+    },
+    {
+        "id": "f6b5723097fbc821",
+        "type": "Loadavg",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "x": 480,
+        "y": 660,
+        "wires": [
+            [
+                "39b8930ee2a9adf4"
+            ]
+        ]
+    },
+    {
+        "id": "53516185218f0489",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "CPU use",
+        "group": "d898c7987d10b482",
+        "order": 2,
+        "width": 7,
+        "height": 3,
+        "gtype": "gage",
+        "title": "CPU",
+        "label": "",
+        "format": "{{value | number:1}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "80",
+        "seg2": "90",
+        "diff": false,
+        "className": "def",
+        "x": 1060,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "c2a1b5f7989ff616",
+        "type": "CPUs",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "1faa30a4e47251a1",
+                "08c2a1b541a459f7"
+            ]
+        ]
+    },
+    {
+        "id": "1faa30a4e47251a1",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "CPU model",
+        "func": "msg.payload = msg.payload.cpus[0].model.replace(/^Intel[^ ]*\\s+[^ ]* /i,\"\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 280,
+        "wires": [
+            [
+                "51ccb23cb43f7af2"
+            ]
+        ]
+    },
+    {
+        "id": "08c2a1b541a459f7",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "cores",
+        "func": "msg.payload = msg.payload.cpus.length;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 320,
+        "wires": [
+            [
+                "68105b12b908d0f4"
+            ]
+        ]
+    },
+    {
+        "id": "51ccb23cb43f7af2",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 9,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "CPU: ",
+        "format": "<font size=3>{{msg.payload}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "x": 1050,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "68105b12b908d0f4",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 13,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Cores: ",
+        "format": "<font size=3>{{msg.payload}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "x": 1050,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "d6fd568602fabf48",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 19,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Disk: ",
+        "format": "<font size=3>{{msg.value}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "x": 1050,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "11b451e51ccf5739",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 22,
+        "width": 7,
+        "height": 1,
+        "name": "",
+        "label": "Used: ",
+        "format": "{{msg.value}}",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1050,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "cc0bb701d1ad35db",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "disk used bytes",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload[0].used)\nmsg.payload = msg.payload[0].used\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 1060,
+        "wires": [
+            [
+                "11b451e51ccf5739",
+                "fa03e24c13105377"
+            ]
+        ]
+    },
+    {
+        "id": "2c4efc4e2ad833bb",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "disk size",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\nmsg.value = formatBytes(msg.payload[0].size)\nmsg.payload = msg.payload[0].size\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 460,
+        "wires": [
+            [
+                "d6fd568602fabf48",
+                "9274d66f5211e469"
+            ]
+        ]
+    },
+    {
+        "id": "cc60b6c3e5fb14d9",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 1,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Host: ",
+        "format": "<font size=3>{{msg.payload.hostname}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "x": 1050,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "38c877c9b55d681d",
+        "type": "OS",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "x": 470,
+        "y": 60,
+        "wires": [
+            [
+                "cc60b6c3e5fb14d9",
+                "d23168e787472af1"
+            ]
+        ]
+    },
+    {
+        "id": "0a5a15dfae62e4e6",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "mem_use_pct",
+        "structtype": "string",
+        "x": 1100,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "fa03e24c13105377",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "disk_use",
+        "structtype": "string",
+        "x": 1080,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "93b0626f686f5d89",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "cpu_load_avg",
+        "structtype": "string",
+        "x": 1100,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "7983da4d453a8c52",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "cpu_use_pct",
+        "structtype": "string",
+        "x": 1100,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "d8a80b5025b557a3",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "host",
+        "structtype": "string",
+        "x": 1070,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e227095f9e1bf773",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "uptime",
+        "structtype": "string",
+        "x": 1080,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "c3ae881eac3d85e0",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "version",
+        "structtype": "string",
+        "x": 1080,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "9274d66f5211e469",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "disk_total",
+        "structtype": "string",
+        "x": 1090,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "9a8f2aa6f1991221",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "disk_use_pct",
+        "structtype": "string",
+        "x": 1100,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "7ddb76afd18f4087",
+        "type": "smooth",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "8",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 740,
+        "y": 600,
+        "wires": [
+            [
+                "c0a13984a398e6d7"
+            ]
+        ]
+    },
+    {
+        "id": "0e93632552682542",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "varnish uptime (global)",
+        "func": "msg.payload = global.get(\"varnish_uptime\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 220,
+        "wires": [
+            [
+                "50f9790b.49c718"
+            ]
+        ]
+    },
+    {
+        "id": "d23168e787472af1",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "get hostname",
+        "func": "msg.payload = msg.payload.hostname;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 80,
+        "wires": [
+            [
+                "d8a80b5025b557a3"
+            ]
+        ]
+    },
+    {
+        "id": "faf3cd28d97af559",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "mem_total",
+        "structtype": "string",
+        "x": 1090,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7929109cc5bdc85e",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "mem_use",
+        "structtype": "string",
+        "x": 1090,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "da0aa089ba25ac3d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "msg.payload = msg.payload.memusage;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 780,
+        "wires": [
+            [
+                "0a5a15dfae62e4e6"
+            ]
+        ]
+    },
+    {
+        "id": "e1e13788026a662b",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "vcache version",
+        "func": "msg.payload = env.get(\"VCACHE_VERSION\") || '0.0.0';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 140,
+        "wires": [
+            [
+                "fbc058e4a2725b9d",
+                "c3ae881eac3d85e0"
+            ]
+        ]
+    },
+    {
+        "id": "bc9d6c02c0ee9e5b",
+        "type": "ui_gauge",
+        "z": "f6922bafc800b831",
+        "name": "Client Request Efficiency",
+        "group": "3a38c87d0066b087",
+        "order": 4,
+        "width": 10,
+        "height": 4,
+        "gtype": "gage",
+        "title": "",
+        "label": "HIT %",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#00b500",
+            "#00b500"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "def",
+        "x": 1250,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "68d7914dad783e4e",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Client Request Efficiency",
+        "group": "3a38c87d0066b087",
+        "order": 18,
+        "width": 10,
+        "height": 4,
+        "label": "Cache Efficiency <font size=3>[requests]</font>",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1250,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a4f1c41a459e65ab",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Client Request Rate",
+        "group": "3a38c87d0066b087",
+        "order": 37,
+        "width": 10,
+        "height": 4,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1240,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0413d291a951c109",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Client Bandwidth",
+        "group": "3a38c87d0066b087",
+        "order": 35,
+        "width": 10,
+        "height": 4,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1230,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b782bf2ea349a4a5",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Upstream Bandwidth",
+        "group": "3a38c87d0066b087",
+        "order": 54,
+        "width": 10,
+        "height": 4,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1240,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "913fe8919ba03de2",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Upstream Requests Rate",
+        "group": "3a38c87d0066b087",
+        "order": 56,
+        "width": 10,
+        "height": 4,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1250,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a2845cfb2dc706d",
+        "type": "inject",
+        "z": "f6922bafc800b831",
+        "name": "5",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "cf0671bdba5fb35b",
+                "c617ce0ee176a4c6"
+            ]
+        ]
+    },
+    {
+        "id": "cf0671bdba5fb35b",
+        "type": "redis-command",
+        "z": "f6922bafc800b831",
+        "server": "129ea38b0b9c5445",
+        "command": "GET",
+        "name": "varnish_stats",
+        "topic": "varnish_stats",
+        "params": "",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 110,
+        "y": 360,
+        "wires": [
+            [
+                "44093061527e3640"
+            ]
+        ]
+    },
+    {
+        "id": "44093061527e3640",
+        "type": "json",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 110,
+        "y": 520,
+        "wires": [
+            [
+                "0137aedab475ecc1",
+                "a34c58a6352f92b0",
+                "265bd5332a79b309",
+                "558d68fe90fce500",
+                "9a09a889da2113ab",
+                "4703d92c365db650"
+            ]
+        ]
+    },
+    {
+        "id": "0137aedab475ecc1",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "client requests",
+        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = msg.payload.counters[\"MAIN.client_req\"].value\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 700,
+        "wires": [
+            [
+                "1bc74c9f10cebfee"
+            ]
+        ]
+    },
+    {
+        "id": "1bc74c9f10cebfee",
+        "type": "rate",
+        "z": "f6922bafc800b831",
+        "name": "rate per sec",
+        "inputField": "payload",
+        "inputFieldType": "msg",
+        "outputField": "rate",
+        "outputFieldType": "msg",
+        "timestampField": "timestamp",
+        "timestampFieldType": "msg",
+        "ratePeriod": "1000",
+        "x": 610,
+        "y": 700,
+        "wires": [
+            [
+                "f4863fda3d63fe72",
+                "0b8088931c8588e0",
+                "299ba22e272cb8c3"
+            ]
+        ]
+    },
+    {
+        "id": "a13a9b5c91e0483a",
+        "type": "rate",
+        "z": "f6922bafc800b831",
+        "name": "rate per sec",
+        "inputField": "payload",
+        "inputFieldType": "msg",
+        "outputField": "rate",
+        "outputFieldType": "msg",
+        "timestampField": "timestamp",
+        "timestampFieldType": "msg",
+        "ratePeriod": "1000",
+        "x": 610,
+        "y": 780,
+        "wires": [
+            [
+                "f4863fda3d63fe72",
+                "815d27b86bac1720",
+                "1a0e05b1900f39a3"
+            ]
+        ]
+    },
+    {
+        "id": "f4863fda3d63fe72",
+        "type": "join",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "rate",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 790,
+        "y": 740,
+        "wires": [
+            [
+                "c6f6534391589bf9"
+            ]
+        ]
+    },
+    {
+        "id": "a34c58a6352f92b0",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "upstream requests",
+        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = msg.payload.counters[\"MAIN.backend_req\"].value\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 780,
+        "wires": [
+            [
+                "a13a9b5c91e0483a"
+            ]
+        ]
+    },
+    {
+        "id": "c6f6534391589bf9",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "request ratio",
+        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.error(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 640,
+        "wires": [
+            [
+                "bc9d6c02c0ee9e5b",
+                "68d7914dad783e4e",
+                "0e3739301581f80b"
+            ]
+        ]
+    },
+    {
+        "id": "558d68fe90fce500",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "upstream response bytes",
+        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nlet sum = 0\nfor (let key in msg.payload.counters) {\n    if (key.endsWith(\".beresp_hdrbytes\") || key.endsWith(\".beresp_bodybytes\")) {\n        sum += msg.payload.counters[key].value;\n    }\n}\nmsg.payload = sum;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 560,
+        "wires": [
+            [
+                "a467894457f53a9b"
+            ]
+        ]
+    },
+    {
+        "id": "265bd5332a79b309",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "client response bytes",
+        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = msg.payload.counters[\"MAIN.s_resp_hdrbytes\"].value + msg.payload.counters[\"MAIN.s_resp_bodybytes\"].value\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 480,
+        "wires": [
+            [
+                "9fd233374321e8d4"
+            ]
+        ]
+    },
+    {
+        "id": "9fd233374321e8d4",
+        "type": "rate",
+        "z": "f6922bafc800b831",
+        "name": "rate per sec",
+        "inputField": "payload",
+        "inputFieldType": "msg",
+        "outputField": "rate",
+        "outputFieldType": "msg",
+        "timestampField": "timestamp",
+        "timestampFieldType": "msg",
+        "ratePeriod": "1000",
+        "x": 610,
+        "y": 480,
+        "wires": [
+            [
+                "a7cf3c4ccbc1a90c",
+                "9763383789debf4d",
+                "7f2a23eb0a2bfbb3"
+            ]
+        ]
+    },
+    {
+        "id": "a467894457f53a9b",
+        "type": "rate",
+        "z": "f6922bafc800b831",
+        "name": "rate per sec",
+        "inputField": "payload",
+        "inputFieldType": "msg",
+        "outputField": "rate",
+        "outputFieldType": "msg",
+        "timestampField": "timestamp",
+        "timestampFieldType": "msg",
+        "ratePeriod": "1000",
+        "x": 610,
+        "y": 560,
+        "wires": [
+            [
+                "a7cf3c4ccbc1a90c",
+                "299c0f3a9c32c62f",
+                "d9c4c45c917a125f"
+            ]
+        ]
+    },
+    {
+        "id": "3f16dfa000e09c98",
+        "type": "ui_gauge",
+        "z": "f6922bafc800b831",
+        "name": "Cache Efficiency",
+        "group": "3a38c87d0066b087",
+        "order": 2,
+        "width": 10,
+        "height": 4,
+        "gtype": "gage",
+        "title": "",
+        "label": "HIT %",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#00b500",
+            "#00b500"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "def",
+        "x": 1230,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "57b723ae0cdb1fd5",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Cache Efficiency",
+        "group": "3a38c87d0066b087",
+        "order": 16,
+        "width": 10,
+        "height": 4,
+        "label": "Cache Efficiency  <font size=3>[data]</font>",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1230,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a7cf3c4ccbc1a90c",
+        "type": "join",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "rate",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 790,
+        "y": 520,
+        "wires": [
+            [
+                "9384f57dd4248499",
+                "377e306142a9c3e7"
+            ]
+        ]
+    },
+    {
+        "id": "9384f57dd4248499",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bw ratio",
+        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.error(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 400,
+        "wires": [
+            [
+                "7b1c8c23774128a5"
+            ]
+        ]
+    },
+    {
+        "id": "1572697106f6a1f2",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3a38c87d0066b087",
+        "order": 51,
+        "width": 10,
+        "height": 1,
+        "name": "Upstream Request Rate",
+        "label": "Upstream Request Rate: ",
+        "format": "{{msg.rate|number:2}} {{msg.units}}rps",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1250,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "1486b40a42209109",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3a38c87d0066b087",
+        "order": 49,
+        "width": 10,
+        "height": 1,
+        "name": "",
+        "label": "Upstream Bandwidth: ",
+        "format": "{{msg.rate}} {{msg.units}}bps",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1240,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "5b7429b7e2f7db72",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3733aad54f7e21ab",
+        "order": 6,
+        "width": 7,
+        "height": 2,
+        "name": "",
+        "label": "Bandwidth Saved [max]",
+        "format": "{{msg.payload}} {{msg.units}}bps",
+        "layout": "col-center",
+        "className": "huge",
+        "x": 1250,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "8db13e162d627307",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3733aad54f7e21ab",
+        "order": 7,
+        "width": 7,
+        "height": 2,
+        "name": "",
+        "label": "Data Saved [total]",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "huge",
+        "x": 1230,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a709f09e2be9e276",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3733aad54f7e21ab",
+        "order": 3,
+        "width": 7,
+        "height": 2,
+        "name": "",
+        "label": "User Sessions [max]",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "huge",
+        "x": 1240,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "232348cff06e823f",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3733aad54f7e21ab",
+        "order": 2,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Bandwidth Saving: ",
+        "format": "{{msg.rate}} {{msg.units}}bps",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1230,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "9a09a889da2113ab",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bytes saved",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nvar client_bytes = msg.payload.counters[\"MAIN.s_resp_hdrbytes\"].value + msg.payload.counters[\"MAIN.s_resp_bodybytes\"].value;\nlet sum = 0\nfor (let key in msg.payload.counters) {\n    if (key.endsWith(\".beresp_hdrbytes\") || key.endsWith(\".beresp_bodybytes\")) {\n        sum += msg.payload.counters[key].value;\n    }\n}\nvar upstream_bytes = sum;\nvar bytes_saved = client_bytes - upstream_bytes;\nif (isNaN(bytes_saved)) { bytes_saved = 0 }\nif (bytes_saved < 0) bytes_saved = 0;\nmsg.payload = formatBytes(client_bytes - upstream_bytes)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "8db13e162d627307"
+            ]
+        ]
+    },
+    {
+        "id": "377e306142a9c3e7",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bw saved",
+        "func": "var bw_saved = msg.rate[0] - msg.rate[1]\nif (bw_saved < 0) {\n    bw_saved = 0;\n}\nmsg.payload = bw_saved * 8;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 140,
+        "wires": [
+            [
+                "91606ba0b02d7177"
+            ]
+        ]
+    },
+    {
+        "id": "73a7f3a29dd6609f",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bw saved max",
+        "func": "if (flow.get(\"max_bw_saved\") == null || flow.get(\"max_bw_saved\") == '') {\n    flow.set(\"max_bw_saved\", 0)\n}\nif (msg.payload > flow.get(\"max_bw_saved\")) {\n    flow.set(\"max_bw_saved\", msg.payload)\n}\n\nmsg.payload = flow.get(\"max_bw_saved\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 40,
+        "wires": [
+            [
+                "fd120a60f4e97f67"
+            ]
+        ]
+    },
+    {
+        "id": "014b1deb870fd066",
+        "type": "inject",
+        "z": "f6922bafc800b831",
+        "name": "reset",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "11fef9aaf550040c"
+            ]
+        ]
+    },
+    {
+        "id": "11fef9aaf550040c",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "reset max",
+        "func": "flow.set(\"max_bw_saved\",0);\nflow.set(\"max_users\", 0);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "466c448c79a215b2",
+        "type": "redis out",
+        "z": "f6922bafc800b831",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "cache_eff_pct",
+        "structtype": "string",
+        "x": 1240,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "06a31339d5f724d2",
+        "type": "redis out",
+        "z": "f6922bafc800b831",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "client_bw",
+        "structtype": "string",
+        "x": 1230,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "0e3739301581f80b",
+        "type": "redis out",
+        "z": "f6922bafc800b831",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "req_eff_pct",
+        "structtype": "string",
+        "x": 1230,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "96b584c5dfe9a098",
+        "type": "redis out",
+        "z": "f6922bafc800b831",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "req_rate",
+        "structtype": "string",
+        "x": 1220,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "09945320ee91e730",
+        "type": "redis out",
+        "z": "f6922bafc800b831",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "upstream_bw",
+        "structtype": "string",
+        "x": 1240,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "60381a1b4dd44cd7",
+        "type": "redis out",
+        "z": "f6922bafc800b831",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "upstream_req_rate",
+        "structtype": "string",
+        "x": 1260,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "bc313ea793c547e3",
+        "type": "redis out",
+        "z": "f6922bafc800b831",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "",
+        "key": "client_sess",
+        "structtype": "string",
+        "x": 1230,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "7a3e3814da166b53",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3a38c87d0066b087",
+        "order": 30,
+        "width": 10,
+        "height": 1,
+        "name": "",
+        "label": "Delivered Bandwidth: ",
+        "format": "{{msg.rate}} {{msg.units}}bps",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1240,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "8c62fec7f80f063e",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3a38c87d0066b087",
+        "order": 32,
+        "width": 10,
+        "height": 1,
+        "name": "",
+        "label": "Delivered Request Rate: ",
+        "format": "{{msg.rate | number:2}} {{msg.units}}rps",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1250,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "815d27b86bac1720",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0) {\n    node.error(\"rate = \" + msg.rate);\n    msg.rate = 0;\n}\nmsg.payload = msg.rate;\nmsg.payload = Math.round(msg.payload * 1000) / 1000;\n[msg.rate, msg.units] = formatMetric(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar smsg = { \"ui_control\": { \"ymax\": 10}};\nvar rmsg = { \"ui_control\": { \"ymax\": null } };\n\nreturn [smsg,rmsg];",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 1040,
+        "wires": [
+            [
+                "1572697106f6a1f2",
+                "913fe8919ba03de2"
+            ]
+        ]
+    },
+    {
+        "id": "299c0f3a9c32c62f",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0 ) msg.rate = 0;\nmsg.payload = msg.rate*8;\nmsg.payload = Math.round(msg.payload * 100) / 100;\n[msg.rate, msg.units] = formatMetric(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar smsg = { payload: 0.1 };\nreturn smsg;",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 920,
+        "wires": [
+            [
+                "1486b40a42209109",
+                "b782bf2ea349a4a5"
+            ]
+        ]
+    },
+    {
+        "id": "0b8088931c8588e0",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0) {\n    node.error(\"rate = \" + msg.rate);\n    msg.rate = 0;\n}\nmsg.payload = msg.rate;\n[msg.rate, msg.units] = formatMetric(msg.rate)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 780,
+        "wires": [
+            [
+                "8c62fec7f80f063e",
+                "a4f1c41a459e65ab"
+            ]
+        ]
+    },
+    {
+        "id": "9763383789debf4d",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0) {\n    node.error(\"rate = \" + msg.rate);\n    msg.rate = 0;\n}\nmsg.payload = msg.rate*8.0;\nmsg.payload = Math.round(msg.payload * 1000) / 1000;\n[msg.rate, msg.units] = formatMetric(msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 540,
+        "wires": [
+            [
+                "7a3e3814da166b53",
+                "0413d291a951c109"
+            ]
+        ]
+    },
+    {
+        "id": "91606ba0b02d7177",
+        "type": "smooth",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "property": "payload",
+        "action": "low",
+        "count": "4",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 600,
+        "y": 100,
+        "wires": [
+            [
+                "73a7f3a29dd6609f",
+                "bac3a1c588796c5f"
+            ]
+        ]
+    },
+    {
+        "id": "bac3a1c588796c5f",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.payload < 0) msg.payload = 0;\nmsg.payload = Math.round(msg.payload * 100) / 100;\nmsg.rate = msg.payload;\n[msg.rate, msg.units] = formatMetric(msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 100,
+        "wires": [
+            [
+                "232348cff06e823f",
+                "73c5ea80b8305d9a"
+            ]
+        ]
+    },
+    {
+        "id": "fd120a60f4e97f67",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nmsg.payload = Math.round(msg.payload * 100) / 100;\n[msg.payload, msg.units] = formatMetric(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 40,
+        "wires": [
+            [
+                "5b7429b7e2f7db72"
+            ]
+        ]
+    },
+    {
+        "id": "7f2a23eb0a2bfbb3",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bytes to bits",
+        "func": "msg.payload = msg.rate*8.0\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 480,
+        "wires": [
+            [
+                "06a31339d5f724d2"
+            ]
+        ]
+    },
+    {
+        "id": "d9c4c45c917a125f",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bytes to bits",
+        "func": "msg.payload = msg.rate*8.0\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 860,
+        "wires": [
+            [
+                "09945320ee91e730"
+            ]
+        ]
+    },
+    {
+        "id": "299ba22e272cb8c3",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "rate to payload",
+        "func": "msg.payload = msg.rate\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 720,
+        "wires": [
+            [
+                "96b584c5dfe9a098"
+            ]
+        ]
+    },
+    {
+        "id": "1a0e05b1900f39a3",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "rate to payload",
+        "func": "msg.payload = msg.rate\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 980,
+        "wires": [
+            [
+                "60381a1b4dd44cd7"
+            ]
+        ]
+    },
+    {
+        "id": "6f6232b4ef2ad0db",
+        "type": "ui_template",
+        "z": "f6922bafc800b831",
+        "group": "d898c7987d10b482",
+        "name": "",
+        "order": 21,
+        "width": 8,
+        "height": 1,
+        "format": "<style>\n    .def p.value {\n        color: #4a8ad9;\n    }\n    .big p.value {\n        vertical-align: bottom;\n        font-size: 150%;\n        color: #4a8ad9;\n    }\n    .big p.label {\n        vertical-align: top;\n        font-weight: bold;\n    }\n    .huge p.value {\n        vertical-align: bottom;\n        font-size: 200%;\n        color: #4a8ad9;\n    }\n    .huge p.label {\n        vertical-align: top;\n        font-weight: bold;\n    }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 100,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd2fcc08d0e8fa1b",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "active connections",
+        "func": "const rgx = /^Active connections: (\\d+).*/;\nconst match  = msg.payload.match(rgx);\nif (match != null) {\n    msg.payload = parseInt(match[1]);\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 260,
+        "wires": [
+            [
+                "d749ec938e7e1a74",
+                "bc313ea793c547e3",
+                "128bc4259bf38155",
+                "65c9eebbe3b613f2"
+            ]
+        ]
+    },
+    {
+        "id": "d749ec938e7e1a74",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "connections max",
+        "func": "if (flow.get(\"max_users\") == null || flow.get(\"max_users\") == '') {\n    flow.set(\"max_users\", 0)\n}\nif (msg.payload > flow.get(\"max_users\")) {\n    flow.set(\"max_users\", msg.payload)\n}\n\nmsg.payload = flow.get(\"max_users\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 200,
+        "wires": [
+            [
+                "a709f09e2be9e276"
+            ]
+        ]
+    },
+    {
+        "id": "c617ce0ee176a4c6",
+        "type": "http request",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://vcache_frontend:9999/status",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": true,
+        "authType": "",
+        "senderr": true,
+        "headers": [],
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "bd2fcc08d0e8fa1b"
+            ]
+        ]
+    },
+    {
+        "id": "f4a3ec1ae53d52b1",
+        "type": "change",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "varnish_uptime",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4703d92c365db650",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "varnish uptime",
+        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = msg.payload.counters[\"MGT.uptime\"].value;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 360,
+        "wires": [
+            [
+                "f4a3ec1ae53d52b1"
+            ]
+        ]
+    },
+    {
+        "id": "128bc4259bf38155",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3733aad54f7e21ab",
+        "order": 1,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "User Sessions: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1220,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "65c9eebbe3b613f2",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "User Sessions Chart",
+        "group": "3733aad54f7e21ab",
+        "order": 4,
+        "width": 8,
+        "height": 5,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "def",
+        "x": 1240,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "73c5ea80b8305d9a",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Bandwidth Saved Chart",
+        "group": "3733aad54f7e21ab",
+        "order": 5,
+        "width": 8,
+        "height": 5,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "def",
+        "x": 1250,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "84256989e51190e5",
+        "type": "inject",
+        "z": "f6922bafc800b831",
+        "name": "init charts",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "timestamp",
+                "v": "",
+                "vt": "date"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 1000,
+        "y": 1100,
+        "wires": [
+            [
+                "913fe8919ba03de2",
+                "b782bf2ea349a4a5",
+                "a4f1c41a459e65ab",
+                "0413d291a951c109",
+                "73c5ea80b8305d9a"
+            ]
+        ]
+    },
+    {
+        "id": "e054d7063c78836e",
+        "type": "inject",
+        "z": "f6922bafc800b831",
+        "name": "init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 40,
+        "wires": [
+            [
+                "bb8e27c46b8ff662"
+            ]
+        ]
+    },
+    {
+        "id": "bb8e27c46b8ff662",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "global functions",
+        "func": "const util = (function () {\n    'use strict';\n\n    function add(a, b) {\n        return a + b;\n    }\n\n    return {\n        add: add\n    };\n\n}());\n\nglobal.set('util', util);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b1c8c23774128a5",
+        "type": "smooth",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "3",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 1000,
+        "y": 400,
+        "wires": [
+            [
+                "3f16dfa000e09c98",
+                "57b723ae0cdb1fd5",
+                "466c448c79a215b2"
+            ]
+        ]
+    },
+    {
+        "id": "b8eb1678b935b37c",
+        "type": "ui_text_input",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "label": "Hostname: ",
+        "tooltip": "main cache hostname",
+        "group": "27ef1ca5c2551459",
+        "order": 2,
+        "width": 6,
+        "height": 2,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1030,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d53d35f434b721be",
+        "type": "ui_form",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "label": "test form",
+        "group": "27ef1ca5c2551459",
+        "order": 1,
+        "width": 4,
+        "height": 2,
+        "options": [
+            {
+                "label": "a",
+                "value": "b",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "b": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 1020,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f773b77e37a40bb6",
+        "type": "uuid",
+        "z": "6e1fffded33ce50f",
+        "uuidVersion": "v4",
+        "namespaceType": "custom",
+        "namespace": "VIVOH_CACHE",
+        "namespaceCustom": "VIVOH",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "x": 770,
+        "y": 140,
+        "wires": [
+            [
+                "51ab9183e6c445ee"
+            ]
+        ]
+    },
+    {
+        "id": "73a0cc391e21289f",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 40,
+        "wires": [
+            [
+                "b8eb1678b935b37c",
+                "d53d35f434b721be",
+                "9c1cae2c8cd579f1"
+            ]
+        ]
+    },
+    {
+        "id": "51ab9183e6c445ee",
+        "type": "file",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "filename": "/var/run/uuid.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 1040,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c1cae2c8cd579f1",
+        "type": "fs-ops-access",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "path": "/var/run",
+        "pathType": "str",
+        "filename": "uuid.txt",
+        "filenameType": "str",
+        "read": true,
+        "write": true,
+        "throwerror": false,
+        "x": 570,
+        "y": 140,
+        "wires": [
+            [],
+            [
+                "f773b77e37a40bb6"
+            ]
+        ]
+    },
+    {
+        "id": "a123cb1254cc4a7c",
+        "type": "debug",
+        "z": "6e1fffded33ce50f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "65959117413fb8af",
+        "type": "daemon",
+        "z": "6e1fffded33ce50f",
+        "name": "salt-minion",
+        "command": "salt-minion",
+        "args": "",
+        "autorun": true,
+        "cr": false,
+        "redo": true,
+        "op": "string",
+        "closer": "SIGKILL",
+        "x": 310,
+        "y": 360,
+        "wires": [
+            [
+                "a123cb1254cc4a7c"
+            ],
+            [
+                "a123cb1254cc4a7c"
+            ],
+            [
+                "a123cb1254cc4a7c"
+            ]
+        ]
+    }
+]

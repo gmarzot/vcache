@@ -1,0 +1,110 @@
+
+upstream vcache {
+   server unix:/var/run/varnish.sock;
+   keepalive 128;
+}
+
+log_format custom '$remote_addr - $remote_user [$time_local] "$request" '
+                  '$status $body_bytes_sent "$http_referer" '
+                  '"$http_user_agent" "$http_x_forwarded_for" "$http_x_real_ip"';
+
+# Set default $hdr_strict_transport_security if Strict-Transport-Security does not exist
+map $upstream_http_access_control_allow_origin $hdr_access_control_allow_origin {
+   '' "*";
+}
+
+# admin server and health api
+server {
+   listen 8443 ssl;
+   server_name  $hostname;
+   
+   ssl_certificate     /etc/nginx/pki/{{ $admin_server{ssl_cert} }};
+   ssl_certificate_key /etc/nginx/pki/{{ $admin_server{ssl_key} }};
+
+   access_log /var/log/nginx/frontend-admin-access.log custom buffer=32k flush=3s;
+
+   add_header Access-Control-Allow-Origin $hdr_access_control_allow_origin;
+
+   rewrite ^/admin/$ /admin permanent;
+   location /admin {
+      resolver 127.0.0.11 ipv6=off;
+	  proxy_redirect off;
+      proxy_http_version 1.1;
+      proxy_set_header Host "http://vcache_mgr_agent:1880";
+	  proxy_set_header Upgrade $http_upgrade;  
+      proxy_set_header Connection 'upgrade';  
+      proxy_cache_bypass $http_upgrade;  
+	   
+      # XXX this needs to be a real login page with auth cookie XXX
+      # auth_basic "Restricted Content";
+	  # auth_basic_user_file /etc/nginx/.htpasswd;
+   	  proxy_pass http://vcache_mgr_agent:1880/ui;
+   }
+
+   # this should not be needed but node-red does not respect Host header setting
+   location /ui {
+      resolver 127.0.0.11 ipv6=off;
+      proxy_redirect off;
+      proxy_http_version 1.1;
+      proxy_set_header Host "http://vcache_mgr_agent:1880";
+	  proxy_set_header Upgrade $http_upgrade;  
+      proxy_set_header Connection 'upgrade';  
+      proxy_cache_bypass $http_upgrade;  
+ 
+   	  proxy_pass http://vcache_mgr_agent:1880;
+   }
+
+   # detailed cache health check - XXX apikey?
+   location ~ /health {
+      perl VCache::Health::handler;
+   }
+   # simple health endpoint (returns client ip)
+   location = / {
+      add_header Content-Type application/json;
+	  return 200 '{"ip": "$remote_addr"}';
+   }
+}
+
+# proxy template
+{{ my $ind = 0; foreach my $proxy (@proxy) {
+  my $dflt = ($ind++ == 0 ? 'default' : '');
+  my $path = ($proxy->{'mode'} eq 'reverse' ? '/cache/([^/]*)/(.*)' : '/(.*)');
+  my $pass = ($proxy->{'mode'} eq 'reverse' ? 'http://vcache/$2$is_args$args' : 'http://vcache/$1$is_args$args');
+  my $host = ($proxy->{'mode'} eq 'reverse' ? '$1' : $proxy->{'hostname'});
+  $OUT .=<<"TMPL_END";
+server {
+   listen 443 ssl http2 $dflt;
+   server_name $proxy->{hostname};
+
+   ssl_certificate     /etc/nginx/pki/$proxy->{ssl_cert};
+   ssl_certificate_key /etc/nginx/pki/$proxy->{ssl_key};
+
+   access_log /var/log/nginx/$proxy->{hostname}-request.log custom buffer=32k flush=3s;
+   error_log /var/log/nginx/$proxy->{hostname}-error.log;
+
+   location ~ $path {
+      proxy_http_version 1.1;
+      proxy_set_header "Connection" "";
+      proxy_set_header "Authorization" "";
+      proxy_pass "$pass";
+      proxy_set_header X-Real-IP  \$remote_addr;
+      proxy_set_header X-Forwarded-Proto https;
+      proxy_set_header X-Forwarded-Port $proxy->{port};
+      proxy_set_header Host $host;
+
+      # ensure absolute URL manifest stays on cache (only tested w/ HLS)
+	  # XXX this needs to be generalized and supported in cfg. relates to routing
+      subs_filter_types application/x-mpegurl application/vnd.apple.mpegurl;
+      subs_filter "https://(.+)" "https://$server_name/cache/$1" rgi;
+   }
+
+   # simple health endpoint (returns client ip)
+   location = / {
+      add_header Content-Type application/json;
+      return 200 '{"ip": "$remote_addr"}';
+   }
+}
+
+TMPL_END
+}
+}}

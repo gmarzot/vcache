@@ -50,6 +50,7 @@ RUN set -e; \
 	cd ..; \
 	git clone https://code.uplex.de/uplex-varnish/libvmod-crypto.git; \
 	cd libvmod-crypto; \
+	git checkout fc9291afa67dc5f1baab0c4e62069dd56a1ae09f; \
 	./bootstrap; \
 	make; \
 	make install; \
@@ -75,13 +76,11 @@ RUN set -e; \
     rm -rf /var/lib/apt/lists/* /work/ /usr/lib/varnish/vmods/libvmod_*.la; \
     chown varnish /var/lib/varnish;
 
-WORKDIR /etc/varnish
-
-VOLUME /var/lib/varnish
-
-COPY scripts/ /usr/local/bin/
+COPY ./etc/varnish /etc/varnish
+VOLUME /etc/varnish
+COPY ./scripts/ /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/docker-varnish-entrypoint"]
 
-USER varnish
 EXPOSE 80 8443 9131
+WORKDIR /etc/varnish
 CMD []

@@ -1,21 +1,24 @@
 version: "3"
 services:
-  vcache_mgmt:
+  vcache_mgr_agent:
     image: node-red
     build:
       context: ./docker-context/node-red
-    container_name: vcache_mgmt
+    container_name: vcache_mgr_agent
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - ./mgmt-data:/data
+      - ./docker-context/node-red/mgmt-data:/data # comment out for production
       - var_run:/var/run:rw
+      - frontend_etc:/etc/nginx-fe
+      - varnish_etc:/etc/varnish
+      - backend_etc:/etc/nginx-be
     networks:
       - vcache_net
     environment:
       - VCACHE_VERSION=${VCACHE_VERSION}
-    # close this for production
+      - SALT_MASTER=${VCACHE_MGR_ADDR}
     ports:
-      - "1880:1880"
+      - "1881:1880"     # comment out for production
     pid: shareable
     restart: always
     depends_on:
@@ -25,25 +28,20 @@ services:
     image: nginx-perl
     build:
       context: ./docker-context/nginx
+      args:
+        - SERVICE_ROLE=frontend
     container_name: vcache_frontend
     hostname: ${VCACHE_HOSTNAME}
     volumes:
       - var_run:/var/run:rw
       - frontend_log:/var/log/nginx:rw
-      - "./etc/nginx/nginx-fe.conf:/etc/nginx/nginx.conf:ro"
-      - "./etc/nginx/.htpasswd:/etc/nginx/.htpasswd"
-      - "./etc/nginx/pki:/etc/nginx/pki:ro"
-      - "./etc/nginx/sites-enabled/frontend.cfg:/etc/nginx/sites-enabled/frontend.cfg"
-      - "./etc/nginx/sites-enabled/host-cache.incl:/etc/nginx/sites-enabled/host-cache.incl"
-      - "./etc/nginx/modules-enabled/80-mod-http-perl.conf:/etc/nginx/modules-enabled/80-mod-http-perl.conf"
-      - "./etc/nginx/modules-enabled/50-mod-http-subs-filter.conf:/etc/nginx/modules-enabled/50-mod-http-subs-filter.conf"
-      - "./perllib:/var/lib/nginx/perllib"
+      - frontend_etc:/etc/nginx-fe
     networks:
       - vcache_net
     ports:
       - "443:443"
       - "8443:8443"
-    pid: "service:vcache_mgmt"
+    pid: "service:vcache_mgr_agent"
     ulimits:
        memlock: -1
        nofile:
@@ -52,20 +50,20 @@ services:
     restart: always
     depends_on:
       - vcache_engine
-      - vcache_mgmt
-
+      - vcache_mgr_agent
+      
   vcache_engine:
     image: varnish
     build:
       context: ./docker-context/varnish
     container_name: vcache_engine
     volumes:
-      - "./etc/varnish:/etc/varnish"
       - var_run:/var/run:rw
-      - varnish_tmpfs:/var/lib/varnish:rw
+      - varnish_etc:/etc/varnish
+      - varnish_tmpfs:/var/lib/varnish:exec
     networks:
       - vcache_net
-    pid: "service:vcache_mgmt"
+    pid: "service:vcache_mgr_agent"
     ulimits:
        memlock: -1
        nofile:
@@ -74,7 +72,7 @@ services:
     environment:
       - VARNISH_SIZE=${VCACHE_MEM_SIZE}
     command:
-      - "-a /var/run/varnish.sock,HTTP,user=varnish,group=varnish,mode=666"
+      - "-a /var/run/varnish.sock,HTTP"
     restart: always
     depends_on:
       - vcache_backend
@@ -83,18 +81,17 @@ services:
     image: nginx-perl
     build:
       context: ./docker-context/nginx
+      args:
+        - SERVICE_ROLE=backend
     container_name: vcache_backend
     hostname: ${VCACHE_HOSTNAME}
     volumes:
       - var_run:/var/run:rw
       - backend_log:/var/log/nginx:rw
-      - "./etc/nginx/nginx-be.conf:/etc/nginx/nginx.conf:ro"
-      - "./etc/nginx/sites-enabled/backend.cfg:/etc/nginx/sites-enabled/backend.cfg"
-      - "./etc/nginx/modules-enabled/80-mod-http-perl.conf:/etc/nginx/modules-enabled/80-mod-http-perl.conf"
-      - "./perllib:/var/lib/nginx/perllib"
+      - backend_etc:/etc/nginx
     networks:
       - vcache_net
-    pid: "service:vcache_mgmt"
+    pid: "service:vcache_mgr_agent"
     restart: always
 
   vcache_stats:
@@ -103,7 +100,6 @@ services:
       context: ./docker-context/varnish
     container_name: vcache_stats
     volumes:
-      - ./etc/varnishstats:/etc/varnish
       - varnish_tmpfs:/var/lib/varnish:ro
     environment:
       VSM_NOPID: 1
@@ -130,8 +126,14 @@ services:
 volumes:
   var_run:
     name: vcache_var_run
+  frontend_etc:
+    name: vcache_frontend_etc
   frontend_log:
     name: vcache_frontend_log
+  varnish_etc:
+    name: vcache_varnish_etc
+  backend_etc:
+    name: vcache_backend_etc
   backend_log:
     name: vcache_backend_log
   redis_data:

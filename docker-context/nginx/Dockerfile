@@ -1,19 +1,23 @@
-FROM nginx:1.23.3
+FROM nginx:1.25.0
 
 RUN set -x \
     && apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -y gnupg1 ca-certificates \
     && \
     NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
+    NGINX_GPGKEY_PATH=/usr/share/keyrings/nginx-archive-keyring.gpg; \
+    export GNUPGHOME="$(mktemp -d)"; \
     found=''; \
     for server in \
         hkp://keyserver.ubuntu.com:80 \
         pgp.mit.edu \
     ; do \
         echo "Fetching GPG key $NGINX_GPGKEY from $server"; \
-        apt-key adv --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
+		gpg1 --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
     done; \
     test -z "$found" && echo >&2 "error: failed to fetch GPG key $NGINX_GPGKEY" && exit 1; \
+    gpg1 --export "$NGINX_GPGKEY" > "$NGINX_GPGKEY_PATH" ; \
+    rm -rf "$GNUPGHOME"; \
     apt-get remove --purge --auto-remove -y gnupg1 && rm -rf /var/lib/apt/lists/* \
     && dpkgArch="$(dpkg --print-architecture)" \
     && nginxPackages=" \
@@ -27,7 +31,7 @@ RUN set -x \
     && case "$dpkgArch" in \
         amd64|arm64) \
 # arches officialy built by upstream
-            echo "deb https://nginx.org/packages/mainline/debian/ bullseye nginx" >> /etc/apt/sources.list.d/nginx.list \
+            echo "deb [trusted=yes] https://nginx.org/packages/mainline/debian/ bullseye nginx" >> /etc/apt/sources.list.d/nginx.list \
             && apt-get update \
             ;; \
         *) \
@@ -86,9 +90,9 @@ RUN set -x \
 						libdevel-dumpvar-perl \
 						libgoogle-protocolbuffers-perl
 RUN git clone https://github.com/yaoweibin/ngx_http_substitutions_filter_module.git
-RUN wget https://nginx.org/download/nginx-1.23.3.tar.gz
-RUN tar xzvf nginx-1.23.3.tar.gz
-RUN cd nginx-1.23.3 && ./configure --with-compat --add-dynamic-module=../ngx_http_substitutions_filter_module && make modules && cp objs/ngx_http_subs_filter_module.so /etc/nginx/modules/
+RUN wget https://nginx.org/download/nginx-1.25.0.tar.gz
+RUN tar xzvf nginx-1.25.0.tar.gz
+RUN cd nginx-1.25.0 && ./configure --with-compat --add-dynamic-module=../ngx_http_substitutions_filter_module && make modules && cp objs/ngx_http_subs_filter_module.so /etc/nginx/modules/
 
 RUN apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx.list \
     \
@@ -97,3 +101,20 @@ RUN apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/
         apt-get purge -y --auto-remove \
         && rm -rf "$tempDir" /etc/apt/sources.list.d/temp.list; \
     fi
+
+ARG SERVICE_ROLE
+COPY ./perllib /var/lib/nginx/perllib
+COPY ./etc/nginx/modules-enabled /etc/nginx/modules-enabled
+COPY ./etc/nginx/pki /etc/nginx/pki
+COPY ./etc/nginx/*.conf /etc/nginx/temp/
+COPY ./etc/nginx/sites-enabled/* /etc/nginx/temp/
+RUN mkdir /etc/nginx/sites-enabled
+RUN if [ "$SERVICE_ROLE" = "frontend" ]; then \
+        cp /etc/nginx/temp/nginx-fe.conf /etc/nginx/nginx.conf; \
+        cp /etc/nginx/temp/frontend.cfg.tmpl /etc/nginx/sites-enabled/; \
+    elif [ "$SERVICE_ROLE" = "backend" ]; then \
+        cp /etc/nginx/temp/nginx-be.conf /etc/nginx/nginx.conf; \
+        cp /etc/nginx/temp/backend.cfg /etc/nginx/sites-enabled/; \
+    fi
+VOLUME /etc/nginx
+COPY ./nginx-wait-config.sh /docker-entrypoint.d/nginx-wait-config.sh

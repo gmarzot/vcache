@@ -3,13 +3,17 @@ services:
   vcache_mgr_agent:
     image: node-red
     build:
-      context: ./docker-context/node-red
+      context: ./docker-context
+      dockerfile: ./node-red/Dockerfile
     container_name: vcache_mgr_agent
     hostname: ${VCACHE_HOSTNAME}
     volumes:
       - ./docker-context/node-red/mgmt-data:/data # comment out for production
-      - var_run:/var/run:rw
+      - var_run:/var/run
+      - var_log_fe:/var/log-fe
+      - var_log_be:/var/log-be
       - etc_salt:/etc/salt
+      - etc_vcache:/etc/vcache
       - etc_frontend:/etc/nginx-fe
       - etc_varnish:/etc/varnish
       - etc_backend:/etc/nginx-be
@@ -17,6 +21,7 @@ services:
       - vcache_net
     environment:
       - VCACHE_VERSION=${VCACHE_VERSION}
+      - VCACHE_HOSTNAME=${VCACHE_HOSTNAME}
       - SALT_MASTER=${VCACHE_MGR_ADDR}
     ports:
       - 1881:1880 # comment out for production
@@ -26,17 +31,16 @@ services:
       - vcache_redis
 
   vcache_frontend:
-    image: nginx-perl
+    image: nginx-perl-frontend
     build:
-      context: ./docker-context/nginx
-      args:
-        - SERVICE_ROLE=frontend
+      context: ./docker-context
+      dockerfile: ./nginx/Dockerfile.frontend
     container_name: vcache_frontend
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - var_run:/var/run:rw
-      - frontend_log:/var/log/nginx:rw
-      - etc_frontend:/etc/nginx-fe
+      - var_run:/var/run
+      - var_log_fe:/var/log/nginx
+      - etc_frontend:/etc/nginx
     networks:
       - vcache_net
     ports:
@@ -73,22 +77,21 @@ services:
     environment:
       - VARNISH_SIZE=${VCACHE_MEM_SIZE}
     command:
-      - "-a /var/run/varnish.sock,HTTP"
+      - "-a /var/run/varnish.sock,HTTP,user=varnish,group=varnish,mode=666"
     restart: always
     depends_on:
       - vcache_backend
 
   vcache_backend:
-    image: nginx-perl
+    image: nginx-perl-backend
     build:
-      context: ./docker-context/nginx
-      args:
-        - SERVICE_ROLE=backend
+      context: ./docker-context
+      dockerfile: ./nginx/Dockerfile.backend
     container_name: vcache_backend
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - var_run:/var/run:rw
-      - backend_log:/var/log/nginx:rw
+      - var_run:/var/run
+      - var_log_be:/var/log/nginx
       - etc_backend:/etc/nginx
     networks:
       - vcache_net
@@ -101,6 +104,7 @@ services:
       context: ./docker-context/varnish
     container_name: vcache_stats
     volumes:
+      - var_run:/var/run
       - varnish_tmpfs:/var/lib/varnish:ro
     environment:
       VSM_NOPID: 1
@@ -125,21 +129,26 @@ services:
     restart: always
 
 volumes:
-  var_run:
-    name: vcache_var_run
+  etc_vcache:
+    name: vcache_etc_vcache
+  etc_salt:
+    name: vcache_etc_salt
   etc_frontend:
     name: vcache_etc_frontend
-  frontend_log:
-    name: vcache_frontend_log
-  etc_varnish:
-    name: vcache_varnish_etc
+  var_log_fe:
+    name: vcache_var_log_fe
   etc_backend:
     name: vcache_backend_etc
-  backend_log:
-    name: vcache_backend_log
+  var_log_be:
+    name: vcache_var_log_be
+  var_run:
+    name: vcache_var_run
   redis_data:
     name: vcache_redis_data
+  etc_varnish:
+    name: vcache_etc_varnish
   varnish_tmpfs:
+    name: vcache_varnish_tmpfs
     driver_opts:
       type: tmpfs
       device: tmpfs

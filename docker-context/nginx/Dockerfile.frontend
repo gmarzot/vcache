@@ -78,7 +78,9 @@ RUN set -x \
     && apt-get install --no-install-recommends --no-install-suggests -y \
                         $nginxPackages \
                         gettext-base \
+                        less \
                         curl \
+                        net-tools \
 						wget \
 						git \
 						build-essential \
@@ -102,19 +104,16 @@ RUN apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/
         && rm -rf "$tempDir" /etc/apt/sources.list.d/temp.list; \
     fi
 
-ARG SERVICE_ROLE
-COPY ./perllib /var/lib/nginx/perllib
-COPY ./etc/nginx/modules-enabled /etc/nginx/modules-enabled
-COPY ./etc/nginx/pki /etc/nginx/pki
-COPY ./etc/nginx/*.conf /etc/nginx/temp/
-COPY ./etc/nginx/sites-enabled/* /etc/nginx/temp/
-RUN mkdir /etc/nginx/sites-enabled
-RUN if [ "$SERVICE_ROLE" = "frontend" ]; then \
-        cp /etc/nginx/temp/nginx-fe.conf /etc/nginx/nginx.conf; \
-        cp /etc/nginx/temp/frontend.cfg.tmpl /etc/nginx/sites-enabled/; \
-    elif [ "$SERVICE_ROLE" = "backend" ]; then \
-        cp /etc/nginx/temp/nginx-be.conf /etc/nginx/nginx.conf; \
-        cp /etc/nginx/temp/backend.cfg /etc/nginx/sites-enabled/; \
-    fi
+COPY perllib /var/lib/nginx/perllib
+COPY nginx/etc/nginx/nginx-fe.conf /etc/nginx/nginx.conf
+COPY nginx/etc/nginx/pki /etc/nginx/pki
+COPY nginx/etc/nginx/modules-enabled /etc/nginx/modules-enabled
+COPY nginx/etc/nginx/sites-enabled/frontend.cfg.tmpl /etc/nginx/sites-enabled/frontend.cfg.tmpl
+
 VOLUME /etc/nginx
-COPY ./nginx-wait-config.sh /docker-entrypoint.d/nginx-wait-config.sh
+
+# drop symlinks
+RUN unlink /var/log/nginx/access.log
+RUN unlink /var/log/nginx/error.log
+
+COPY ./nginx/nginx-wait-config.sh /docker-entrypoint.d/nginx-wait-config.sh

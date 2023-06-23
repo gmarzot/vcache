@@ -1,0 +1,55 @@
+admin-server: {
+   hostname: "${VCACHE_HOSTNAME}"
+   port: 8443
+   ssl-cert: cache-cert.crt
+   ssl-key: cache-cert.key
+}
+
+cache-rule: {
+   url: (\.mpd|\.m3u8|\(format=m3u8-aapl\))
+   content-type: (application/x-mpegurl|application/vnd\.apple\.mpegurl)
+   ttl: 2s
+}
+
+cache-rule: {
+   url: \.(ts|mp3|mp4|webvtt|acc)
+   ttl: 10m
+}
+
+cache-rule: {
+   content-type: (video|audio)/.*
+   ttl: 10m
+}
+
+proxy: {
+   hostname: "${VCACHE_HOSTNAME}"
+   port: 443
+//   mode: reverse
+   ssl-cert: cache-cert.crt
+   ssl-key: cache-cert.key
+
+   cache-rule: {
+   	  content-type: application/dash\+xml
+	  ttl: 1s
+   }
+}
+
+proxy: {
+   hostname: live-ak.vimeocdn.com
+   port: 443
+   mode: transparent
+   ssl-cert: live-ak.vimeocdn.com.crt
+   ssl-key: live-ak.vimeocdn.com.key
+   cache-key-rule: {
+      url: "/exp=\\d+(~acl=[^~]+)~hmac=[^/]+(/.*)/(chunklist|media)_[^_]+_(.*)"
+      key: "/$1$2"
+   }
+}
+
+proxy: {
+   hostname: ontime.demo.vivoh.com
+   port: 443
+   mode: transparent
+   ssl-cert: ontime.demo.vivoh.com.crt
+   ssl-key: ontime.demo.vivoh.com.key
+}

@@ -2009,7 +2009,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "client requests",
-        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = msg.payload.counters[\"MAIN.client_req\"].value\nreturn msg;",
+        "func": "function obj_key(obj, key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key) ? obj[key].value : 0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nvar date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = obj_key(msg.payload.counters,\"MAIN.client_req\")\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2100,7 +2100,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "upstream requests",
-        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = msg.payload.counters[\"MAIN.backend_req\"].value\nreturn msg;",
+        "func": "function obj_key (obj,key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key)?obj[key].value:0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nvar date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = obj_key(msg.payload.counters, \"MAIN.backend_req\")\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2159,7 +2159,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "client response bytes",
-        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = msg.payload.counters[\"MAIN.s_resp_hdrbytes\"].value + msg.payload.counters[\"MAIN.s_resp_bodybytes\"].value\nreturn msg;",
+        "func": "function obj_key(obj, key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key) ? obj[key].value : 0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nvar date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = obj_key(msg.payload.counters,\"MAIN.s_resp_hdrbytes\") + obj_key(msg.payload.counters,\"MAIN.s_resp_bodybytes\")\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2444,7 +2444,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "bytes saved",
-        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nvar client_bytes = msg.payload.counters[\"MAIN.s_resp_hdrbytes\"].value + msg.payload.counters[\"MAIN.s_resp_bodybytes\"].value;\nlet sum = 0\nfor (let key in msg.payload.counters) {\n    if (key.endsWith(\".beresp_hdrbytes\") || key.endsWith(\".beresp_bodybytes\")) {\n        sum += msg.payload.counters[key].value;\n    }\n}\nvar upstream_bytes = sum;\nvar bytes_saved = client_bytes - upstream_bytes;\nif (isNaN(bytes_saved)) { bytes_saved = 0 }\nif (bytes_saved < 0) bytes_saved = 0;\nmsg.payload = formatBytes(client_bytes - upstream_bytes)\nreturn msg;",
+        "func": "function obj_key(obj, key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key) ? obj[key].value : 0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nfunction formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nvar client_bytes = obj_key(msg.payload.counters,\"MAIN.s_resp_hdrbytes\") + obj_key(msg.payload.counters,\"MAIN.s_resp_bodybytes\");\nlet sum = 0\nfor (let key in msg.payload.counters) {\n    if (key.endsWith(\".beresp_hdrbytes\") || key.endsWith(\".beresp_bodybytes\")) {\n        sum += msg.payload.counters[key].value;\n    }\n}\nvar upstream_bytes = sum;\nvar bytes_saved = client_bytes - upstream_bytes;\nif (isNaN(bytes_saved)) { bytes_saved = 0 }\nif (bytes_saved < 0) bytes_saved = 0;\nmsg.payload = formatBytes(client_bytes - upstream_bytes)\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2463,7 +2463,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "bw saved",
-        "func": "var bw_saved = msg.rate[0] - msg.rate[1]\nif (bw_saved < 0) {\n    bw_saved = 0;\n}\nmsg.payload = bw_saved * 8;\nreturn msg;",
+        "func": "var bw_saved = msg.rate[0] - msg.rate[1]\nif (isNaN(bw_saved) || bw_saved < 0) {\n    bw_saved = 0;\n}\nmsg.payload = bw_saved * 8;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2998,7 +2998,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "varnish uptime",
-        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = msg.payload.counters[\"MGT.uptime\"].value;\nreturn msg;",
+        "func": "function obj_key(obj, key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key) ? obj[key].value : 0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nvar date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = obj_key(msg.payload.counters, \"MGT.uptime\");\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3323,7 +3323,9 @@
             [
                 "b8eb1678b935b37c",
                 "d53d35f434b721be",
-                "9c1cae2c8cd579f1"
+                "9c1cae2c8cd579f1",
+                "c9b1a37c5388a3f5",
+                "527d0ab867ea59ef"
             ]
         ]
     },
@@ -3377,8 +3379,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
-        "y": 500,
+        "x": 740,
+        "y": 360,
         "wires": []
     },
     {
@@ -3388,13 +3390,33 @@
         "name": "salt-minion",
         "command": "salt-minion",
         "args": "",
-        "autorun": true,
+        "autorun": false,
         "cr": false,
         "redo": true,
         "op": "string",
-        "closer": "SIGKILL",
-        "x": 310,
-        "y": 360,
+        "closer": "SIGTERM",
+        "x": 670,
+        "y": 240,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c9b1a37c5388a3f5",
+        "type": "exec",
+        "z": "6e1fffded33ce50f",
+        "command": "envsubst < /etc/salt/minion.tmpl > /etc/salt/minion",
+        "addpay": "kill",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "minion cfg",
+        "x": 350,
+        "y": 220,
         "wires": [
             [
                 "a123cb1254cc4a7c"
@@ -3403,8 +3425,51 @@
                 "a123cb1254cc4a7c"
             ],
             [
+                "65959117413fb8af",
                 "a123cb1254cc4a7c"
             ]
         ]
+    },
+    {
+        "id": "527d0ab867ea59ef",
+        "type": "exec",
+        "z": "6e1fffded33ce50f",
+        "command": "vcache-cfg-update",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 390,
+        "y": 420,
+        "wires": [
+            [
+                "5a45bd859d305ddd"
+            ],
+            [
+                "5a45bd859d305ddd"
+            ],
+            [
+                "5a45bd859d305ddd"
+            ]
+        ]
+    },
+    {
+        "id": "5a45bd859d305ddd",
+        "type": "debug",
+        "z": "6e1fffded33ce50f",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 420,
+        "wires": []
     }
 ]

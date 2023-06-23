@@ -144,7 +144,7 @@ foreach my $p (@{$cfg->{'proxy'}}) { $p->{'mode'} = 'reverse' unless defined $p-
 vsub($cfg, 'ttl', sub {$_[0] =~ s/^\d+$/$&s/});
 # import any environment interpolate any env vars
 import_env_file($env_file) if defined($env_file);
-vsub($cfg, undef, sub { $_[0] = $ENV{$1} if $_[0] =~ /\$\{([^\}]+)\}/ and exists $ENV{$1}; });
+vsub($cfg, undef, sub { $_[0] = $ENV{$1} if $_[0] =~ /"?\$\{([^\}]+)\}"?/ and exists $ENV{$1}; });
 
 #print Dumper $cfg;
 

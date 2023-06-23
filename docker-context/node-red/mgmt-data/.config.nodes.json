@@ -884,5 +884,24 @@
                 "file": "/usr/src/node-red/node_modules/node-red-node-daemon/daemon.js"
             }
         }
+    },
+    "node-red-node-ui-table": {
+        "name": "node-red-node-ui-table",
+        "version": "0.4.3",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "ui_table": {
+                "name": "ui_table",
+                "types": [
+                    "ui_table"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-node-ui-table",
+                "file": "/usr/src/node-red/node_modules/node-red-node-ui-table/node.js"
+            }
+        }
     }
 }

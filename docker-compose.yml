@@ -125,7 +125,7 @@ services:
       - vcache_net
     # close this for production
     ports:
-      - 6379:6379
+      - 6380:6379
     restart: always
 
 volumes:

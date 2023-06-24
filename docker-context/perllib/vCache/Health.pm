@@ -1,4 +1,4 @@
-package VCache::Health;
+package vCache::Health;
 
 use nginx;
 use Redis;

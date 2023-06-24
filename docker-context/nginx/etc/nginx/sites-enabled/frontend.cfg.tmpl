@@ -56,7 +56,7 @@ server {
 
    # detailed cache health check - XXX apikey?
    location ~ /health {
-      perl VCache::Health::handler;
+      perl vCache::Health::handler;
    }
    # simple health endpoint (returns client ip)
    location = / {

@@ -3383,8 +3383,12 @@
         "x": 610,
         "y": 140,
         "wires": [
-            [],
-            [],
+            [
+                "548629a15b4bb716"
+            ],
+            [
+                "548629a15b4bb716"
+            ],
             []
         ]
     },
@@ -3464,7 +3468,7 @@
         "finalize": "",
         "libs": [],
         "x": 930,
-        "y": 100,
+        "y": 80,
         "wires": [
             [
                 "548629a15b4bb716"
@@ -3504,6 +3508,50 @@
         "wires": [
             [
                 "05bef2ebd6355241"
+            ]
+        ]
+    },
+    {
+        "id": "e1251d2b16dd4e69",
+        "type": "fs-ops-delete",
+        "z": "6e1fffded33ce50f",
+        "name": "reset alt master key",
+        "path": "/etc/salt/pki/minion/",
+        "pathType": "str",
+        "filename": "minion_master.pub",
+        "filenameType": "str",
+        "x": 450,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7ca1ea0b2b791dfb",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 340,
+        "wires": [
+            [
+                "e1251d2b16dd4e69"
             ]
         ]
     }

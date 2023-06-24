@@ -771,6 +771,25 @@
             }
         }
     },
+    "node-red-node-daemon": {
+        "name": "node-red-node-daemon",
+        "version": "0.5.1",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "daemon": {
+                "name": "daemon",
+                "types": [
+                    "daemon"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-node-daemon",
+                "file": "/usr/src/node-red/node_modules/node-red-node-daemon/daemon.js"
+            }
+        }
+    },
     "node-red-contrib-cpu": {
         "name": "node-red-contrib-cpu",
         "version": "0.0.4",
@@ -787,25 +806,6 @@
                 "user": false,
                 "module": "node-red-contrib-cpu",
                 "file": "/usr/src/node-red/node_modules/node-red-contrib-cpu/cpu.js"
-            }
-        }
-    },
-    "node-red-node-smooth": {
-        "name": "node-red-node-smooth",
-        "version": "0.1.2",
-        "local": false,
-        "user": false,
-        "nodes": {
-            "smooth": {
-                "name": "smooth",
-                "types": [
-                    "smooth"
-                ],
-                "enabled": true,
-                "local": false,
-                "user": false,
-                "module": "node-red-node-smooth",
-                "file": "/usr/src/node-red/node_modules/node-red-node-smooth/17-smooth.js"
             }
         }
     },
@@ -828,25 +828,6 @@
             }
         }
     },
-    "node-red-node-redis": {
-        "name": "node-red-node-redis",
-        "version": "0.0.5",
-        "local": false,
-        "user": false,
-        "nodes": {
-            "redis": {
-                "name": "redis",
-                "types": [
-                    "redis out"
-                ],
-                "enabled": true,
-                "local": false,
-                "user": false,
-                "module": "node-red-node-redis",
-                "file": "/usr/src/node-red/node_modules/node-red-node-redis/65-redisout.js"
-            }
-        }
-    },
     "node-red-contrib-uuid": {
         "name": "node-red-contrib-uuid",
         "version": "0.0.4",
@@ -866,22 +847,41 @@
             }
         }
     },
-    "node-red-node-daemon": {
-        "name": "node-red-node-daemon",
-        "version": "0.5.1",
+    "node-red-node-redis": {
+        "name": "node-red-node-redis",
+        "version": "0.0.5",
         "local": false,
         "user": false,
         "nodes": {
-            "daemon": {
-                "name": "daemon",
+            "redis": {
+                "name": "redis",
                 "types": [
-                    "daemon"
+                    "redis out"
                 ],
                 "enabled": true,
                 "local": false,
                 "user": false,
-                "module": "node-red-node-daemon",
-                "file": "/usr/src/node-red/node_modules/node-red-node-daemon/daemon.js"
+                "module": "node-red-node-redis",
+                "file": "/usr/src/node-red/node_modules/node-red-node-redis/65-redisout.js"
+            }
+        }
+    },
+    "node-red-node-smooth": {
+        "name": "node-red-node-smooth",
+        "version": "0.1.2",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "smooth": {
+                "name": "smooth",
+                "types": [
+                    "smooth"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-node-smooth",
+                "file": "/usr/src/node-red/node_modules/node-red-node-smooth/17-smooth.js"
             }
         }
     },

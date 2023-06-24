@@ -3,12 +3,12 @@ services:
   vcache_mgr_agent:
     image: node-red
     build:
-      context: ./docker-context
+      context: ./context
       dockerfile: ./node-red/Dockerfile
     container_name: vcache_mgr_agent
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - ./docker-context/node-red/mgmt-data:/data # comment out for production
+      - ./context/node-red/mgmt-data:/data # comment out for production
       - var_run:/var/run
       - var_log_fe:/var/log-fe
       - var_log_be:/var/log-be
@@ -33,7 +33,7 @@ services:
   vcache_frontend:
     image: nginx-perl-frontend
     build:
-      context: ./docker-context
+      context: ./context
       dockerfile: ./nginx/Dockerfile.frontend
     container_name: vcache_frontend
     hostname: ${VCACHE_HOSTNAME}
@@ -60,7 +60,7 @@ services:
   vcache_engine:
     image: varnish
     build:
-      context: ./docker-context/varnish
+      context: ./context/varnish
     container_name: vcache_engine
     volumes:
       - var_run:/var/run:rw
@@ -85,7 +85,7 @@ services:
   vcache_backend:
     image: nginx-perl-backend
     build:
-      context: ./docker-context
+      context: ./context
       dockerfile: ./nginx/Dockerfile.backend
     container_name: vcache_backend
     hostname: ${VCACHE_HOSTNAME}
@@ -101,7 +101,7 @@ services:
   vcache_stats:
     image: varnish
     build:
-      context: ./docker-context/varnish
+      context: ./context/varnish
     container_name: vcache_stats
     volumes:
       - var_run:/var/run

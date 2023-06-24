@@ -70,7 +70,7 @@ else
 fi
 if [[ "$VCACHE_VERSION" != "0.0.0" ]]; then
 	# update or add the VCACHE_VERSION to .env
-	perl -i -ne "\$found++ if s/VCACHE_VERSION=\S+/VCACHE_VERSION=${VCACHE_VERSION}/; \$_ .= \"VCACHE_VERSION=${VCACHE_VERSION}\" if eof and not \$found; print;" .env
+	perl -i -ne "\$found++ if s/VCACHE_VERSION=\S+/VCACHE_VERSION=${VCACHE_VERSION}/; \$_ .= \"VCACHE_VERSION=${VCACHE_VERSION}\\n\" if eof and not \$found; print;" .env
 fi
 
 echo "cleaning up previous deployment..."

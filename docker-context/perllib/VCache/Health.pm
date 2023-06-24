@@ -22,7 +22,7 @@ sub handler {
 	$cache_health{'status'} = 'up';
 
 	my $uuid;
-	my $uuid_file = "/var/run/uuid.txt";
+	my $uuid_file = "/var/run/vcache.uuid";
     if (-r $uuid_file) {
 		$uuid = `cat $uuid_file`;
 		chomp $uuid;

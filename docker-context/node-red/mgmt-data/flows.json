@@ -1650,14 +1650,14 @@
         "id": "da0aa089ba25ac3d",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "function 1",
+        "name": "mem usage",
         "func": "msg.payload = msg.payload.memusage;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
+        "x": 750,
         "y": 780,
         "wires": [
             [
@@ -1670,7 +1670,7 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "vcache version",
-        "func": "msg.payload = env.get(\"VCACHE_VERSION\") || '0.0.0';\nreturn msg;",
+        "func": "msg.payload = global.get(\"version\") ||env.get(\"VCACHE_VERSION\") || '0.0.0';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2119,7 +2119,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "request ratio",
-        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.error(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0\nreturn msg;",
+        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.node.warn(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2323,7 +2323,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "bw ratio",
-        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.error(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0\nreturn msg;",
+        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.warn(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2712,7 +2712,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "units metric",
-        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0) {\n    node.error(\"rate = \" + msg.rate);\n    msg.rate = 0;\n}\nmsg.payload = msg.rate;\n[msg.rate, msg.units] = formatMetric(msg.rate)\nreturn msg;",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0) {\n    node.warn(\"rate = \" + msg.rate);\n    msg.rate = 0;\n}\nmsg.payload = msg.rate;\n[msg.rate, msg.units] = formatMetric(msg.rate)\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2732,7 +2732,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "units metric",
-        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0) {\n    node.error(\"rate = \" + msg.rate);\n    msg.rate = 0;\n}\nmsg.payload = msg.rate*8.0;\nmsg.payload = Math.round(msg.payload * 1000) / 1000;\n[msg.rate, msg.units] = formatMetric(msg.payload);\nreturn msg;",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0) {\n    node.warn(\"rate = \" + msg.rate);\n    msg.rate = 0;\n}\nmsg.payload = msg.rate*8.0;\nmsg.payload = Math.round(msg.payload * 1000) / 1000;\n[msg.rate, msg.units] = formatMetric(msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3236,8 +3236,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1030,
-        "y": 40,
+        "x": 490,
+        "y": 500,
         "wires": [
             []
         ]
@@ -3271,8 +3271,8 @@
         "topicType": "msg",
         "splitLayout": "",
         "className": "",
-        "x": 1020,
-        "y": 80,
+        "x": 480,
+        "y": 580,
         "wires": [
             []
         ]
@@ -3288,8 +3288,8 @@
         "name": "",
         "field": "payload",
         "fieldType": "msg",
-        "x": 770,
-        "y": 140,
+        "x": 590,
+        "y": 40,
         "wires": [
             [
                 "51ab9183e6c445ee"
@@ -3325,7 +3325,8 @@
                 "d53d35f434b721be",
                 "9c1cae2c8cd579f1",
                 "c9b1a37c5388a3f5",
-                "527d0ab867ea59ef"
+                "527d0ab867ea59ef",
+                "8b6caa4128b0ab62"
             ]
         ]
     },
@@ -3334,14 +3335,14 @@
         "type": "file",
         "z": "6e1fffded33ce50f",
         "name": "",
-        "filename": "/var/run/uuid.txt",
+        "filename": "/var/run/vcache.uuid",
         "filenameType": "str",
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "utf8",
-        "x": 1040,
-        "y": 140,
+        "x": 940,
+        "y": 40,
         "wires": [
             []
         ]
@@ -3350,38 +3351,22 @@
         "id": "9c1cae2c8cd579f1",
         "type": "fs-ops-access",
         "z": "6e1fffded33ce50f",
-        "name": "",
+        "name": "vcache.uuid",
         "path": "/var/run",
         "pathType": "str",
-        "filename": "uuid.txt",
+        "filename": "vcache.uuid",
         "filenameType": "str",
         "read": true,
         "write": true,
         "throwerror": false,
-        "x": 570,
-        "y": 140,
+        "x": 350,
+        "y": 40,
         "wires": [
             [],
             [
                 "f773b77e37a40bb6"
             ]
         ]
-    },
-    {
-        "id": "a123cb1254cc4a7c",
-        "type": "debug",
-        "z": "6e1fffded33ce50f",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 740,
-        "y": 360,
-        "wires": []
     },
     {
         "id": "65959117413fb8af",
@@ -3395,8 +3380,8 @@
         "redo": true,
         "op": "string",
         "closer": "SIGTERM",
-        "x": 670,
-        "y": 240,
+        "x": 610,
+        "y": 140,
         "wires": [
             [],
             [],
@@ -3416,17 +3401,12 @@
         "oldrc": false,
         "name": "minion cfg",
         "x": 350,
-        "y": 220,
+        "y": 140,
         "wires": [
+            [],
+            [],
             [
-                "a123cb1254cc4a7c"
-            ],
-            [
-                "a123cb1254cc4a7c"
-            ],
-            [
-                "65959117413fb8af",
-                "a123cb1254cc4a7c"
+                "65959117413fb8af"
             ]
         ]
     },
@@ -3442,25 +3422,60 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 390,
-        "y": 420,
+        "x": 370,
+        "y": 200,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8b6caa4128b0ab62",
+        "type": "fs-ops-access",
+        "z": "6e1fffded33ce50f",
+        "name": "vcache.version",
+        "path": "/var/run/",
+        "pathType": "str",
+        "filename": "vcache.version",
+        "filenameType": "str",
+        "read": true,
+        "write": false,
+        "throwerror": false,
+        "x": 360,
+        "y": 80,
         "wires": [
             [
-                "5a45bd859d305ddd"
+                "548629a15b4bb716",
+                "28e546a9e90ffb1f"
             ],
+            []
+        ]
+    },
+    {
+        "id": "05bef2ebd6355241",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "set global version",
+        "func": "global.set(\"version\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 100,
+        "wires": [
             [
-                "5a45bd859d305ddd"
-            ],
-            [
-                "5a45bd859d305ddd"
+                "548629a15b4bb716"
             ]
         ]
     },
     {
-        "id": "5a45bd859d305ddd",
+        "id": "548629a15b4bb716",
         "type": "debug",
         "z": "6e1fffded33ce50f",
-        "name": "debug 2",
+        "name": "debug 1",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -3468,8 +3483,28 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 740,
-        "y": 420,
+        "x": 880,
+        "y": 320,
         "wires": []
+    },
+    {
+        "id": "28e546a9e90ffb1f",
+        "type": "file in",
+        "z": "6e1fffded33ce50f",
+        "name": "vcache version",
+        "filename": "/var/run/vcache.version",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 620,
+        "y": 80,
+        "wires": [
+            [
+                "05bef2ebd6355241"
+            ]
+        ]
     }
 ]

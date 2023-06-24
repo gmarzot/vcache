@@ -21,7 +21,6 @@ RUN npm install uuid
 #VOLUME /data
 
 COPY ./node-red/etc/vcache /etc/vcache
-
 COPY ./perllib /usr/local/perllib
 COPY ./scripts/* /usr/local/bin
 

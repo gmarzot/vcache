@@ -5,7 +5,7 @@ SOURCE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd $SOURCE_DIR
 
 if [[ $? != 0 ]]; then
-	echo "[$?] unable to cd to source directory..."
+	echo "unable to cd to source directory [$SOURCE_DIR] ..."
 	exit 1
 fi
 
@@ -14,11 +14,13 @@ mkdir release
 GIT_REVISION=$(git describe)
 
 if [[ $? != 0 ]]; then
-    echo "[$?] unabl,e to run `git describe`..."
+    echo "unable to run `git describe`..."
     exit 2
 fi
 
 echo -n ${GIT_REVISION} > ./.version
+# this will be included in released images
+echo -n ${GIT_REVISION} > ./docker-context/node-red/etc/vcache/vcache.version
 
 cd ..
 

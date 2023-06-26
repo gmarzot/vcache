@@ -30,7 +30,7 @@ if [[ $? != 0 ]]; then
 	exit 1
 fi
 
-DC_VERSION=$(sudo docker-compose version)
+DC_VERSION=$(sudo docker-compose version | head -n 1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
 if [ $? != 0 ]; then
     echo "please install docker-compose and provide sudo access..."
     exit 2
@@ -68,6 +68,7 @@ else
     echo "VCACHE_HOSTNAME=${hostname}" > .env
 	echo "VCACHE_MEM_SIZE=12G" >> .env
 fi
+
 if [[ "$VCACHE_VERSION" != "0.0.0" ]]; then
 	# update or add the VCACHE_VERSION to .env
 	perl -i -ne "\$found++ if s/VCACHE_VERSION=\S+/VCACHE_VERSION=${VCACHE_VERSION}/; \$_ .= \"VCACHE_VERSION=${VCACHE_VERSION}\\n\" if eof and not \$found; print;" .env

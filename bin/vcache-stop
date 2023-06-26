@@ -32,6 +32,22 @@ sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "
 
 if [ $? != 0 ]; then
 	echo "vcache containers are not running..."
+fi
+
+if [[ $realclean ]]; then
+	echo "deep cleaning volumes and images from the vcache deployment..."
+	sudo docker-compose down --volumes --rmi local --remove-orphans --timeout 35
+	if [ $? != 0 ]; then
+		echo "[$?] an error or timeout ocurred deep cleaning the vcache deployment"
+		exit 3
+	fi
+elif [[ $clean ]]; then
+	echo "cleaning volumes and images from the vcache deployment..."
+	sudo docker-compose down --volumes --remove-orphans --timeout 35
+	if [ $? != 0 ]; then
+		echo "[$?] an error or timeout ocurred cleaning the vcache deployment"
+		exit 3
+	fi
 else
 	echo "stopping vcache containers..."
 	sudo docker-compose down
@@ -40,23 +56,6 @@ else
 		exit 2
 	fi
 	echo "vcache stopped..."
-fi
-
-if [[ $realclean ]]; then
-    echo "deep cleaning volumes and images from the vcache deployment..."
-    sudo docker-compose down --volumes --rmi local --remove-orphans --timeout 35
-    if [ $? != 0 ]; then
-        echo "[$?] an error or timeout ocurred cleaning the vcache deployment"
-        exit 3
-    fi
-elif [[ $clean ]]; then
-	echo "cleaning volumes and images from the vcache deployment..."
-	sudo docker-compose down --volumes --remove-orphans --timeout 35
-	if [ $? != 0 ]; then
-		echo "[$?] an error or timeout ocurred cleaning the vcache deployment"
-		exit 3
-	fi
-fi
-	 
+fi	 
 
 exit 0

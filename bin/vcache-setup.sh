@@ -7,10 +7,10 @@ if [ $? != 0 ]; then
 	exit 1
 fi
 
-docker-compose version
+sudo docker-compose version
 
 if [ $? != 0 ]; then
-	echo "unable to execute sudo docker-compose, please provide sudo access to docker-compose..."
+	echo "unable to execute sudo, please provide sudo access to docker-compose..."
 	exit 2
 fi
 

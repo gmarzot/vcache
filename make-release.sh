@@ -20,12 +20,12 @@ fi
 
 echo -n ${GIT_REVISION} > ./.version
 # this will be included in released images
-echo -n ${GIT_REVISION} > ./docker-context/node-red/etc/vcache/vcache.version
+echo -n ${GIT_REVISION} > ./context/node-red/etc/vcache/vcache.version
 
 cd ..
 
 mv $SOURCE_DIR vcache-${GIT_REVISION}
 
-./vcache-${GIT_REVISION}/makeself.sh --sha256 --nox11 --notemp --tar-extra "--exclude=.env --exclude=uuid.txt --exclude=run/*.pid --exclude=run/*.sock --exclude=log/* --exclude=*.incl --exclude=frontend.cfg --exclude=.git --exclude=.gitignore --exclude=make* --exclude=.venv --exclude=.npm --exclude=release --exclude=*~ ./log" --license LICENSE vcache-${GIT_REVISION} vcache-${GIT_REVISION}/release/vcache-${GIT_REVISION}.run "VCache Deployment" ./bin/vcache-setup.sh
+./vcache-${GIT_REVISION}/makeself.sh --sha256 --nox11 --notemp --tar-extra "--exclude=.git --exclude=.gitignore --exclude=make* --exclude=.npm --exclude=release --exclude=*~" --license LICENSE vcache-${GIT_REVISION} vcache-${GIT_REVISION}/release/vcache-${GIT_REVISION}.run "vCache Deployment" ./bin/vcache-setup.sh
 
 mv vcache-${GIT_REVISION} $SOURCE_DIR

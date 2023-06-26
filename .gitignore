@@ -7,4 +7,5 @@
 .env
 release
 version.txt
-vcache-version.txt
+vcache.version
+.version

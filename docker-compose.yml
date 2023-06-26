@@ -58,12 +58,12 @@ services:
       - vcache_mgr_agent
       
   vcache_engine:
-    image: varnish
+    image: vcache-varnish
     build:
       context: ./context/varnish
     container_name: vcache_engine
     volumes:
-      - var_run:/var/run:rw
+      - var_run:/var/run
       - etc_varnish:/etc/varnish
       - varnish_tmpfs:/var/lib/varnish:exec
     networks:

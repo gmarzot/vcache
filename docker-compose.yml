@@ -66,7 +66,7 @@ services:
     volumes:
       - var_run:/var/run
       - etc_varnish:/etc/varnish
-      - varnish_tmpfs:/var/lib/varnish:exec
+      - varnish_tmpfs:/var/lib/varnish
     networks:
       - vcache_net
     pid: service:vcache_mgr_agent

@@ -15,7 +15,7 @@ if [ $? != 0 ]; then
 fi
 
 logfile=/tmp/vcache-build-$(date '+%Y-%m-%d:%H:%M:%S').log
-sudo -Sk docker-compose build | tee ${logfile}
+sudo docker-compose build | tee ${logfile}
 
 if [ $? != 0 ]; then
 	echo "sudo docker-compose build failed($?): see ${logfile} for details"

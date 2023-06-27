@@ -22,7 +22,7 @@ RUN npm install uuid
 
 COPY ./node-red/etc/vcache /etc/vcache
 COPY ./perllib /usr/local/perllib
-COPY ./scripts/* /usr/local/bin
+COPY ./scripts/* /usr/local/bin/
 
 USER root
 RUN apk add bash 

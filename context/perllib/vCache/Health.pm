@@ -18,17 +18,6 @@ sub handler {
     $r->send_http_header("application/json");
     return OK if $r->header_only;
 
-	my %cache_health;
-	$cache_health{'status'} = 'up';
-
-	my $uuid;
-	my $uuid_file = "/var/run/vcache.uuid";
-    if (-r $uuid_file) {
-		$uuid = `cat $uuid_file`;
-		chomp $uuid;
-	}
-	$cache_health{'uuid'} = $uuid;
-
 	if (!defined $redis) {
 		$redis = Redis->new(server => 'vcache_redis:6379',
 							reconnect => 60, every => 1000,
@@ -36,13 +25,14 @@ sub handler {
 		return HTTP_INTERNAL_SERVER_ERROR unless defined($redis);
 	}
 
-	my @data = ();
-	@data = $redis->mget(@keys);
+    my %cache_health = $redis->hgetall("vcache_stats");;
 
-	if (@data) {
-		@cache_health{@keys} = @data;
+    if (%cache_health) {
+		$cache_health{'status'} = 'up';
+
 		my $health = $json->encode(\%cache_health);
 		$r->print($health);
+
 		return OK;
 	}
 	

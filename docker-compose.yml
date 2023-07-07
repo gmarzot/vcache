@@ -2,7 +2,7 @@ version: '3'
 
 services:
   vcache_mgr_agent:
-    image: node-red
+    image: vcache-node-red
     build:
       context: ./context
       dockerfile: ./node-red/Dockerfile
@@ -32,7 +32,7 @@ services:
       - vcache_redis
 
   vcache_frontend:
-    image: nginx-perl-frontend
+    image: vcache-nginx-perl-frontend
     build:
       context: ./context
       dockerfile: ./nginx/Dockerfile.frontend
@@ -84,7 +84,7 @@ services:
       - vcache_backend
 
   vcache_backend:
-    image: nginx-perl-backend
+    image: vcache-nginx-perl-backend
     build:
       context: ./context
       dockerfile: ./nginx/Dockerfile.backend
@@ -100,7 +100,7 @@ services:
     restart: always
 
   vcache_stats:
-    image: varnish
+    image: vcache-varnish-stats
     build:
       context: ./context/varnish
     container_name: vcache_stats

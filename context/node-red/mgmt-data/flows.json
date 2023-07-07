@@ -843,7 +843,7 @@
         "type": "Drives",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 470,
+        "x": 330,
         "y": 840,
         "wires": [
             [
@@ -859,8 +859,8 @@
         "z": "f6f2187d.f17ca8",
         "name": "Memory",
         "scale": "Byte",
-        "x": 480,
-        "y": 740,
+        "x": 320,
+        "y": 680,
         "wires": [
             [
                 "18c68b74898c536f",
@@ -911,18 +911,18 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "format time HH:mm:ss",
-        "func": " var totalNumberOfSeconds = msg.payload;\n var days = parseInt( totalNumberOfSeconds / 86400 );\n var hours = parseInt (( totalNumberOfSeconds - ( days * 86400 )) / 3600  );\n var minutes = parseInt ((totalNumberOfSeconds - ((hours * 3600)+( days * 86400 ))) / 60 );\n var seconds = parseInt(totalNumberOfSeconds - ((hours * 3600) + (minutes * 60)+( days * 86400 )));\n var result = (days < 10 ? \"0\" + days : days) + \":\" + (hours < 10 ? \"0\" + hours : hours) + \":\" + (minutes < 10 ? \"0\" + minutes : minutes) + \":\" + (seconds  < 10 ? \"0\" + seconds : seconds);\n msg.payload=result;\n return msg;",
+        "func": " var totalNumberOfSeconds = msg.payload;\n var days = parseInt( totalNumberOfSeconds / 86400 );\n var hours = parseInt (( totalNumberOfSeconds - ( days * 86400 )) / 3600  );\n var minutes = parseInt ((totalNumberOfSeconds - ((hours * 3600)+( days * 86400 ))) / 60 );\n var seconds = parseInt(totalNumberOfSeconds - ((hours * 3600) + (minutes * 60)+( days * 86400 )));\n var result = (days < 10 ? \"0\" + days : days) + \":\" + (hours < 10 ? \"0\" + hours : hours) + \":\" + (minutes < 10 ? \"0\" + minutes : minutes) + \":\" + (seconds  < 10 ? \"0\" + seconds : seconds);\n msg.payload=result;\n msg.topic = \"uptime\";\n return msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
-        "y": 220,
+        "x": 620,
+        "y": 260,
         "wires": [
             [
                 "4f6abcf.71f1a44",
-                "e227095f9e1bf773"
+                "1a05a03c82a71a3b"
             ]
         ]
     },
@@ -939,8 +939,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 1060,
-        "y": 200,
+        "x": 960,
+        "y": 260,
         "wires": []
     },
     {
@@ -952,13 +952,12 @@
         "msgOverall": true,
         "msgArray": false,
         "msgTemp": false,
-        "x": 490,
-        "y": 540,
+        "x": 330,
+        "y": 480,
         "wires": [
             [
-                "53516185218f0489",
-                "7983da4d453a8c52",
-                "7ddb76afd18f4087"
+                "7ddb76afd18f4087",
+                "f706757e6c338f82"
             ]
         ]
     },
@@ -1000,8 +999,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1070,
-        "y": 600,
+        "x": 970,
+        "y": 500,
         "wires": [
             []
         ]
@@ -1030,8 +1029,8 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 1050,
-        "y": 740,
+        "x": 950,
+        "y": 680,
         "wires": []
     },
     {
@@ -1051,8 +1050,8 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1060,
-        "y": 120,
+        "x": 960,
+        "y": 320,
         "wires": []
     },
     {
@@ -1068,8 +1067,8 @@
         "format": "<font size=3>{{msg.value}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 1060,
-        "y": 360,
+        "x": 960,
+        "y": 640,
         "wires": []
     },
     {
@@ -1077,18 +1076,18 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "total mem - format units",
-        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\nmsg.value = formatBytes(msg.payload.totalmem);\nmsg.payload = msg.payload.totalmem;\n\nreturn msg;",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\nmsg.value = formatBytes(msg.payload.totalmem);\nmsg.payload = msg.payload.totalmem;\nmsg.topic = \"mem_total\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 790,
-        "y": 380,
+        "x": 630,
+        "y": 660,
         "wires": [
             [
                 "f4aa44582aec2ee6",
-                "faf3cd28d97af559"
+                "1a05a03c82a71a3b"
             ]
         ]
     },
@@ -1097,18 +1096,18 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "disk use percent",
-        "func": "msg.payload = msg.payload[0].capacity * 100.0\nreturn msg;",
+        "func": "msg.payload = msg.payload[0].capacity * 100.0;\nmsg.topic = \"disk_use_pct\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
-        "y": 960,
+        "x": 600,
+        "y": 800,
         "wires": [
             [
                 "b833a78279a06e8c",
-                "9a8f2aa6f1991221"
+                "1a05a03c82a71a3b"
             ]
         ]
     },
@@ -1136,8 +1135,8 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 1050,
-        "y": 940,
+        "x": 950,
+        "y": 800,
         "wires": []
     },
     {
@@ -1145,18 +1144,18 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "used mem format units",
-        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload.totalmem - msg.payload.freemem);\nmsg.payload = msg.payload.totalmem - msg.payload.freemem;\nreturn msg;",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload.totalmem - msg.payload.freemem);\nmsg.payload = msg.payload.totalmem - msg.payload.freemem;\nmsg.topic = \"mem_use\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
-        "y": 860,
+        "x": 620,
+        "y": 700,
         "wires": [
             [
                 "3fe4b364fdaec2bb",
-                "7929109cc5bdc85e"
+                "1a05a03c82a71a3b"
             ]
         ]
     },
@@ -1173,8 +1172,8 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 1050,
-        "y": 900,
+        "x": 950,
+        "y": 720,
         "wires": []
     },
     {
@@ -1190,8 +1189,8 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "def",
-        "x": 1050,
-        "y": 640,
+        "x": 950,
+        "y": 540,
         "wires": []
     },
     {
@@ -1199,18 +1198,18 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "load avg string",
-        "func": "msg.payload = msg.payload.loadavg.join(', ')\nreturn msg;",
+        "func": "msg.payload = msg.payload.loadavg.join(', ');\nmsg.topic = \"cpu_load_avg\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
-        "y": 660,
+        "x": 600,
+        "y": 540,
         "wires": [
             [
                 "2bd8b9bfd2a1d534",
-                "93b0626f686f5d89"
+                "1a05a03c82a71a3b"
             ]
         ]
     },
@@ -1219,8 +1218,8 @@
         "type": "Loadavg",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 480,
-        "y": 660,
+        "x": 320,
+        "y": 540,
         "wires": [
             [
                 "39b8930ee2a9adf4"
@@ -1251,8 +1250,8 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 1060,
-        "y": 520,
+        "x": 960,
+        "y": 460,
         "wires": []
     },
     {
@@ -1260,8 +1259,8 @@
         "type": "CPUs",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 470,
-        "y": 300,
+        "x": 310,
+        "y": 420,
         "wires": [
             [
                 "1faa30a4e47251a1",
@@ -1280,8 +1279,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 750,
-        "y": 280,
+        "x": 590,
+        "y": 380,
         "wires": [
             [
                 "51ccb23cb43f7af2"
@@ -1299,8 +1298,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 320,
+        "x": 570,
+        "y": 420,
         "wires": [
             [
                 "68105b12b908d0f4"
@@ -1320,8 +1319,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 1050,
-        "y": 280,
+        "x": 950,
+        "y": 380,
         "wires": []
     },
     {
@@ -1337,8 +1336,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 1050,
-        "y": 320,
+        "x": 950,
+        "y": 420,
         "wires": []
     },
     {
@@ -1354,8 +1353,8 @@
         "format": "<font size=3>{{msg.value}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 1050,
-        "y": 440,
+        "x": 950,
+        "y": 880,
         "wires": []
     },
     {
@@ -1371,8 +1370,8 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 1050,
-        "y": 1040,
+        "x": 950,
+        "y": 840,
         "wires": []
     },
     {
@@ -1380,18 +1379,18 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "disk used bytes",
-        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload[0].used)\nmsg.payload = msg.payload[0].used\nreturn msg;",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload[0].used);\nmsg.payload = msg.payload[0].used;\nmsg.topic = \"disk_use\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
-        "y": 1060,
+        "x": 600,
+        "y": 840,
         "wires": [
             [
                 "11b451e51ccf5739",
-                "fa03e24c13105377"
+                "1a05a03c82a71a3b"
             ]
         ]
     },
@@ -1400,18 +1399,18 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "disk size",
-        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\nmsg.value = formatBytes(msg.payload[0].size)\nmsg.payload = msg.payload[0].size\nreturn msg;",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\nmsg.value = formatBytes(msg.payload[0].size)\nmsg.payload = msg.payload[0].size\nmsg.topic = \"disk_total\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
-        "y": 460,
+        "x": 580,
+        "y": 880,
         "wires": [
             [
                 "d6fd568602fabf48",
-                "9274d66f5211e469"
+                "1a05a03c82a71a3b"
             ]
         ]
     },
@@ -1428,8 +1427,8 @@
         "format": "<font size=3>{{msg.payload.hostname}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 1050,
-        "y": 20,
+        "x": 950,
+        "y": 200,
         "wires": []
     },
     {
@@ -1437,131 +1436,14 @@
         "type": "OS",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 470,
-        "y": 60,
+        "x": 310,
+        "y": 200,
         "wires": [
             [
                 "cc60b6c3e5fb14d9",
                 "d23168e787472af1"
             ]
         ]
-    },
-    {
-        "id": "0a5a15dfae62e4e6",
-        "type": "redis out",
-        "z": "f6f2187d.f17ca8",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "mem_use_pct",
-        "structtype": "string",
-        "x": 1100,
-        "y": 780,
-        "wires": []
-    },
-    {
-        "id": "fa03e24c13105377",
-        "type": "redis out",
-        "z": "f6f2187d.f17ca8",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "disk_use",
-        "structtype": "string",
-        "x": 1080,
-        "y": 1080,
-        "wires": []
-    },
-    {
-        "id": "93b0626f686f5d89",
-        "type": "redis out",
-        "z": "f6f2187d.f17ca8",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "cpu_load_avg",
-        "structtype": "string",
-        "x": 1100,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "7983da4d453a8c52",
-        "type": "redis out",
-        "z": "f6f2187d.f17ca8",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "cpu_use_pct",
-        "structtype": "string",
-        "x": 1100,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "d8a80b5025b557a3",
-        "type": "redis out",
-        "z": "f6f2187d.f17ca8",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "host",
-        "structtype": "string",
-        "x": 1070,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "e227095f9e1bf773",
-        "type": "redis out",
-        "z": "f6f2187d.f17ca8",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "uptime",
-        "structtype": "string",
-        "x": 1080,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "c3ae881eac3d85e0",
-        "type": "redis out",
-        "z": "f6f2187d.f17ca8",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "version",
-        "structtype": "string",
-        "x": 1080,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "9274d66f5211e469",
-        "type": "redis out",
-        "z": "f6f2187d.f17ca8",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "disk_total",
-        "structtype": "string",
-        "x": 1090,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "9a8f2aa6f1991221",
-        "type": "redis out",
-        "z": "f6f2187d.f17ca8",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "disk_use_pct",
-        "structtype": "string",
-        "x": 1100,
-        "y": 980,
-        "wires": []
     },
     {
         "id": "7ddb76afd18f4087",
@@ -1574,8 +1456,8 @@
         "round": "",
         "mult": "single",
         "reduce": false,
-        "x": 740,
-        "y": 600,
+        "x": 580,
+        "y": 500,
         "wires": [
             [
                 "c0a13984a398e6d7"
@@ -1593,8 +1475,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 220,
+        "x": 360,
+        "y": 260,
         "wires": [
             [
                 "50f9790b.49c718"
@@ -1606,62 +1488,36 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "get hostname",
-        "func": "msg.payload = msg.payload.hostname;\nreturn msg;",
+        "func": "msg.payload = msg.payload.hostname;\nmsg.topic = \"hostname\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
-        "y": 80,
+        "x": 600,
+        "y": 120,
         "wires": [
             [
-                "d8a80b5025b557a3"
+                "1a05a03c82a71a3b"
             ]
         ]
-    },
-    {
-        "id": "faf3cd28d97af559",
-        "type": "redis out",
-        "z": "f6f2187d.f17ca8",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "mem_total",
-        "structtype": "string",
-        "x": 1090,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "7929109cc5bdc85e",
-        "type": "redis out",
-        "z": "f6f2187d.f17ca8",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "mem_use",
-        "structtype": "string",
-        "x": 1090,
-        "y": 840,
-        "wires": []
     },
     {
         "id": "da0aa089ba25ac3d",
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "mem usage",
-        "func": "msg.payload = msg.payload.memusage;\nreturn msg;",
+        "func": "msg.payload = msg.payload.memusage;\nmsg.topic = \"mem_use_pct\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 750,
-        "y": 780,
+        "x": 590,
+        "y": 620,
         "wires": [
             [
-                "0a5a15dfae62e4e6"
+                "1a05a03c82a71a3b"
             ]
         ]
     },
@@ -1670,20 +1526,81 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "vcache version",
-        "func": "msg.payload = global.get(\"version\") ||env.get(\"VCACHE_VERSION\") || '0.0.0';\nreturn msg;",
+        "func": "msg.payload = global.get(\"version\") ||env.get(\"VCACHE_VERSION\") || '0.0.0';\nmsg.topic =\"version\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 500,
-        "y": 140,
+        "x": 340,
+        "y": 320,
         "wires": [
             [
                 "fbc058e4a2725b9d",
-                "c3ae881eac3d85e0"
+                "1a05a03c82a71a3b"
             ]
         ]
+    },
+    {
+        "id": "f706757e6c338f82",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "cpu_use_pct",
+        "func": "msg.topic = \"cpu_use_pct\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 460,
+        "wires": [
+            [
+                "1a05a03c82a71a3b",
+                "53516185218f0489"
+            ]
+        ]
+    },
+    {
+        "id": "1a05a03c82a71a3b",
+        "type": "join",
+        "z": "f6f2187d.f17ca8",
+        "name": "redis record",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "10",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 970,
+        "y": 100,
+        "wires": [
+            [
+                "2bbc364080a27e0f"
+            ]
+        ]
+    },
+    {
+        "id": "2bbc364080a27e0f",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "vcache stats 1",
+        "key": "vcache_stats",
+        "structtype": "hash",
+        "x": 1200,
+        "y": 100,
+        "wires": []
     },
     {
         "id": "bc9d6c02c0ee9e5b",
@@ -1709,8 +1626,8 @@
         "seg2": "",
         "diff": false,
         "className": "def",
-        "x": 1250,
-        "y": 600,
+        "x": 1430,
+        "y": 620,
         "wires": []
     },
     {
@@ -1751,8 +1668,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1250,
-        "y": 640,
+        "x": 1430,
+        "y": 660,
         "wires": [
             []
         ]
@@ -1795,8 +1712,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1240,
-        "y": 800,
+        "x": 1420,
+        "y": 820,
         "wires": [
             []
         ]
@@ -1839,8 +1756,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1230,
-        "y": 560,
+        "x": 1410,
+        "y": 580,
         "wires": [
             []
         ]
@@ -1883,7 +1800,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1240,
+        "x": 1420,
         "y": 940,
         "wires": [
             []
@@ -1927,8 +1844,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1250,
-        "y": 1060,
+        "x": 1430,
+        "y": 1100,
         "wires": [
             []
         ]
@@ -1976,7 +1893,7 @@
         "payloadType": "json",
         "block": false,
         "x": 110,
-        "y": 360,
+        "y": 320,
         "wires": [
             [
                 "44093061527e3640"
@@ -1991,8 +1908,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 110,
-        "y": 520,
+        "x": 90,
+        "y": 420,
         "wires": [
             [
                 "0137aedab475ecc1",
@@ -2015,8 +1932,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 700,
+        "x": 300,
+        "y": 720,
         "wires": [
             [
                 "1bc74c9f10cebfee"
@@ -2035,8 +1952,8 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 610,
-        "y": 700,
+        "x": 550,
+        "y": 720,
         "wires": [
             [
                 "f4863fda3d63fe72",
@@ -2057,8 +1974,8 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 610,
-        "y": 780,
+        "x": 550,
+        "y": 800,
         "wires": [
             [
                 "f4863fda3d63fe72",
@@ -2087,7 +2004,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 790,
+        "x": 730,
         "y": 740,
         "wires": [
             [
@@ -2106,8 +2023,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 780,
+        "x": 310,
+        "y": 800,
         "wires": [
             [
                 "a13a9b5c91e0483a"
@@ -2119,19 +2036,19 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "request ratio",
-        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.node.warn(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0\nreturn msg;",
+        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.node.warn(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0;\nmsg.topic = \"req_eff_pct\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
+        "x": 930,
         "y": 640,
         "wires": [
             [
                 "bc9d6c02c0ee9e5b",
                 "68d7914dad783e4e",
-                "0e3739301581f80b"
+                "51074a98838504df"
             ]
         ]
     },
@@ -2146,8 +2063,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
-        "y": 560,
+        "x": 330,
+        "y": 600,
         "wires": [
             [
                 "a467894457f53a9b"
@@ -2165,7 +2082,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
+        "x": 320,
         "y": 480,
         "wires": [
             [
@@ -2185,7 +2102,7 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 610,
+        "x": 550,
         "y": 480,
         "wires": [
             [
@@ -2207,8 +2124,8 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 610,
-        "y": 560,
+        "x": 550,
+        "y": 600,
         "wires": [
             [
                 "a7cf3c4ccbc1a90c",
@@ -2241,8 +2158,8 @@
         "seg2": "",
         "diff": false,
         "className": "def",
-        "x": 1230,
-        "y": 360,
+        "x": 1410,
+        "y": 420,
         "wires": []
     },
     {
@@ -2283,8 +2200,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1230,
-        "y": 400,
+        "x": 1410,
+        "y": 380,
         "wires": [
             []
         ]
@@ -2309,8 +2226,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 790,
-        "y": 520,
+        "x": 730,
+        "y": 540,
         "wires": [
             [
                 "9384f57dd4248499",
@@ -2323,13 +2240,13 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "bw ratio",
-        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.warn(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0\nreturn msg;",
+        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.warn(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0;\nmsg.topic = \"cache_eff_pct\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 860,
+        "x": 920,
         "y": 400,
         "wires": [
             [
@@ -2350,8 +2267,8 @@
         "format": "{{msg.rate|number:2}} {{msg.units}}rps",
         "layout": "row-center",
         "className": "def",
-        "x": 1250,
-        "y": 1020,
+        "x": 1430,
+        "y": 1040,
         "wires": []
     },
     {
@@ -2367,7 +2284,7 @@
         "format": "{{msg.rate}} {{msg.units}}bps",
         "layout": "row-center",
         "className": "def",
-        "x": 1240,
+        "x": 1420,
         "y": 900,
         "wires": []
     },
@@ -2384,7 +2301,7 @@
         "format": "{{msg.payload}} {{msg.units}}bps",
         "layout": "col-center",
         "className": "huge",
-        "x": 1250,
+        "x": 1430,
         "y": 40,
         "wires": []
     },
@@ -2401,7 +2318,7 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "huge",
-        "x": 1230,
+        "x": 1410,
         "y": 160,
         "wires": []
     },
@@ -2418,7 +2335,7 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "huge",
-        "x": 1240,
+        "x": 1420,
         "y": 200,
         "wires": []
     },
@@ -2435,7 +2352,7 @@
         "format": "{{msg.rate}} {{msg.units}}bps",
         "layout": "row-center",
         "className": "def",
-        "x": 1230,
+        "x": 1410,
         "y": 120,
         "wires": []
     },
@@ -2450,7 +2367,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
+        "x": 290,
         "y": 180,
         "wires": [
             [
@@ -2469,7 +2386,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
+        "x": 540,
         "y": 140,
         "wires": [
             [
@@ -2488,7 +2405,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
+        "x": 720,
         "y": 40,
         "wires": [
             [
@@ -2536,102 +2453,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
+        "x": 280,
         "y": 80,
         "wires": [
             []
         ]
-    },
-    {
-        "id": "466c448c79a215b2",
-        "type": "redis out",
-        "z": "f6922bafc800b831",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "cache_eff_pct",
-        "structtype": "string",
-        "x": 1240,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "06a31339d5f724d2",
-        "type": "redis out",
-        "z": "f6922bafc800b831",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "client_bw",
-        "structtype": "string",
-        "x": 1230,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "0e3739301581f80b",
-        "type": "redis out",
-        "z": "f6922bafc800b831",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "req_eff_pct",
-        "structtype": "string",
-        "x": 1230,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "96b584c5dfe9a098",
-        "type": "redis out",
-        "z": "f6922bafc800b831",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "req_rate",
-        "structtype": "string",
-        "x": 1220,
-        "y": 720,
-        "wires": []
-    },
-    {
-        "id": "09945320ee91e730",
-        "type": "redis out",
-        "z": "f6922bafc800b831",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "upstream_bw",
-        "structtype": "string",
-        "x": 1240,
-        "y": 860,
-        "wires": []
-    },
-    {
-        "id": "60381a1b4dd44cd7",
-        "type": "redis out",
-        "z": "f6922bafc800b831",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "upstream_req_rate",
-        "structtype": "string",
-        "x": 1260,
-        "y": 980,
-        "wires": []
-    },
-    {
-        "id": "bc313ea793c547e3",
-        "type": "redis out",
-        "z": "f6922bafc800b831",
-        "hostname": "vcache_redis",
-        "port": 6379,
-        "name": "",
-        "key": "client_sess",
-        "structtype": "string",
-        "x": 1230,
-        "y": 320,
-        "wires": []
     },
     {
         "id": "7a3e3814da166b53",
@@ -2646,8 +2472,8 @@
         "format": "{{msg.rate}} {{msg.units}}bps",
         "layout": "row-center",
         "className": "def",
-        "x": 1240,
-        "y": 520,
+        "x": 1420,
+        "y": 540,
         "wires": []
     },
     {
@@ -2663,8 +2489,8 @@
         "format": "{{msg.rate | number:2}} {{msg.units}}rps",
         "layout": "row-center",
         "className": "def",
-        "x": 1250,
-        "y": 760,
+        "x": 1430,
+        "y": 780,
         "wires": []
     },
     {
@@ -2678,7 +2504,7 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar smsg = { \"ui_control\": { \"ymax\": 10}};\nvar rmsg = { \"ui_control\": { \"ymax\": null } };\n\nreturn [smsg,rmsg];",
         "finalize": "",
         "libs": [],
-        "x": 990,
+        "x": 930,
         "y": 1040,
         "wires": [
             [
@@ -2698,7 +2524,7 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar smsg = { payload: 0.1 };\nreturn smsg;",
         "finalize": "",
         "libs": [],
-        "x": 990,
+        "x": 930,
         "y": 920,
         "wires": [
             [
@@ -2718,7 +2544,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
+        "x": 930,
         "y": 780,
         "wires": [
             [
@@ -2738,8 +2564,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
-        "y": 540,
+        "x": 930,
+        "y": 520,
         "wires": [
             [
                 "7a3e3814da166b53",
@@ -2758,7 +2584,7 @@
         "round": "",
         "mult": "single",
         "reduce": false,
-        "x": 600,
+        "x": 540,
         "y": 100,
         "wires": [
             [
@@ -2778,7 +2604,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
+        "x": 930,
         "y": 100,
         "wires": [
             [
@@ -2798,7 +2624,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
+        "x": 930,
         "y": 40,
         "wires": [
             [
@@ -2811,17 +2637,17 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "bytes to bits",
-        "func": "msg.payload = msg.rate*8.0\nreturn msg;",
+        "func": "msg.payload = msg.rate*8.0;\nmsg.topic = \"client_bw\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
-        "y": 480,
+        "x": 930,
+        "y": 460,
         "wires": [
             [
-                "06a31339d5f724d2"
+                "51074a98838504df"
             ]
         ]
     },
@@ -2830,17 +2656,17 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "bytes to bits",
-        "func": "msg.payload = msg.rate*8.0\nreturn msg;",
+        "func": "msg.payload = msg.rate*8.0;\nmsg.topic = \"upstream_bw\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 990,
+        "x": 930,
         "y": 860,
         "wires": [
             [
-                "09945320ee91e730"
+                "51074a98838504df"
             ]
         ]
     },
@@ -2849,17 +2675,17 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "rate to payload",
-        "func": "msg.payload = msg.rate\nreturn msg;",
+        "func": "msg.payload = msg.rate;\nmsg.topic = \"req_rate\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1000,
+        "x": 940,
         "y": 720,
         "wires": [
             [
-                "96b584c5dfe9a098"
+                "51074a98838504df"
             ]
         ]
     },
@@ -2868,17 +2694,17 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "rate to payload",
-        "func": "msg.payload = msg.rate\nreturn msg;",
+        "func": "msg.payload = msg.rate;\nmsg.topic = \"upstream_req_rate\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1000,
+        "x": 940,
         "y": 980,
         "wires": [
             [
-                "60381a1b4dd44cd7"
+                "51074a98838504df"
             ]
         ]
     },
@@ -2898,7 +2724,7 @@
         "templateScope": "local",
         "className": "",
         "x": 100,
-        "y": 620,
+        "y": 500,
         "wires": [
             []
         ]
@@ -2908,20 +2734,20 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "active connections",
-        "func": "const rgx = /^Active connections: (\\d+).*/;\nconst match  = msg.payload.match(rgx);\nif (match != null) {\n    msg.payload = parseInt(match[1]);\n}\nreturn msg;",
+        "func": "const rgx = /^Active connections: (\\d+).*/;\nconst match  = msg.payload.match(rgx);\nif (match != null) {\n    msg.payload = parseInt(match[1]);\n}\nmsg.topic = \"client_sess\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
+        "x": 310,
         "y": 260,
         "wires": [
             [
                 "d749ec938e7e1a74",
-                "bc313ea793c547e3",
                 "128bc4259bf38155",
-                "65c9eebbe3b613f2"
+                "65c9eebbe3b613f2",
+                "51074a98838504df"
             ]
         ]
     },
@@ -2936,7 +2762,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1010,
+        "x": 950,
         "y": 200,
         "wires": [
             [
@@ -2987,7 +2813,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 650,
+        "x": 590,
         "y": 360,
         "wires": [
             []
@@ -3004,7 +2830,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
+        "x": 300,
         "y": 360,
         "wires": [
             [
@@ -3025,7 +2851,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "def",
-        "x": 1220,
+        "x": 1400,
         "y": 280,
         "wires": []
     },
@@ -3067,7 +2893,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "def",
-        "x": 1240,
+        "x": 1420,
         "y": 240,
         "wires": [
             []
@@ -3111,7 +2937,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "def",
-        "x": 1250,
+        "x": 1430,
         "y": 80,
         "wires": [
             []
@@ -3139,7 +2965,7 @@
         "topic": "",
         "payload": "1",
         "payloadType": "num",
-        "x": 1000,
+        "x": 940,
         "y": 1100,
         "wires": [
             [
@@ -3191,7 +3017,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
+        "x": 300,
         "y": 40,
         "wires": [
             []
@@ -3208,15 +3034,56 @@
         "round": "2",
         "mult": "single",
         "reduce": false,
-        "x": 1000,
+        "x": 1120,
         "y": 400,
         "wires": [
             [
                 "3f16dfa000e09c98",
                 "57b723ae0cdb1fd5",
-                "466c448c79a215b2"
+                "51074a98838504df"
             ]
         ]
+    },
+    {
+        "id": "51074a98838504df",
+        "type": "join",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "7",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1370,
+        "y": 720,
+        "wires": [
+            [
+                "0b6e47d24cd4f453"
+            ]
+        ]
+    },
+    {
+        "id": "0b6e47d24cd4f453",
+        "type": "redis out",
+        "z": "f6922bafc800b831",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "vcache stats 2",
+        "key": "vcache_stats",
+        "structtype": "hash",
+        "x": 1540,
+        "y": 720,
+        "wires": []
     },
     {
         "id": "b8eb1678b935b37c",
@@ -3236,8 +3103,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 490,
-        "y": 500,
+        "x": 370,
+        "y": 340,
         "wires": [
             []
         ]
@@ -3271,8 +3138,8 @@
         "topicType": "msg",
         "splitLayout": "",
         "className": "",
-        "x": 480,
-        "y": 580,
+        "x": 360,
+        "y": 400,
         "wires": [
             []
         ]
@@ -3288,11 +3155,12 @@
         "name": "",
         "field": "payload",
         "fieldType": "msg",
-        "x": 590,
-        "y": 40,
+        "x": 550,
+        "y": 80,
         "wires": [
             [
-                "51ab9183e6c445ee"
+                "51ab9183e6c445ee",
+                "03470a367efdaf2e"
             ]
         ]
     },
@@ -3317,7 +3185,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 90,
+        "x": 110,
         "y": 40,
         "wires": [
             [
@@ -3341,8 +3209,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "utf8",
-        "x": 940,
-        "y": 40,
+        "x": 840,
+        "y": 80,
         "wires": [
             []
         ]
@@ -3359,10 +3227,12 @@
         "read": true,
         "write": true,
         "throwerror": false,
-        "x": 350,
-        "y": 40,
+        "x": 370,
+        "y": 60,
         "wires": [
-            [],
+            [
+                "ac931b189bcafeb4"
+            ],
             [
                 "f773b77e37a40bb6"
             ]
@@ -3380,15 +3250,11 @@
         "redo": true,
         "op": "string",
         "closer": "SIGTERM",
-        "x": 610,
-        "y": 140,
+        "x": 570,
+        "y": 200,
         "wires": [
-            [
-                "591d92d25ca5865f"
-            ],
-            [
-                "591d92d25ca5865f"
-            ],
+            [],
+            [],
             []
         ]
     },
@@ -3404,15 +3270,11 @@
         "winHide": false,
         "oldrc": false,
         "name": "minion cfg",
-        "x": 350,
-        "y": 140,
+        "x": 370,
+        "y": 200,
         "wires": [
-            [
-                "591d92d25ca5865f"
-            ],
-            [
-                "591d92d25ca5865f"
-            ],
+            [],
+            [],
             [
                 "65959117413fb8af"
             ]
@@ -3430,18 +3292,12 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 430,
-        "y": 240,
+        "x": 390,
+        "y": 260,
         "wires": [
-            [
-                "548629a15b4bb716"
-            ],
-            [
-                "548629a15b4bb716"
-            ],
-            [
-                "548629a15b4bb716"
-            ]
+            [],
+            [],
+            []
         ]
     },
     {
@@ -3456,16 +3312,13 @@
         "read": true,
         "write": false,
         "throwerror": false,
-        "x": 360,
-        "y": 80,
+        "x": 380,
+        "y": 120,
         "wires": [
             [
-                "28e546a9e90ffb1f",
-                "591d92d25ca5865f"
+                "28e546a9e90ffb1f"
             ],
-            [
-                "591d92d25ca5865f"
-            ]
+            []
         ]
     },
     {
@@ -3479,27 +3332,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 80,
+        "x": 830,
+        "y": 120,
         "wires": [
             []
         ]
-    },
-    {
-        "id": "548629a15b4bb716",
-        "type": "debug",
-        "z": "6e1fffded33ce50f",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 880,
-        "y": 320,
-        "wires": []
     },
     {
         "id": "28e546a9e90ffb1f",
@@ -3513,8 +3350,8 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 620,
-        "y": 80,
+        "x": 580,
+        "y": 120,
         "wires": [
             [
                 "05bef2ebd6355241"
@@ -3530,8 +3367,8 @@
         "pathType": "str",
         "filename": "minion_master.pub",
         "filenameType": "str",
-        "x": 450,
-        "y": 340,
+        "x": 390,
+        "y": 760,
         "wires": [
             []
         ]
@@ -3557,8 +3394,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 80,
-        "y": 340,
+        "x": 140,
+        "y": 760,
         "wires": [
             [
                 "e1251d2b16dd4e69"
@@ -3566,19 +3403,55 @@
         ]
     },
     {
-        "id": "591d92d25ca5865f",
-        "type": "debug",
+        "id": "03470a367efdaf2e",
+        "type": "function",
         "z": "6e1fffded33ce50f",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1220,
-        "y": 240,
+        "name": "UUID (object)",
+        "func": "msg.payload = { \"uuid\": msg.payload.replace(/\\n+$/, '')};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 40,
+        "wires": [
+            [
+                "c5ba86245edf6da7"
+            ]
+        ]
+    },
+    {
+        "id": "ac931b189bcafeb4",
+        "type": "file in",
+        "z": "6e1fffded33ce50f",
+        "name": "vcache uuid",
+        "filename": "/var/run/vcache.uuid",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 570,
+        "y": 40,
+        "wires": [
+            [
+                "03470a367efdaf2e"
+            ]
+        ]
+    },
+    {
+        "id": "c5ba86245edf6da7",
+        "type": "redis out",
+        "z": "6e1fffded33ce50f",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "UUID (out)",
+        "key": "vcache_stats",
+        "structtype": "hash",
+        "x": 1150,
+        "y": 40,
         "wires": []
     }
 ]

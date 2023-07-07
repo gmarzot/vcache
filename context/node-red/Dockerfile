@@ -29,6 +29,7 @@ RUN apk add bash
 RUN apk add perl 
 RUN apk add gettext
 RUN apk add salt-minion 
+RUN echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf
 
 COPY ./node-red/etc/salt/minion.tmpl /etc/salt/minion.tmpl
 COPY ./node-red/custom-entrypoint.sh /usr/src/node-red/custom-entrypoint.sh

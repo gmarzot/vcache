@@ -1,4 +1,4 @@
-FROM nodered/node-red:latest
+FROM nodered/node-red:latest-18
 RUN npm install node-red-contrib-os
 RUN npm install node-red-contrib-fs-ops
 RUN npm install node-red-contrib-cpu
@@ -28,10 +28,16 @@ USER root
 RUN apk add bash 
 RUN apk add perl 
 RUN apk add gettext
+
 RUN apk add salt-minion 
+COPY ./node-red/etc/salt/minion.tmpl /etc/salt/minion.tmpl
+COPY ./node-red/etc/salt/beacons.conf /etc/salt/minion.d/beacons.conf
+
+apk add py3-pip py3-numpy py3-pandas py3-scikit-learn
+RUN pip install redis
+
 RUN echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf
 
-COPY ./node-red/etc/salt/minion.tmpl /etc/salt/minion.tmpl
 COPY ./node-red/custom-entrypoint.sh /usr/src/node-red/custom-entrypoint.sh
 
 ENTRYPOINT ["/usr/src/node-red/custom-entrypoint.sh"]

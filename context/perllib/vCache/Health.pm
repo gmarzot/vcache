@@ -1,5 +1,5 @@
 package vCache::Health;
-
+use Socket;
 use nginx;
 use Redis;
 my $redis;
@@ -29,7 +29,15 @@ sub handler {
 
     if (%cache_health) {
 		$cache_health{'status'} = 'up';
-
+		my $host = $cache_health{"hostname"};
+		# XXX this does not add any useful ip info
+		if (0 and defined($host) and length($host)) {
+			my $ipv4_addr = gethostbyname($host);
+			if (defined($ipv4_addr) and length($ipv4_addr)) {
+				$ipv4_addr = inet_ntoa($ipv4_addr);
+			}
+			$cache_health{"ipv4_addr"} = $ipv4_addr;
+		}
 		my $health = $json->encode(\%cache_health);
 		$r->print($health);
 

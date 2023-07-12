@@ -843,8 +843,8 @@
         "type": "Drives",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 330,
-        "y": 840,
+        "x": 270,
+        "y": 680,
         "wires": [
             [
                 "f29cd079ba2bd3e7",
@@ -859,8 +859,8 @@
         "z": "f6f2187d.f17ca8",
         "name": "Memory",
         "scale": "Byte",
-        "x": 320,
-        "y": 680,
+        "x": 260,
+        "y": 500,
         "wires": [
             [
                 "18c68b74898c536f",
@@ -892,7 +892,7 @@
         "payload": "5",
         "payloadType": "num",
         "x": 90,
-        "y": 60,
+        "y": 40,
         "wires": [
             [
                 "f09f387bfc7e4550",
@@ -917,8 +917,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
-        "y": 260,
+        "x": 560,
+        "y": 120,
         "wires": [
             [
                 "4f6abcf.71f1a44",
@@ -939,8 +939,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 960,
-        "y": 260,
+        "x": 900,
+        "y": 120,
         "wires": []
     },
     {
@@ -952,8 +952,8 @@
         "msgOverall": true,
         "msgArray": false,
         "msgTemp": false,
-        "x": 330,
-        "y": 480,
+        "x": 270,
+        "y": 320,
         "wires": [
             [
                 "7ddb76afd18f4087",
@@ -999,8 +999,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 970,
-        "y": 500,
+        "x": 910,
+        "y": 340,
         "wires": [
             []
         ]
@@ -1029,8 +1029,8 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 950,
-        "y": 680,
+        "x": 890,
+        "y": 520,
         "wires": []
     },
     {
@@ -1050,8 +1050,8 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 960,
-        "y": 320,
+        "x": 900,
+        "y": 160,
         "wires": []
     },
     {
@@ -1067,8 +1067,8 @@
         "format": "<font size=3>{{msg.value}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 960,
-        "y": 640,
+        "x": 900,
+        "y": 480,
         "wires": []
     },
     {
@@ -1082,8 +1082,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 630,
-        "y": 660,
+        "x": 570,
+        "y": 480,
         "wires": [
             [
                 "f4aa44582aec2ee6",
@@ -1102,8 +1102,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 800,
+        "x": 540,
+        "y": 640,
         "wires": [
             [
                 "b833a78279a06e8c",
@@ -1135,8 +1135,8 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 950,
-        "y": 800,
+        "x": 890,
+        "y": 640,
         "wires": []
     },
     {
@@ -1150,8 +1150,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
-        "y": 700,
+        "x": 560,
+        "y": 560,
         "wires": [
             [
                 "3fe4b364fdaec2bb",
@@ -1172,8 +1172,8 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 950,
-        "y": 720,
+        "x": 890,
+        "y": 560,
         "wires": []
     },
     {
@@ -1189,8 +1189,8 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "def",
-        "x": 950,
-        "y": 540,
+        "x": 890,
+        "y": 380,
         "wires": []
     },
     {
@@ -1204,8 +1204,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 540,
+        "x": 540,
+        "y": 380,
         "wires": [
             [
                 "2bd8b9bfd2a1d534",
@@ -1218,8 +1218,8 @@
         "type": "Loadavg",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 320,
-        "y": 540,
+        "x": 260,
+        "y": 380,
         "wires": [
             [
                 "39b8930ee2a9adf4"
@@ -1250,8 +1250,8 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 960,
-        "y": 460,
+        "x": 900,
+        "y": 300,
         "wires": []
     },
     {
@@ -1259,8 +1259,8 @@
         "type": "CPUs",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 310,
-        "y": 420,
+        "x": 250,
+        "y": 260,
         "wires": [
             [
                 "1faa30a4e47251a1",
@@ -1273,17 +1273,18 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "CPU model",
-        "func": "msg.payload = msg.payload.cpus[0].model.replace(/^Intel[^ ]*\\s+[^ ]* /i,\"\");\nreturn msg;",
+        "func": "msg.payload = msg.payload.cpus[0].model.replace(/^Intel[^ ]*\\s+[^ ]* /i,\"\");\nmsg.topic = \"cpu_model\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
-        "y": 380,
+        "x": 530,
+        "y": 220,
         "wires": [
             [
-                "51ccb23cb43f7af2"
+                "51ccb23cb43f7af2",
+                "1a05a03c82a71a3b"
             ]
         ]
     },
@@ -1292,17 +1293,18 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "cores",
-        "func": "msg.payload = msg.payload.cpus.length;\nreturn msg;",
+        "func": "msg.payload = msg.payload.cpus.length;\nmsg.topic = \"cpu_cores\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
-        "y": 420,
+        "x": 510,
+        "y": 260,
         "wires": [
             [
-                "68105b12b908d0f4"
+                "68105b12b908d0f4",
+                "1a05a03c82a71a3b"
             ]
         ]
     },
@@ -1319,8 +1321,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 950,
-        "y": 380,
+        "x": 890,
+        "y": 220,
         "wires": []
     },
     {
@@ -1336,8 +1338,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 950,
-        "y": 420,
+        "x": 890,
+        "y": 260,
         "wires": []
     },
     {
@@ -1353,8 +1355,8 @@
         "format": "<font size=3>{{msg.value}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 950,
-        "y": 880,
+        "x": 890,
+        "y": 720,
         "wires": []
     },
     {
@@ -1370,8 +1372,8 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 950,
-        "y": 840,
+        "x": 890,
+        "y": 680,
         "wires": []
     },
     {
@@ -1385,8 +1387,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 840,
+        "x": 540,
+        "y": 680,
         "wires": [
             [
                 "11b451e51ccf5739",
@@ -1405,8 +1407,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 880,
+        "x": 520,
+        "y": 720,
         "wires": [
             [
                 "d6fd568602fabf48",
@@ -1427,8 +1429,8 @@
         "format": "<font size=3>{{msg.payload.hostname}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 950,
-        "y": 200,
+        "x": 890,
+        "y": 80,
         "wires": []
     },
     {
@@ -1436,12 +1438,13 @@
         "type": "OS",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 310,
-        "y": 200,
+        "x": 250,
+        "y": 80,
         "wires": [
             [
                 "cc60b6c3e5fb14d9",
-                "d23168e787472af1"
+                "d23168e787472af1",
+                "0edbf89210b31ea3"
             ]
         ]
     },
@@ -1456,8 +1459,8 @@
         "round": "",
         "mult": "single",
         "reduce": false,
-        "x": 580,
-        "y": 500,
+        "x": 520,
+        "y": 340,
         "wires": [
             [
                 "c0a13984a398e6d7"
@@ -1475,8 +1478,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 260,
+        "x": 300,
+        "y": 120,
         "wires": [
             [
                 "50f9790b.49c718"
@@ -1494,8 +1497,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 120,
+        "x": 540,
+        "y": 80,
         "wires": [
             [
                 "1a05a03c82a71a3b"
@@ -1513,8 +1516,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
-        "y": 620,
+        "x": 530,
+        "y": 520,
         "wires": [
             [
                 "1a05a03c82a71a3b"
@@ -1532,8 +1535,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 320,
+        "x": 280,
+        "y": 160,
         "wires": [
             [
                 "fbc058e4a2725b9d",
@@ -1552,8 +1555,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
-        "y": 460,
+        "x": 530,
+        "y": 300,
         "wires": [
             [
                 "1a05a03c82a71a3b",
@@ -1575,14 +1578,14 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "10",
+        "count": "13",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 970,
-        "y": 100,
+        "x": 910,
+        "y": 760,
         "wires": [
             [
                 "2bbc364080a27e0f"
@@ -1598,9 +1601,28 @@
         "name": "vcache stats 1",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 1200,
-        "y": 100,
+        "x": 1120,
+        "y": 760,
         "wires": []
+    },
+    {
+        "id": "0edbf89210b31ea3",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "cpu arch",
+        "func": "msg.payload = msg.payload.arch;\nmsg.topic = \"cpu_arch\";\nreturn msg;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 40,
+        "wires": [
+            [
+                "1a05a03c82a71a3b"
+            ]
+        ]
     },
     {
         "id": "bc9d6c02c0ee9e5b",
@@ -1757,7 +1779,7 @@
         "useDifferentColor": false,
         "className": "",
         "x": 1410,
-        "y": 580,
+        "y": 480,
         "wires": [
             []
         ]
@@ -2043,7 +2065,7 @@
         "finalize": "",
         "libs": [],
         "x": 930,
-        "y": 640,
+        "y": 660,
         "wires": [
             [
                 "bc9d6c02c0ee9e5b",
@@ -2159,7 +2181,7 @@
         "diff": false,
         "className": "def",
         "x": 1410,
-        "y": 420,
+        "y": 580,
         "wires": []
     },
     {
@@ -2201,7 +2223,7 @@
         "useDifferentColor": false,
         "className": "",
         "x": 1410,
-        "y": 380,
+        "y": 540,
         "wires": [
             []
         ]
@@ -2247,7 +2269,7 @@
         "finalize": "",
         "libs": [],
         "x": 920,
-        "y": 400,
+        "y": 580,
         "wires": [
             [
                 "7b1c8c23774128a5"
@@ -2315,9 +2337,13 @@
         "height": 2,
         "name": "",
         "label": "Data Saved [total]",
-        "format": "{{msg.payload}}",
+        "format": "{{msg.value}}",
         "layout": "col-center",
         "className": "huge",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
         "x": 1410,
         "y": 160,
         "wires": []
@@ -2361,7 +2387,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "bytes saved",
-        "func": "function obj_key(obj, key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key) ? obj[key].value : 0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nfunction formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nvar client_bytes = obj_key(msg.payload.counters,\"MAIN.s_resp_hdrbytes\") + obj_key(msg.payload.counters,\"MAIN.s_resp_bodybytes\");\nlet sum = 0\nfor (let key in msg.payload.counters) {\n    if (key.endsWith(\".beresp_hdrbytes\") || key.endsWith(\".beresp_bodybytes\")) {\n        sum += msg.payload.counters[key].value;\n    }\n}\nvar upstream_bytes = sum;\nvar bytes_saved = client_bytes - upstream_bytes;\nif (isNaN(bytes_saved)) { bytes_saved = 0 }\nif (bytes_saved < 0) bytes_saved = 0;\nmsg.payload = formatBytes(client_bytes - upstream_bytes)\nreturn msg;",
+        "func": "function obj_key(obj, key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key) ? obj[key].value : 0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nfunction formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nvar client_bytes = obj_key(msg.payload.counters,\"MAIN.s_resp_hdrbytes\") + obj_key(msg.payload.counters,\"MAIN.s_resp_bodybytes\");\nlet sum = 0\nfor (let key in msg.payload.counters) {\n    if (key.endsWith(\".beresp_hdrbytes\") || key.endsWith(\".beresp_bodybytes\")) {\n        sum += msg.payload.counters[key].value;\n    }\n}\nvar upstream_bytes = sum;\nvar bytes_saved = client_bytes - upstream_bytes;\nif (isNaN(bytes_saved)) { bytes_saved = 0 }\nif (bytes_saved < 0) { bytes_saved = 0; }\nmsg.payload = client_bytes - upstream_bytes;\nmsg.value = formatBytes(msg.payload);\nmsg.topic = \"data_saved\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2371,7 +2397,8 @@
         "y": 180,
         "wires": [
             [
-                "8db13e162d627307"
+                "8db13e162d627307",
+                "51074a98838504df"
             ]
         ]
     },
@@ -2387,7 +2414,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 140,
+        "y": 100,
         "wires": [
             [
                 "91606ba0b02d7177"
@@ -2473,7 +2500,7 @@
         "layout": "row-center",
         "className": "def",
         "x": 1420,
-        "y": 540,
+        "y": 440,
         "wires": []
     },
     {
@@ -2565,7 +2592,7 @@
         "finalize": "",
         "libs": [],
         "x": 930,
-        "y": 520,
+        "y": 460,
         "wires": [
             [
                 "7a3e3814da166b53",
@@ -2584,7 +2611,7 @@
         "round": "",
         "mult": "single",
         "reduce": false,
-        "x": 540,
+        "x": 700,
         "y": 100,
         "wires": [
             [
@@ -2644,7 +2671,7 @@
         "finalize": "",
         "libs": [],
         "x": 930,
-        "y": 460,
+        "y": 500,
         "wires": [
             [
                 "51074a98838504df"
@@ -2756,7 +2783,7 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "connections max",
-        "func": "if (flow.get(\"max_users\") == null || flow.get(\"max_users\") == '') {\n    flow.set(\"max_users\", 0)\n}\nif (msg.payload > flow.get(\"max_users\")) {\n    flow.set(\"max_users\", msg.payload)\n}\n\nmsg.payload = flow.get(\"max_users\")\nreturn msg;",
+        "func": "if (flow.get(\"max_users\") == null || flow.get(\"max_users\") == '') {\n    flow.set(\"max_users\", 0)\n}\nif (msg.payload > flow.get(\"max_users\")) {\n    flow.set(\"max_users\", msg.payload)\n}\n\nmsg.payload = flow.get(\"max_users\");\nmsg.topic = \"client_sess_max\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2766,7 +2793,8 @@
         "y": 200,
         "wires": [
             [
-                "a709f09e2be9e276"
+                "a709f09e2be9e276",
+                "51074a98838504df"
             ]
         ]
     },
@@ -3034,8 +3062,8 @@
         "round": "2",
         "mult": "single",
         "reduce": false,
-        "x": 1120,
-        "y": 400,
+        "x": 1080,
+        "y": 580,
         "wires": [
             [
                 "3f16dfa000e09c98",
@@ -3058,7 +3086,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "7",
+        "count": "9",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -3253,8 +3281,12 @@
         "x": 570,
         "y": 200,
         "wires": [
-            [],
-            [],
+            [
+                "70c5500922c61334"
+            ],
+            [
+                "70c5500922c61334"
+            ],
             []
         ]
     },
@@ -3450,8 +3482,24 @@
         "name": "UUID (out)",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 1150,
+        "x": 1110,
         "y": 40,
+        "wires": []
+    },
+    {
+        "id": "70c5500922c61334",
+        "type": "debug",
+        "z": "6e1fffded33ce50f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 180,
         "wires": []
     }
 ]

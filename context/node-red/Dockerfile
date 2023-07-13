@@ -33,7 +33,7 @@ RUN apk add salt-minion
 COPY ./node-red/etc/salt/minion.tmpl /etc/salt/minion.tmpl
 COPY ./node-red/etc/salt/beacons.conf /etc/salt/minion.d/beacons.conf
 
-apk add py3-pip py3-numpy py3-pandas py3-scikit-learn
+RUN apk add py3-pip py3-numpy py3-pandas py3-scikit-learn
 RUN pip install redis
 
 RUN echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf

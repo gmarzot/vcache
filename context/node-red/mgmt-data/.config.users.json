@@ -55,6 +55,8 @@
             "tours": {
                 "welcome": "3.0.2"
             }
-        }
+        },
+        "menu-menu-item-palette": false,
+        "menu-menu-item-sidebar": false
     }
 }

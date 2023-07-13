@@ -804,38 +804,48 @@
         "tab": "94c965dfa02ebec9",
         "order": 1,
         "disp": true,
-        "width": 24,
+        "width": 19,
         "collapse": false,
         "className": ""
     },
     {
-        "id": "02280ae61db2a0bc",
+        "id": "5c95a53875284713",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "dbd9e59b77f954c2",
         "type": "ui_spacer",
         "z": "6e1fffded33ce50f",
         "name": "spacer",
         "group": "27ef1ca5c2551459",
         "order": 3,
-        "width": 14,
+        "width": 2,
         "height": 1
     },
     {
-        "id": "b876c109d145d3b5",
-        "type": "ui_spacer",
-        "z": "6e1fffded33ce50f",
-        "name": "spacer",
-        "group": "27ef1ca5c2551459",
-        "order": 4,
-        "width": 14,
-        "height": 1
-    },
-    {
-        "id": "ae233343c32f66fe",
+        "id": "c74e290fc0f7aeb1",
         "type": "ui_spacer",
         "z": "6e1fffded33ce50f",
         "name": "spacer",
         "group": "27ef1ca5c2551459",
         "order": 5,
-        "width": 24,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "990598c558835127",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 7,
+        "width": 3,
         "height": 1
     },
     {
@@ -844,7 +854,7 @@
         "z": "f6f2187d.f17ca8",
         "name": "",
         "x": 270,
-        "y": 680,
+        "y": 640,
         "wires": [
             [
                 "f29cd079ba2bd3e7",
@@ -859,7 +869,7 @@
         "z": "f6f2187d.f17ca8",
         "name": "Memory",
         "scale": "Byte",
-        "x": 260,
+        "x": 280,
         "y": 500,
         "wires": [
             [
@@ -917,8 +927,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
-        "y": 120,
+        "x": 580,
+        "y": 160,
         "wires": [
             [
                 "4f6abcf.71f1a44",
@@ -939,8 +949,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 900,
-        "y": 120,
+        "x": 920,
+        "y": 160,
         "wires": []
     },
     {
@@ -952,8 +962,8 @@
         "msgOverall": true,
         "msgArray": false,
         "msgTemp": false,
-        "x": 270,
-        "y": 320,
+        "x": 290,
+        "y": 340,
         "wires": [
             [
                 "7ddb76afd18f4087",
@@ -999,8 +1009,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 910,
-        "y": 340,
+        "x": 930,
+        "y": 360,
         "wires": [
             []
         ]
@@ -1029,8 +1039,8 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 890,
-        "y": 520,
+        "x": 910,
+        "y": 500,
         "wires": []
     },
     {
@@ -1050,8 +1060,8 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 900,
-        "y": 160,
+        "x": 920,
+        "y": 200,
         "wires": []
     },
     {
@@ -1067,8 +1077,8 @@
         "format": "<font size=3>{{msg.value}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 900,
-        "y": 480,
+        "x": 920,
+        "y": 460,
         "wires": []
     },
     {
@@ -1082,8 +1092,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 570,
-        "y": 480,
+        "x": 590,
+        "y": 460,
         "wires": [
             [
                 "f4aa44582aec2ee6",
@@ -1096,14 +1106,14 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "disk use percent",
-        "func": "msg.payload = msg.payload[0].capacity * 100.0;\nmsg.topic = \"disk_use_pct\";\nreturn msg;",
+        "func": "msg.payload = msg.payload[0].capacity * 100.0;\nmsg.payload = msg.payload.toFixed(2);\nmsg.topic = \"disk_use_pct\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 640,
+        "x": 560,
+        "y": 600,
         "wires": [
             [
                 "b833a78279a06e8c",
@@ -1135,8 +1145,8 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 890,
-        "y": 640,
+        "x": 910,
+        "y": 600,
         "wires": []
     },
     {
@@ -1150,8 +1160,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
-        "y": 560,
+        "x": 580,
+        "y": 540,
         "wires": [
             [
                 "3fe4b364fdaec2bb",
@@ -1172,8 +1182,8 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 890,
-        "y": 560,
+        "x": 910,
+        "y": 540,
         "wires": []
     },
     {
@@ -1189,8 +1199,8 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "def",
-        "x": 890,
-        "y": 380,
+        "x": 910,
+        "y": 400,
         "wires": []
     },
     {
@@ -1204,8 +1214,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 380,
+        "x": 560,
+        "y": 400,
         "wires": [
             [
                 "2bd8b9bfd2a1d534",
@@ -1218,8 +1228,8 @@
         "type": "Loadavg",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 260,
-        "y": 380,
+        "x": 280,
+        "y": 400,
         "wires": [
             [
                 "39b8930ee2a9adf4"
@@ -1250,8 +1260,8 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 900,
-        "y": 300,
+        "x": 920,
+        "y": 320,
         "wires": []
     },
     {
@@ -1259,7 +1269,7 @@
         "type": "CPUs",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 250,
+        "x": 270,
         "y": 260,
         "wires": [
             [
@@ -1279,8 +1289,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
-        "y": 220,
+        "x": 550,
+        "y": 240,
         "wires": [
             [
                 "51ccb23cb43f7af2",
@@ -1299,8 +1309,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 510,
-        "y": 260,
+        "x": 530,
+        "y": 280,
         "wires": [
             [
                 "68105b12b908d0f4",
@@ -1321,8 +1331,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 890,
-        "y": 220,
+        "x": 910,
+        "y": 240,
         "wires": []
     },
     {
@@ -1338,8 +1348,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 890,
-        "y": 260,
+        "x": 910,
+        "y": 280,
         "wires": []
     },
     {
@@ -1355,8 +1365,8 @@
         "format": "<font size=3>{{msg.value}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 890,
-        "y": 720,
+        "x": 910,
+        "y": 680,
         "wires": []
     },
     {
@@ -1372,8 +1382,8 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 890,
-        "y": 680,
+        "x": 910,
+        "y": 640,
         "wires": []
     },
     {
@@ -1387,8 +1397,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 680,
+        "x": 560,
+        "y": 640,
         "wires": [
             [
                 "11b451e51ccf5739",
@@ -1407,8 +1417,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 720,
+        "x": 540,
+        "y": 680,
         "wires": [
             [
                 "d6fd568602fabf48",
@@ -1429,8 +1439,8 @@
         "format": "<font size=3>{{msg.payload.hostname}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 890,
-        "y": 80,
+        "x": 910,
+        "y": 100,
         "wires": []
     },
     {
@@ -1438,8 +1448,8 @@
         "type": "OS",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 250,
-        "y": 80,
+        "x": 270,
+        "y": 100,
         "wires": [
             [
                 "cc60b6c3e5fb14d9",
@@ -1459,8 +1469,8 @@
         "round": "",
         "mult": "single",
         "reduce": false,
-        "x": 520,
-        "y": 340,
+        "x": 540,
+        "y": 360,
         "wires": [
             [
                 "c0a13984a398e6d7"
@@ -1471,15 +1481,15 @@
         "id": "0e93632552682542",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "varnish uptime (global)",
+        "name": "varnish uptime",
         "func": "msg.payload = global.get(\"varnish_uptime\")\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
-        "y": 120,
+        "x": 360,
+        "y": 160,
         "wires": [
             [
                 "50f9790b.49c718"
@@ -1497,8 +1507,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 80,
+        "x": 560,
+        "y": 120,
         "wires": [
             [
                 "1a05a03c82a71a3b"
@@ -1516,8 +1526,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
-        "y": 520,
+        "x": 550,
+        "y": 500,
         "wires": [
             [
                 "1a05a03c82a71a3b"
@@ -1529,14 +1539,14 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "vcache version",
-        "func": "msg.payload = global.get(\"version\") ||env.get(\"VCACHE_VERSION\") || '0.0.0';\nmsg.topic =\"version\";\nreturn msg;",
+        "func": "msg.payload = global.get(\"version\") || env.get(\"VCACHE_VERSION\") || '0.0.0';\nmsg.topic =\"version\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 280,
-        "y": 160,
+        "x": 360,
+        "y": 200,
         "wires": [
             [
                 "fbc058e4a2725b9d",
@@ -1555,8 +1565,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
-        "y": 300,
+        "x": 550,
+        "y": 320,
         "wires": [
             [
                 "1a05a03c82a71a3b",
@@ -1584,8 +1594,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 910,
-        "y": 760,
+        "x": 930,
+        "y": 60,
         "wires": [
             [
                 "2bbc364080a27e0f"
@@ -1601,8 +1611,8 @@
         "name": "vcache stats 1",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 1120,
-        "y": 760,
+        "x": 1100,
+        "y": 60,
         "wires": []
     },
     {
@@ -1616,8 +1626,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 40,
+        "x": 540,
+        "y": 80,
         "wires": [
             [
                 "1a05a03c82a71a3b"
@@ -1648,8 +1658,8 @@
         "seg2": "",
         "diff": false,
         "className": "def",
-        "x": 1430,
-        "y": 620,
+        "x": 1330,
+        "y": 560,
         "wires": []
     },
     {
@@ -1690,8 +1700,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1430,
-        "y": 660,
+        "x": 1330,
+        "y": 600,
         "wires": [
             []
         ]
@@ -1734,8 +1744,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1420,
-        "y": 820,
+        "x": 1320,
+        "y": 760,
         "wires": [
             []
         ]
@@ -1778,8 +1788,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1410,
-        "y": 480,
+        "x": 1310,
+        "y": 420,
         "wires": [
             []
         ]
@@ -1822,8 +1832,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1420,
-        "y": 940,
+        "x": 1320,
+        "y": 860,
         "wires": [
             []
         ]
@@ -1866,8 +1876,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1430,
-        "y": 1100,
+        "x": 1330,
+        "y": 940,
         "wires": [
             []
         ]
@@ -1931,7 +1941,7 @@
         "action": "",
         "pretty": false,
         "x": 90,
-        "y": 420,
+        "y": 380,
         "wires": [
             [
                 "0137aedab475ecc1",
@@ -1955,7 +1965,7 @@
         "finalize": "",
         "libs": [],
         "x": 300,
-        "y": 720,
+        "y": 660,
         "wires": [
             [
                 "1bc74c9f10cebfee"
@@ -1974,8 +1984,8 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 550,
-        "y": 720,
+        "x": 530,
+        "y": 660,
         "wires": [
             [
                 "f4863fda3d63fe72",
@@ -1996,8 +2006,8 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 550,
-        "y": 800,
+        "x": 530,
+        "y": 740,
         "wires": [
             [
                 "f4863fda3d63fe72",
@@ -2026,8 +2036,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 730,
-        "y": 740,
+        "x": 710,
+        "y": 700,
         "wires": [
             [
                 "c6f6534391589bf9"
@@ -2046,7 +2056,7 @@
         "finalize": "",
         "libs": [],
         "x": 310,
-        "y": 800,
+        "y": 740,
         "wires": [
             [
                 "a13a9b5c91e0483a"
@@ -2064,8 +2074,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 660,
+        "x": 910,
+        "y": 600,
         "wires": [
             [
                 "bc9d6c02c0ee9e5b",
@@ -2078,15 +2088,15 @@
         "id": "558d68fe90fce500",
         "type": "function",
         "z": "f6922bafc800b831",
-        "name": "upstream response bytes",
+        "name": "upstream resp bytes",
         "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nlet sum = 0\nfor (let key in msg.payload.counters) {\n    if (key.endsWith(\".beresp_hdrbytes\") || key.endsWith(\".beresp_bodybytes\")) {\n        sum += msg.payload.counters[key].value;\n    }\n}\nmsg.payload = sum;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 600,
+        "x": 320,
+        "y": 540,
         "wires": [
             [
                 "a467894457f53a9b"
@@ -2097,15 +2107,15 @@
         "id": "265bd5332a79b309",
         "type": "function",
         "z": "f6922bafc800b831",
-        "name": "client response bytes",
+        "name": "client resp bytes",
         "func": "function obj_key(obj, key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key) ? obj[key].value : 0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nvar date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = obj_key(msg.payload.counters,\"MAIN.s_resp_hdrbytes\") + obj_key(msg.payload.counters,\"MAIN.s_resp_bodybytes\")\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
-        "y": 480,
+        "x": 300,
+        "y": 420,
         "wires": [
             [
                 "9fd233374321e8d4"
@@ -2124,8 +2134,8 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 550,
-        "y": 480,
+        "x": 530,
+        "y": 420,
         "wires": [
             [
                 "a7cf3c4ccbc1a90c",
@@ -2146,8 +2156,8 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 550,
-        "y": 600,
+        "x": 530,
+        "y": 540,
         "wires": [
             [
                 "a7cf3c4ccbc1a90c",
@@ -2180,8 +2190,8 @@
         "seg2": "",
         "diff": false,
         "className": "def",
-        "x": 1410,
-        "y": 580,
+        "x": 1310,
+        "y": 520,
         "wires": []
     },
     {
@@ -2222,8 +2232,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1410,
-        "y": 540,
+        "x": 1310,
+        "y": 480,
         "wires": [
             []
         ]
@@ -2248,8 +2258,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 730,
-        "y": 540,
+        "x": 710,
+        "y": 480,
         "wires": [
             [
                 "9384f57dd4248499",
@@ -2268,8 +2278,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
-        "y": 580,
+        "x": 900,
+        "y": 520,
         "wires": [
             [
                 "7b1c8c23774128a5"
@@ -2289,8 +2299,8 @@
         "format": "{{msg.rate|number:2}} {{msg.units}}rps",
         "layout": "row-center",
         "className": "def",
-        "x": 1430,
-        "y": 1040,
+        "x": 1330,
+        "y": 900,
         "wires": []
     },
     {
@@ -2306,8 +2316,8 @@
         "format": "{{msg.rate}} {{msg.units}}bps",
         "layout": "row-center",
         "className": "def",
-        "x": 1420,
-        "y": 900,
+        "x": 1320,
+        "y": 820,
         "wires": []
     },
     {
@@ -2323,7 +2333,7 @@
         "format": "{{msg.payload}} {{msg.units}}bps",
         "layout": "col-center",
         "className": "huge",
-        "x": 1430,
+        "x": 1330,
         "y": 40,
         "wires": []
     },
@@ -2344,7 +2354,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1410,
+        "x": 1310,
         "y": 160,
         "wires": []
     },
@@ -2361,7 +2371,7 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "huge",
-        "x": 1420,
+        "x": 1320,
         "y": 200,
         "wires": []
     },
@@ -2378,7 +2388,7 @@
         "format": "{{msg.rate}} {{msg.units}}bps",
         "layout": "row-center",
         "className": "def",
-        "x": 1410,
+        "x": 1310,
         "y": 120,
         "wires": []
     },
@@ -2413,7 +2423,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 520,
         "y": 100,
         "wires": [
             [
@@ -2432,7 +2442,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 720,
+        "x": 740,
         "y": 40,
         "wires": [
             [
@@ -2499,8 +2509,8 @@
         "format": "{{msg.rate}} {{msg.units}}bps",
         "layout": "row-center",
         "className": "def",
-        "x": 1420,
-        "y": 440,
+        "x": 1320,
+        "y": 380,
         "wires": []
     },
     {
@@ -2516,8 +2526,8 @@
         "format": "{{msg.rate | number:2}} {{msg.units}}rps",
         "layout": "row-center",
         "className": "def",
-        "x": 1430,
-        "y": 780,
+        "x": 1330,
+        "y": 720,
         "wires": []
     },
     {
@@ -2531,8 +2541,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar smsg = { \"ui_control\": { \"ymax\": 10}};\nvar rmsg = { \"ui_control\": { \"ymax\": null } };\n\nreturn [smsg,rmsg];",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 1040,
+        "x": 910,
+        "y": 920,
         "wires": [
             [
                 "1572697106f6a1f2",
@@ -2551,8 +2561,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar smsg = { payload: 0.1 };\nreturn smsg;",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 920,
+        "x": 910,
+        "y": 840,
         "wires": [
             [
                 "1486b40a42209109",
@@ -2571,8 +2581,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 780,
+        "x": 910,
+        "y": 700,
         "wires": [
             [
                 "8c62fec7f80f063e",
@@ -2591,8 +2601,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 460,
+        "x": 910,
+        "y": 400,
         "wires": [
             [
                 "7a3e3814da166b53",
@@ -2611,7 +2621,7 @@
         "round": "",
         "mult": "single",
         "reduce": false,
-        "x": 700,
+        "x": 740,
         "y": 100,
         "wires": [
             [
@@ -2631,7 +2641,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
+        "x": 910,
         "y": 100,
         "wires": [
             [
@@ -2651,7 +2661,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
+        "x": 910,
         "y": 40,
         "wires": [
             [
@@ -2670,8 +2680,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 500,
+        "x": 910,
+        "y": 440,
         "wires": [
             [
                 "51074a98838504df"
@@ -2689,8 +2699,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
-        "y": 860,
+        "x": 910,
+        "y": 740,
         "wires": [
             [
                 "51074a98838504df"
@@ -2708,8 +2718,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 940,
-        "y": 720,
+        "x": 920,
+        "y": 660,
         "wires": [
             [
                 "51074a98838504df"
@@ -2727,8 +2737,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 940,
-        "y": 980,
+        "x": 920,
+        "y": 780,
         "wires": [
             [
                 "51074a98838504df"
@@ -2751,7 +2761,7 @@
         "templateScope": "local",
         "className": "",
         "x": 100,
-        "y": 500,
+        "y": 440,
         "wires": [
             []
         ]
@@ -2789,7 +2799,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 950,
+        "x": 930,
         "y": 200,
         "wires": [
             [
@@ -2826,7 +2836,7 @@
         "id": "f4a3ec1ae53d52b1",
         "type": "change",
         "z": "f6922bafc800b831",
-        "name": "",
+        "name": "set global uptime",
         "rules": [
             {
                 "t": "set",
@@ -2841,7 +2851,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 590,
+        "x": 550,
         "y": 360,
         "wires": [
             []
@@ -2879,7 +2889,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "def",
-        "x": 1400,
+        "x": 1300,
         "y": 280,
         "wires": []
     },
@@ -2921,7 +2931,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "def",
-        "x": 1420,
+        "x": 1320,
         "y": 240,
         "wires": [
             []
@@ -2965,7 +2975,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "def",
-        "x": 1430,
+        "x": 1330,
         "y": 80,
         "wires": [
             []
@@ -2993,8 +3003,8 @@
         "topic": "",
         "payload": "1",
         "payloadType": "num",
-        "x": 940,
-        "y": 1100,
+        "x": 1060,
+        "y": 1020,
         "wires": [
             [
                 "913fe8919ba03de2",
@@ -3062,8 +3072,8 @@
         "round": "2",
         "mult": "single",
         "reduce": false,
-        "x": 1080,
-        "y": 580,
+        "x": 1060,
+        "y": 520,
         "wires": [
             [
                 "3f16dfa000e09c98",
@@ -3092,8 +3102,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1370,
-        "y": 720,
+        "x": 1270,
+        "y": 660,
         "wires": [
             [
                 "0b6e47d24cd4f453"
@@ -3109,67 +3119,34 @@
         "name": "vcache stats 2",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 1540,
-        "y": 720,
+        "x": 1440,
+        "y": 660,
         "wires": []
     },
     {
         "id": "b8eb1678b935b37c",
         "type": "ui_text_input",
         "z": "6e1fffded33ce50f",
-        "name": "",
-        "label": "Hostname: ",
-        "tooltip": "main cache hostname",
+        "name": "manager address",
+        "label": "Manger Address: ",
+        "tooltip": "vCache Manager Address",
         "group": "27ef1ca5c2551459",
         "order": 2,
-        "width": 6,
-        "height": 2,
+        "width": 4,
+        "height": 1,
         "passthru": true,
         "mode": "text",
         "delay": 300,
         "topic": "topic",
-        "sendOnBlur": true,
+        "sendOnBlur": false,
         "className": "",
         "topicType": "msg",
-        "x": 370,
-        "y": 340,
+        "x": 510,
+        "y": 440,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d53d35f434b721be",
-        "type": "ui_form",
-        "z": "6e1fffded33ce50f",
-        "name": "",
-        "label": "test form",
-        "group": "27ef1ca5c2551459",
-        "order": 1,
-        "width": 4,
-        "height": 2,
-        "options": [
-            {
-                "label": "a",
-                "value": "b",
-                "type": "text",
-                "required": true,
-                "rows": null
-            }
-        ],
-        "formValue": {
-            "b": ""
-        },
-        "payload": "",
-        "submit": "submit",
-        "cancel": "cancel",
-        "topic": "topic",
-        "topicType": "msg",
-        "splitLayout": "",
-        "className": "",
-        "x": 360,
-        "y": 400,
-        "wires": [
-            []
+            [
+                "b71d48ef56781daf"
+            ]
         ]
     },
     {
@@ -3183,7 +3160,7 @@
         "name": "",
         "field": "payload",
         "fieldType": "msg",
-        "x": 550,
+        "x": 690,
         "y": 80,
         "wires": [
             [
@@ -3213,16 +3190,15 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 110,
+        "x": 90,
         "y": 40,
         "wires": [
             [
-                "b8eb1678b935b37c",
-                "d53d35f434b721be",
                 "9c1cae2c8cd579f1",
-                "c9b1a37c5388a3f5",
                 "527d0ab867ea59ef",
-                "8b6caa4128b0ab62"
+                "8b6caa4128b0ab62",
+                "cf922e952279365b",
+                "b166f973bc4e3778"
             ]
         ]
     },
@@ -3237,7 +3213,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "utf8",
-        "x": 840,
+        "x": 940,
         "y": 80,
         "wires": [
             []
@@ -3255,7 +3231,7 @@
         "read": true,
         "write": true,
         "throwerror": false,
-        "x": 370,
+        "x": 490,
         "y": 60,
         "wires": [
             [
@@ -3278,15 +3254,11 @@
         "redo": true,
         "op": "string",
         "closer": "SIGTERM",
-        "x": 570,
-        "y": 200,
+        "x": 910,
+        "y": 260,
         "wires": [
-            [
-                "70c5500922c61334"
-            ],
-            [
-                "70c5500922c61334"
-            ],
+            [],
+            [],
             []
         ]
     },
@@ -3294,21 +3266,21 @@
         "id": "c9b1a37c5388a3f5",
         "type": "exec",
         "z": "6e1fffded33ce50f",
-        "command": "envsubst < /etc/salt/minion.tmpl > /etc/salt/minion",
-        "addpay": "kill",
+        "command": "",
+        "addpay": "payload",
         "append": "",
         "useSpawn": "false",
         "timer": "",
         "winHide": false,
         "oldrc": false,
         "name": "minion cfg",
-        "x": 370,
-        "y": 200,
+        "x": 490,
+        "y": 260,
         "wires": [
             [],
             [],
             [
-                "65959117413fb8af"
+                "c659cddab3c3e096"
             ]
         ]
     },
@@ -3324,8 +3296,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 390,
-        "y": 260,
+        "x": 510,
+        "y": 200,
         "wires": [
             [],
             [],
@@ -3344,7 +3316,7 @@
         "read": true,
         "write": false,
         "throwerror": false,
-        "x": 380,
+        "x": 500,
         "y": 120,
         "wires": [
             [
@@ -3364,7 +3336,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 830,
+        "x": 930,
         "y": 120,
         "wires": [
             []
@@ -3382,7 +3354,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 580,
+        "x": 720,
         "y": 120,
         "wires": [
             [
@@ -3399,8 +3371,8 @@
         "pathType": "str",
         "filename": "minion_master.pub",
         "filenameType": "str",
-        "x": 390,
-        "y": 760,
+        "x": 730,
+        "y": 500,
         "wires": [
             []
         ]
@@ -3409,7 +3381,7 @@
         "id": "7ca1ea0b2b791dfb",
         "type": "inject",
         "z": "6e1fffded33ce50f",
-        "name": "",
+        "name": "click",
         "props": [
             {
                 "p": "payload"
@@ -3424,13 +3396,13 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 760,
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 90,
+        "y": 500,
         "wires": [
             [
-                "e1251d2b16dd4e69"
+                "d64b40a0e03006a6"
             ]
         ]
     },
@@ -3445,7 +3417,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 820,
+        "x": 920,
         "y": 40,
         "wires": [
             [
@@ -3465,7 +3437,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 570,
+        "x": 710,
         "y": 40,
         "wires": [
             [
@@ -3482,24 +3454,167 @@
         "name": "UUID (out)",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 1110,
+        "x": 1130,
         "y": 40,
         "wires": []
     },
     {
-        "id": "70c5500922c61334",
-        "type": "debug",
+        "id": "cf922e952279365b",
+        "type": "function",
         "z": "6e1fffded33ce50f",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 800,
-        "y": 180,
-        "wires": []
+        "name": "init master",
+        "func": "msg.payload = global.get('SALT_MASTER') || env.get('SALT_MASTER') || '';\nglobal.set('SALT_MASTER', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 440,
+        "wires": [
+            [
+                "b8eb1678b935b37c"
+            ]
+        ]
+    },
+    {
+        "id": "d64b40a0e03006a6",
+        "type": "ui_button",
+        "z": "6e1fffded33ce50f",
+        "name": "reset master key",
+        "group": "27ef1ca5c2551459",
+        "order": 6,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Reset Salt Master Key",
+        "tooltip": "Reset Salt Master Key",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 500,
+        "y": 500,
+        "wires": [
+            [
+                "e1251d2b16dd4e69"
+            ]
+        ]
+    },
+    {
+        "id": "b71d48ef56781daf",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "set global master",
+        "func": "global.set('SALT_MASTER', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8c7f242128e6d08",
+        "type": "ui_button",
+        "z": "6e1fffded33ce50f",
+        "name": "set manager address",
+        "group": "27ef1ca5c2551459",
+        "order": 4,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Set Manager Address",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 520,
+        "y": 380,
+        "wires": [
+            [
+                "b166f973bc4e3778"
+            ]
+        ]
+    },
+    {
+        "id": "b166f973bc4e3778",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "minion tmpl cmd",
+        "func": "msg.payload = global.get('SALT_MASTER') || env.get('SALT_MASTER') || '';\nmsg.payload = \"SALT_MASTER=\" + msg.payload + \"; envsubst < /etc/salt/minion.tmpl > /etc/salt/minion\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 260,
+        "wires": [
+            [
+                "c9b1a37c5388a3f5"
+            ]
+        ]
+    },
+    {
+        "id": "c659cddab3c3e096",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "restart",
+        "func": "if (msg.payload.code == 0) msg.kill = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 260,
+        "wires": [
+            [
+                "65959117413fb8af"
+            ]
+        ]
+    },
+    {
+        "id": "87050b2474e88cd4",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "click",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "d8c7f242128e6d08"
+            ]
+        ]
     }
 ]

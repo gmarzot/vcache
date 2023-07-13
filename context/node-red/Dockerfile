@@ -17,8 +17,8 @@ RUN npm install systeminformation
 RUN npm install uuid
 
 # uncomment the following 2 lines for production
-#COPY ./node-red/mgmt-data /data
-#VOLUME /data
+COPY ./node-red/mgmt-data /data
+VOLUME /data
 
 COPY ./node-red/etc/vcache /etc/vcache
 COPY ./perllib /usr/local/perllib

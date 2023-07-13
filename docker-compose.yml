@@ -9,7 +9,7 @@ services:
     container_name: vcache_mgr_agent
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - ./context/node-red/mgmt-data:/data # comment out for production
+#      - ./context/node-red/mgmt-data:/data # comment out for production
       - var_run:/var/run
       - var_log_fe:/var/log-fe
       - var_log_be:/var/log-be

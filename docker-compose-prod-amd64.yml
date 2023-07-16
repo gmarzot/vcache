@@ -2,14 +2,11 @@ version: '3'
 
 services:
   vcache_mgr_agent:
-    image: vcache-node-red
-    build:
-      context: ./context
-      dockerfile: ./node-red/Dockerfile
+    image: registry.vivoh.com/vcache-node-red-amd64:${VCACHE_VERSION}
     container_name: vcache_mgr_agent
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - ./context/node-red/mgmt-data:/data # comment out for production
+#      - ./context/node-red/mgmt-data:/data # comment out for production
       - var_run:/var/run
       - var_log_fe:/var/log-fe
       - var_log_be:/var/log-be
@@ -24,19 +21,15 @@ services:
       - VCACHE_VERSION=${VCACHE_VERSION}
       - VCACHE_HOSTNAME=${VCACHE_HOSTNAME}
       - SALT_MASTER=${VCACHE_MGR_ADDR}
-    # close this for production
     ports:
-      - 1881:1880
+      - 1881:1880 # comment out for production
     pid: shareable
     restart: always
     depends_on:
       - vcache_redis
 
   vcache_frontend:
-    image: vcache-nginx-perl-frontend
-    build:
-      context: ./context
-      dockerfile: ./nginx/Dockerfile.frontend
+    image: registry.vivoh.com/vcache-nginx-fe-amd64:${VCACHE_VERSION}
     container_name: vcache_frontend
     hostname: ${VCACHE_HOSTNAME}
     volumes:
@@ -60,9 +53,7 @@ services:
       - vcache_mgr_agent
       
   vcache_engine:
-    image: vcache-varnish
-    build:
-      context: ./context/varnish
+    image: registry.vivoh.com/vcache-varnish-amd64:${VCACHE_VERSION}
     container_name: vcache_engine
     volumes:
       - var_run:/var/run
@@ -85,10 +76,7 @@ services:
       - vcache_backend
 
   vcache_backend:
-    image: vcache-nginx-perl-backend
-    build:
-      context: ./context
-      dockerfile: ./nginx/Dockerfile.backend
+    image: registry.vivoh.com/vcache-nginx-be-amd64:${VCACHE_VERSION}
     container_name: vcache_backend
     hostname: ${VCACHE_HOSTNAME}
     volumes:
@@ -101,9 +89,7 @@ services:
     restart: always
 
   vcache_stats:
-    image: vcache-varnish-stats
-    build:
-      context: ./context/varnish
+    image: registry.vivoh.com/vcache-varnish-amd64:${VCACHE_VERSION}
     container_name: vcache_stats
     volumes:
       - var_run:/var/run

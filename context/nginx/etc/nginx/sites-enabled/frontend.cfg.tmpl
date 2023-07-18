@@ -95,7 +95,7 @@ server {
       # ensure absolute URL manifest stays on cache (only tested w/ HLS)
 	  # XXX this needs to be generalized and supported in cfg. relates to routing
       subs_filter_types application/x-mpegurl application/vnd.apple.mpegurl;
-      subs_filter "https://(.+)" "https://$server_name/cache/$1" rgi;
+      subs_filter "https://(.+)" "https://$server_name/cache/\$1" rgi;
    }
 
    # simple health endpoint (returns client ip)

@@ -6,7 +6,7 @@ upstream vcache {
 
 log_format custom '$remote_addr - $remote_user [$time_local] "$request" '
                   '$status $body_bytes_sent "$http_referer" '
-                  '"$http_user_agent" "$http_x_forwarded_for" "$http_x_real_ip"';
+                  '"$http_user_agent" "$http_x_forwarded_for" "$http_x_real_ip" "$sent_http_X_Vcache"';
 
 # Set default $hdr_strict_transport_security if Strict-Transport-Security does not exist
 map $upstream_http_access_control_allow_origin $hdr_access_control_allow_origin {
@@ -95,7 +95,7 @@ server {
       # ensure absolute URL manifest stays on cache (only tested w/ HLS)
 	  # XXX this needs to be generalized and supported in cfg. relates to routing
       subs_filter_types application/x-mpegurl application/vnd.apple.mpegurl;
-      subs_filter "https://(.+)" "https://$server_name/cache/\$1" rgi;
+      subs_filter "https://(.+)" "https://\$server_name/cache/\$1" rgi;
    }
 
    # simple health endpoint (returns client ip)

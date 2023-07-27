@@ -23,7 +23,8 @@ services:
     environment:
       - VCACHE_VERSION=${VCACHE_VERSION}
       - VCACHE_HOSTNAME=${VCACHE_HOSTNAME}
-      - SALT_MASTER=${VCACHE_MGR_ADDR}
+      - VCACHE_MGR_ADDR=${VCACHE_MGR_ADDR}
+      - VCACHE_MGR_KEY=${VCACHE_MGR_KEY}
     # close this for production
     ports:
       - 1881:1880

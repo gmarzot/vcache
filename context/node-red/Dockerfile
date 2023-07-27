@@ -19,6 +19,7 @@ RUN npm install uuid
 # uncomment the following 2 lines for production
 # COPY ./node-red/mgmt-data /data
 # VOLUME /data
+COPY ./node-red/daemon.js /usr/src/node-red/node_modules/node-red-node-daemon/daemon.js
 
 COPY ./node-red/etc/vcache /etc/vcache
 COPY ./perllib /usr/local/perllib

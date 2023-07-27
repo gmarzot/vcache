@@ -26,4 +26,4 @@ if [[ $? != 0 ]]; then
 fi
 
 echo "vcache config update complete"
-touch /var/run/.vcache_ready
+touch /var/run/vcache.ready

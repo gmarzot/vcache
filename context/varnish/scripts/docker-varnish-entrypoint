@@ -16,7 +16,7 @@ if [ "$#" -eq 0 ] || [ "${1#-}" != "$1" ]; then
 fi
 
 # wait for vcache_mgr_agent to complete config template resolution
-while [ ! -f /var/run/.vcache_ready ]; do
+while [ ! -f /var/run/vcache.ready ]; do
 	echo "[varnish-entrypoint] waiting for initial config setup..."
 	sleep 2
 done

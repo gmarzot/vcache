@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+if [ $# -eq 0 ]; then
+    KEY=${VCACHE_MGR_KEY}
+else
+    KEY=$1
+fi  
+
+if [ -z "$KEY" ]; then
+    echo "cannot determine key: exiting..."
+    exit 1
+fi
+
+CRT=$(echo "$KEY" | base64 -i -d)
+
+# Extract the public part (PEM)
+PUB=$(echo "$CRT" | awk '/BEGIN PUBLIC KEY/,/END PUBLIC KEY/')
+
+# Extract the private part (KEY)
+PEM=$(echo "$CRT" | awk '/BEGIN RSA PRIVATE KEY/,/END RSA PRIVATE KEY/')
+
+mkdir -p /etc/salt/pki/minion
+echo -n "$PUB" > /etc/salt/pki/minion/minion.pub
+echo -n "$PEM" > /etc/salt/pki/minion/minion.pem

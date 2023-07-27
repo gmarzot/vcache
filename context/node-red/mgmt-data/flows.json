@@ -809,43 +809,43 @@
         "className": ""
     },
     {
-        "id": "5c95a53875284713",
+        "id": "db285849ea687465",
         "type": "ui_spacer",
         "z": "6e1fffded33ce50f",
         "name": "spacer",
         "group": "27ef1ca5c2551459",
-        "order": 1,
+        "order": 2,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "362bdf4c9256ea22",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 4,
         "width": 1,
         "height": 1
     },
     {
-        "id": "dbd9e59b77f954c2",
+        "id": "1896ead8a30cb4a3",
         "type": "ui_spacer",
         "z": "6e1fffded33ce50f",
         "name": "spacer",
         "group": "27ef1ca5c2551459",
-        "order": 3,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "c74e290fc0f7aeb1",
-        "type": "ui_spacer",
-        "z": "6e1fffded33ce50f",
-        "name": "spacer",
-        "group": "27ef1ca5c2551459",
-        "order": 5,
+        "order": 6,
         "width": 1,
         "height": 1
     },
     {
-        "id": "990598c558835127",
+        "id": "2d569f2e5e5c1a14",
         "type": "ui_spacer",
         "z": "6e1fffded33ce50f",
         "name": "spacer",
         "group": "27ef1ca5c2551459",
-        "order": 7,
-        "width": 3,
+        "order": 8,
+        "width": 10,
         "height": 1
     },
     {
@@ -853,8 +853,8 @@
         "type": "Drives",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 270,
-        "y": 640,
+        "x": 250,
+        "y": 720,
         "wires": [
             [
                 "f29cd079ba2bd3e7",
@@ -869,8 +869,8 @@
         "z": "f6f2187d.f17ca8",
         "name": "Memory",
         "scale": "Byte",
-        "x": 280,
-        "y": 500,
+        "x": 260,
+        "y": 580,
         "wires": [
             [
                 "18c68b74898c536f",
@@ -911,8 +911,8 @@
                 "f6b5723097fbc821",
                 "c2a1b5f7989ff616",
                 "38c877c9b55d681d",
-                "0e93632552682542",
-                "e1e13788026a662b"
+                "e1e13788026a662b",
+                "50f9790b.49c718"
             ]
         ]
     },
@@ -920,15 +920,15 @@
         "id": "50f9790b.49c718",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "format time HH:mm:ss",
-        "func": " var totalNumberOfSeconds = msg.payload;\n var days = parseInt( totalNumberOfSeconds / 86400 );\n var hours = parseInt (( totalNumberOfSeconds - ( days * 86400 )) / 3600  );\n var minutes = parseInt ((totalNumberOfSeconds - ((hours * 3600)+( days * 86400 ))) / 60 );\n var seconds = parseInt(totalNumberOfSeconds - ((hours * 3600) + (minutes * 60)+( days * 86400 )));\n var result = (days < 10 ? \"0\" + days : days) + \":\" + (hours < 10 ? \"0\" + hours : hours) + \":\" + (minutes < 10 ? \"0\" + minutes : minutes) + \":\" + (seconds  < 10 ? \"0\" + seconds : seconds);\n msg.payload=result;\n msg.topic = \"uptime\";\n return msg;",
+        "name": "varnish uptime",
+        "func": "msg.payload = global.get(\"varnish_uptime\")\n var totalNumberOfSeconds = msg.payload;\n var days = parseInt( totalNumberOfSeconds / 86400 );\n var hours = parseInt (( totalNumberOfSeconds - ( days * 86400 )) / 3600  );\n var minutes = parseInt ((totalNumberOfSeconds - ((hours * 3600)+( days * 86400 ))) / 60 );\n var seconds = parseInt(totalNumberOfSeconds - ((hours * 3600) + (minutes * 60)+( days * 86400 )));\n var result = (days < 10 ? \"0\" + days : days) + \":\" + (hours < 10 ? \"0\" + hours : hours) + \":\" + (minutes < 10 ? \"0\" + minutes : minutes) + \":\" + (seconds  < 10 ? \"0\" + seconds : seconds);\n msg.payload = result;\n msg.topic = \"uptime\";\n return msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 160,
+        "x": 560,
+        "y": 120,
         "wires": [
             [
                 "4f6abcf.71f1a44",
@@ -949,8 +949,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 920,
-        "y": 160,
+        "x": 960,
+        "y": 120,
         "wires": []
     },
     {
@@ -962,8 +962,8 @@
         "msgOverall": true,
         "msgArray": false,
         "msgTemp": false,
-        "x": 290,
-        "y": 340,
+        "x": 270,
+        "y": 380,
         "wires": [
             [
                 "7ddb76afd18f4087",
@@ -1009,8 +1009,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 930,
-        "y": 360,
+        "x": 970,
+        "y": 400,
         "wires": [
             []
         ]
@@ -1039,8 +1039,8 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 910,
-        "y": 500,
+        "x": 950,
+        "y": 580,
         "wires": []
     },
     {
@@ -1060,8 +1060,8 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 920,
-        "y": 200,
+        "x": 960,
+        "y": 160,
         "wires": []
     },
     {
@@ -1077,23 +1077,27 @@
         "format": "<font size=3>{{msg.value}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 920,
-        "y": 460,
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 960,
+        "y": 540,
         "wires": []
     },
     {
         "id": "b47ed9d6965cf619",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "total mem - format units",
+        "name": "memory total",
         "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\nmsg.value = formatBytes(msg.payload.totalmem);\nmsg.payload = msg.payload.totalmem;\nmsg.topic = \"mem_total\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 590,
-        "y": 460,
+        "x": 550,
+        "y": 540,
         "wires": [
             [
                 "f4aa44582aec2ee6",
@@ -1105,15 +1109,15 @@
         "id": "f29cd079ba2bd3e7",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "disk use percent",
+        "name": "disk use %",
         "func": "msg.payload = msg.payload[0].capacity * 100.0;\nmsg.payload = msg.payload.toFixed(2);\nmsg.topic = \"disk_use_pct\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
-        "y": 600,
+        "x": 550,
+        "y": 680,
         "wires": [
             [
                 "b833a78279a06e8c",
@@ -1131,7 +1135,7 @@
         "width": 7,
         "height": 3,
         "gtype": "gage",
-        "title": "Disk",
+        "title": "HD",
         "label": "",
         "format": "{{value | number:1}}%",
         "min": 0,
@@ -1145,23 +1149,23 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 910,
-        "y": 600,
+        "x": 950,
+        "y": 680,
         "wires": []
     },
     {
         "id": "abbb31eb4b46bee5",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "used mem format units",
+        "name": "memory used",
         "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload.totalmem - msg.payload.freemem);\nmsg.payload = msg.payload.totalmem - msg.payload.freemem;\nmsg.topic = \"mem_use\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 540,
+        "x": 560,
+        "y": 620,
         "wires": [
             [
                 "3fe4b364fdaec2bb",
@@ -1182,8 +1186,8 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 910,
-        "y": 540,
+        "x": 950,
+        "y": 620,
         "wires": []
     },
     {
@@ -1199,15 +1203,15 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "def",
-        "x": 910,
-        "y": 400,
+        "x": 950,
+        "y": 440,
         "wires": []
     },
     {
         "id": "39b8930ee2a9adf4",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "load avg string",
+        "name": "load averages",
         "func": "msg.payload = msg.payload.loadavg.join(', ');\nmsg.topic = \"cpu_load_avg\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
@@ -1215,7 +1219,7 @@
         "finalize": "",
         "libs": [],
         "x": 560,
-        "y": 400,
+        "y": 440,
         "wires": [
             [
                 "2bd8b9bfd2a1d534",
@@ -1228,8 +1232,8 @@
         "type": "Loadavg",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 280,
-        "y": 400,
+        "x": 260,
+        "y": 440,
         "wires": [
             [
                 "39b8930ee2a9adf4"
@@ -1260,8 +1264,8 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 920,
-        "y": 320,
+        "x": 960,
+        "y": 360,
         "wires": []
     },
     {
@@ -1269,8 +1273,8 @@
         "type": "CPUs",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 270,
-        "y": 260,
+        "x": 250,
+        "y": 280,
         "wires": [
             [
                 "1faa30a4e47251a1",
@@ -1282,7 +1286,7 @@
         "id": "1faa30a4e47251a1",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "CPU model",
+        "name": "cpu model",
         "func": "msg.payload = msg.payload.cpus[0].model.replace(/^Intel[^ ]*\\s+[^ ]* /i,\"\");\nmsg.topic = \"cpu_model\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
@@ -1290,7 +1294,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 240,
+        "y": 280,
         "wires": [
             [
                 "51ccb23cb43f7af2",
@@ -1310,7 +1314,7 @@
         "finalize": "",
         "libs": [],
         "x": 530,
-        "y": 280,
+        "y": 320,
         "wires": [
             [
                 "68105b12b908d0f4",
@@ -1331,8 +1335,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 910,
-        "y": 240,
+        "x": 950,
+        "y": 280,
         "wires": []
     },
     {
@@ -1348,8 +1352,8 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 910,
-        "y": 280,
+        "x": 950,
+        "y": 320,
         "wires": []
     },
     {
@@ -1365,8 +1369,8 @@
         "format": "<font size=3>{{msg.value}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 910,
-        "y": 680,
+        "x": 950,
+        "y": 760,
         "wires": []
     },
     {
@@ -1382,8 +1386,8 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 910,
-        "y": 640,
+        "x": 950,
+        "y": 720,
         "wires": []
     },
     {
@@ -1398,7 +1402,7 @@
         "finalize": "",
         "libs": [],
         "x": 560,
-        "y": 640,
+        "y": 720,
         "wires": [
             [
                 "11b451e51ccf5739",
@@ -1418,7 +1422,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 680,
+        "y": 760,
         "wires": [
             [
                 "d6fd568602fabf48",
@@ -1439,8 +1443,8 @@
         "format": "<font size=3>{{msg.payload.hostname}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 910,
-        "y": 100,
+        "x": 950,
+        "y": 200,
         "wires": []
     },
     {
@@ -1448,8 +1452,8 @@
         "type": "OS",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 270,
-        "y": 100,
+        "x": 250,
+        "y": 200,
         "wires": [
             [
                 "cc60b6c3e5fb14d9",
@@ -1470,7 +1474,7 @@
         "mult": "single",
         "reduce": false,
         "x": 540,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "c0a13984a398e6d7"
@@ -1478,37 +1482,18 @@
         ]
     },
     {
-        "id": "0e93632552682542",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "varnish uptime",
-        "func": "msg.payload = global.get(\"varnish_uptime\")\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 160,
-        "wires": [
-            [
-                "50f9790b.49c718"
-            ]
-        ]
-    },
-    {
         "id": "d23168e787472af1",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "get hostname",
+        "name": "hostname",
         "func": "msg.payload = msg.payload.hostname;\nmsg.topic = \"hostname\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
-        "y": 120,
+        "x": 540,
+        "y": 80,
         "wires": [
             [
                 "1a05a03c82a71a3b"
@@ -1519,7 +1504,7 @@
         "id": "da0aa089ba25ac3d",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "mem usage",
+        "name": "mem use %",
         "func": "msg.payload = msg.payload.memusage;\nmsg.topic = \"mem_use_pct\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
@@ -1545,8 +1530,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 200,
+        "x": 560,
+        "y": 160,
         "wires": [
             [
                 "fbc058e4a2725b9d",
@@ -1558,7 +1543,7 @@
         "id": "f706757e6c338f82",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "cpu_use_pct",
+        "name": "cpu use %",
         "func": "msg.topic = \"cpu_use_pct\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
@@ -1566,7 +1551,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 320,
+        "y": 360,
         "wires": [
             [
                 "1a05a03c82a71a3b",
@@ -1594,7 +1579,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 930,
+        "x": 970,
         "y": 60,
         "wires": [
             [
@@ -1611,7 +1596,7 @@
         "name": "vcache stats 1",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 1100,
+        "x": 1140,
         "y": 60,
         "wires": []
     },
@@ -1627,7 +1612,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 80,
+        "y": 240,
         "wires": [
             [
                 "1a05a03c82a71a3b"
@@ -3128,21 +3113,21 @@
         "type": "ui_text_input",
         "z": "6e1fffded33ce50f",
         "name": "manager address",
-        "label": "Manger Address: ",
+        "label": "Manager Address: ",
         "tooltip": "vCache Manager Address",
         "group": "27ef1ca5c2551459",
-        "order": 2,
+        "order": 1,
         "width": 4,
         "height": 1,
         "passthru": true,
         "mode": "text",
-        "delay": 300,
+        "delay": "10",
         "topic": "topic",
-        "sendOnBlur": false,
+        "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 510,
-        "y": 440,
+        "x": 610,
+        "y": 560,
         "wires": [
             [
                 "b71d48ef56781daf"
@@ -3157,10 +3142,10 @@
         "namespaceType": "custom",
         "namespace": "VIVOH_CACHE",
         "namespaceCustom": "VIVOH",
-        "name": "",
+        "name": "UUID (gen)",
         "field": "payload",
         "fieldType": "msg",
-        "x": 690,
+        "x": 530,
         "y": 80,
         "wires": [
             [
@@ -3191,14 +3176,15 @@
         "payload": "",
         "payloadType": "date",
         "x": 90,
-        "y": 40,
+        "y": 60,
         "wires": [
             [
                 "9c1cae2c8cd579f1",
                 "527d0ab867ea59ef",
                 "8b6caa4128b0ab62",
                 "cf922e952279365b",
-                "b166f973bc4e3778"
+                "b6f811abf19f84a1",
+                "94d24377cc341d7b"
             ]
         ]
     },
@@ -3213,7 +3199,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "utf8",
-        "x": 940,
+        "x": 760,
         "y": 80,
         "wires": [
             []
@@ -3231,7 +3217,7 @@
         "read": true,
         "write": true,
         "throwerror": false,
-        "x": 490,
+        "x": 330,
         "y": 60,
         "wires": [
             [
@@ -3240,26 +3226,6 @@
             [
                 "f773b77e37a40bb6"
             ]
-        ]
-    },
-    {
-        "id": "65959117413fb8af",
-        "type": "daemon",
-        "z": "6e1fffded33ce50f",
-        "name": "salt-minion",
-        "command": "salt-minion",
-        "args": "",
-        "autorun": false,
-        "cr": false,
-        "redo": true,
-        "op": "string",
-        "closer": "SIGTERM",
-        "x": 910,
-        "y": 260,
-        "wires": [
-            [],
-            [],
-            []
         ]
     },
     {
@@ -3274,13 +3240,13 @@
         "winHide": false,
         "oldrc": false,
         "name": "minion cfg",
-        "x": 490,
-        "y": 260,
+        "x": 510,
+        "y": 340,
         "wires": [
             [],
             [],
             [
-                "c659cddab3c3e096"
+                "73d66a67c4f17a67"
             ]
         ]
     },
@@ -3296,8 +3262,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 510,
-        "y": 200,
+        "x": 350,
+        "y": 180,
         "wires": [
             [],
             [],
@@ -3316,8 +3282,8 @@
         "read": true,
         "write": false,
         "throwerror": false,
-        "x": 500,
-        "y": 120,
+        "x": 340,
+        "y": 100,
         "wires": [
             [
                 "28e546a9e90ffb1f"
@@ -3336,7 +3302,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
+        "x": 750,
         "y": 120,
         "wires": [
             []
@@ -3354,7 +3320,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 720,
+        "x": 540,
         "y": 120,
         "wires": [
             [
@@ -3371,8 +3337,8 @@
         "pathType": "str",
         "filename": "minion_master.pub",
         "filenameType": "str",
-        "x": 730,
-        "y": 500,
+        "x": 850,
+        "y": 740,
         "wires": [
             []
         ]
@@ -3399,7 +3365,7 @@
         "payload": "true",
         "payloadType": "bool",
         "x": 90,
-        "y": 500,
+        "y": 740,
         "wires": [
             [
                 "d64b40a0e03006a6"
@@ -3417,7 +3383,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 740,
         "y": 40,
         "wires": [
             [
@@ -3437,7 +3403,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 710,
+        "x": 530,
         "y": 40,
         "wires": [
             [
@@ -3454,7 +3420,7 @@
         "name": "UUID (out)",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 1130,
+        "x": 970,
         "y": 40,
         "wires": []
     },
@@ -3462,15 +3428,15 @@
         "id": "cf922e952279365b",
         "type": "function",
         "z": "6e1fffded33ce50f",
-        "name": "init master",
-        "func": "msg.payload = global.get('SALT_MASTER') || env.get('SALT_MASTER') || '';\nglobal.set('SALT_MASTER', msg.payload);\nreturn msg;",
+        "name": "init mgr addr",
+        "func": "msg.payload = global.get('MGR_ADDR_CFG') || env.get('VCACHE_MGR_ADDR') || '';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 440,
+        "x": 350,
+        "y": 560,
         "wires": [
             [
                 "b8eb1678b935b37c"
@@ -3483,11 +3449,11 @@
         "z": "6e1fffded33ce50f",
         "name": "reset master key",
         "group": "27ef1ca5c2551459",
-        "order": 6,
+        "order": 5,
         "width": 4,
         "height": 1,
         "passthru": false,
-        "label": "Reset Salt Master Key",
+        "label": "Reset Master Key",
         "tooltip": "Reset Salt Master Key",
         "color": "",
         "bgcolor": "",
@@ -3497,8 +3463,8 @@
         "payloadType": "bool",
         "topic": "topic",
         "topicType": "msg",
-        "x": 500,
-        "y": 500,
+        "x": 600,
+        "y": 740,
         "wires": [
             [
                 "e1251d2b16dd4e69"
@@ -3509,15 +3475,15 @@
         "id": "b71d48ef56781daf",
         "type": "function",
         "z": "6e1fffded33ce50f",
-        "name": "set global master",
-        "func": "global.set('SALT_MASTER', msg.payload);\nreturn msg;",
+        "name": "set mgr addr cfg",
+        "func": "global.set('MGR_ADDR_CFG', msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 440,
+        "x": 840,
+        "y": 560,
         "wires": [
             []
         ]
@@ -3526,13 +3492,13 @@
         "id": "d8c7f242128e6d08",
         "type": "ui_button",
         "z": "6e1fffded33ce50f",
-        "name": "set manager address",
+        "name": "set mgr cfg button",
         "group": "27ef1ca5c2551459",
-        "order": 4,
+        "order": 3,
         "width": 4,
         "height": 1,
-        "passthru": false,
-        "label": "Set Manager Address",
+        "passthru": true,
+        "label": "Set Manager Config",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -3542,11 +3508,11 @@
         "payloadType": "bool",
         "topic": "topic",
         "topicType": "msg",
-        "x": 520,
-        "y": 380,
+        "x": 610,
+        "y": 500,
         "wires": [
             [
-                "b166f973bc4e3778"
+                "39d399349809e2ae"
             ]
         ]
     },
@@ -3555,36 +3521,17 @@
         "type": "function",
         "z": "6e1fffded33ce50f",
         "name": "minion tmpl cmd",
-        "func": "msg.payload = global.get('SALT_MASTER') || env.get('SALT_MASTER') || '';\nmsg.payload = \"SALT_MASTER=\" + msg.payload + \"; envsubst < /etc/salt/minion.tmpl > /etc/salt/minion\";\nreturn msg;",
+        "func": "var mgr_addr = global.get('MGR_ADDR');\nif (mgr_addr == null) mgr_addr = env.get('VCACHE_MGR_ADDR');\nif (mgr_addr !== null && mgr_addr.length !== 0) {\n    msg.payload = \"VCACHE_MGR_ADDR=\" + mgr_addr + \"; envsubst < /etc/salt/minion.tmpl > /etc/salt/minion\";\n} else {\n    msg.payload = 'false';\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
-        "y": 260,
+        "x": 340,
+        "y": 340,
         "wires": [
             [
                 "c9b1a37c5388a3f5"
-            ]
-        ]
-    },
-    {
-        "id": "c659cddab3c3e096",
-        "type": "function",
-        "z": "6e1fffded33ce50f",
-        "name": "restart",
-        "func": "if (msg.payload.code == 0) msg.kill = true;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 690,
-        "y": 260,
-        "wires": [
-            [
-                "65959117413fb8af"
             ]
         ]
     },
@@ -3610,10 +3557,309 @@
         "payload": "true",
         "payloadType": "bool",
         "x": 90,
-        "y": 380,
+        "y": 500,
         "wires": [
             [
                 "d8c7f242128e6d08"
+            ]
+        ]
+    },
+    {
+        "id": "73d66a67c4f17a67",
+        "type": "switch",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "property": "payload.code",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 710,
+        "y": 300,
+        "wires": [
+            [
+                "3c56fb1d676c0a34"
+            ],
+            [
+                "941674b482aa389f"
+            ]
+        ]
+    },
+    {
+        "id": "39d399349809e2ae",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "set mgr cfg",
+        "func": "global.set(\"MGR_ADDR\", global.get(\"MGR_ADDR_CFG\"));\nglobal.set(\"MGR_KEY\", global.get(\"MGR_KEY_CFG\"));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "83fc3e9f821ab09b",
+        "type": "daemon",
+        "z": "6e1fffded33ce50f",
+        "name": "salt-minion",
+        "command": "salt-minion",
+        "args": "",
+        "autorun": false,
+        "cr": false,
+        "redo": true,
+        "op": "string",
+        "closer": "SIGTERM",
+        "x": 1050,
+        "y": 300,
+        "wires": [
+            [
+                "6f4609666af8e40d"
+            ],
+            [
+                "6f4609666af8e40d"
+            ],
+            [
+                "6f4609666af8e40d"
+            ]
+        ]
+    },
+    {
+        "id": "e3b2fea7daf99ef0",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "stop",
+        "props": [
+            {
+                "p": "stop",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1050,
+        "y": 240,
+        "wires": [
+            [
+                "83fc3e9f821ab09b"
+            ]
+        ]
+    },
+    {
+        "id": "6f4609666af8e40d",
+        "type": "debug",
+        "z": "6e1fffded33ce50f",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1240,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "f6c8c40c26116895",
+        "type": "complete",
+        "z": "6e1fffded33ce50f",
+        "name": "set mgr addr trigger",
+        "scope": [
+            "39d399349809e2ae"
+        ],
+        "uncaught": false,
+        "x": 110,
+        "y": 300,
+        "wires": [
+            [
+                "94d24377cc341d7b"
+            ]
+        ]
+    },
+    {
+        "id": "3c56fb1d676c0a34",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "stop mgr agent",
+        "func": "msg.stop = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 260,
+        "wires": [
+            [
+                "83fc3e9f821ab09b"
+            ]
+        ]
+    },
+    {
+        "id": "941674b482aa389f",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "start mgr agent",
+        "func": "msg.start =  true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 340,
+        "wires": [
+            [
+                "83fc3e9f821ab09b"
+            ]
+        ]
+    },
+    {
+        "id": "77adec012f68cc04",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "start",
+        "props": [
+            {
+                "p": "start",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1050,
+        "y": 360,
+        "wires": [
+            [
+                "83fc3e9f821ab09b"
+            ]
+        ]
+    },
+    {
+        "id": "f4a7ac0f6eb36a8d",
+        "type": "ui_text_input",
+        "z": "6e1fffded33ce50f",
+        "name": "mgmt agent key",
+        "label": "Agent Key: ",
+        "tooltip": "Management Agent Key",
+        "group": "27ef1ca5c2551459",
+        "order": 7,
+        "width": 9,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "10",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 600,
+        "y": 620,
+        "wires": [
+            [
+                "e9bc8e9f52519ae6"
+            ]
+        ]
+    },
+    {
+        "id": "b6f811abf19f84a1",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "init agent key",
+        "func": "msg.payload = global.get('MGR_KEY_CFG') || env.get('VCACHE_KEY_ADDR') || '';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 620,
+        "wires": [
+            [
+                "f4a7ac0f6eb36a8d"
+            ]
+        ]
+    },
+    {
+        "id": "e9bc8e9f52519ae6",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "set mgr key cfg",
+        "func": "global.set('MGR_KEY_CFG', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "94d24377cc341d7b",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "minion key cmd",
+        "func": "var mgr_key = global.get('MGR_KEY');\nif (mgr_key == undefined) mgr_key = env.get('VCACHE_KEY_ADDR');\nif (mgr_key !== undefined && mgr_key.length !== 0) {\n    msg.payload = \"vcache-decode-key \\\"\" + mgr_key + \"\\\"\";\n} else {\n    msg.payload = \"false\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "5169cc8df15e5f1e"
+            ]
+        ]
+    },
+    {
+        "id": "5169cc8df15e5f1e",
+        "type": "exec",
+        "z": "6e1fffded33ce50f",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "minion key",
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [],
+            [],
+            [
+                "b166f973bc4e3778"
             ]
         ]
     }

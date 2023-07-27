@@ -13,7 +13,7 @@
 
 # Set the location of the salt master server. If the master server cannot be
 # resolved, then the minion will fail to start.
-master: ${SALT_MASTER}
+master: ${VCACHE_MGR_ADDR}
 
 # Set http proxy information for the minion when doing requests
 #proxy_host:
@@ -133,10 +133,10 @@ master: ${SALT_MASTER}
 # Custom static grains for this minion can be specified here and used in SLS
 # files just like all other grains. This example sets 4 custom grains, with
 # the 'roles' grain having two values that can be matched against.
-#grains:
-#  roles:
-#    - webserver
-#    - memcache
+grains:
+  roles:
+    - vcache
+
 #  deployment: datacenter4
 #  cabinet: 13
 #  cab_u: 14-15
@@ -576,7 +576,8 @@ master: ${SALT_MASTER}
 #  - hyper
 #
 # List of grains to pass in start event when minion starts up:
-#start_event_grains:
+# start_event_grains:
+#  - mgr_sec
 #  - machine_id
 #  - uuid
 #
@@ -754,9 +755,8 @@ master: ${SALT_MASTER}
 
 # Grains to be sent to the master on authentication to check if the minion's key
 # will be accepted automatically. Needs to be configured on the master.
-#autosign_grains:
-#  - uuid
-#  - server_id
+autosign_grains:
+  - mgr_sec
 
 
 ######        Reactor Settings        #####

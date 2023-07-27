@@ -1,4 +1,4 @@
-var.set("url_path", req.url);
+var.set("url_path", regsub(req.url, "\?.*$", ""));
 
 # cfg global cache-rule's
 {{

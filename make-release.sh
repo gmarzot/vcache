@@ -9,7 +9,9 @@ if [[ $? != 0 ]]; then
 	exit 1
 fi
 
-mkdir release
+if [[ ! -d ./release ]]; then
+    mkdir release
+fi
 
 GIT_REVISION=$(git describe)
 
@@ -24,7 +26,7 @@ cp ./.version ./context/node-red/etc/vcache/
 
 cd ..
 
-if [[ "${GIT_REVISION}" ~= "^\d+\.\d+\.\d+$" ]]; then
+if [[ "${GIT_REVISION}" =~ "^\d+\.\d+\.\d+$" ]]; then
     TARGET_DIR=vcache
 else
     TARGET_DIR=vcache-${GIT_REVISION}
@@ -38,7 +40,7 @@ if [ "$TARGET_DIR" != "$SOURCE_DIR" ]; then
     mv $SOURCE_DIR $TARGET_DIR
 fi
 
-./vcache-${GIT_REVISION}/makeself.sh --sha256 --nox11 --notemp --tar-extra "--exclude=.git --exclude=.env --exclude=.gitignore --exclude=make* --exclude=.npm --exclude=release --exclude=*~" --license LICENSE vcache-${GIT_REVISION} vcache-${GIT_REVISION}/release/vcache-${GIT_REVISION}.run "vCache Deployment" ./bin/vcache-setup.sh
+./${TARGET_DIR}/makeself.sh --sha256 --nox11 --notemp --tar-extra "--exclude=.git --exclude=.env --exclude=.gitignore --exclude=make* --exclude=.npm --exclude=release --exclude=*~" --license ${TARGET_DIR}/LICENSE vcache-${GIT_REVISION} ${TARGET_DIR}/release/vcache-${GIT_REVISION}.run "vCache Deployment" ./bin/vcache-setup.sh
 
 if [ "$TARGET_DIR" != "$SOURCE_DIR" ]; then
     mv $TARGET_DIR $SOURCE_DIR

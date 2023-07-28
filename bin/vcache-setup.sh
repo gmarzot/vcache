@@ -1,16 +1,18 @@
 #!/bin/bash
 
 # Default values
-mgr_addr=""
 host=$(hostname)
+cmem=4G
+mgr_addr=""
+mgr_key=""
 
 # Usage function to display script usage
 usage() {
-  echo "Usage: $0 [-f|--force] [-m|--mgr-addr <manager_address>] [-h|--host <host>] [-k|--mgr-key <mgr-key>]"
+  echo "Usage: $0 [-p|--preserve] [-m|--mgr-addr <manager-address>] [-h|--host <host>] [-k|--mgr-key <mgr-key>] [-c|--cache-mem <cache-memory>]"
 }
 
 # Parse arguments using getopt
-ARGS=$(getopt -o m:h: -l "mgr-addr:,host:" -- "$@")
+ARGS=$(getopt -o pk:m:h:C: -l "mgr-addr:,host:" -- "$@")
 
 # Check for any parsing errors
 if [ $? -ne 0 ]; then
@@ -24,12 +26,16 @@ eval set -- "$ARGS"
 # Loop through the arguments and set variables accordingly
 while true; do
   case "$1" in
-    -f | --force)
-      force=true
+    -p | --preserve)
+      preserve=true
       shift
       ;;
     -h | --host)
       host="$2"
+      shift 2
+      ;;
+    -c | --cache-mem)
+      cmem="$2"
       shift 2
       ;;
     -m | --mgr-addr)
@@ -65,32 +71,29 @@ if [ $? != 0 ]; then
 	exit 2
 fi
 
-if [ -r ".env" && ]; then
+if [ -r ".env" ]; then
     source .env
 fi
 
-update_env_file() {
+update_env() {
   local VAR="$1"
   local VAL="$2"
-  local FORCE="$3"
+  local PRE="$3"
 
   # Check if VAR already exists in the .env file
   if grep -q "^$VAR=" .env; then
-    # Update the value if force is true
-    if [ "$FORCE" = true ]; then
-      sed -i "s/^$VAR=.*/$VAR=${VAL}/" .env
-    fi
+      if [ -z "${PRE}" ]; then
+          sed -i "s/^$VAR=.*/$VAR=${VAL}/" .env
+      fi
   else
-    # Add the entry if VAR is not present
     echo "$VAR=${VAL}" >> .env
   fi
 }
 
-update_env("VCACHE_HOSTNAME",$host,$force)
-update_env("VCACHE_MGR_ADDR",$mgr_addr,$force)
-if [ -n "${mgr_key+x}" ]; then
-    update_env("VCACHE_MGR_KEY",$mgr_key,$force)
-fi
+update_env "VCACHE_MEM_SIZE" $cmem $preserve
+update_env "VCACHE_HOSTNAME" $host $preserve
+update_env "VCACHE_MGR_ADDR" $mgr_addr $preserve
+update_env "VCACHE_MGR_KEY" $mgr_key $preserve
 
 logfile=/tmp/vcache-build-$(date '+%Y-%m-%d:%H:%M:%S').log
 sudo docker-compose build | tee ${logfile}

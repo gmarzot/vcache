@@ -14,10 +14,10 @@ fi
 CRT=$(echo "$KEY" | base64 -i -d)
 
 # Extract the public part (PEM)
-PUB=$(echo "$CRT" | awk '/BEGIN PUBLIC KEY/,/END PUBLIC KEY/')
+PUB=$(echo -n "$CRT" | awk '/BEGIN PUBLIC KEY/,/END PUBLIC KEY/')
 
 # Extract the private part (KEY)
-PEM=$(echo "$CRT" | awk '/BEGIN RSA PRIVATE KEY/,/END RSA PRIVATE KEY/')
+PEM=$(echo -n "$CRT" | awk '/BEGIN RSA PRIVATE KEY/,/END RSA PRIVATE KEY/')
 
 mkdir -p /etc/salt/pki/minion
 echo -n "$PUB" > /etc/salt/pki/minion/minion.pub

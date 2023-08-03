@@ -7,18 +7,21 @@ else
 fi  
 
 if [ -z "$KEY" ]; then
-    echo "cannot determine key: exiting..."
+    echo "input key not supplied: set VCAHCE_MGR_KEY or pass on commandline: exiting..."
     exit 1
 fi
 
 CRT=$(echo "$KEY" | base64 -i -d)
 
 # Extract the public part (PEM)
-PUB=$(echo -n "$CRT" | awk '/BEGIN PUBLIC KEY/,/END PUBLIC KEY/')
+PUB=$(echo "$CRT" | awk '/BEGIN PUBLIC KEY/,/END PUBLIC KEY/')
 
 # Extract the private part (KEY)
-PEM=$(echo -n "$CRT" | awk '/BEGIN RSA PRIVATE KEY/,/END RSA PRIVATE KEY/')
+PEM=$(echo "$CRT" | awk '/BEGIN RSA PRIVATE KEY/,/END RSA PRIVATE KEY/')
 
-mkdir -p /etc/salt/pki/minion
-echo -n "$PUB" > /etc/salt/pki/minion/minion.pub
-echo -n "$PEM" > /etc/salt/pki/minion/minion.pem
+if [ ! -d "/etc/salt/pki/minion" ]; then
+    mkdir -p /etc/salt/pki/minion
+fi
+
+echo "$PUB" > /etc/salt/pki/minion/minion.pub
+echo "$PEM" > /etc/salt/pki/minion/minion.pem

@@ -853,7 +853,7 @@
         "type": "Drives",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 250,
+        "x": 290,
         "y": 720,
         "wires": [
             [
@@ -869,7 +869,7 @@
         "z": "f6f2187d.f17ca8",
         "name": "Memory",
         "scale": "Byte",
-        "x": 260,
+        "x": 300,
         "y": 580,
         "wires": [
             [
@@ -949,7 +949,7 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 960,
+        "x": 980,
         "y": 120,
         "wires": []
     },
@@ -962,7 +962,7 @@
         "msgOverall": true,
         "msgArray": false,
         "msgTemp": false,
-        "x": 270,
+        "x": 310,
         "y": 380,
         "wires": [
             [
@@ -1009,7 +1009,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 970,
+        "x": 990,
         "y": 400,
         "wires": [
             []
@@ -1039,7 +1039,7 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 950,
+        "x": 970,
         "y": 580,
         "wires": []
     },
@@ -1060,7 +1060,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 960,
+        "x": 980,
         "y": 160,
         "wires": []
     },
@@ -1081,7 +1081,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 960,
+        "x": 980,
         "y": 540,
         "wires": []
     },
@@ -1089,14 +1089,14 @@
         "id": "b47ed9d6965cf619",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "memory total",
+        "name": "mem total",
         "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\nmsg.value = formatBytes(msg.payload.totalmem);\nmsg.payload = msg.payload.totalmem;\nmsg.topic = \"mem_total\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
+        "x": 540,
         "y": 540,
         "wires": [
             [
@@ -1117,7 +1117,7 @@
         "finalize": "",
         "libs": [],
         "x": 550,
-        "y": 680,
+        "y": 720,
         "wires": [
             [
                 "b833a78279a06e8c",
@@ -1149,22 +1149,22 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 950,
-        "y": 680,
+        "x": 970,
+        "y": 720,
         "wires": []
     },
     {
         "id": "abbb31eb4b46bee5",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "memory used",
+        "name": "mem used",
         "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload.totalmem - msg.payload.freemem);\nmsg.payload = msg.payload.totalmem - msg.payload.freemem;\nmsg.topic = \"mem_use\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
+        "x": 550,
         "y": 620,
         "wires": [
             [
@@ -1186,7 +1186,7 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 950,
+        "x": 970,
         "y": 620,
         "wires": []
     },
@@ -1203,7 +1203,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "def",
-        "x": 950,
+        "x": 970,
         "y": 440,
         "wires": []
     },
@@ -1211,14 +1211,14 @@
         "id": "39b8930ee2a9adf4",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "load averages",
+        "name": "load avgs",
         "func": "msg.payload = msg.payload.loadavg.join(', ');\nmsg.topic = \"cpu_load_avg\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
+        "x": 540,
         "y": 440,
         "wires": [
             [
@@ -1232,7 +1232,7 @@
         "type": "Loadavg",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 260,
+        "x": 300,
         "y": 440,
         "wires": [
             [
@@ -1264,7 +1264,7 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 960,
+        "x": 980,
         "y": 360,
         "wires": []
     },
@@ -1273,8 +1273,8 @@
         "type": "CPUs",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 250,
-        "y": 280,
+        "x": 290,
+        "y": 300,
         "wires": [
             [
                 "1faa30a4e47251a1",
@@ -1306,14 +1306,14 @@
         "id": "08c2a1b541a459f7",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "cores",
+        "name": "cpu cores",
         "func": "msg.payload = msg.payload.cpus.length;\nmsg.topic = \"cpu_cores\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
+        "x": 540,
         "y": 320,
         "wires": [
             [
@@ -1335,7 +1335,7 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 950,
+        "x": 970,
         "y": 280,
         "wires": []
     },
@@ -1352,7 +1352,7 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 950,
+        "x": 970,
         "y": 320,
         "wires": []
     },
@@ -1369,8 +1369,8 @@
         "format": "<font size=3>{{msg.value}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 950,
-        "y": 760,
+        "x": 970,
+        "y": 680,
         "wires": []
     },
     {
@@ -1386,23 +1386,23 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 950,
-        "y": 720,
+        "x": 970,
+        "y": 760,
         "wires": []
     },
     {
         "id": "cc0bb701d1ad35db",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "disk used bytes",
+        "name": "disk used",
         "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload[0].used);\nmsg.payload = msg.payload[0].used;\nmsg.topic = \"disk_use\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
-        "y": 720,
+        "x": 540,
+        "y": 760,
         "wires": [
             [
                 "11b451e51ccf5739",
@@ -1422,7 +1422,7 @@
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 760,
+        "y": 680,
         "wires": [
             [
                 "d6fd568602fabf48",
@@ -1443,7 +1443,7 @@
         "format": "<font size=3>{{msg.payload.hostname}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 950,
+        "x": 970,
         "y": 200,
         "wires": []
     },
@@ -1452,7 +1452,7 @@
         "type": "OS",
         "z": "f6f2187d.f17ca8",
         "name": "",
-        "x": 250,
+        "x": 290,
         "y": 200,
         "wires": [
             [
@@ -1579,8 +1579,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 970,
-        "y": 60,
+        "x": 990,
+        "y": 40,
         "wires": [
             [
                 "2bbc364080a27e0f"
@@ -1596,8 +1596,8 @@
         "name": "vcache stats 1",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 1140,
-        "y": 60,
+        "x": 1160,
+        "y": 40,
         "wires": []
     },
     {
@@ -3126,8 +3126,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 580,
-        "y": 560,
+        "x": 540,
+        "y": 420,
         "wires": [
             [
                 "b71d48ef56781daf"
@@ -3145,7 +3145,7 @@
         "name": "UUID (gen)",
         "field": "payload",
         "fieldType": "msg",
-        "x": 530,
+        "x": 550,
         "y": 80,
         "wires": [
             [
@@ -3199,7 +3199,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "utf8",
-        "x": 760,
+        "x": 800,
         "y": 80,
         "wires": [
             []
@@ -3240,7 +3240,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "minion cfg",
-        "x": 510,
+        "x": 550,
         "y": 340,
         "wires": [
             [],
@@ -3302,7 +3302,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 750,
+        "x": 790,
         "y": 120,
         "wires": [
             []
@@ -3320,7 +3320,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 540,
+        "x": 560,
         "y": 120,
         "wires": [
             [
@@ -3337,8 +3337,8 @@
         "pathType": "str",
         "filename": "minion_master.pub",
         "filenameType": "str",
-        "x": 850,
-        "y": 740,
+        "x": 790,
+        "y": 620,
         "wires": [
             []
         ]
@@ -3365,7 +3365,7 @@
         "payload": "true",
         "payloadType": "bool",
         "x": 90,
-        "y": 740,
+        "y": 620,
         "wires": [
             [
                 "d64b40a0e03006a6"
@@ -3383,7 +3383,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
+        "x": 780,
         "y": 40,
         "wires": [
             [
@@ -3403,7 +3403,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 530,
+        "x": 550,
         "y": 40,
         "wires": [
             [
@@ -3420,7 +3420,7 @@
         "name": "UUID (out)",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 970,
+        "x": 1090,
         "y": 40,
         "wires": []
     },
@@ -3435,8 +3435,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 560,
+        "x": 330,
+        "y": 420,
         "wires": [
             [
                 "b8eb1678b935b37c"
@@ -3463,8 +3463,8 @@
         "payloadType": "bool",
         "topic": "topic",
         "topicType": "msg",
-        "x": 600,
-        "y": 740,
+        "x": 560,
+        "y": 620,
         "wires": [
             [
                 "e1251d2b16dd4e69"
@@ -3475,15 +3475,15 @@
         "id": "b71d48ef56781daf",
         "type": "function",
         "z": "6e1fffded33ce50f",
-        "name": "set mgr addr cfg",
+        "name": "mgr addr cfg",
         "func": "global.set('MGR_ADDR_CFG', msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 840,
-        "y": 560,
+        "x": 770,
+        "y": 420,
         "wires": [
             []
         ]
@@ -3492,7 +3492,7 @@
         "id": "d8c7f242128e6d08",
         "type": "ui_button",
         "z": "6e1fffded33ce50f",
-        "name": "set mgr cfg button",
+        "name": "set mgr cfg",
         "group": "27ef1ca5c2551459",
         "order": 3,
         "width": 4,
@@ -3508,8 +3508,8 @@
         "payloadType": "bool",
         "topic": "topic",
         "topicType": "msg",
-        "x": 610,
-        "y": 500,
+        "x": 550,
+        "y": 540,
         "wires": [
             [
                 "39d399349809e2ae"
@@ -3557,7 +3557,7 @@
         "payload": "true",
         "payloadType": "bool",
         "x": 90,
-        "y": 500,
+        "y": 540,
         "wires": [
             [
                 "d8c7f242128e6d08"
@@ -3584,7 +3584,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 710,
+        "x": 750,
         "y": 300,
         "wires": [
             [
@@ -3606,8 +3606,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 830,
-        "y": 500,
+        "x": 770,
+        "y": 540,
         "wires": [
             []
         ]
@@ -3624,7 +3624,7 @@
         "redo": true,
         "op": "string",
         "closer": "SIGTERM",
-        "x": 1050,
+        "x": 1090,
         "y": 300,
         "wires": [
             [
@@ -3655,7 +3655,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 1050,
+        "x": 1090,
         "y": 240,
         "wires": [
             [
@@ -3676,7 +3676,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1240,
+        "x": 1280,
         "y": 300,
         "wires": []
     },
@@ -3708,7 +3708,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 860,
+        "x": 900,
         "y": 260,
         "wires": [
             [
@@ -3727,7 +3727,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 860,
+        "x": 900,
         "y": 340,
         "wires": [
             [
@@ -3752,7 +3752,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 1050,
+        "x": 1090,
         "y": 360,
         "wires": [
             [
@@ -3778,8 +3778,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 600,
-        "y": 620,
+        "x": 560,
+        "y": 480,
         "wires": [
             [
                 "e9bc8e9f52519ae6"
@@ -3790,7 +3790,7 @@
         "id": "b6f811abf19f84a1",
         "type": "function",
         "z": "6e1fffded33ce50f",
-        "name": "init agent key",
+        "name": "init mgr agent key",
         "func": "msg.payload = global.get('MGR_KEY_CFG') || env.get('VCACHE_MGR_KEY') || '';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
@@ -3798,7 +3798,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 620,
+        "y": 480,
         "wires": [
             [
                 "f4a7ac0f6eb36a8d"
@@ -3809,15 +3809,15 @@
         "id": "e9bc8e9f52519ae6",
         "type": "function",
         "z": "6e1fffded33ce50f",
-        "name": "set mgr key cfg",
+        "name": "mgr agent key cfg",
         "func": "global.set('MGR_KEY_CFG', msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 840,
-        "y": 620,
+        "x": 790,
+        "y": 480,
         "wires": [
             []
         ]
@@ -3853,7 +3853,7 @@
         "winHide": false,
         "oldrc": false,
         "name": "minion key",
-        "x": 510,
+        "x": 550,
         "y": 260,
         "wires": [
             [],

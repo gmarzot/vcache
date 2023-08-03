@@ -1,18 +1,12 @@
 #!/bin/bash
 
-# Default values
-host=$(hostname)
-cmem=4G
-mgr_addr=""
-mgr_key=""
-
 # Usage function to display script usage
 usage() {
   echo "Usage: $0 [-p|--preserve] [-m|--mgr-addr <manager-address>] [-h|--host <host>] [-k|--mgr-key <mgr-key>] [-c|--cache-mem <cache-memory>]"
 }
 
 # Parse arguments using getopt
-ARGS=$(getopt -o pk:m:h:C: -l "mgr-addr:,host:" -- "$@")
+ARGS=$(getopt -o h:m:k:c:p -l "host:,mgr-addr:,mgr-key:,cache-mem:,preserve" -- "$@")
 
 # Check for any parsing errors
 if [ $? -ne 0 ]; then
@@ -90,10 +84,18 @@ update_env() {
   fi
 }
 
-update_env "VCACHE_MEM_SIZE" $cmem $preserve
+if [ -v cmem ]; then
+    update_env "VCACHE_MEM_SIZE" $cmem $preserve
+fi
+if [ -v host ]; then
 update_env "VCACHE_HOSTNAME" $host $preserve
+fi
+if [ -v mgr_addr ]; then
 update_env "VCACHE_MGR_ADDR" $mgr_addr $preserve
+fi
+if [ -v mgr_key ]; then
 update_env "VCACHE_MGR_KEY" $mgr_key $preserve
+fi
 
 logfile=/tmp/vcache-build-$(date '+%Y-%m-%d:%H:%M:%S').log
 sudo docker-compose build | tee ${logfile}

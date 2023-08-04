@@ -42,7 +42,7 @@ if [[ $realclean ]]; then
 		exit 3
 	fi
 elif [[ $clean ]]; then
-	echo "cleaning volumes and images from the vcache deployment..."
+	echo "cleaning volumes and orphan images from the vcache deployment..."
 	sudo docker-compose down --volumes --remove-orphans --timeout 35
 	if [ $? != 0 ]; then
 		echo "[$?] an error or timeout ocurred cleaning the vcache deployment"

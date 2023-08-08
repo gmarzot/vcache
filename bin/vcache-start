@@ -30,7 +30,13 @@ if [[ $? != 0 ]]; then
 	exit 1
 fi
 
-DC_VERSION=$(sudo docker-compose version | head -n 1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+if [ "$EUID" -eq 0 ]; then
+    SUDO=
+else
+    SUDO="sudo -E"
+fi
+
+DC_VERSION=$($SUDO docker-compose version | head -n 1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
 if [ $? != 0 ]; then
     echo "please install docker-compose and provide sudo access..."
     exit 2
@@ -38,7 +44,7 @@ else
 	echo "running docker-compose (>= 1.29 required): ${DC_VERSION}"
 fi
 
-sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache_mgr_agent" > /dev/null
+$SUDO docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache_mgr_agent" > /dev/null
 
 if [ $? == 0 ]; then
 	echo "vcache containers already running..."
@@ -66,7 +72,7 @@ else
 	read -p "enter the vcache hostname[$HOSTNAME]: " hostname
 	hostname=${hostname:-$HOSTNAME}
     echo "VCACHE_HOSTNAME=${hostname}" > .env
-	echo "VCACHE_MEM_SIZE=12G" >> .env
+	echo "VCACHE_MEM_SIZE=4G" >> .env
 fi
 
 if [[ "$VCACHE_VERSION" != "0.0.0" ]]; then
@@ -75,14 +81,14 @@ if [[ "$VCACHE_VERSION" != "0.0.0" ]]; then
 fi
 
 echo "cleaning up previous deployment..."
-sudo -E docker-compose down
+$SUDO docker-compose down
 
 echo "starting vcache (${VCACHE_VERSION}) ..."
 
 if [[ $debug ]]; then
-	sudo -E docker-compose up
+	$SUDO docker-compose up
 else
-	sudo -E docker-compose up -d
+	$SUDO docker-compose up -d
 fi
 
 if [[ $? != 0 ]]; then

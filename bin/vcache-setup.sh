@@ -2,11 +2,11 @@
 
 # Usage function to display script usage
 usage() {
-  echo "Usage: $0 [-p|--preserve] [-m|--mgr-addr <manager-address>] [-h|--host <host>] [-k|--mgr-key <mgr-key>] [-c|--cache-mem <cache-memory>]"
+  echo "Usage: $0 [-p|--preserve] [-m|--mgr-addr <manager-address>] [-h|--host <host>] [-k|--mgr-key <mgr-key>] [-c|--cache-mem <cache-memory>] [-b|--bg-build] [-r|--run]"
 }
 
 # Parse arguments using getopt
-ARGS=$(getopt -o h:m:k:c:p -l "host:,mgr-addr:,mgr-key:,cache-mem:,preserve" -- "$@")
+ARGS=$(getopt -o h:m:k:c:pbr -l "host:,mgr-addr:,mgr-key:,cache-mem:,preserve,bg-build,run" -- "$@")
 
 # Check for any parsing errors
 if [ $? -ne 0 ]; then
@@ -22,6 +22,14 @@ while true; do
   case "$1" in
     -p | --preserve)
       preserve=true
+      shift
+      ;;
+    -b | --bg-build)
+      bg_build=true
+      shift
+      ;;
+    -r | --run)
+      vcache_run=true
       shift
       ;;
     -h | --host)
@@ -46,24 +54,10 @@ while true; do
       ;;
     *)
       usage
-      exit 1
+      exit 2
       ;;
   esac
 done
-
-type -a docker-compose  > /dev/null
-
-if [ $? != 0 ]; then
-	echo "unable to find docker-compose, please install docker.io and docker-compose, and provide sudo access..."
-	exit 1
-fi
-
-sudo docker-compose version
-
-if [ $? != 0 ]; then
-	echo "unable to execute sudo, please provide sudo access to docker-compose..."
-	exit 2
-fi
 
 if [ -r ".env" ]; then
     source .env
@@ -73,6 +67,10 @@ update_env() {
   local VAR="$1"
   local VAL="$2"
   local PRE="$3"
+
+  if [ ! -e .env ]; then
+      touch .env
+  fi
 
   # Check if VAR already exists in the .env file
   if grep -q "^$VAR=" .env; then
@@ -88,21 +86,57 @@ if [ -v cmem ]; then
     update_env "VCACHE_MEM_SIZE" $cmem $preserve
 fi
 if [ -v host ]; then
-update_env "VCACHE_HOSTNAME" $host $preserve
+    update_env "VCACHE_HOSTNAME" $host $preserve
 fi
 if [ -v mgr_addr ]; then
-update_env "VCACHE_MGR_ADDR" $mgr_addr $preserve
+    update_env "VCACHE_MGR_ADDR" $mgr_addr $preserve
 fi
 if [ -v mgr_key ]; then
-update_env "VCACHE_MGR_KEY" $mgr_key $preserve
+    update_env "VCACHE_MGR_KEY" $mgr_key $preserve
+fi
+if [ -r .version ]; then
+	VCACHE_VERSION=`cat .version`
+    update_env "VCACHE_VERSION" "${VCACHE_VERSION}" $preserve
+fi
+
+
+type -a docker-compose  > /dev/null
+
+if [ $? != 0 ]; then
+	echo "unable to find docker-compose on path, please install docker and docker-compose..."
+	exit 3
+fi
+
+sudo -k docker-compose version
+
+if [ $? != 0 ]; then
+	echo "unable to execute sudo docker-compose, please provide sudo access..."
+	exit 4
 fi
 
 logfile=/tmp/vcache-build-$(date '+%Y-%m-%d:%H:%M:%S').log
-sudo docker-compose build | tee ${logfile}
+echo "preparing to build vcache images: ($bg_build) ($vcache_run)" > ${logfile}
 
-if [ $? != 0 ]; then
-	echo "sudo docker-compose build failed($?): see ${logfile} for details"
-	exit 4
+. .env
+if [ -v bg_build ]; then
+    echo "executing background build ($vcache_run:${VCACHE_SUDO_PW})" >> ${logfile}
+    SUDO_ASKPASS=./bin/vcache-sudo-ask.sh sudo -E -A ./bin/vcache-build-run "$vcache_run" >> ${logfile} 2>&1 &
+    disown
+else
+    sudo -E docker-compose build >> ${logfile} 2>&1
+    if [ $? != 0 ]; then
+	    echo "sudo docker-compose build failed($?): see ${logfile} for details"
+	    exit 4
+    fi
+
+    if [ -v vcache_run ]; then
+        echo "preparing to run vcache..." >> ${logfile}
+        sudo -E docker-compose up -d >> ${logfile} 2>&1
+        if [ $? != 0 ]; then
+	        echo "sudo docker-compose up failed ($?): see ${logfile} for details"
+	        exit 5
+        fi
+    fi
 fi
 
 exit 0

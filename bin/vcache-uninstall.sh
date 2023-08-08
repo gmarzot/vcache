@@ -56,7 +56,7 @@ fi
 
 STOP_ARG=
 if [ -v real_clean ]; then
-    $STOP_ARG="-r"
+    STOP_ARG="-r"
 fi
 
 $STOP_SCRIPT $STOP_ARG

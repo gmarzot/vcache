@@ -28,7 +28,7 @@ services:
     # close this for production
     ports:
       - 1881:1880
-    pid: shareable
+#    pid: shareable
     restart: always
     depends_on:
       - vcache_redis

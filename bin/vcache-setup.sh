@@ -59,10 +59,6 @@ while true; do
   esac
 done
 
-if [ -r ".env" ]; then
-    source .env
-fi
-
 update_env() {
   local VAR="$1"
   local VAL="$2"
@@ -99,42 +95,59 @@ if [ -r .version ]; then
     update_env "VCACHE_VERSION" "${VCACHE_VERSION}" $preserve
 fi
 
+if [ "$EUID" -eq 0 ]; then
+    SUDO=
+    type -a docker-compose  > /dev/null
 
-type -a docker-compose  > /dev/null
-
-if [ $? != 0 ]; then
-	echo "unable to find docker-compose on path, please install docker and docker-compose..."
-	exit 3
-fi
-
-sudo -k docker-compose version
-
-if [ $? != 0 ]; then
-	echo "unable to execute sudo docker-compose, please provide sudo access..."
-	exit 4
+    if [ $? != 0 ]; then
+	    echo "unable to find docker-compose on path, please install docker and docker-compose..."
+	    exit 3
+    fi
+else
+    SUDO="sudo -E"
+    sudo -n docker-compose version 2>/dev/null
+    if [ $? != 0 ]; then
+        sudo -k docker-compose version
+        if [ $? != 0 ]; then
+	        echo "unable to execute sudo docker-compose, please provide sudo access..."
+	        exit 4
+        fi
+    fi
 fi
 
 logfile=/tmp/vcache-build-$(date '+%Y-%m-%d:%H:%M:%S').log
 echo "preparing to build vcache images: ($bg_build) ($vcache_run)" > ${logfile}
 
-. .env
+if [ -r ".env" ]; then
+    source .env
+else
+    echo "unable to read and source .env file: exiting..."
+    exit 5
+fi
+
 if [ -v bg_build ]; then
     echo "executing background build ($vcache_run:${VCACHE_SUDO_PW})" >> ${logfile}
-    SUDO_ASKPASS=./bin/vcache-sudo-ask.sh sudo -E -A ./bin/vcache-build-run "$vcache_run" >> ${logfile} 2>&1 &
-    disown
+    if [ -z "$SUDO" ]; then
+        ./bin/vcache-build-run "$vcache_run" >> ${logfile} 2>&1 &
+    else
+        SUDO_ASKPASS=./bin/vcache-sudo-ask.sh sudo -E -A ./bin/vcache-build-run "$vcache_run" >> ${logfile} 2>&1 &
+    fi
+    echo "vcache-build-run running in background ($?)" >> ${logfile}
+    disown -h >> ${logfile} 2>&1
+    echo "vcache-build-run disowned ($?)" >> ${logfile}
 else
-    sudo -E docker-compose build >> ${logfile} 2>&1
+    $SUDO docker-compose build >> ${logfile} 2>&1
     if [ $? != 0 ]; then
-	    echo "sudo docker-compose build failed($?): see ${logfile} for details"
-	    exit 4
+	    echo "$SUDO docker-compose build failed($?): see ${logfile} for details"
+	    exit 6
     fi
 
     if [ -v vcache_run ]; then
         echo "preparing to run vcache..." >> ${logfile}
-        sudo -E docker-compose up -d >> ${logfile} 2>&1
+        $SUDO docker-compose up -d >> ${logfile} 2>&1
         if [ $? != 0 ]; then
-	        echo "sudo docker-compose up failed ($?): see ${logfile} for details"
-	        exit 5
+	        echo "$SUDO docker-compose up failed ($?): see ${logfile} for details"
+	        exit 7
         fi
     fi
 fi

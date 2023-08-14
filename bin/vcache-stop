@@ -3,7 +3,7 @@
 die() { echo "$*" >&2; exit 6; }  # complain to STDERR and exit with error
 needs_arg() { if [ -z "$OPTARG" ]; then die "No arg for --$OPT option"; fi; }
 
-while getopts cr-: OPT; do
+while getopts Acr-: OPT; do
   # support long options: https://stackoverflow.com/a/28466267/519360
   if [ "$OPT" = "-" ]; then   # long option: reformulate OPT and OPTARG
     OPT="${OPTARG%%=*}"       # extract long option name
@@ -12,7 +12,8 @@ while getopts cr-: OPT; do
   fi
   case "$OPT" in
     c | clean )    clean=true ;;
-    r | realclean )    realclean=true ;;
+    r | real-clean )    real_clean=true ;;
+    A | no-ansi )    no_ansi=true ;;
     ??* )          die "Illegal option --$OPT" ;;  # bad long option
     ? )            exit 5 ;;  # bad short option (error reported via getopts)
   esac
@@ -40,23 +41,29 @@ if [ $? != 0 ]; then
 	echo "vcache containers are not running..."
 fi
 
-if [[ $realclean ]]; then
+if [[ $no_ansi ]]; then
+    DC_ARGS="--ansi never"
+else
+    DC_ARGS=""
+fi
+
+if [[ $real_clean ]]; then
 	echo "deep cleaning volumes and images from the vcache deployment..."
-	$SUDO docker-compose down --volumes --rmi local --remove-orphans --timeout 35
+	$SUDO docker-compose ${DC_ARGS} down --volumes --rmi local --remove-orphans --timeout 45
 	if [ $? != 0 ]; then
 		echo "[$?] an error or timeout ocurred deep cleaning the vcache deployment"
 		exit 3
 	fi
 elif [[ $clean ]]; then
 	echo "cleaning volumes and orphan images from the vcache deployment..."
-	$SUDO docker-compose down --volumes --remove-orphans --timeout 45
+	$SUDO docker-compose ${DC_ARGS} down --volumes --remove-orphans --timeout 45
 	if [ $? != 0 ]; then
 		echo "[$?] an error or timeout ocurred cleaning the vcache deployment"
 		exit 3
 	fi
 else
 	echo "stopping vcache containers..."
-	$SUDO docker-compose down
+	$SUDO docker-compose ${DC_ARGS} down
 	if [[ $? != 0 ]]; then
 		echo "[$?] an error occured stopping vcache, exiting..."
 		exit 2

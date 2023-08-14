@@ -77,7 +77,9 @@ fi
 
 if [[ "$VCACHE_VERSION" != "0.0.0" ]]; then
 	# update or add the VCACHE_VERSION to .env
-	perl -i -ne "\$found++ if s/VCACHE_VERSION=\S+/VCACHE_VERSION=${VCACHE_VERSION}/; \$_ .= \"VCACHE_VERSION=${VCACHE_VERSION}\\n\" if eof and not \$found; print;" .env
+    # XXX Rocky does not have perl?? that won't work for us
+    #	perl -i -ne "\$found++ if s/VCACHE_VERSION=\S+/VCACHE_VERSION=${VCACHE_VERSION}/; \$_ .= \"VCACHE_VERSION=${VCACHE_VERSION}\\n\" if eof and not \$found; print;" .env
+    sed -i "/^VCACHE_VERSION=/{h;s/=.*/=${VCACHE_VERSION}/};\${x;/^\$/{s//VCACHE_VERSION=${VCACHE_VERSION}/;H};x}" .env
 fi
 
 echo "cleaning up previous deployment..."

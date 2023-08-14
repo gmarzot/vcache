@@ -136,7 +136,7 @@ if [ -v bg_build ]; then
     disown -h >> ${logfile} 2>&1
     echo "vcache-build-run disowned ($?)" >> ${logfile}
 else
-    $SUDO docker-compose build >> ${logfile} 2>&1
+    $SUDO docker-compose --ansi never build >> ${logfile} 2>&1
     if [ $? != 0 ]; then
 	    echo "$SUDO docker-compose build failed($?): see ${logfile} for details"
 	    exit 6
@@ -144,7 +144,7 @@ else
 
     if [ -v vcache_run ]; then
         echo "preparing to run vcache..." >> ${logfile}
-        $SUDO docker-compose up -d >> ${logfile} 2>&1
+        $SUDO docker-compose --ansi never up -d >> ${logfile} 2>&1
         if [ $? != 0 ]; then
 	        echo "$SUDO docker-compose up failed ($?): see ${logfile} for details"
 	        exit 7

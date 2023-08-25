@@ -27,3 +27,12 @@ fi
 
 echo "vcache config update complete"
 touch /var/run/vcache.ready
+
+if [ $# -gt 0 ]; then
+    kill -s HUP `cat /var/run/ngindx-fe.pid`
+    datetime=$(date +"%Y%m%d%H%M%S")
+    echo "vcl.load vcl_${datetime} /etc/varnish/default.cfg" | varnishadm
+    if [[ $? == 0 ]]; then
+        echo "vcl.use vcl_${datetime}" | varnishadm
+    fi
+done

@@ -927,7 +927,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
+        "x": 600,
         "y": 120,
         "wires": [
             [
@@ -949,7 +949,7 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 980,
+        "x": 940,
         "y": 120,
         "wires": []
     },
@@ -1009,7 +1009,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 990,
+        "x": 950,
         "y": 400,
         "wires": [
             []
@@ -1039,7 +1039,7 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 970,
+        "x": 930,
         "y": 580,
         "wires": []
     },
@@ -1060,7 +1060,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 980,
+        "x": 940,
         "y": 160,
         "wires": []
     },
@@ -1081,7 +1081,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 980,
+        "x": 940,
         "y": 540,
         "wires": []
     },
@@ -1096,7 +1096,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 580,
         "y": 540,
         "wires": [
             [
@@ -1116,7 +1116,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
+        "x": 590,
         "y": 720,
         "wires": [
             [
@@ -1149,7 +1149,7 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 970,
+        "x": 930,
         "y": 720,
         "wires": []
     },
@@ -1164,7 +1164,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
+        "x": 590,
         "y": 620,
         "wires": [
             [
@@ -1186,7 +1186,7 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 970,
+        "x": 930,
         "y": 620,
         "wires": []
     },
@@ -1203,7 +1203,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "def",
-        "x": 970,
+        "x": 930,
         "y": 440,
         "wires": []
     },
@@ -1218,7 +1218,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 580,
         "y": 440,
         "wires": [
             [
@@ -1264,7 +1264,7 @@
         "seg2": "90",
         "diff": false,
         "className": "def",
-        "x": 980,
+        "x": 940,
         "y": 360,
         "wires": []
     },
@@ -1293,7 +1293,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
+        "x": 590,
         "y": 280,
         "wires": [
             [
@@ -1313,7 +1313,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 580,
         "y": 320,
         "wires": [
             [
@@ -1335,7 +1335,7 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 970,
+        "x": 930,
         "y": 280,
         "wires": []
     },
@@ -1352,7 +1352,7 @@
         "format": "<font size=3>{{msg.payload}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 970,
+        "x": 930,
         "y": 320,
         "wires": []
     },
@@ -1369,7 +1369,7 @@
         "format": "<font size=3>{{msg.value}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 970,
+        "x": 930,
         "y": 680,
         "wires": []
     },
@@ -1386,7 +1386,7 @@
         "format": "{{msg.value}}",
         "layout": "row-center",
         "className": "def",
-        "x": 970,
+        "x": 930,
         "y": 760,
         "wires": []
     },
@@ -1401,7 +1401,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 580,
         "y": 760,
         "wires": [
             [
@@ -1421,7 +1421,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 580,
         "y": 680,
         "wires": [
             [
@@ -1443,7 +1443,7 @@
         "format": "<font size=3>{{msg.payload.hostname}}</font>",
         "layout": "row-left",
         "className": "def",
-        "x": 970,
+        "x": 930,
         "y": 200,
         "wires": []
     },
@@ -1473,7 +1473,7 @@
         "round": "",
         "mult": "single",
         "reduce": false,
-        "x": 540,
+        "x": 580,
         "y": 400,
         "wires": [
             [
@@ -1492,7 +1492,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 580,
         "y": 80,
         "wires": [
             [
@@ -1511,7 +1511,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
+        "x": 590,
         "y": 500,
         "wires": [
             [
@@ -1530,7 +1530,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
+        "x": 600,
         "y": 160,
         "wires": [
             [
@@ -1550,7 +1550,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
+        "x": 590,
         "y": 360,
         "wires": [
             [
@@ -1579,7 +1579,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 990,
+        "x": 950,
         "y": 40,
         "wires": [
             [
@@ -1596,7 +1596,7 @@
         "name": "vcache stats 1",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 1160,
+        "x": 1120,
         "y": 40,
         "wires": []
     },
@@ -1611,7 +1611,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
+        "x": 580,
         "y": 240,
         "wires": [
             [
@@ -1643,7 +1643,7 @@
         "seg2": "",
         "diff": false,
         "className": "def",
-        "x": 1330,
+        "x": 1310,
         "y": 560,
         "wires": []
     },
@@ -1685,7 +1685,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1330,
+        "x": 1310,
         "y": 600,
         "wires": [
             []
@@ -1729,7 +1729,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1320,
+        "x": 1300,
         "y": 760,
         "wires": [
             []
@@ -1773,7 +1773,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1310,
+        "x": 1290,
         "y": 420,
         "wires": [
             []
@@ -1817,7 +1817,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1320,
+        "x": 1300,
         "y": 860,
         "wires": [
             []
@@ -1861,7 +1861,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1330,
+        "x": 1310,
         "y": 940,
         "wires": [
             []
@@ -1969,7 +1969,7 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 530,
+        "x": 510,
         "y": 660,
         "wires": [
             [
@@ -1991,7 +1991,7 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 530,
+        "x": 510,
         "y": 740,
         "wires": [
             [
@@ -2021,7 +2021,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 710,
+        "x": 690,
         "y": 700,
         "wires": [
             [
@@ -2059,7 +2059,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 910,
+        "x": 890,
         "y": 600,
         "wires": [
             [
@@ -2119,7 +2119,7 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 530,
+        "x": 510,
         "y": 420,
         "wires": [
             [
@@ -2141,7 +2141,7 @@
         "timestampField": "timestamp",
         "timestampFieldType": "msg",
         "ratePeriod": "1000",
-        "x": 530,
+        "x": 510,
         "y": 540,
         "wires": [
             [
@@ -2175,7 +2175,7 @@
         "seg2": "",
         "diff": false,
         "className": "def",
-        "x": 1310,
+        "x": 1290,
         "y": 520,
         "wires": []
     },
@@ -2217,7 +2217,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1310,
+        "x": 1290,
         "y": 480,
         "wires": [
             []
@@ -2243,7 +2243,7 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 710,
+        "x": 690,
         "y": 480,
         "wires": [
             [
@@ -2263,7 +2263,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
+        "x": 880,
         "y": 520,
         "wires": [
             [
@@ -2284,7 +2284,7 @@
         "format": "{{msg.rate|number:2}} {{msg.units}}rps",
         "layout": "row-center",
         "className": "def",
-        "x": 1330,
+        "x": 1310,
         "y": 900,
         "wires": []
     },
@@ -2301,7 +2301,7 @@
         "format": "{{msg.rate}} {{msg.units}}bps",
         "layout": "row-center",
         "className": "def",
-        "x": 1320,
+        "x": 1300,
         "y": 820,
         "wires": []
     },
@@ -2318,7 +2318,7 @@
         "format": "{{msg.payload}} {{msg.units}}bps",
         "layout": "col-center",
         "className": "huge",
-        "x": 1330,
+        "x": 1310,
         "y": 40,
         "wires": []
     },
@@ -2339,7 +2339,7 @@
         "font": "",
         "fontSize": "",
         "color": "#000000",
-        "x": 1310,
+        "x": 1290,
         "y": 160,
         "wires": []
     },
@@ -2356,7 +2356,7 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "huge",
-        "x": 1320,
+        "x": 1300,
         "y": 200,
         "wires": []
     },
@@ -2373,7 +2373,11 @@
         "format": "{{msg.rate}} {{msg.units}}bps",
         "layout": "row-center",
         "className": "def",
-        "x": 1310,
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1290,
         "y": 120,
         "wires": []
     },
@@ -2408,7 +2412,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
+        "x": 500,
         "y": 100,
         "wires": [
             [
@@ -2421,17 +2425,18 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "bw saved max",
-        "func": "if (flow.get(\"max_bw_saved\") == null || flow.get(\"max_bw_saved\") == '') {\n    flow.set(\"max_bw_saved\", 0)\n}\nif (msg.payload > flow.get(\"max_bw_saved\")) {\n    flow.set(\"max_bw_saved\", msg.payload)\n}\n\nmsg.payload = flow.get(\"max_bw_saved\")\nreturn msg;",
+        "func": "if (flow.get(\"max_bw_saved\") == null || flow.get(\"max_bw_saved\") == '') {\n    flow.set(\"max_bw_saved\", 0)\n}\nif (msg.payload > flow.get(\"max_bw_saved\")) {\n    flow.set(\"max_bw_saved\", msg.payload)\n}\n\nmsg.payload = flow.get(\"max_bw_saved\")\nmsg.topic = \"max_bw_saved\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
+        "x": 700,
         "y": 40,
         "wires": [
             [
-                "fd120a60f4e97f67"
+                "fd120a60f4e97f67",
+                "51074a98838504df"
             ]
         ]
     },
@@ -2494,7 +2499,7 @@
         "format": "{{msg.rate}} {{msg.units}}bps",
         "layout": "row-center",
         "className": "def",
-        "x": 1320,
+        "x": 1300,
         "y": 380,
         "wires": []
     },
@@ -2511,7 +2516,7 @@
         "format": "{{msg.rate | number:2}} {{msg.units}}rps",
         "layout": "row-center",
         "className": "def",
-        "x": 1330,
+        "x": 1310,
         "y": 720,
         "wires": []
     },
@@ -2526,7 +2531,7 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar smsg = { \"ui_control\": { \"ymax\": 10}};\nvar rmsg = { \"ui_control\": { \"ymax\": null } };\n\nreturn [smsg,rmsg];",
         "finalize": "",
         "libs": [],
-        "x": 910,
+        "x": 890,
         "y": 920,
         "wires": [
             [
@@ -2546,7 +2551,7 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar smsg = { payload: 0.1 };\nreturn smsg;",
         "finalize": "",
         "libs": [],
-        "x": 910,
+        "x": 890,
         "y": 840,
         "wires": [
             [
@@ -2566,7 +2571,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 910,
+        "x": 890,
         "y": 700,
         "wires": [
             [
@@ -2586,7 +2591,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 910,
+        "x": 890,
         "y": 400,
         "wires": [
             [
@@ -2606,7 +2611,7 @@
         "round": "",
         "mult": "single",
         "reduce": false,
-        "x": 740,
+        "x": 680,
         "y": 100,
         "wires": [
             [
@@ -2620,18 +2625,19 @@
         "type": "function",
         "z": "f6922bafc800b831",
         "name": "units metric",
-        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.payload < 0) msg.payload = 0;\nmsg.payload = Math.round(msg.payload * 100) / 100;\nmsg.rate = msg.payload;\n[msg.rate, msg.units] = formatMetric(msg.payload);\nreturn msg;",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.payload < 0) msg.payload = 0;\nmsg.payload = Math.round(msg.payload * 100) / 100;\nmsg.rate = msg.payload;\n[msg.rate, msg.units] = formatMetric(msg.payload);\nmsg.topic = \"bw_saved\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 910,
+        "x": 890,
         "y": 100,
         "wires": [
             [
                 "232348cff06e823f",
-                "73c5ea80b8305d9a"
+                "73c5ea80b8305d9a",
+                "51074a98838504df"
             ]
         ]
     },
@@ -2646,7 +2652,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 910,
+        "x": 890,
         "y": 40,
         "wires": [
             [
@@ -2665,7 +2671,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 910,
+        "x": 890,
         "y": 440,
         "wires": [
             [
@@ -2684,7 +2690,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 910,
+        "x": 890,
         "y": 740,
         "wires": [
             [
@@ -2703,7 +2709,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 900,
         "y": 660,
         "wires": [
             [
@@ -2722,7 +2728,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 920,
+        "x": 900,
         "y": 780,
         "wires": [
             [
@@ -2784,7 +2790,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 930,
+        "x": 910,
         "y": 200,
         "wires": [
             [
@@ -2836,7 +2842,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 550,
+        "x": 530,
         "y": 360,
         "wires": [
             []
@@ -2874,7 +2880,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-center",
         "className": "def",
-        "x": 1300,
+        "x": 1280,
         "y": 280,
         "wires": []
     },
@@ -2916,7 +2922,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "def",
-        "x": 1320,
+        "x": 1300,
         "y": 240,
         "wires": [
             []
@@ -2960,7 +2966,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "def",
-        "x": 1330,
+        "x": 1310,
         "y": 80,
         "wires": [
             []
@@ -2988,7 +2994,7 @@
         "topic": "",
         "payload": "1",
         "payloadType": "num",
-        "x": 1060,
+        "x": 1040,
         "y": 1020,
         "wires": [
             [
@@ -3057,7 +3063,7 @@
         "round": "2",
         "mult": "single",
         "reduce": false,
-        "x": 1060,
+        "x": 1040,
         "y": 520,
         "wires": [
             [
@@ -3081,13 +3087,13 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "9",
+        "count": "11",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 1270,
+        "x": 1250,
         "y": 660,
         "wires": [
             [
@@ -3104,7 +3110,7 @@
         "name": "vcache stats 2",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 1440,
+        "x": 1400,
         "y": 660,
         "wires": []
     },
@@ -3126,8 +3132,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 540,
-        "y": 420,
+        "x": 580,
+        "y": 440,
         "wires": [
             [
                 "b71d48ef56781daf"
@@ -3145,7 +3151,7 @@
         "name": "UUID (gen)",
         "field": "payload",
         "fieldType": "msg",
-        "x": 550,
+        "x": 590,
         "y": 80,
         "wires": [
             [
@@ -3176,7 +3182,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 90,
-        "y": 60,
+        "y": 40,
         "wires": [
             [
                 "9c1cae2c8cd579f1",
@@ -3199,7 +3205,7 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "utf8",
-        "x": 800,
+        "x": 840,
         "y": 80,
         "wires": [
             []
@@ -3217,7 +3223,7 @@
         "read": true,
         "write": true,
         "throwerror": false,
-        "x": 330,
+        "x": 370,
         "y": 60,
         "wires": [
             [
@@ -3240,8 +3246,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "minion cfg",
-        "x": 550,
-        "y": 340,
+        "x": 590,
+        "y": 360,
         "wires": [
             [],
             [],
@@ -3262,8 +3268,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 350,
-        "y": 180,
+        "x": 390,
+        "y": 200,
         "wires": [
             [],
             [],
@@ -3282,8 +3288,8 @@
         "read": true,
         "write": false,
         "throwerror": false,
-        "x": 340,
-        "y": 100,
+        "x": 380,
+        "y": 120,
         "wires": [
             [
                 "28e546a9e90ffb1f"
@@ -3302,7 +3308,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 790,
+        "x": 830,
         "y": 120,
         "wires": [
             []
@@ -3320,7 +3326,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 560,
+        "x": 600,
         "y": 120,
         "wires": [
             [
@@ -3337,7 +3343,7 @@
         "pathType": "str",
         "filename": "minion_master.pub",
         "filenameType": "str",
-        "x": 790,
+        "x": 830,
         "y": 620,
         "wires": [
             []
@@ -3383,7 +3389,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
+        "x": 820,
         "y": 40,
         "wires": [
             [
@@ -3403,7 +3409,7 @@
         "sendError": false,
         "encoding": "none",
         "allProps": false,
-        "x": 550,
+        "x": 590,
         "y": 40,
         "wires": [
             [
@@ -3420,7 +3426,7 @@
         "name": "UUID (out)",
         "key": "vcache_stats",
         "structtype": "hash",
-        "x": 1090,
+        "x": 1130,
         "y": 40,
         "wires": []
     },
@@ -3435,8 +3441,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 420,
+        "x": 370,
+        "y": 440,
         "wires": [
             [
                 "b8eb1678b935b37c"
@@ -3463,7 +3469,7 @@
         "payloadType": "bool",
         "topic": "topic",
         "topicType": "msg",
-        "x": 560,
+        "x": 600,
         "y": 620,
         "wires": [
             [
@@ -3482,8 +3488,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 770,
-        "y": 420,
+        "x": 810,
+        "y": 440,
         "wires": [
             []
         ]
@@ -3508,8 +3514,8 @@
         "payloadType": "bool",
         "topic": "topic",
         "topicType": "msg",
-        "x": 550,
-        "y": 540,
+        "x": 590,
+        "y": 560,
         "wires": [
             [
                 "39d399349809e2ae"
@@ -3527,8 +3533,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 340,
+        "x": 380,
+        "y": 360,
         "wires": [
             [
                 "c9b1a37c5388a3f5"
@@ -3557,7 +3563,7 @@
         "payload": "true",
         "payloadType": "bool",
         "x": 90,
-        "y": 540,
+        "y": 560,
         "wires": [
             [
                 "d8c7f242128e6d08"
@@ -3584,8 +3590,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 750,
-        "y": 300,
+        "x": 770,
+        "y": 320,
         "wires": [
             [
                 "3c56fb1d676c0a34"
@@ -3606,8 +3612,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 770,
-        "y": 540,
+        "x": 810,
+        "y": 560,
         "wires": [
             []
         ]
@@ -3624,8 +3630,8 @@
         "redo": true,
         "op": "string",
         "closer": "SIGTERM",
-        "x": 1090,
-        "y": 300,
+        "x": 1130,
+        "y": 320,
         "wires": [
             [
                 "6f4609666af8e40d"
@@ -3655,8 +3661,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 1090,
-        "y": 240,
+        "x": 1130,
+        "y": 260,
         "wires": [
             [
                 "83fc3e9f821ab09b"
@@ -3676,8 +3682,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1280,
-        "y": 300,
+        "x": 1300,
+        "y": 320,
         "wires": []
     },
     {
@@ -3690,7 +3696,7 @@
         ],
         "uncaught": false,
         "x": 110,
-        "y": 300,
+        "y": 280,
         "wires": [
             [
                 "94d24377cc341d7b"
@@ -3708,8 +3714,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 260,
+        "x": 940,
+        "y": 280,
         "wires": [
             [
                 "83fc3e9f821ab09b"
@@ -3727,8 +3733,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 340,
+        "x": 940,
+        "y": 360,
         "wires": [
             [
                 "83fc3e9f821ab09b"
@@ -3752,8 +3758,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 1090,
-        "y": 360,
+        "x": 1130,
+        "y": 380,
         "wires": [
             [
                 "83fc3e9f821ab09b"
@@ -3778,8 +3784,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 560,
-        "y": 480,
+        "x": 600,
+        "y": 500,
         "wires": [
             [
                 "e9bc8e9f52519ae6"
@@ -3797,8 +3803,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 480,
+        "x": 390,
+        "y": 500,
         "wires": [
             [
                 "f4a7ac0f6eb36a8d"
@@ -3816,8 +3822,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 790,
-        "y": 480,
+        "x": 830,
+        "y": 500,
         "wires": [
             []
         ]
@@ -3833,8 +3839,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 340,
-        "y": 260,
+        "x": 380,
+        "y": 280,
         "wires": [
             [
                 "5169cc8df15e5f1e"
@@ -3853,8 +3859,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "minion key",
-        "x": 550,
-        "y": 260,
+        "x": 590,
+        "y": 280,
         "wires": [
             [],
             [],

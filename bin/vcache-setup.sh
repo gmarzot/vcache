@@ -115,9 +115,6 @@ else
     fi
 fi
 
-logfile=/tmp/vcache-build-$(date '+%Y-%m-%d:%H:%M:%S').log
-echo "preparing to build vcache images: ($bg_build) ($vcache_run)" > ${logfile}
-
 if [ -r ".env" ]; then
     source .env
 else
@@ -126,27 +123,29 @@ else
 fi
 
 if [ -v bg_build ]; then
-    echo "executing background build ($vcache_run:${VCACHE_SUDO_PW})" >> ${logfile}
+    logfile=/tmp/vcache-build-$(date '+%Y-%m-%d:%H:%M:%S').log
+    echo "executing vcache image build: (bg:true) (run:$vcache_run)"
+    echo "logging to: ${logfile}"
     if [ -z "$SUDO" ]; then
         ./bin/vcache-build-run "$vcache_run" >> ${logfile} 2>&1 &
     else
         SUDO_ASKPASS=./bin/vcache-sudo-ask.sh sudo -E -A ./bin/vcache-build-run "$vcache_run" >> ${logfile} 2>&1 &
     fi
-    echo "vcache-build-run running in background ($?)" >> ${logfile}
-    disown -h >> ${logfile} 2>&1
-    echo "vcache-build-run disowned ($?)" >> ${logfile}
+    echo "vcache-build-run running in background ($?)"
+    disown -h
 else
-    $SUDO docker-compose --ansi never build >> ${logfile} 2>&1
+    echo "executing vcache image build: (bg:false) (run:$vcache_run)"
+    $SUDO docker-compose build
     if [ $? != 0 ]; then
-	    echo "$SUDO docker-compose build failed($?): see ${logfile} for details"
+	    echo "$SUDO docker-compose build failed ($?)"
 	    exit 6
     fi
 
     if [ -v vcache_run ]; then
-        echo "preparing to run vcache..." >> ${logfile}
-        $SUDO docker-compose --ansi never up -d >> ${logfile} 2>&1
+        echo "preparing to run vcache..."
+        $SUDO docker-compose up -d
         if [ $? != 0 ]; then
-	        echo "$SUDO docker-compose up failed ($?): see ${logfile} for details"
+	        echo "$SUDO docker-compose up failed ($?)"
 	        exit 7
         fi
     fi

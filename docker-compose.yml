@@ -44,6 +44,7 @@ services:
       - var_run:/var/run
       - var_log_fe:/var/log/nginx
       - etc_frontend:/etc/nginx
+      - varnish_tmpfs:/var/lib/varnish:ro
     networks:
       - vcache_net
     ports:

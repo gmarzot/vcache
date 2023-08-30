@@ -78,9 +78,12 @@ RUN set -e; \
 
 COPY ./etc/varnish /etc/varnish
 VOLUME /etc/varnish
+
 COPY ./scripts/ /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/docker-varnish-entrypoint"]
 
-EXPOSE 80 8443 9131
+COPY ./varnishstats/ /var/run/varnishstats/
+
+EXPOSE 80 8443 9131 6082
 WORKDIR /etc/varnish
 CMD []

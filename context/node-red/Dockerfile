@@ -37,6 +37,9 @@ COPY ./node-red/etc/salt/beacons.conf /etc/salt/minion.d/beacons.conf
 RUN apk add py3-pip py3-numpy py3-pandas py3-scikit-learn
 RUN pip install redis
 
+RUN apk add logrotate
+COPY ./node-red/etc/logrotate.conf /etc
+
 RUN echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf
 
 COPY ./node-red/custom-entrypoint.sh /usr/src/node-red/custom-entrypoint.sh

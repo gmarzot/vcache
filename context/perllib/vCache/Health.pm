@@ -19,7 +19,7 @@ sub handler {
 		return HTTP_INTERNAL_SERVER_ERROR unless defined($redis);
 	}
 
-    my %cache_health = $redis->hgetall("vcache::stats");;
+    my %cache_health = $redis->hgetall("vcache:stats");;
 
     if (%cache_health) {
 		$cache_health{'status'} = 'up';

@@ -9,7 +9,7 @@ fi
 
 vcache-tmpl-eval -f /etc/vcache/vcache.cfg -t /etc/varnish/cache_rules.tmpl -o /etc/varnish/cache_rules.incl
 if [[ $? != 0 ]]; then
-	echo "erroru[dating cache_rules.incl..."
+	echo "error udating cache_rules.incl..."
 	exit 1
 fi
 
@@ -28,11 +28,8 @@ fi
 echo "vcache config update complete"
 touch /var/run/vcache.ready
 
+# optionally trigger reload of nginx and varnish config
 if [ $# -gt 0 ]; then
-    kill -s HUP `cat /var/run/ngindx-fe.pid`
-    datetime=$(date +"%Y%m%d%H%M%S")
-    echo "vcl.load vcl_${datetime} /etc/varnish/default.cfg" | varnishadm
-    if [[ $? == 0 ]]; then
-        echo "vcl.use vcl_${datetime}" | varnishadm
-    fi
-done
+   kill -s HUP `cat /var/run/nginx-fe.pid`
+   redis-cli -h vcache_redis SET varnish:vcl_reload 1
+fi

@@ -20,10 +20,11 @@ services:
     environment:
       - VCACHE_VERSION=${VCACHE_VERSION}
       - VCACHE_HOSTNAME=${VCACHE_HOSTNAME}
-      - SALT_MASTER=${VCACHE_MGR_ADDR}
+      - VCACHE_MGR_ADDR=${VCACHE_MGR_ADDR}
+      - VCACHE_MGR_KEY=${VCACHE_MGR_KEY}
     ports:
       - 1881:1880 # comment out for production
-    pid: shareable
+#    pid: shareable
     restart: always
     depends_on:
       - vcache_redis

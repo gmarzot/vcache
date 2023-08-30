@@ -1625,7 +1625,7 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "mem use %",
-        "func": "msg.payload = msg.payload.memusage;\nmsg.topic = \"mem_use_pct\";\nreturn msg;",
+        "func": "msg.payload = msg.payload.memusage;\nmsg.payload = parseFloat(msg.payload).toFixed(2);\nmsg.topic = \"mem_use_pct\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1664,7 +1664,7 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "cpu use %",
-        "func": "msg.topic = \"cpu_use_pct\";\nreturn msg;",
+        "func": "msg.payload = parseFloat(msg.payload).toFixed(2);\nmsg.topic = \"cpu_use_pct\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1693,7 +1693,7 @@
         "joinerType": "str",
         "accumulate": false,
         "timeout": "",
-        "count": "13",
+        "count": "14",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -1714,7 +1714,7 @@
         "hostname": "vcache_redis",
         "port": 6379,
         "name": "vcache stats  (ext 1)",
-        "key": "vcache::stats",
+        "key": "vcache:stats",
         "structtype": "hash",
         "x": 1130,
         "y": 40,
@@ -2024,7 +2024,7 @@
         "server": "129ea38b0b9c5445",
         "command": "GET",
         "name": "varnish stats",
-        "topic": "varnish::stats",
+        "topic": "varnish:stats",
         "params": "",
         "paramsType": "json",
         "payloadType": "json",
@@ -3188,7 +3188,7 @@
         "hostname": "vcache_redis",
         "port": 6379,
         "name": "vcache stats (ext 2)",
-        "key": "vcache::stats",
+        "key": "vcache:stats",
         "structtype": "hash",
         "x": 1410,
         "y": 660,
@@ -3548,7 +3548,7 @@
         "hostname": "vcache_redis",
         "port": 6379,
         "name": "UUID (out)",
-        "key": "vcache::stats",
+        "key": "vcache:stats",
         "structtype": "hash",
         "x": 1030,
         "y": 40,
@@ -3757,8 +3757,12 @@
         "x": 1030,
         "y": 320,
         "wires": [
-            [],
-            [],
+            [
+                "dee0f52de10bef29"
+            ],
+            [
+                "dee0f52de10bef29"
+            ],
             []
         ]
     },
@@ -4039,6 +4043,22 @@
         "statusType": "auto",
         "x": 1080,
         "y": 680,
+        "wires": []
+    },
+    {
+        "id": "dee0f52de10bef29",
+        "type": "debug",
+        "z": "6e1fffded33ce50f",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 300,
         "wires": []
     }
 ]

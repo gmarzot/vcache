@@ -6,15 +6,16 @@ import subprocess
 import time
 
 redis = redis.Redis(host='vcache_redis', port=6379, db=0)
-vcl_reload = 'varnish::vcl_reload'
-stats = 'varnish::stats'
+
+vcl = 'varnish::vcl_reload'
+stats = 'varnish:stats'
 
 while True:
     # get stats and save in redis
     stats_json = subprocess.check_output("/usr/bin/varnishstat -j; exit 0", stderr=subprocess.STDOUT, shell=True)
     redis.set(stats, stats_json)
     # monitor flag to reload vcl
-    if (redis.exists(vcl_reload))
+    if redis.exists(vcl):
         try:
             print(f"VCL reload: running...")
             subprocess.run(['/usr/local/bin/vcl-reload'], check=True)

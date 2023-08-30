@@ -80,6 +80,7 @@ services:
          hard: 262144
     environment:
       - VARNISH_SIZE=${VCACHE_MEM_SIZE}
+      - VARNISH_ADMIN_LISTEN_PORT=6082
     command:
       - "-a /var/run/varnish.sock,HTTP,user=varnish,group=varnish,mode=666"
     restart: always

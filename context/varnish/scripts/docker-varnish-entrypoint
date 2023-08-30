@@ -12,6 +12,8 @@ if [ "$#" -eq 0 ] || [ "${1#-}" != "$1" ]; then
 	    -a proxy=:${VARNISH_PROXY_PORT:-8443},PROXY \
 	    -p feature=+http2 \
 	    -s malloc,$VARNISH_SIZE \
+        -T 0.0.0.0:${VARNISH_ADMIN_PORT:-6082} \
+        -S /etc/varnish/secret \
 	    "$@"
 fi
 

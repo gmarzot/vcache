@@ -191,13 +191,14 @@ Makeself version $MS_VERSION
   --cleanup-args args   Arguments to the cleanup script. Wrap in quotes to provide
                         multiple arguments.
   --                    Following arguments will be passed to the embedded script\${helpheader}
+                        e.g., -- --mgr-addr 10.0.0.1 --cache-mem 4G --host cache.demo.vivoh.net
+
                               -m|--mgr-addr <manager-address>
                               -h|--host <host>
                               -k|--mgr-key <mgr-key>
                               -c|--cache-mem <cache-memory>
                               -b|--bg-build
                               -r|--run 
-                        (e.g., -- --mgr-addr 10.0.0.1 --cache-mem 4G --host cache.demo.vivoh.net)
 EOH
 }
 

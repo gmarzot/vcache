@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+RUN=$1
+
+logfile=/tmp/vcache-build-run-$(date '+%Y-%m-%d:%H:%M:%S').log
+echo "cleaning vcache deployment: (run:$RUN)" > ${logfile}
+docker-compose down --volumes --remove-orphans --timeout 45 >> ${logfile} 2>&1
+echo "preparing to build vcache images: (run:$RUN)" >> ${logfile}
+docker-compose build >> ${logfile} 2>&1
+
+if [ $? != 0 ]; then
+	echo "docker-compose build failed ($?): see ${logfile} for details"
+	exit 4
+fi
+
+if [ -n "$RUN" ]; then
+    docker-compose up -d >> ${logfile} 2>&1
+    if [ $? != 0 ]; then
+	    echo "docker-compose up failed ($?): see ${logfile} for details"
+	    exit 5
+    fi
+fi
+
+exit 0

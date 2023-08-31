@@ -1,0 +1,45 @@
+#!/bin/bash
+
+if [ ! -d /var/run/varnishstats ]; then
+    echo "making /var/run/varnishstats..."
+    mkdir /var/run/varnishstats
+    if [[ $? != 0 ]]; then
+        echo "failed to create dir..."
+        exit 1
+    fi
+fi
+
+echo "copying contents into /var/run/varnishstats..."
+cp /etc/varnishstats/* /var/run/varnishstats
+if [[ $? != 0 ]]; then
+    echo "failed to copy conents..."
+    exit 1
+fi
+
+echo "cd to /var/run/varnishstats..."
+cd /var/run/varnishstats
+if [[ $? != 0 ]]; then
+    echo "failed to cd..."
+    exit 1
+fi
+
+echo "installing python virtual environment"
+python3 -m venv .venv
+source .venv/bin/activate
+if [[ $? != 0 ]]; then
+    echo "failed to activate venv..."
+    exit 1
+fi
+
+echo "installing python requirements"
+pip install -r requirements.txt > /dev/null 2>&1
+if [[ $? != 0 ]]; then
+    echo "failed to install requirements..."
+    exit 1
+fi
+
+echo "running vanishtstats-exporter"
+timestamp=$(date +s%)
+python varnishstats-exporter.py  # > varnishstats.${timestamp}.log 2>&1
+echo "exit python varnishstats-exporter.py: $?"
+exit $?

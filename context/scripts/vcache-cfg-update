@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+
+vcache-tmpl-eval -f /etc/vcache/vcache.cfg -t /etc/varnish/regexp_init.tmpl -o /etc/varnish/regexp_init.incl
+if [[ $? != 0 ]]; then
+	echo "error updating regexp_init.incl..."
+	exit 1
+fi
+
+vcache-tmpl-eval -f /etc/vcache/vcache.cfg -t /etc/varnish/cache_rules.tmpl -o /etc/varnish/cache_rules.incl
+if [[ $? != 0 ]]; then
+	echo "error udating cache_rules.incl..."
+	exit 1
+fi
+
+vcache-tmpl-eval -f /etc/vcache/vcache.cfg -t /etc/varnish/cache_key_rules.tmpl -o /etc/varnish/cache_key_rules.incl
+if [[ $? != 0 ]]; then
+	echo "error updating cache_key_rules.incl..."
+	exit 1
+fi
+
+vcache-tmpl-eval -f /etc/vcache/vcache.cfg -t /etc/nginx-fe/sites-enabled/frontend.cfg.tmpl -o /etc/nginx-fe/sites-enabled/frontend.cfg
+if [[ $? != 0 ]]; then
+	echo "error updating nginx frontend.cfg..."
+	exit 1
+fi
+
+echo "vcache config update complete"
+touch /var/run/vcache.ready
+
+# optionally trigger reload of nginx and varnish config
+if [ $# -gt 0 ]; then
+   kill -s HUP `cat /var/run/nginx-fe.pid`
+   redis-cli -h vcache_redis SET varnish:vcl_reload 1
+fi

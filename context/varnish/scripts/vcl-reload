@@ -1,0 +1,19 @@
+#!/bin/bash
+
+timestamp=$(date +%s)
+
+vcl_tag="vcache_${timestamp}"
+
+varnishadm -T vcache_engine:6082 -S /etc/varnish/secret "vcl.load $vcl_tag default.vcl"
+
+if [[ $? != 0 ]]; then
+  exit 1
+fi
+
+varnishadm -T vcache_engine:6082 -S /etc/varnish/secret "vcl.use $vcl_tag"
+
+if [[ $? != 0 ]]; then
+  exit 2
+fi
+
+exit 0

@@ -2,14 +2,11 @@ version: '3'
 
 services:
   vcache_mgr_agent:
-    image: vcache-node-red
-    build:
-      context: ./context
-      dockerfile: ./node-red/Dockerfile
+    image: registry.vivoh.com/vcache-node-red:${VCACHE_VERSION}
     container_name: vcache_mgr_agent
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - ./context/node-red/mgmt-data:/data # comment out for production
+#      - ./context/node-red/mgmt-data:/data # comment out for production
       - var_run:/var/run
       - var_log_fe:/var/log-fe
       - var_log_be:/var/log-be
@@ -25,26 +22,21 @@ services:
       - VCACHE_HOSTNAME=${VCACHE_HOSTNAME}
       - VCACHE_MGR_ADDR=${VCACHE_MGR_ADDR}
       - VCACHE_MGR_KEY=${VCACHE_MGR_KEY}
-    # close this for production
     ports:
-      - 1881:1880
+      - 1881:1880 # comment out for production
 #    pid: shareable
     restart: always
     depends_on:
       - vcache_redis
 
   vcache_frontend:
-    image: vcache-nginx-perl-frontend
-    build:
-      context: ./context
-      dockerfile: ./nginx/Dockerfile.frontend
+    image: registry.vivoh.com/vcache-nginx-fe:${VCACHE_VERSION}
     container_name: vcache_frontend
     hostname: ${VCACHE_HOSTNAME}
     volumes:
       - var_run:/var/run
       - var_log_fe:/var/log/nginx
       - etc_frontend:/etc/nginx
-      - varnish_tmpfs:/var/lib/varnish:ro
     networks:
       - vcache_net
     ports:
@@ -62,9 +54,7 @@ services:
       - vcache_mgr_agent
       
   vcache_engine:
-    image: vcache-varnish
-    build:
-      context: ./context/varnish
+    image: registry.vivoh.com/vcache-varnish:${VCACHE_VERSION}
     container_name: vcache_engine
     volumes:
       - var_run:/var/run
@@ -80,7 +70,6 @@ services:
          hard: 262144
     environment:
       - VARNISH_SIZE=${VCACHE_MEM_SIZE}
-      - VARNISH_ADMIN_LISTEN_PORT=6082
     command:
       - "-a /var/run/varnish.sock,HTTP,user=varnish,group=varnish,mode=666"
     restart: always
@@ -88,10 +77,7 @@ services:
       - vcache_backend
 
   vcache_backend:
-    image: vcache-nginx-perl-backend
-    build:
-      context: ./context
-      dockerfile: ./nginx/Dockerfile.backend
+    image: registry.vivoh.com/vcache-nginx-be:${VCACHE_VERSION}
     container_name: vcache_backend
     hostname: ${VCACHE_HOSTNAME}
     volumes:
@@ -104,9 +90,7 @@ services:
     restart: always
 
   vcache_stats:
-    image: vcache-varnish-stats
-    build:
-      context: ./context/varnish
+    image: registry.vivoh.com/vcache-varnish:${VCACHE_VERSION}
     container_name: vcache_stats
     volumes:
       - var_run:/var/run

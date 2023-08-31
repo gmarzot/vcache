@@ -1,5 +1,25 @@
 #!/usr/bin/env bash
 
+die() { echo "$*" >&2; exit 6; }  # complain to STDERR and exit with error
+needs_arg() { if [ -z "$OPTARG" ]; then die "No arg for --$OPT option"; fi; }
+
+while getopts Acr-: OPT; do
+  # support long options: https://stackoverflow.com/a/28466267/519360
+  if [ "$OPT" = "-" ]; then   # long option: reformulate OPT and OPTARG
+    OPT="${OPTARG%%=*}"       # extract long option name
+    OPTARG="${OPTARG#$OPT}"   # extract long option argument (may be empty)
+    OPTARG="${OPTARG#=}"      # if long option argument, remove assigning `=`
+  fi
+  case "$OPT" in
+    c | clean )    clean=true ;;
+    r | real-clean )    real_clean=true ;;
+    A | no-ansi )    no_ansi=true ;;
+    ??* )          die "Illegal option --$OPT" ;;  # bad long option
+    ? )            exit 5 ;;  # bad short option (error reported via getopts)
+  esac
+done
+shift $((OPTIND-1)) # remove parsed options and args from $@ list
+
 SOURCE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && pwd )
 
 cd $SOURCE_DIR
@@ -9,21 +29,46 @@ if [[ $? != 0 ]]; then
 	exit 1
 fi
 
-sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache" > /dev/null
+if [ "$EUID" -eq 0 ]; then
+    SUDO=
+else
+    SUDO="sudo -E"
+fi
+
+$SUDO docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache_mgr_agent" > /dev/null
 
 if [ $? != 0 ]; then
 	echo "vcache containers are not running..."
-	exit 1
 fi
 
-echo "stopping vcache containers..."
-sudo docker-compose down
-
-if [[ $? != 0 ]]; then
-	echo "[$?] an error occured stopping vcache, exiting..."
-	exit 2
+if [[ $no_ansi ]]; then
+    DC_ARGS="--ansi never"
 else
-	echo "vcache stopped..."
+    DC_ARGS=""
 fi
+
+if [[ $real_clean ]]; then
+	echo "deep cleaning volumes and images from the vcache deployment..."
+	$SUDO docker-compose ${DC_ARGS} down --volumes --rmi local --remove-orphans --timeout 45
+	if [ $? != 0 ]; then
+		echo "[$?] an error or timeout ocurred deep cleaning the vcache deployment"
+		exit 3
+	fi
+elif [[ $clean ]]; then
+	echo "cleaning volumes and orphan images from the vcache deployment..."
+	$SUDO docker-compose ${DC_ARGS} down --volumes --remove-orphans --timeout 45
+	if [ $? != 0 ]; then
+		echo "[$?] an error or timeout ocurred cleaning the vcache deployment"
+		exit 3
+	fi
+else
+	echo "stopping vcache containers..."
+	$SUDO docker-compose ${DC_ARGS} down
+	if [[ $? != 0 ]]; then
+		echo "[$?] an error occured stopping vcache, exiting..."
+		exit 2
+	fi
+	echo "vcache stopped..."
+fi	 
 
 exit 0

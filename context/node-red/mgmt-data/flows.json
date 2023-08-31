@@ -1,0 +1,4064 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "System Metrics",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f6922bafc800b831",
+        "type": "tab",
+        "label": "Cache Metrics",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6e1fffded33ce50f",
+        "type": "tab",
+        "label": "Configuration",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d898c7987d10b482",
+        "type": "ui_group",
+        "name": "System Metrics",
+        "tab": "a568a74c7e4761e6",
+        "order": 1,
+        "disp": true,
+        "width": "23",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "28bf51b43d3c2328",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "Lucida Sans Typewriter,Lucida Console,Monaco,monospace",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "Lucida Sans Typewriter,Lucida Console,Monaco,monospace"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "dark"
+            }
+        },
+        "site": {
+            "name": "VCache Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 0,
+                "gy": 0,
+                "cx": 0,
+                "cy": 0,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "a568a74c7e4761e6",
+        "type": "ui_tab",
+        "name": "vCache Dashboard",
+        "icon": "fa-vimeo",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3a38c87d0066b087",
+        "type": "ui_group",
+        "name": "Cache Metrics",
+        "tab": "a568a74c7e4761e6",
+        "order": 3,
+        "disp": true,
+        "width": 23,
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "129ea38b0b9c5445",
+        "type": "redis-config",
+        "name": "vcache_redis:6379",
+        "options": "{\"host\":\"vcache_redis\",\"db\":0}",
+        "cluster": false,
+        "optionsType": "json"
+    },
+    {
+        "id": "3733aad54f7e21ab",
+        "type": "ui_group",
+        "name": "Operational Metrics",
+        "tab": "a568a74c7e4761e6",
+        "order": 2,
+        "disp": true,
+        "width": 23,
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "94c965dfa02ebec9",
+        "type": "ui_tab",
+        "name": "Configuration",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "27ef1ca5c2551459",
+        "type": "ui_group",
+        "name": "Configuration",
+        "tab": "94c965dfa02ebec9",
+        "order": 1,
+        "disp": true,
+        "width": 19,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "db285849ea687465",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 2,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "362bdf4c9256ea22",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 4,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1896ead8a30cb4a3",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2d569f2e5e5c1a14",
+        "type": "ui_spacer",
+        "z": "6e1fffded33ce50f",
+        "name": "spacer",
+        "group": "27ef1ca5c2551459",
+        "order": 8,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "c69b9e567c84383d",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "272d25e9a84bac6a",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d69872651db6ee25",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 7,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "e38774c55b9d0a51",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "0f2de190aa2f33a1",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 13,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1299467bf156b91f",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 17,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "ce5f2ddcaf98798e",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 19,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d2b1570223f58a20",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "d898c7987d10b482",
+        "order": 22,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "20464b094041ea8d",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "fcfcbefbb9c2d71a",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "542c2a1db6b2f6db",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "62396239a0a7c5b9",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1593d5e468d4f53b",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 10,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "73f2d27e40ddf45e",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "f999e776d2f01280",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 13,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "03a5fed9676ff083",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 14,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "0f2817f5fc268b3b",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 15,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "f66131ab717e1874",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 16,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "0ec8fa69cb3b4a8c",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 18,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "e2efd8c8f1e84bf4",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3733aad54f7e21ab",
+        "order": 19,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2a3943be30741b29",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "0a46fcdcb803feec",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d5aa041a19a4cf62",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "a4d9d26cf830eeed",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "991f2eaa4240e005",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 7,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2ae2bbaa0ebeaf2d",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2526f7029d0cabaf",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "fd15a95b522172f8",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 10,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "696bd301510a4647",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "5d506d7536e0e906",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d9d7f04a919d00ab",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 13,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4baef6e8b6f7a90f",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 14,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "fa16a9a61aa79dcd",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 15,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "ae059bf0d956e203",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 17,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "687a55df2fb3244c",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 19,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b0266b834a8e2f7d",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 20,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "79a2656b8e02d531",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 21,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "36e6e8c86092337e",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 22,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "9eddba1f4d63f293",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 23,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "9ed37b975c788f6e",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 24,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "88f633f68828fe46",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 25,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "03c7886bda120d97",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 26,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "286f1c29c1567433",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 27,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "fc5e67627a8db27c",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 28,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "51475d84a62ea53e",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 29,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "ce73cbf6b92f0767",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 31,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4dc8b629b54a3c09",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 33,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "8a329d4870f5bbb0",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 34,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d8e6029fb6a58f2d",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 36,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "3e66ea4fc3dc3c51",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 38,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "55d7583d70a47105",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 39,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "7f8d28c68c9f9430",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 40,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "5c7485de93f5bff7",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 41,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b8f9dd54105d9fb4",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 42,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "12e3b8ef42be0e70",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 43,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4b0bece57db0e992",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 44,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c210998744e65f3c",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 45,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "111fa88c475c275f",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 46,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "778c6d89b95c0c35",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 47,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "45552f1c1565bb13",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 48,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "f91b7bfcbd283c02",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 50,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "df67f6a52f011432",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 52,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "a6153e3b7d7e8a25",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 53,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "eeba47f250a662aa",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 55,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "8095146dd1dd0f49",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 57,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "ecb4188def363994",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 58,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "02839d1bc453538d",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 59,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b53b8090625ba0cc",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 60,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "f9df41f7f91f3d59",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 61,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d2b5432961a49712",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 62,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "83b74a575113b67d",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 63,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1bf02a7653a5de14",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 64,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "729baf02f4f182c1",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 65,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "88aa075c8d579746",
+        "type": "ui_spacer",
+        "z": "f6922bafc800b831",
+        "name": "spacer",
+        "group": "3a38c87d0066b087",
+        "order": 66,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "8c7bd56ed2204041",
+        "type": "Drives",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "x": 290,
+        "y": 720,
+        "wires": [
+            [
+                "f29cd079ba2bd3e7",
+                "cc0bb701d1ad35db",
+                "2c4efc4e2ad833bb"
+            ]
+        ]
+    },
+    {
+        "id": "f09f387bfc7e4550",
+        "type": "Memory",
+        "z": "f6f2187d.f17ca8",
+        "name": "Memory",
+        "scale": "Byte",
+        "x": 300,
+        "y": 580,
+        "wires": [
+            [
+                "18c68b74898c536f",
+                "b47ed9d6965cf619",
+                "abbb31eb4b46bee5",
+                "da0aa089ba25ac3d"
+            ]
+        ]
+    },
+    {
+        "id": "177ae28f.b66a45",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 90,
+        "y": 40,
+        "wires": [
+            [
+                "f09f387bfc7e4550",
+                "61936b4003e1e050",
+                "8c7bd56ed2204041",
+                "f6b5723097fbc821",
+                "c2a1b5f7989ff616",
+                "38c877c9b55d681d",
+                "e1e13788026a662b",
+                "50f9790b.49c718"
+            ]
+        ]
+    },
+    {
+        "id": "50f9790b.49c718",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "varnish uptime",
+        "func": "msg.payload = global.get(\"varnish_uptime\")\n var totalNumberOfSeconds = msg.payload;\n var days = parseInt( totalNumberOfSeconds / 86400 );\n var hours = parseInt (( totalNumberOfSeconds - ( days * 86400 )) / 3600  );\n var minutes = parseInt ((totalNumberOfSeconds - ((hours * 3600)+( days * 86400 ))) / 60 );\n var seconds = parseInt(totalNumberOfSeconds - ((hours * 3600) + (minutes * 60)+( days * 86400 )));\n var result = (days < 10 ? \"0\" + days : days) + \":\" + (hours < 10 ? \"0\" + hours : hours) + \":\" + (minutes < 10 ? \"0\" + minutes : minutes) + \":\" + (seconds  < 10 ? \"0\" + seconds : seconds);\n msg.payload = result;\n msg.topic = \"uptime\";\n return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 120,
+        "wires": [
+            [
+                "4f6abcf.71f1a44",
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "4f6abcf.71f1a44",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 6,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "UpTime: ",
+        "format": "<font size=3>{{msg.payload}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "x": 940,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "61936b4003e1e050",
+        "type": "cpu",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "msgCore": false,
+        "msgOverall": true,
+        "msgArray": false,
+        "msgTemp": false,
+        "x": 310,
+        "y": 380,
+        "wires": [
+            [
+                "7ddb76afd18f4087",
+                "f706757e6c338f82"
+            ]
+        ]
+    },
+    {
+        "id": "c0a13984a398e6d7",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "CPU Historic",
+        "group": "d898c7987d10b482",
+        "order": 15,
+        "width": 7,
+        "height": 4,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 950,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "18c68b74898c536f",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "d898c7987d10b482",
+        "order": 4,
+        "width": 7,
+        "height": 3,
+        "gtype": "gage",
+        "title": "RAM",
+        "label": "",
+        "format": "{{msg.payload.memusage | number:1}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "80",
+        "seg2": "90",
+        "diff": false,
+        "className": "def",
+        "x": 930,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "fbc058e4a2725b9d",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 8,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Version: ",
+        "format": "<font size=3>{{msg.payload}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 940,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f4aa44582aec2ee6",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 18,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Memory:  ",
+        "format": "<font size=3>{{msg.value}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 940,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "b47ed9d6965cf619",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "mem total",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\nmsg.value = formatBytes(msg.payload.totalmem);\nmsg.payload = msg.payload.totalmem;\nmsg.topic = \"mem_total\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 540,
+        "wires": [
+            [
+                "f4aa44582aec2ee6",
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "f29cd079ba2bd3e7",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "disk use %",
+        "func": "msg.payload = msg.payload[0].capacity * 100.0;\nmsg.payload = msg.payload.toFixed(2);\nmsg.topic = \"disk_use_pct\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 720,
+        "wires": [
+            [
+                "b833a78279a06e8c",
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "b833a78279a06e8c",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "d898c7987d10b482",
+        "order": 16,
+        "width": 7,
+        "height": 3,
+        "gtype": "gage",
+        "title": "HD",
+        "label": "",
+        "format": "{{value | number:1}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "80",
+        "seg2": "90",
+        "diff": false,
+        "className": "def",
+        "x": 930,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "abbb31eb4b46bee5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "mem used",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload.totalmem - msg.payload.freemem);\nmsg.payload = msg.payload.totalmem - msg.payload.freemem;\nmsg.topic = \"mem_use\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 620,
+        "wires": [
+            [
+                "3fe4b364fdaec2bb",
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "3fe4b364fdaec2bb",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 12,
+        "width": 7,
+        "height": 1,
+        "name": "",
+        "label": "Used: ",
+        "format": "{{msg.value}}",
+        "layout": "row-center",
+        "className": "def",
+        "x": 930,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "2bd8b9bfd2a1d534",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 11,
+        "width": 7,
+        "height": 1,
+        "name": "",
+        "label": "Load: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "def",
+        "x": 930,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "39b8930ee2a9adf4",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "load avgs",
+        "func": "msg.payload = msg.payload.loadavg.join(', ');\nmsg.topic = \"cpu_load_avg\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 440,
+        "wires": [
+            [
+                "2bd8b9bfd2a1d534",
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "f6b5723097fbc821",
+        "type": "Loadavg",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "x": 300,
+        "y": 440,
+        "wires": [
+            [
+                "39b8930ee2a9adf4"
+            ]
+        ]
+    },
+    {
+        "id": "53516185218f0489",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "CPU use",
+        "group": "d898c7987d10b482",
+        "order": 3,
+        "width": 7,
+        "height": 3,
+        "gtype": "gage",
+        "title": "CPU",
+        "label": "",
+        "format": "{{value | number:1}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "80",
+        "seg2": "90",
+        "diff": false,
+        "className": "def",
+        "x": 940,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "c2a1b5f7989ff616",
+        "type": "CPUs",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "x": 290,
+        "y": 300,
+        "wires": [
+            [
+                "1faa30a4e47251a1",
+                "08c2a1b541a459f7"
+            ]
+        ]
+    },
+    {
+        "id": "1faa30a4e47251a1",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "cpu model",
+        "func": "msg.payload = msg.payload.cpus[0].model.replace(/^Intel[^ ]*\\s+[^ ]* /i,\"\");\nmsg.topic = \"cpu_model\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 280,
+        "wires": [
+            [
+                "51ccb23cb43f7af2",
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "08c2a1b541a459f7",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "cpu cores",
+        "func": "msg.payload = msg.payload.cpus.length;\nmsg.topic = \"cpu_cores\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 320,
+        "wires": [
+            [
+                "68105b12b908d0f4",
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "51ccb23cb43f7af2",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 10,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "CPU: ",
+        "format": "<font size=3>{{msg.payload}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "x": 930,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "68105b12b908d0f4",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 14,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Cores: ",
+        "format": "<font size=3>{{msg.payload}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "x": 930,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "d6fd568602fabf48",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 20,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Disk: ",
+        "format": "<font size=3>{{msg.value}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "x": 930,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "11b451e51ccf5739",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 23,
+        "width": 7,
+        "height": 1,
+        "name": "",
+        "label": "Used: ",
+        "format": "{{msg.value}}",
+        "layout": "row-center",
+        "className": "def",
+        "x": 930,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "cc0bb701d1ad35db",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "disk used",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nmsg.value = formatBytes(msg.payload[0].used);\nmsg.payload = msg.payload[0].used;\nmsg.topic = \"disk_use\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 760,
+        "wires": [
+            [
+                "11b451e51ccf5739",
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "2c4efc4e2ad833bb",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "disk size",
+        "func": "function formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\nmsg.value = formatBytes(msg.payload[0].size)\nmsg.payload = msg.payload[0].size\nmsg.topic = \"disk_total\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 680,
+        "wires": [
+            [
+                "d6fd568602fabf48",
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "cc60b6c3e5fb14d9",
+        "type": "ui_text",
+        "z": "f6f2187d.f17ca8",
+        "group": "d898c7987d10b482",
+        "order": 2,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "Host: ",
+        "format": "<font size=3>{{msg.payload.hostname}}</font>",
+        "layout": "row-left",
+        "className": "def",
+        "x": 930,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "38c877c9b55d681d",
+        "type": "OS",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "x": 290,
+        "y": 200,
+        "wires": [
+            [
+                "cc60b6c3e5fb14d9",
+                "d23168e787472af1",
+                "0edbf89210b31ea3"
+            ]
+        ]
+    },
+    {
+        "id": "7ddb76afd18f4087",
+        "type": "smooth",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "8",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 580,
+        "y": 400,
+        "wires": [
+            [
+                "c0a13984a398e6d7"
+            ]
+        ]
+    },
+    {
+        "id": "d23168e787472af1",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "hostname",
+        "func": "msg.payload = msg.payload.hostname;\nmsg.topic = \"hostname\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 80,
+        "wires": [
+            [
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "da0aa089ba25ac3d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "mem use %",
+        "func": "msg.payload = msg.payload.memusage;\nmsg.payload = parseFloat(msg.payload).toFixed(2);\nmsg.topic = \"mem_use_pct\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 500,
+        "wires": [
+            [
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "e1e13788026a662b",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "vcache version",
+        "func": "msg.payload = global.get(\"version\") || env.get(\"VCACHE_VERSION\") || '0.0.0';\nmsg.topic =\"version\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 160,
+        "wires": [
+            [
+                "fbc058e4a2725b9d",
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "f706757e6c338f82",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "cpu use %",
+        "func": "msg.payload = parseFloat(msg.payload).toFixed(2);\nmsg.topic = \"cpu_use_pct\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 360,
+        "wires": [
+            [
+                "1a05a03c82a71a3b",
+                "53516185218f0489"
+            ]
+        ]
+    },
+    {
+        "id": "1a05a03c82a71a3b",
+        "type": "join",
+        "z": "f6f2187d.f17ca8",
+        "name": "redis record",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "14",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 950,
+        "y": 40,
+        "wires": [
+            [
+                "2bbc364080a27e0f"
+            ]
+        ]
+    },
+    {
+        "id": "2bbc364080a27e0f",
+        "type": "redis out",
+        "z": "f6f2187d.f17ca8",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "vcache stats  (ext 1)",
+        "key": "vcache:stats",
+        "structtype": "hash",
+        "x": 1130,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "0edbf89210b31ea3",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "cpu arch",
+        "func": "msg.payload = msg.payload.arch;\nmsg.topic = \"cpu_arch\";\nreturn msg;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 240,
+        "wires": [
+            [
+                "1a05a03c82a71a3b"
+            ]
+        ]
+    },
+    {
+        "id": "bc9d6c02c0ee9e5b",
+        "type": "ui_gauge",
+        "z": "f6922bafc800b831",
+        "name": "Client Request Efficiency",
+        "group": "3a38c87d0066b087",
+        "order": 4,
+        "width": 10,
+        "height": 4,
+        "gtype": "gage",
+        "title": "",
+        "label": "HIT %",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#00b500",
+            "#00b500"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "def",
+        "x": 1310,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "68d7914dad783e4e",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Client Request Efficiency",
+        "group": "3a38c87d0066b087",
+        "order": 18,
+        "width": 10,
+        "height": 4,
+        "label": "Cache Efficiency <font size=3>[requests]</font>",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1310,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a4f1c41a459e65ab",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Client Request Rate",
+        "group": "3a38c87d0066b087",
+        "order": 37,
+        "width": 10,
+        "height": 4,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1300,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0413d291a951c109",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Client Bandwidth",
+        "group": "3a38c87d0066b087",
+        "order": 35,
+        "width": 10,
+        "height": 4,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1290,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b782bf2ea349a4a5",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Upstream Bandwidth",
+        "group": "3a38c87d0066b087",
+        "order": 54,
+        "width": 10,
+        "height": 4,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1300,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "913fe8919ba03de2",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Upstream Requests Rate",
+        "group": "3a38c87d0066b087",
+        "order": 56,
+        "width": 10,
+        "height": 4,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1310,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a2845cfb2dc706d",
+        "type": "inject",
+        "z": "f6922bafc800b831",
+        "name": "5",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "cf0671bdba5fb35b",
+                "c617ce0ee176a4c6"
+            ]
+        ]
+    },
+    {
+        "id": "cf0671bdba5fb35b",
+        "type": "redis-command",
+        "z": "f6922bafc800b831",
+        "server": "129ea38b0b9c5445",
+        "command": "GET",
+        "name": "varnish stats",
+        "topic": "varnish:stats",
+        "params": "",
+        "paramsType": "json",
+        "payloadType": "json",
+        "block": false,
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "44093061527e3640"
+            ]
+        ]
+    },
+    {
+        "id": "44093061527e3640",
+        "type": "json",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "0137aedab475ecc1",
+                "a34c58a6352f92b0",
+                "265bd5332a79b309",
+                "558d68fe90fce500",
+                "9a09a889da2113ab",
+                "4703d92c365db650"
+            ]
+        ]
+    },
+    {
+        "id": "0137aedab475ecc1",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "client requests",
+        "func": "function obj_key(obj, key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key) ? obj[key].value : 0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nvar date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = obj_key(msg.payload.counters,\"MAIN.client_req\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 660,
+        "wires": [
+            [
+                "1bc74c9f10cebfee"
+            ]
+        ]
+    },
+    {
+        "id": "1bc74c9f10cebfee",
+        "type": "rate",
+        "z": "f6922bafc800b831",
+        "name": "rate per sec",
+        "inputField": "payload",
+        "inputFieldType": "msg",
+        "outputField": "rate",
+        "outputFieldType": "msg",
+        "timestampField": "timestamp",
+        "timestampFieldType": "msg",
+        "ratePeriod": "1000",
+        "x": 510,
+        "y": 660,
+        "wires": [
+            [
+                "f4863fda3d63fe72",
+                "0b8088931c8588e0",
+                "299ba22e272cb8c3"
+            ]
+        ]
+    },
+    {
+        "id": "a13a9b5c91e0483a",
+        "type": "rate",
+        "z": "f6922bafc800b831",
+        "name": "rate per sec",
+        "inputField": "payload",
+        "inputFieldType": "msg",
+        "outputField": "rate",
+        "outputFieldType": "msg",
+        "timestampField": "timestamp",
+        "timestampFieldType": "msg",
+        "ratePeriod": "1000",
+        "x": 510,
+        "y": 740,
+        "wires": [
+            [
+                "f4863fda3d63fe72",
+                "815d27b86bac1720",
+                "1a0e05b1900f39a3"
+            ]
+        ]
+    },
+    {
+        "id": "f4863fda3d63fe72",
+        "type": "join",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "rate",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 690,
+        "y": 700,
+        "wires": [
+            [
+                "c6f6534391589bf9"
+            ]
+        ]
+    },
+    {
+        "id": "a34c58a6352f92b0",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "upstream requests",
+        "func": "function obj_key (obj,key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key)?obj[key].value:0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nvar date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = obj_key(msg.payload.counters, \"MAIN.backend_req\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 740,
+        "wires": [
+            [
+                "a13a9b5c91e0483a"
+            ]
+        ]
+    },
+    {
+        "id": "c6f6534391589bf9",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "request ratio",
+        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.node.warn(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0;\nmsg.topic = \"req_eff_pct\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 600,
+        "wires": [
+            [
+                "bc9d6c02c0ee9e5b",
+                "68d7914dad783e4e",
+                "51074a98838504df"
+            ]
+        ]
+    },
+    {
+        "id": "558d68fe90fce500",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "upstream resp bytes",
+        "func": "var date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nlet sum = 0\nfor (let key in msg.payload.counters) {\n    if (key.endsWith(\".beresp_hdrbytes\") || key.endsWith(\".beresp_bodybytes\")) {\n        sum += msg.payload.counters[key].value;\n    }\n}\nmsg.payload = sum;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 540,
+        "wires": [
+            [
+                "a467894457f53a9b"
+            ]
+        ]
+    },
+    {
+        "id": "265bd5332a79b309",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "client resp bytes",
+        "func": "function obj_key(obj, key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key) ? obj[key].value : 0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nvar date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = obj_key(msg.payload.counters,\"MAIN.s_resp_hdrbytes\") + obj_key(msg.payload.counters,\"MAIN.s_resp_bodybytes\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 420,
+        "wires": [
+            [
+                "9fd233374321e8d4"
+            ]
+        ]
+    },
+    {
+        "id": "9fd233374321e8d4",
+        "type": "rate",
+        "z": "f6922bafc800b831",
+        "name": "rate per sec",
+        "inputField": "payload",
+        "inputFieldType": "msg",
+        "outputField": "rate",
+        "outputFieldType": "msg",
+        "timestampField": "timestamp",
+        "timestampFieldType": "msg",
+        "ratePeriod": "1000",
+        "x": 510,
+        "y": 420,
+        "wires": [
+            [
+                "a7cf3c4ccbc1a90c",
+                "9763383789debf4d",
+                "7f2a23eb0a2bfbb3"
+            ]
+        ]
+    },
+    {
+        "id": "a467894457f53a9b",
+        "type": "rate",
+        "z": "f6922bafc800b831",
+        "name": "rate per sec",
+        "inputField": "payload",
+        "inputFieldType": "msg",
+        "outputField": "rate",
+        "outputFieldType": "msg",
+        "timestampField": "timestamp",
+        "timestampFieldType": "msg",
+        "ratePeriod": "1000",
+        "x": 510,
+        "y": 540,
+        "wires": [
+            [
+                "a7cf3c4ccbc1a90c",
+                "299c0f3a9c32c62f",
+                "d9c4c45c917a125f"
+            ]
+        ]
+    },
+    {
+        "id": "3f16dfa000e09c98",
+        "type": "ui_gauge",
+        "z": "f6922bafc800b831",
+        "name": "Cache Efficiency",
+        "group": "3a38c87d0066b087",
+        "order": 2,
+        "width": 10,
+        "height": 4,
+        "gtype": "gage",
+        "title": "",
+        "label": "HIT %",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#00b500",
+            "#00b500"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "def",
+        "x": 1290,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "57b723ae0cdb1fd5",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Cache Efficiency",
+        "group": "3a38c87d0066b087",
+        "order": 16,
+        "width": 10,
+        "height": 4,
+        "label": "Cache Efficiency  <font size=3>[data]</font>",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1290,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a7cf3c4ccbc1a90c",
+        "type": "join",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "rate",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 690,
+        "y": 480,
+        "wires": [
+            [
+                "9384f57dd4248499",
+                "377e306142a9c3e7"
+            ]
+        ]
+    },
+    {
+        "id": "9384f57dd4248499",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bw ratio",
+        "func": "var ratio = 1.0\nif (msg.rate[0] > 0 && msg.rate[1] >= 0 && msg.rate[0] > msg.rate[1]) {\n    ratio = msg.rate[1] / msg.rate[0];\n} else if (msg.rate[0] < 0 || msg.rate[1] < 0) {\n    node.warn(\"rate[0] = \" + msg.rate[0] + \", rate[1] = \" + msg.rate[1]);\n}\nmsg.payload = (1.0 - ratio) * 100.0;\nmsg.topic = \"cache_eff_pct\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 520,
+        "wires": [
+            [
+                "7b1c8c23774128a5"
+            ]
+        ]
+    },
+    {
+        "id": "1572697106f6a1f2",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3a38c87d0066b087",
+        "order": 51,
+        "width": 10,
+        "height": 1,
+        "name": "Upstream Request Rate",
+        "label": "Upstream Request Rate: ",
+        "format": "{{msg.rate|number:2}} {{msg.units}}rps",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1310,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "1486b40a42209109",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3a38c87d0066b087",
+        "order": 49,
+        "width": 10,
+        "height": 1,
+        "name": "",
+        "label": "Upstream Bandwidth: ",
+        "format": "{{msg.rate}} {{msg.units}}bps",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1300,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "5b7429b7e2f7db72",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3733aad54f7e21ab",
+        "order": 12,
+        "width": 7,
+        "height": 2,
+        "name": "",
+        "label": "Bandwidth Saved [max]",
+        "format": "{{msg.payload}} {{msg.units}}bps",
+        "layout": "col-center",
+        "className": "huge",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1310,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "8db13e162d627307",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3733aad54f7e21ab",
+        "order": 17,
+        "width": 7,
+        "height": 2,
+        "name": "",
+        "label": "Data Saved [total]",
+        "format": "{{msg.value}}",
+        "layout": "col-center",
+        "className": "huge",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1290,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a709f09e2be9e276",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3733aad54f7e21ab",
+        "order": 5,
+        "width": 7,
+        "height": 2,
+        "name": "",
+        "label": "User Sessions [max]",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "huge",
+        "x": 1300,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "232348cff06e823f",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3733aad54f7e21ab",
+        "order": 4,
+        "width": 7,
+        "height": 1,
+        "name": "",
+        "label": "Bandwidth Saving: ",
+        "format": "{{msg.rate}} {{msg.units}}bps",
+        "layout": "row-center",
+        "className": "def",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1290,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "9a09a889da2113ab",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bytes saved",
+        "func": "function obj_key(obj, key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key) ? obj[key].value : 0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nfunction formatBytes(bytes, decimals) {\n    if (bytes === 0) return '0 Byte';\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];\n    var i = Math.floor(Math.log(bytes) / Math.log(k));\n    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];\n}\n\nvar client_bytes = obj_key(msg.payload.counters,\"MAIN.s_resp_hdrbytes\") + obj_key(msg.payload.counters,\"MAIN.s_resp_bodybytes\");\nlet sum = 0\nfor (let key in msg.payload.counters) {\n    if (key.endsWith(\".beresp_hdrbytes\") || key.endsWith(\".beresp_bodybytes\")) {\n        sum += msg.payload.counters[key].value;\n    }\n}\nvar upstream_bytes = sum;\nvar bytes_saved = client_bytes - upstream_bytes;\nif (isNaN(bytes_saved)) { bytes_saved = 0 }\nif (bytes_saved < 0) { bytes_saved = 0; }\nmsg.payload = client_bytes - upstream_bytes;\nmsg.value = formatBytes(msg.payload);\nmsg.topic = \"data_saved\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 180,
+        "wires": [
+            [
+                "8db13e162d627307",
+                "51074a98838504df"
+            ]
+        ]
+    },
+    {
+        "id": "377e306142a9c3e7",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bw saved",
+        "func": "var bw_saved = msg.rate[0] - msg.rate[1]\nif (isNaN(bw_saved) || bw_saved < 0) {\n    bw_saved = 0;\n}\nmsg.payload = bw_saved * 8;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 100,
+        "wires": [
+            [
+                "91606ba0b02d7177"
+            ]
+        ]
+    },
+    {
+        "id": "73a7f3a29dd6609f",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bw saved max",
+        "func": "if (flow.get(\"max_bw_saved\") == null || flow.get(\"max_bw_saved\") == '') {\n    flow.set(\"max_bw_saved\", 0)\n}\nif (msg.payload > flow.get(\"max_bw_saved\")) {\n    flow.set(\"max_bw_saved\", msg.payload)\n}\n\nmsg.payload = flow.get(\"max_bw_saved\")\nmsg.topic = \"max_bw_saved\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 40,
+        "wires": [
+            [
+                "fd120a60f4e97f67",
+                "51074a98838504df"
+            ]
+        ]
+    },
+    {
+        "id": "014b1deb870fd066",
+        "type": "inject",
+        "z": "f6922bafc800b831",
+        "name": "reset",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "11fef9aaf550040c"
+            ]
+        ]
+    },
+    {
+        "id": "11fef9aaf550040c",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "reset max",
+        "func": "flow.set(\"max_bw_saved\",0);\nflow.set(\"max_users\", 0);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7a3e3814da166b53",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3a38c87d0066b087",
+        "order": 30,
+        "width": 10,
+        "height": 1,
+        "name": "",
+        "label": "Delivered Bandwidth: ",
+        "format": "{{msg.rate}} {{msg.units}}bps",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1300,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "8c62fec7f80f063e",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3a38c87d0066b087",
+        "order": 32,
+        "width": 10,
+        "height": 1,
+        "name": "",
+        "label": "Delivered Request Rate: ",
+        "format": "{{msg.rate | number:2}} {{msg.units}}rps",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1310,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "815d27b86bac1720",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0) {\n    node.error(\"rate = \" + msg.rate);\n    msg.rate = 0;\n}\nmsg.payload = msg.rate;\nmsg.payload = Math.round(msg.payload * 1000) / 1000;\n[msg.rate, msg.units] = formatMetric(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar smsg = { \"ui_control\": { \"ymax\": 10}};\nvar rmsg = { \"ui_control\": { \"ymax\": null } };\n\nreturn [smsg,rmsg];",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 920,
+        "wires": [
+            [
+                "1572697106f6a1f2",
+                "913fe8919ba03de2"
+            ]
+        ]
+    },
+    {
+        "id": "299c0f3a9c32c62f",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0 ) msg.rate = 0;\nmsg.payload = msg.rate*8;\nmsg.payload = Math.round(msg.payload * 100) / 100;\n[msg.rate, msg.units] = formatMetric(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar smsg = { payload: 0.1 };\nreturn smsg;",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 840,
+        "wires": [
+            [
+                "1486b40a42209109",
+                "b782bf2ea349a4a5"
+            ]
+        ]
+    },
+    {
+        "id": "0b8088931c8588e0",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0) {\n    node.warn(\"rate = \" + msg.rate);\n    msg.rate = 0;\n}\nmsg.payload = msg.rate;\n[msg.rate, msg.units] = formatMetric(msg.rate)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 700,
+        "wires": [
+            [
+                "8c62fec7f80f063e",
+                "a4f1c41a459e65ab"
+            ]
+        ]
+    },
+    {
+        "id": "9763383789debf4d",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.rate < 0) {\n    node.warn(\"rate = \" + msg.rate);\n    msg.rate = 0;\n}\nmsg.payload = msg.rate*8.0;\nmsg.payload = Math.round(msg.payload * 1000) / 1000;\n[msg.rate, msg.units] = formatMetric(msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 400,
+        "wires": [
+            [
+                "7a3e3814da166b53",
+                "0413d291a951c109"
+            ]
+        ]
+    },
+    {
+        "id": "91606ba0b02d7177",
+        "type": "smooth",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "property": "payload",
+        "action": "low",
+        "count": "4",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 680,
+        "y": 100,
+        "wires": [
+            [
+                "73a7f3a29dd6609f",
+                "bac3a1c588796c5f"
+            ]
+        ]
+    },
+    {
+        "id": "bac3a1c588796c5f",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nif (msg.payload < 0) msg.payload = 0;\nmsg.payload = Math.round(msg.payload * 100) / 100;\nmsg.rate = msg.payload;\n[msg.rate, msg.units] = formatMetric(msg.payload);\nmsg.topic = \"bw_saved\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 100,
+        "wires": [
+            [
+                "232348cff06e823f",
+                "51074a98838504df",
+                "c2299e7687483fe2"
+            ]
+        ]
+    },
+    {
+        "id": "fd120a60f4e97f67",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "units metric",
+        "func": "function formatMetric(value, decimals) {\n    if (value <= 1.0) return [value,''];\n    var k = 1024; // or 1024 for binary\n    var dm = decimals + 1 || 2;\n    var sizes = ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];\n    var i = Math.floor(Math.log(value) / Math.log(k));\n    return [parseFloat((value / Math.pow(k, i)).toFixed(dm)), sizes[i]];\n}\nmsg.payload = Math.round(msg.payload * 100) / 100;\n[msg.payload, msg.units] = formatMetric(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 40,
+        "wires": [
+            [
+                "5b7429b7e2f7db72"
+            ]
+        ]
+    },
+    {
+        "id": "7f2a23eb0a2bfbb3",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bytes to bits",
+        "func": "msg.payload = msg.rate*8.0;\nmsg.topic = \"client_bw\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 440,
+        "wires": [
+            [
+                "51074a98838504df"
+            ]
+        ]
+    },
+    {
+        "id": "d9c4c45c917a125f",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "bytes to bits",
+        "func": "msg.payload = msg.rate*8.0;\nmsg.topic = \"upstream_bw\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 740,
+        "wires": [
+            [
+                "51074a98838504df"
+            ]
+        ]
+    },
+    {
+        "id": "299ba22e272cb8c3",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "rate to payload",
+        "func": "msg.payload = msg.rate;\nmsg.topic = \"req_rate\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 660,
+        "wires": [
+            [
+                "51074a98838504df"
+            ]
+        ]
+    },
+    {
+        "id": "1a0e05b1900f39a3",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "rate to payload",
+        "func": "msg.payload = msg.rate;\nmsg.topic = \"upstream_req_rate\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 780,
+        "wires": [
+            [
+                "51074a98838504df"
+            ]
+        ]
+    },
+    {
+        "id": "6f6232b4ef2ad0db",
+        "type": "ui_template",
+        "z": "f6922bafc800b831",
+        "group": "d898c7987d10b482",
+        "name": "",
+        "order": 21,
+        "width": 8,
+        "height": 1,
+        "format": "<style>\n    .def p.value {\n       color: #4a8ad9;\n    }\n    .big p.value {\n        vertical-align: bottom;\n        font-size: 150%;\n        color: #4a8ad9;\n    }\n    .big p.label {\n        vertical-align: top;\n        font-weight: bold;\n    }\n    .huge p.value {\n        vertical-align: bottom;\n        font-size: 200%;\n        color: #4a8ad9;\n    }\n    .huge p.label {\n        vertical-align: top;\n        font-weight: bold;\n    }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 100,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd2fcc08d0e8fa1b",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "active connections",
+        "func": "const rgx = /^Active connections: (\\d+).*/;\nconst match  = msg.payload.match(rgx);\nif (match != null) {\n    msg.payload = parseInt(match[1]);\n}\nmsg.topic = \"client_sess\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 260,
+        "wires": [
+            [
+                "d749ec938e7e1a74",
+                "128bc4259bf38155",
+                "65c9eebbe3b613f2",
+                "51074a98838504df"
+            ]
+        ]
+    },
+    {
+        "id": "d749ec938e7e1a74",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "connections max",
+        "func": "if (flow.get(\"max_users\") == null || flow.get(\"max_users\") == '') {\n    flow.set(\"max_users\", 0)\n}\nif (msg.payload > flow.get(\"max_users\")) {\n    flow.set(\"max_users\", msg.payload)\n}\n\nmsg.payload = flow.get(\"max_users\");\nmsg.topic = \"client_sess_max\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 200,
+        "wires": [
+            [
+                "a709f09e2be9e276",
+                "51074a98838504df"
+            ]
+        ]
+    },
+    {
+        "id": "c617ce0ee176a4c6",
+        "type": "http request",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://vcache_frontend:9999/status",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": true,
+        "authType": "",
+        "senderr": true,
+        "headers": [],
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "bd2fcc08d0e8fa1b"
+            ]
+        ]
+    },
+    {
+        "id": "f4a3ec1ae53d52b1",
+        "type": "change",
+        "z": "f6922bafc800b831",
+        "name": "set global uptime",
+        "rules": [
+            {
+                "t": "set",
+                "p": "varnish_uptime",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4703d92c365db650",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "varnish uptime",
+        "func": "function obj_key(obj, key) {\n    if (typeof obj === 'undefined') {\n        return 0;\n    }\n    var val = obj.hasOwnProperty(key) ? obj[key].value : 0;\n    if (isNaN(val)) {\n        val = 0\n    }\n    return val\n}\nvar date = new Date(msg.payload.timestamp)\nmsg.timestamp = date.getTime()\nmsg.payload = obj_key(msg.payload.counters, \"MGT.uptime\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 360,
+        "wires": [
+            [
+                "f4a3ec1ae53d52b1"
+            ]
+        ]
+    },
+    {
+        "id": "128bc4259bf38155",
+        "type": "ui_text",
+        "z": "f6922bafc800b831",
+        "group": "3733aad54f7e21ab",
+        "order": 2,
+        "width": 7,
+        "height": 1,
+        "name": "",
+        "label": "User Sessions: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "def",
+        "x": 1280,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "65c9eebbe3b613f2",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "User Sessions Chart",
+        "group": "3733aad54f7e21ab",
+        "order": 7,
+        "width": 7,
+        "height": 5,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "def",
+        "x": 1300,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "84256989e51190e5",
+        "type": "inject",
+        "z": "f6922bafc800b831",
+        "name": "init charts",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "timestamp",
+                "v": "",
+                "vt": "date"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 1040,
+        "y": 1020,
+        "wires": [
+            [
+                "913fe8919ba03de2",
+                "b782bf2ea349a4a5",
+                "a4f1c41a459e65ab",
+                "0413d291a951c109",
+                "c2299e7687483fe2"
+            ]
+        ]
+    },
+    {
+        "id": "e054d7063c78836e",
+        "type": "inject",
+        "z": "f6922bafc800b831",
+        "name": "init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 110,
+        "y": 40,
+        "wires": [
+            [
+                "bb8e27c46b8ff662"
+            ]
+        ]
+    },
+    {
+        "id": "bb8e27c46b8ff662",
+        "type": "function",
+        "z": "f6922bafc800b831",
+        "name": "global functions",
+        "func": "const util = (function () {\n    'use strict';\n\n    function add(a, b) {\n        return a + b;\n    }\n\n    return {\n        add: add\n    };\n\n}());\n\nglobal.set('util', util);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b1c8c23774128a5",
+        "type": "smooth",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "3",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 1040,
+        "y": 520,
+        "wires": [
+            [
+                "3f16dfa000e09c98",
+                "57b723ae0cdb1fd5",
+                "51074a98838504df"
+            ]
+        ]
+    },
+    {
+        "id": "51074a98838504df",
+        "type": "join",
+        "z": "f6922bafc800b831",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "11",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1250,
+        "y": 660,
+        "wires": [
+            [
+                "0b6e47d24cd4f453"
+            ]
+        ]
+    },
+    {
+        "id": "0b6e47d24cd4f453",
+        "type": "redis out",
+        "z": "f6922bafc800b831",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "vcache stats (ext 2)",
+        "key": "vcache:stats",
+        "structtype": "hash",
+        "x": 1410,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "c2299e7687483fe2",
+        "type": "ui_chart",
+        "z": "f6922bafc800b831",
+        "name": "Bandwidth Saved Chart",
+        "group": "3733aad54f7e21ab",
+        "order": 9,
+        "width": 7,
+        "height": 5,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "3",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#1f77b4",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "def",
+        "x": 1310,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b8eb1678b935b37c",
+        "type": "ui_text_input",
+        "z": "6e1fffded33ce50f",
+        "name": "mgr addr",
+        "label": "Manager Address: ",
+        "tooltip": "vCache Manager Address",
+        "group": "27ef1ca5c2551459",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "10",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 580,
+        "y": 440,
+        "wires": [
+            [
+                "b71d48ef56781daf"
+            ]
+        ]
+    },
+    {
+        "id": "f773b77e37a40bb6",
+        "type": "uuid",
+        "z": "6e1fffded33ce50f",
+        "uuidVersion": "v4",
+        "namespaceType": "custom",
+        "namespace": "VIVOH_CACHE",
+        "namespaceCustom": "VIVOH",
+        "name": "UUID (gen)",
+        "field": "payload",
+        "fieldType": "msg",
+        "x": 590,
+        "y": 80,
+        "wires": [
+            [
+                "51ab9183e6c445ee",
+                "03470a367efdaf2e"
+            ]
+        ]
+    },
+    {
+        "id": "73a0cc391e21289f",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 40,
+        "wires": [
+            [
+                "9c1cae2c8cd579f1",
+                "527d0ab867ea59ef",
+                "8b6caa4128b0ab62",
+                "cf922e952279365b",
+                "b6f811abf19f84a1",
+                "94d24377cc341d7b"
+            ]
+        ]
+    },
+    {
+        "id": "51ab9183e6c445ee",
+        "type": "file",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "filename": "/var/run/vcache.uuid",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 840,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c1cae2c8cd579f1",
+        "type": "fs-ops-access",
+        "z": "6e1fffded33ce50f",
+        "name": "vcache.uuid",
+        "path": "/var/run",
+        "pathType": "str",
+        "filename": "vcache.uuid",
+        "filenameType": "str",
+        "read": true,
+        "write": true,
+        "throwerror": false,
+        "x": 370,
+        "y": 60,
+        "wires": [
+            [
+                "ac931b189bcafeb4"
+            ],
+            [
+                "f773b77e37a40bb6"
+            ]
+        ]
+    },
+    {
+        "id": "c9b1a37c5388a3f5",
+        "type": "exec",
+        "z": "6e1fffded33ce50f",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "minion cfg",
+        "x": 590,
+        "y": 360,
+        "wires": [
+            [],
+            [],
+            [
+                "73d66a67c4f17a67"
+            ]
+        ]
+    },
+    {
+        "id": "527d0ab867ea59ef",
+        "type": "exec",
+        "z": "6e1fffded33ce50f",
+        "command": "vcache-cfg-update",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8b6caa4128b0ab62",
+        "type": "fs-ops-access",
+        "z": "6e1fffded33ce50f",
+        "name": "vcache.version",
+        "path": "/var/run/",
+        "pathType": "str",
+        "filename": "vcache.version",
+        "filenameType": "str",
+        "read": true,
+        "write": false,
+        "throwerror": false,
+        "x": 380,
+        "y": 120,
+        "wires": [
+            [
+                "28e546a9e90ffb1f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "05bef2ebd6355241",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "set global version",
+        "func": "global.set(\"version\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "28e546a9e90ffb1f",
+        "type": "file in",
+        "z": "6e1fffded33ce50f",
+        "name": "vcache version",
+        "filename": "/var/run/vcache.version",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 600,
+        "y": 120,
+        "wires": [
+            [
+                "05bef2ebd6355241"
+            ]
+        ]
+    },
+    {
+        "id": "e1251d2b16dd4e69",
+        "type": "fs-ops-delete",
+        "z": "6e1fffded33ce50f",
+        "name": "reset alt master key",
+        "path": "/etc/salt/pki/minion/",
+        "pathType": "str",
+        "filename": "minion_master.pub",
+        "filenameType": "str",
+        "x": 830,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7ca1ea0b2b791dfb",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "click",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 90,
+        "y": 620,
+        "wires": [
+            [
+                "d64b40a0e03006a6"
+            ]
+        ]
+    },
+    {
+        "id": "03470a367efdaf2e",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "UUID (object)",
+        "func": "msg.payload = { \"uuid\": msg.payload.replace(/\\n+$/, '')};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 40,
+        "wires": [
+            [
+                "c5ba86245edf6da7"
+            ]
+        ]
+    },
+    {
+        "id": "ac931b189bcafeb4",
+        "type": "file in",
+        "z": "6e1fffded33ce50f",
+        "name": "vcache uuid",
+        "filename": "/var/run/vcache.uuid",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 590,
+        "y": 40,
+        "wires": [
+            [
+                "03470a367efdaf2e"
+            ]
+        ]
+    },
+    {
+        "id": "c5ba86245edf6da7",
+        "type": "redis out",
+        "z": "6e1fffded33ce50f",
+        "hostname": "vcache_redis",
+        "port": 6379,
+        "name": "UUID (out)",
+        "key": "vcache:stats",
+        "structtype": "hash",
+        "x": 1030,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "cf922e952279365b",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "init mgr addr",
+        "func": "msg.payload = global.get('MGR_ADDR_CFG') || env.get('VCACHE_MGR_ADDR') || '';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 440,
+        "wires": [
+            [
+                "b8eb1678b935b37c"
+            ]
+        ]
+    },
+    {
+        "id": "d64b40a0e03006a6",
+        "type": "ui_button",
+        "z": "6e1fffded33ce50f",
+        "name": "reset master key",
+        "group": "27ef1ca5c2551459",
+        "order": 5,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Reset Master Key",
+        "tooltip": "Reset Salt Master Key",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 600,
+        "y": 620,
+        "wires": [
+            [
+                "e1251d2b16dd4e69"
+            ]
+        ]
+    },
+    {
+        "id": "b71d48ef56781daf",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "mgr addr cfg",
+        "func": "global.set('MGR_ADDR_CFG', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8c7f242128e6d08",
+        "type": "ui_button",
+        "z": "6e1fffded33ce50f",
+        "name": "set mgr cfg",
+        "group": "27ef1ca5c2551459",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "label": "Set Manager Config",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 590,
+        "y": 560,
+        "wires": [
+            [
+                "39d399349809e2ae"
+            ]
+        ]
+    },
+    {
+        "id": "b166f973bc4e3778",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "minion tmpl cmd",
+        "func": "var mgr_addr = global.get('MGR_ADDR');\nif (mgr_addr == null) mgr_addr = env.get('VCACHE_MGR_ADDR');\nif (mgr_addr !== null && mgr_addr.length !== 0) {\n    msg.payload = \"VCACHE_MGR_ADDR=\" + mgr_addr + \"; envsubst < /etc/salt/minion.tmpl > /etc/salt/minion\";\n} else {\n    msg.payload = 'false';\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 360,
+        "wires": [
+            [
+                "c9b1a37c5388a3f5"
+            ]
+        ]
+    },
+    {
+        "id": "87050b2474e88cd4",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "click",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 90,
+        "y": 560,
+        "wires": [
+            [
+                "d8c7f242128e6d08"
+            ]
+        ]
+    },
+    {
+        "id": "73d66a67c4f17a67",
+        "type": "switch",
+        "z": "6e1fffded33ce50f",
+        "name": "",
+        "property": "payload.code",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 320,
+        "wires": [
+            [
+                "3c56fb1d676c0a34"
+            ],
+            [
+                "941674b482aa389f"
+            ]
+        ]
+    },
+    {
+        "id": "39d399349809e2ae",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "set mgr cfg",
+        "func": "global.set(\"MGR_ADDR\", global.get(\"MGR_ADDR_CFG\"));\nglobal.set(\"MGR_KEY\", global.get(\"MGR_KEY_CFG\"));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "83fc3e9f821ab09b",
+        "type": "daemon",
+        "z": "6e1fffded33ce50f",
+        "name": "salt-minion",
+        "command": "salt-minion",
+        "args": "",
+        "autorun": false,
+        "cr": false,
+        "redo": true,
+        "op": "string",
+        "closer": "SIGTERM",
+        "x": 1030,
+        "y": 320,
+        "wires": [
+            [
+                "dee0f52de10bef29"
+            ],
+            [
+                "dee0f52de10bef29"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e3b2fea7daf99ef0",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "stop",
+        "props": [
+            {
+                "p": "stop",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1030,
+        "y": 240,
+        "wires": [
+            [
+                "83fc3e9f821ab09b"
+            ]
+        ]
+    },
+    {
+        "id": "f6c8c40c26116895",
+        "type": "complete",
+        "z": "6e1fffded33ce50f",
+        "name": "set mgr addr trigger",
+        "scope": [
+            "39d399349809e2ae"
+        ],
+        "uncaught": false,
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "94d24377cc341d7b"
+            ]
+        ]
+    },
+    {
+        "id": "3c56fb1d676c0a34",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "stop mgr agent",
+        "func": "msg.stop = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 260,
+        "wires": [
+            [
+                "83fc3e9f821ab09b"
+            ]
+        ]
+    },
+    {
+        "id": "941674b482aa389f",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "start mgr agent",
+        "func": "msg.start =  true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 380,
+        "wires": [
+            [
+                "83fc3e9f821ab09b"
+            ]
+        ]
+    },
+    {
+        "id": "77adec012f68cc04",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "start",
+        "props": [
+            {
+                "p": "start",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1030,
+        "y": 400,
+        "wires": [
+            [
+                "83fc3e9f821ab09b"
+            ]
+        ]
+    },
+    {
+        "id": "f4a7ac0f6eb36a8d",
+        "type": "ui_text_input",
+        "z": "6e1fffded33ce50f",
+        "name": "mgr agent key",
+        "label": "Agent Key: ",
+        "tooltip": "Management Agent Key",
+        "group": "27ef1ca5c2551459",
+        "order": 7,
+        "width": 9,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "10",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 600,
+        "y": 500,
+        "wires": [
+            [
+                "e9bc8e9f52519ae6"
+            ]
+        ]
+    },
+    {
+        "id": "b6f811abf19f84a1",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "init mgr agent key",
+        "func": "msg.payload = global.get('MGR_KEY_CFG') || env.get('VCACHE_MGR_KEY') || '';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 500,
+        "wires": [
+            [
+                "f4a7ac0f6eb36a8d"
+            ]
+        ]
+    },
+    {
+        "id": "e9bc8e9f52519ae6",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "mgr agent key cfg",
+        "func": "global.set('MGR_KEY_CFG', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "94d24377cc341d7b",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "minion key cmd",
+        "func": "var mgr_key = global.get('MGR_KEY');\nif (mgr_key == undefined) mgr_key = env.get('VCACHE_MGR_KEY');\nif (mgr_key !== undefined && mgr_key.length !== 0) {\n    msg.payload = \"VCACHE_MGR_KEY=\"+mgr_key+\";vcache-decode-key\";\n} else {\n    msg.payload = \"false\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "5169cc8df15e5f1e"
+            ]
+        ]
+    },
+    {
+        "id": "5169cc8df15e5f1e",
+        "type": "exec",
+        "z": "6e1fffded33ce50f",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "minion key",
+        "x": 590,
+        "y": 280,
+        "wires": [
+            [],
+            [],
+            [
+                "b166f973bc4e3778"
+            ]
+        ]
+    },
+    {
+        "id": "4f03c1bab552cc28",
+        "type": "inject",
+        "z": "6e1fffded33ce50f",
+        "name": "poll 1h",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 680,
+        "wires": [
+            [
+                "e0c1f41c65d260dd"
+            ]
+        ]
+    },
+    {
+        "id": "e0c1f41c65d260dd",
+        "type": "exec",
+        "z": "6e1fffded33ce50f",
+        "command": "/usr/sbin/logrotate /etc/logrotate.conf",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "logrotate",
+        "x": 360,
+        "y": 680,
+        "wires": [
+            [
+                "d7ac53851492dc5d"
+            ],
+            [
+                "d7ac53851492dc5d"
+            ],
+            [
+                "d7ac53851492dc5d"
+            ]
+        ]
+    },
+    {
+        "id": "d7ac53851492dc5d",
+        "type": "debug",
+        "z": "6e1fffded33ce50f",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "dee0f52de10bef29",
+        "type": "debug",
+        "z": "6e1fffded33ce50f",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 300,
+        "wires": []
+    }
+]

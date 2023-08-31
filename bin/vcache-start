@@ -30,7 +30,13 @@ if [[ $? != 0 ]]; then
 	exit 1
 fi
 
-DC_VERSION=$(sudo docker-compose version)
+if [ "$EUID" -eq 0 ]; then
+    SUDO=
+else
+    SUDO="sudo -E"
+fi
+
+DC_VERSION=$($SUDO docker-compose version | head -n 1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
 if [ $? != 0 ]; then
     echo "please install docker-compose and provide sudo access..."
     exit 2
@@ -38,12 +44,23 @@ else
 	echo "running docker-compose (>= 1.29 required): ${DC_VERSION}"
 fi
 
-sudo docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache" > /dev/null
+$SUDO docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache_mgr_agent" > /dev/null
 
 if [ $? == 0 ]; then
 	echo "vcache containers already running..."
 	exit 3
 fi
+
+VCACHE_VERSION=`git describe 2> /dev/null`
+if [[ $? != 0 ]]; then
+	if [[ -r .version ]]; then
+		VCACHE_VERSION=`cat .version`
+	else
+	    echo "unable to determine vcache version: using 0.0.0"
+	    VCACHE_VERSION="0.0.0"
+	fi
+fi
+export VCACHE_VERSION
 
 if [[ -f .env && -r .env ]]; then
 	echo "using existing .env file..."
@@ -55,53 +72,36 @@ else
 	read -p "enter the vcache hostname[$HOSTNAME]: " hostname
 	hostname=${hostname:-$HOSTNAME}
     echo "VCACHE_HOSTNAME=${hostname}" > .env
-	echo "VCACHE_MEM_SIZE=12G" >> .env
+	echo "VCACHE_MEM_SIZE=4G" >> .env
 fi
 
-VCACHE_VERSION=`git describe 2> /dev/null`
-if [[ $? != 0 ]]; then
-	if [[ -r ./run/vcache-version.txt ]]; then
-		VCACHE_VERSION=`cat ./run/vcache-version.txt`
-	else
-	    echo "[$?]no git revision or version.txt file detected, using: 0.0.0"
-	    VCACHE_VERSION="0.0.0"
-	fi
-fi
-echo -n ${VCACHE_VERSION} > ./run/vcache-version.txt
-
-
-# read the config and eval templates for nginx and varnish
-if [[ ! -e ./conf/vcache.cfg && -e ./conf/vcache.cfg.dist ]]; then
-	cp ./conf/vcache.cfg.dist ./conf/vcache.cfg
-fi
-									  
-./bin/vcache-cfg-update
-
-if [[ $? != 0 ]]; then
-	echo "error updating vache cfg files ($?)"
-	exit 7
+if [[ "$VCACHE_VERSION" != "0.0.0" ]]; then
+	# update or add the VCACHE_VERSION to .env
+    # XXX Rocky does not have perl?? that won't work for us
+    #	perl -i -ne "\$found++ if s/VCACHE_VERSION=\S+/VCACHE_VERSION=${VCACHE_VERSION}/; \$_ .= \"VCACHE_VERSION=${VCACHE_VERSION}\\n\" if eof and not \$found; print;" .env
+    sed -i "/^VCACHE_VERSION=/{h;s/=.*/=${VCACHE_VERSION}/};\${x;/^\$/{s//VCACHE_VERSION=${VCACHE_VERSION}/;H};x}" .env
 fi
 
 echo "cleaning up previous deployment..."
-sudo docker-compose down
-
-rm -f run/*.sock run/*.pid
-# XXX there must be a better way to grant write perms to containers
-chmod ugo+rwx log run etc/varnishstats
+$SUDO docker-compose down
 
 echo "starting vcache (${VCACHE_VERSION}) ..."
 
 if [[ $debug ]]; then
-	sudo docker-compose up
+	$SUDO docker-compose up
+    if [[ $? != 0 ]]; then
+        echo "an error occured starting vcache ($?) (debug), exiting..."
+        exit 5
+    fi
+    exit 0
 else
-	sudo docker-compose up -d
-fi
-
-if [[ $? != 0 ]]; then
-	echo "[$?] an error occured starting vcache, exiting..."
-	exit 4
-else
-	echo "vcache started!"
+	$SUDO docker-compose up -d
+    if [[ $? != 0 ]]; then
+	    echo "an error occured starting vcache ($?), exiting..."
+	    exit 4
+    else
+        echo "vcache started!"
+    fi
 fi
 
 exit 0

@@ -89,15 +89,19 @@ echo "starting vcache (${VCACHE_VERSION}) ..."
 
 if [[ $debug ]]; then
 	$SUDO docker-compose up
+    if [[ $? != 0 ]]; then
+        echo "an error occured starting vcache ($?) (debug), exiting..."
+        exit 5
+    fi
+    exit 0
 else
 	$SUDO docker-compose up -d
-fi
-
-if [[ $? != 0 ]]; then
-	echo "[$?] an error occured starting vcache, exiting..."
-	exit 4
-else
-	echo "vcache started!"
+    if [[ $? != 0 ]]; then
+	    echo "an error occured starting vcache ($?), exiting..."
+	    exit 4
+    else
+        echo "vcache started!"
+    fi
 fi
 
 exit 0

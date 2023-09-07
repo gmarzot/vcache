@@ -101,7 +101,7 @@ server {
    # simple health endpoint (returns client ip)
    location = / {
       add_header Content-Type application/json;
-      return 200 '{"ip": "$remote_addr"}';
+      return 200 '{"ip": "\$remote_addr"}';
    }
 }
 

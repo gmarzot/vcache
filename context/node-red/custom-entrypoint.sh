@@ -18,9 +18,9 @@ else
 	echo "found existing vcache.cfg: starting..."
 fi
 
-if [[ -e /etc/vcache/.version ]]; then
+if [[ -e /etc/vcache/vcache.version ]]; then
 	echo "copying .version to /var/run"
-	cp /etc/vcache/.version /var/run/vcache.version
+	cp /etc/vcache/vcache.version /var/run/
 fi
 
 # Run the original entrypoint script

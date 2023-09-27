@@ -1,5 +1,5 @@
 
-Why VCache?
+Why vCache?
 
 Cloud streaming video services are now well distributed globally by CDNs, however this still puts enterprise networks at risk as employees return to their offices.
 

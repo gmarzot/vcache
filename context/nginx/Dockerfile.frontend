@@ -84,17 +84,33 @@ RUN set -x \
 						wget \
 						git \
 						build-essential \
-						libpcre2-dev \
+						libpcre3-dev \
 						zlib1g-dev \
 						libredis-perl \
 						libjson-perl \
 						libdatetime-perl \
 						libdevel-dumpvar-perl \
 						libgoogle-protocolbuffers-perl
+
+# adding nginx helper modules to support modified manifest delivery (e.g., routing)
+# add ngx_http_substitutions_filter_module, lua-nginx-module (and friends)
 RUN git clone https://github.com/yaoweibin/ngx_http_substitutions_filter_module.git
+RUN wget https://github.com/openresty/luajit2/archive/refs/tags/v2.1-20230911.tar.gz
+RUN mkdir luajit && tar xzvf v2.1-20230911.tar.gz --strip-components=1 -C luajit 
+RUN wget https://github.com/vision5/ngx_devel_kit/archive/refs/tags/v0.3.2.tar.gz
+RUN mkdir ngx_devel_kit && tar xzvf v0.3.2.tar.gz --strip-components=1 -C ngx_devel_kit 
+RUN wget https://github.com/openresty/lua-nginx-module/archive/refs/tags/v0.10.25.tar.gz
+RUN mkdir lua-nginx-module && tar xzvf v0.10.25.tar.gz --strip-components=1 -C lua-nginx-module 
+RUN wget https://github.com/openresty/lua-resty-core/archive/refs/tags/v0.1.27.tar.gz
+RUN mkdir lua-resty-core && tar xzvf v0.1.27.tar.gz --strip-components=1 -C lua-resty-core 
+RUN wget https://github.com/openresty/lua-resty-lrucache/archive/refs/tags/v0.13.tar.gz
+RUN mkdir lua-resty-lrucache && tar xzvf v0.13.tar.gz --strip-components=1 -C lua-resty-lrucache 
+RUN cd luajit && make install PREFIX=/usr/local
+RUN cd lua-resty-core && make install PREFIX=/usr/local
+RUN cd lua-resty-lrucache && make install PREFIX=/usr/local
 RUN wget https://nginx.org/download/nginx-1.25.0.tar.gz
 RUN tar xzvf nginx-1.25.0.tar.gz
-RUN cd nginx-1.25.0 && ./configure --with-compat --add-dynamic-module=../ngx_http_substitutions_filter_module && make modules && cp objs/ngx_http_subs_filter_module.so /etc/nginx/modules/
+RUN cd nginx-1.25.0 && LUAJIT_INC=/usr/local/include/luajit-2.1 LUAJIT_LIB=/usr/local/lib  ./configure --with-compat --add-dynamic-module=../ngx_http_substitutions_filter_module --with-ld-opt="-Wl,-rpath,/usr/local/lib -lpcre" --add-dynamic-module=../ngx_devel_kit --add-dynamic-module=../lua-nginx-module && make modules && cp objs/ngx_http_subs_filter_module.so /etc/nginx/modules/ && cp objs/ngx_http_lua_module.so /etc/nginx/modules/ && cp objs/ndk_http_module.so /etc/nginx/modules/
 
 RUN apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx.list \
     \
@@ -108,6 +124,7 @@ COPY perllib /var/lib/nginx/perllib
 COPY nginx/etc/nginx/nginx-fe.conf /etc/nginx/nginx.conf
 COPY nginx/etc/nginx/pki /etc/nginx/pki
 COPY nginx/etc/nginx/modules-enabled /etc/nginx/modules-enabled
+COPY nginx/etc/nginx/lua /etc/nginx/lua
 COPY nginx/etc/nginx/sites-enabled/frontend.cfg.tmpl /etc/nginx/sites-enabled/frontend.cfg.tmpl
 
 VOLUME /etc/nginx

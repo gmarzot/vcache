@@ -220,7 +220,7 @@ grains:
 
 # If the master rejects the minion's public key, retry instead of exiting.
 # Rejected keys will be handled the same as waiting on acceptance.
-#rejected_retry: False
+rejected_retry: False
 
 # When the master key changes, the minion will try to re-auth itself to receive
 # the new master key. In larger environments this can cause a SYN flood on the
@@ -261,7 +261,7 @@ grains:
 # authorization from it. master_tries will still cycle through all
 # the masters in a given try, so it is appropriate if you expect
 # occasional downtime from the master(s).
-#master_tries: 1
+master_tries: -1
 
 # If authentication fails due to SaltReqTimeoutError during a ping_interval,
 # cause sub minion process to restart.
@@ -755,8 +755,8 @@ grains:
 
 # Grains to be sent to the master on authentication to check if the minion's key
 # will be accepted automatically. Needs to be configured on the master.
-autosign_grains:
-  - mgr_sec
+#autosign_grains:
+#  - mgr_sec
 
 
 ######        Reactor Settings        #####
@@ -788,7 +788,7 @@ autosign_grains:
 # This is useful to avoid resource exhaustion in case the minion receives more
 # publications than it is able to handle, as it limits the number of spawned
 # processes or threads. -1 is the default and disables the limit.
-#process_count_max: -1
+process_count_max: 256
 
 
 #####         Logging settings       #####

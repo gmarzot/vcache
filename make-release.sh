@@ -22,7 +22,7 @@ fi
 
 echo -n ${GIT_REVISION} > ./.version
 # this will be included in released images
-cp ./.version ./context/node-red/etc/vcache/
+cp ./.version ./context/node-red/etc/vcache/vcache.version
 
 cd ..
 

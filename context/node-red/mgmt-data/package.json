@@ -4,6 +4,7 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+        "@prescient-devices/node-red-contrib-downloadfile": "~1.1.0",
         "node-red-contrib-cpu": "~0.0.4",
         "node-red-contrib-rate": "~1.4.0",
         "node-red-contrib-uuid": "~0.0.4",

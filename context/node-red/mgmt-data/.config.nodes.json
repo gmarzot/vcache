@@ -1,7 +1,7 @@
 {
     "node-red": {
         "name": "node-red",
-        "version": "3.0.2",
+        "version": "3.1.0",
         "local": false,
         "user": false,
         "nodes": {
@@ -94,6 +94,17 @@
                 "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/common/90-comment.js"
+            },
+            "global-config": {
+                "name": "global-config",
+                "types": [
+                    "global-config"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red",
+                "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/common/91-global-config.js"
             },
             "unknown": {
                 "name": "unknown",
@@ -515,7 +526,7 @@
     },
     "node-red-dashboard": {
         "name": "node-red-dashboard",
-        "version": "3.5.0",
+        "version": "3.6.1",
         "local": false,
         "user": false,
         "nodes": {
@@ -773,7 +784,7 @@
     },
     "node-red-node-daemon": {
         "name": "node-red-node-daemon",
-        "version": "0.5.1",
+        "version": "0.6.0",
         "local": false,
         "user": false,
         "nodes": {
@@ -793,8 +804,8 @@
     "node-red-contrib-cpu": {
         "name": "node-red-contrib-cpu",
         "version": "0.0.4",
-        "local": false,
-        "user": false,
+        "local": true,
+        "user": true,
         "nodes": {
             "cpu": {
                 "name": "cpu",
@@ -802,18 +813,18 @@
                     "cpu"
                 ],
                 "enabled": true,
-                "local": false,
+                "local": true,
                 "user": false,
                 "module": "node-red-contrib-cpu",
-                "file": "/usr/src/node-red/node_modules/node-red-contrib-cpu/cpu.js"
+                "file": "/data/node_modules/node-red-contrib-cpu/cpu.js"
             }
         }
     },
     "node-red-contrib-rate": {
         "name": "node-red-contrib-rate",
         "version": "1.4.0",
-        "local": false,
-        "user": false,
+        "local": true,
+        "user": true,
         "nodes": {
             "rate": {
                 "name": "rate",
@@ -821,18 +832,18 @@
                     "rate"
                 ],
                 "enabled": true,
-                "local": false,
+                "local": true,
                 "user": false,
                 "module": "node-red-contrib-rate",
-                "file": "/usr/src/node-red/node_modules/node-red-contrib-rate/rate.js"
+                "file": "/data/node_modules/node-red-contrib-rate/rate.js"
             }
         }
     },
     "node-red-contrib-uuid": {
         "name": "node-red-contrib-uuid",
         "version": "0.0.4",
-        "local": false,
-        "user": false,
+        "local": true,
+        "user": true,
         "nodes": {
             "UUID": {
                 "name": "UUID",
@@ -840,18 +851,18 @@
                     "uuid"
                 ],
                 "enabled": true,
-                "local": false,
+                "local": true,
                 "user": false,
                 "module": "node-red-contrib-uuid",
-                "file": "/usr/src/node-red/node_modules/node-red-contrib-uuid/uuid/uuid.js"
+                "file": "/data/node_modules/node-red-contrib-uuid/uuid/uuid.js"
             }
         }
     },
     "node-red-node-redis": {
         "name": "node-red-node-redis",
         "version": "0.0.5",
-        "local": false,
-        "user": false,
+        "local": true,
+        "user": true,
         "nodes": {
             "redis": {
                 "name": "redis",
@@ -859,18 +870,18 @@
                     "redis out"
                 ],
                 "enabled": true,
-                "local": false,
+                "local": true,
                 "user": false,
                 "module": "node-red-node-redis",
-                "file": "/usr/src/node-red/node_modules/node-red-node-redis/65-redisout.js"
+                "file": "/data/node_modules/node-red-node-redis/65-redisout.js"
             }
         }
     },
     "node-red-node-smooth": {
         "name": "node-red-node-smooth",
         "version": "0.1.2",
-        "local": false,
-        "user": false,
+        "local": true,
+        "user": true,
         "nodes": {
             "smooth": {
                 "name": "smooth",
@@ -878,10 +889,10 @@
                     "smooth"
                 ],
                 "enabled": true,
-                "local": false,
+                "local": true,
                 "user": false,
                 "module": "node-red-node-smooth",
-                "file": "/usr/src/node-red/node_modules/node-red-node-smooth/17-smooth.js"
+                "file": "/data/node_modules/node-red-node-smooth/17-smooth.js"
             }
         }
     },
@@ -901,6 +912,25 @@
                 "user": false,
                 "module": "node-red-node-ui-table",
                 "file": "/usr/src/node-red/node_modules/node-red-node-ui-table/node.js"
+            }
+        }
+    },
+    "@prescient-devices/node-red-contrib-downloadfile": {
+        "name": "@prescient-devices/node-red-contrib-downloadfile",
+        "version": "1.1.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "downloadfile": {
+                "name": "downloadfile",
+                "types": [
+                    "downloadfile"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "@prescient-devices/node-red-contrib-downloadfile",
+                "file": "/data/node_modules/@prescient-devices/node-red-contrib-downloadfile/downloadfile.js"
             }
         }
     }

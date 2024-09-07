@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# set -x
 
 usage() {
     echo "Usage: $0 [-c|--clean] [-r|--real-clean] [-A|--no-ansi] [-h|--help]"
@@ -22,12 +23,15 @@ do
     case "$1" in
         -c|--clean )
             clean=true
+            shift
             ;;
         -r|--real-clean )
             real_clean=true
+            shift
             ;;
         -A|--no-ansi )
             no_ansi=true
+            shift
             ;;
         -h|--help )
             usage

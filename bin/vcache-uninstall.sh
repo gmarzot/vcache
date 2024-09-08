@@ -2,7 +2,7 @@
 
 # Usage function to display script usage
 usage() {
-  echo "Usage: $0 [-r|--real-clean]"
+  echo "Usage: $0 [-r|--real-clean] [-A|--no-ansi]"
 }
 
 # Parse arguments using getopt

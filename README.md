@@ -1,5 +1,5 @@
 
-vCache - High Performance, High Efficiency, Streaming-Video Proxy-Cache
+**vCache - High Performance, High Efficiency, Streaming-Video Proxy-Cache**
 
 vCache is a containerized, custom integration, composed of several
 open-source components, that implements a streaming-video
@@ -41,8 +41,12 @@ via vCache-Manager (see vcache-manager repository). A bulk deployment
 tool, vcache-deploy, is provided which supports SSH-based
 mass-deployment.
 
+
 ![vcache dashboard](vcache.png)
+
+
 ![vcache dashboard 2](vcache2.png)
+
 
 Author: G. S. Marzot (gmarzot@marzresearch.net)
 

@@ -4050,13 +4050,13 @@
         "id": "3e4dbe0453794d1e",
         "type": "inject",
         "z": "6e1fffded33ce50f",
-        "name": "30s",
+        "name": "300s",
         "props": [
             {
                 "p": "payload"
             }
         ],
-        "repeat": "30",
+        "repeat": "300",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -4068,28 +4068,6 @@
         "wires": [
             [
                 "b238a00bc9e96f7e"
-            ]
-        ]
-    },
-    {
-        "id": "b238a00bc9e96f7e",
-        "type": "exec",
-        "z": "6e1fffded33ce50f",
-        "command": "salt-call test.ping",
-        "addpay": "",
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "winHide": false,
-        "oldrc": false,
-        "name": "",
-        "x": 390,
-        "y": 220,
-        "wires": [
-            [],
-            [],
-            [
-                "ac2f7974dc73082a"
             ]
         ]
     },
@@ -4134,6 +4112,28 @@
         "wires": [
             [
                 "83fc3e9f821ab09b"
+            ]
+        ]
+    },
+    {
+        "id": "b238a00bc9e96f7e",
+        "type": "exec",
+        "z": "6e1fffded33ce50f",
+        "command": "check-salt-status",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "check-salt-status",
+        "x": 390,
+        "y": 220,
+        "wires": [
+            [],
+            [],
+            [
+                "ac2f7974dc73082a"
             ]
         ]
     },

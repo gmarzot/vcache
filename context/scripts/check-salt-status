@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Run status.master and capture its output
+MASTER_STATUS=$(salt-call --local status.master localhost --out=txt 2>/dev/null)
+
+# Check if output is 'local: True'
+if ! echo "$MASTER_STATUS" | grep -q "local: True"; then
+    exit 1
+fi
+
+exit 0

@@ -57,6 +57,13 @@
             }
         },
         "menu-menu-item-palette": true,
-        "menu-menu-item-sidebar": true
+        "menu-menu-item-sidebar": true,
+        "debug": {
+            "filter": "filterAll",
+            "filteredNodes": [
+                "6095613d2ed1b211",
+                "716362bdcc501531"
+            ]
+        }
     }
 }

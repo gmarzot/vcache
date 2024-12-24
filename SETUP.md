@@ -5,8 +5,6 @@
 1. Generate appropriate SSL keys/certs and add to ./etc/nginx/pki (e.g., cache-cert.pem cache-cert.key)
 1. Start cache containers: ./vcache-start and supply desired hostname (requires sudo priviledges)
 
-**note:** existing keys work for *.demo.vivoh.net
-
 **note:** docker-compose version >= 1.29 required. see https://github.com/docker/compose
 
 **note:** cache frontend comes up on port 443 by default, and supports TLS 1.2 and 1.3 only

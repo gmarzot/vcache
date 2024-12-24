@@ -57,7 +57,7 @@
             }
         },
         "menu-menu-item-palette": true,
-        "menu-menu-item-sidebar": true,
+        "menu-menu-item-sidebar": false,
         "debug": {
             "filter": "filterAll",
             "filteredNodes": [

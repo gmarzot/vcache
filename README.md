@@ -47,6 +47,6 @@ mass-deployment.
 ![vcache dashboard 2](vcache2.png)
 
 
-Author: G. S. Marzot (gmarzot@marzresearch.com)
+Author: G. S. Marzot (gmarzot@marzresearch.net)
 
 For additional information or demo please contact Vivoh (cache@vivoh.com)

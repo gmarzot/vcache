@@ -40,7 +40,7 @@ if [ "$TARGET_DIR" != "$SOURCE_DIR" ]; then
     mv $SOURCE_DIR $TARGET_DIR
 fi
 
-./${TARGET_DIR}/makeself.sh --sha256 --nox11 --notemp --tar-extra "--exclude=.git --exclude=.env --exclude=.gitignore --exclude=make* --exclude=.npm --exclude=release --exclude=*~" vcache-${GIT_REVISION} ${TARGET_DIR}/release/vcache-${GIT_REVISION}.run "vCache Deployment" ./bin/vcache-setup.sh
+./${TARGET_DIR}/makeself.sh --sha256 --nox11 --notemp --tar-extra "--exclude=.git --exclude=.env --exclude=.gitignore --exclude=make* --exclude=publish* --exclude=.npm --exclude=release --exclude=*~" vcache-${GIT_REVISION} ${TARGET_DIR}/release/vcache-${GIT_REVISION}.run "vCache Deployment" ./bin/vcache-setup.sh
 
 if [ "$TARGET_DIR" != "$SOURCE_DIR" ]; then
     mv $TARGET_DIR $SOURCE_DIR

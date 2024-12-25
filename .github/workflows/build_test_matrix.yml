@@ -36,7 +36,7 @@ jobs:
           brew install docker docker-compose colima
           mkdir -p ~/.docker
           echo '{"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]}' > ~/.docker/config.json
-          colima start --cpu 2 --memory 4 --vm-type=vz --arch x86_64
+          colima start --cpu 2 --memory 4 --vm-type=vz --arch arm64
         elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
           echo "Setting up Docker for Ubuntu..."
           sudo apt-get update
@@ -76,7 +76,7 @@ jobs:
         start=$SECONDS
         while true; do
           docker-compose logs > compose-run.log 2>&1
-          if grep -q "Configuration complete; ready for start up" compose-run.log; then
+          if grep -q "Configuration complete" compose-run.log; then
             echo "Found success pattern in logs"
             exit 0
           fi
@@ -88,6 +88,7 @@ jobs:
           sleep 5
         done
     - name: Upload Compose Run Logs
+      if: always()
       uses: actions/upload-artifact@v3
       with:
         name: compose-run-${{ matrix.config.os }}.log

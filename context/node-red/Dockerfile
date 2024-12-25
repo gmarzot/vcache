@@ -35,7 +35,6 @@ RUN apk add salt-minion
 RUN apk add --no-cache salt-minion
 COPY ./node-red/etc/salt/minion.tmpl /etc/salt/minion.tmpl
 COPY ./node-red/etc/salt/beacons.conf /etc/salt/minion.d/beacons.conf
-COPY ./node-red/etc/salt/_beacons /etc/salt/_beacons
 
 RUN apk add py3-pip py3-numpy py3-pandas py3-scikit-learn py3-cryptography
 RUN pip install --break-system-packages 'pycryptodome>=3.9.8'

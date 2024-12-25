@@ -35,10 +35,10 @@ jobs:
         if [[ "${{ matrix.config.os }}" == "macos-latest" ]]; then
           brew install --cask docker
           brew install docker-compose
-          # Link the Docker Compose v2 plugin so it's understood by the docker CLI
-          mkdir -p ~/.docker/cli-plugins
-          ln -sfn /usr/local/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
-          sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended --install-privileged-components
+          mkdir -p ~/.docker
+          echo '{"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]}' > ~/.docker/config.json
+          open -a Docker
+        done
         elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
           echo "Setting up Docker for Ubuntu..."
           sudo apt-get update

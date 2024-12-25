@@ -36,7 +36,7 @@ jobs:
           brew install --cask docker
           brew install docker-compose
           open /Applications/Docker.app
-          sleep 10
+          sleep 30
         elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
           echo "Setting up Docker for Ubuntu..."
           sudo apt-get update
@@ -47,6 +47,10 @@ jobs:
 
     - name: Docker Versions
       run: |
+        while ! docker system info > /dev/null 2>&1; do
+          echo "Waiting for Docker daemon..."
+          sleep 2
+        done
         docker --version
         docker-compose --version
 

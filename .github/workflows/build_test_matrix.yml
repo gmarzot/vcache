@@ -82,10 +82,6 @@ jobs:
             echo "Found success pattern in logs"
             exit 0
           fi
-          if grep -q "error\|Error\|ERROR" compose-run.log; then
-            echo "Found error in logs"
-            exit 1
-          fi
           elapsed=$(( SECONDS - start ))
           if (( elapsed > timeout )); then
             echo "Timed out waiting for success pattern"

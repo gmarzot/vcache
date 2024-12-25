@@ -38,7 +38,6 @@ jobs:
           mkdir -p ~/.docker
           echo '{"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]}' > ~/.docker/config.json
           open -a Docker
-        done
         elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
           echo "Setting up Docker for Ubuntu..."
           sudo apt-get update

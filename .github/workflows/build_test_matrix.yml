@@ -33,11 +33,13 @@ jobs:
     - name: Platform Setup
       run: |
         if [[ "${{ matrix.config.os }}" == "macos-latest" ]]; then
-          brew install docker docker-compose colima
+          brew install docker docker-compose
           mkdir -p ~/.docker
           echo '{"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]}' > ~/.docker/config.json
+          sudo mkdir -p /var/run/docker
+          sudo ln -s /var/run/docker.sock ~/.docker/docker.sock
           sudo launchctl load /Library/LaunchDaemons/com.docker.docker.plist
-          elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
+        elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
           echo "Setting up Docker for Ubuntu..."
           sudo apt-get update
           sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose

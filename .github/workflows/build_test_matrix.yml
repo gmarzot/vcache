@@ -38,7 +38,7 @@ jobs:
           echo '{"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]}' > ~/.docker/config.json
           sudo mkdir -p /var/run/docker
           sudo ln -s /var/run/docker.sock ~/.docker/docker.sock
-          sudo launchctl load /Library/LaunchDaemons/com.docker.docker.plist
+          sudo dockerd
         elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
           echo "Setting up Docker for Ubuntu..."
           sudo apt-get update

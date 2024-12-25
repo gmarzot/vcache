@@ -35,8 +35,10 @@ jobs:
         if [[ "${{ matrix.config.os }}" == "macos-latest" ]]; then
           brew install --cask docker
           brew install docker-compose
-          open /Applications/Docker.app
-          sleep 30
+          # Link the Docker Compose v2 plugin so it's understood by the docker CLI
+          mkdir -p ~/.docker/cli-plugins
+          ln -sfn /usr/local/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
+          sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended --install-privileged-components
         elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
           echo "Setting up Docker for Ubuntu..."
           sudo apt-get update
@@ -70,22 +72,39 @@ jobs:
         name: compose-up-${{ matrix.config.os }}.log
         path: compose-up.log
 
+    - name: Compose Logs Test
+      run: |
+        timeout=300  # 5 minute timeout
+        start=$SECONDS
+        while true; do
+          docker-compose logs > compose-run.log 2>&1
+          if grep -q "Configuration complete; ready for start up" compose-run.log; then
+            echo "Found success pattern in logs"
+            exit 0
+          fi
+          if grep -q "error\|Error\|ERROR" compose-run.log; then
+            echo "Found error in logs"
+            exit 1
+          fi
+          elapsed=$(( SECONDS - start ))
+          if (( elapsed > timeout )); then
+            echo "Timed out waiting for success pattern"
+            exit 1
+          fi
+          sleep 5
+        done
+    - name: Upload Compose Run Logs
+      uses: actions/upload-artifact@v3
+      with:
+        name: compose-run-${{ matrix.config.os }}.log
+        path: compose-run.log
+
     - name: Health Check Test
       run: |
         docker-compose ps
         health_response=$(curl -s http://localhost:8080/health)
         echo "Health Check Response: $health_response"
         echo "$health_response" | jq '.status' | grep -q '"up"' || exit 1
-
-    - name: Compose Logs Test
-      run: |
-        docker-compose logs 2>&1 | tee compose-run.log
-        grep compose-run.log "Configuration complete; ready for start up" || exit 1
-    - name: Upload Compose Run Logs
-      uses: actions/upload-artifact@v3
-      with:
-        name: compose-run-${{ matrix.config.os }}.log
-        path: compose-run.log
 
     - name: Compose Down
       run: docker-compose down 2>&1 | tee compose-down.log

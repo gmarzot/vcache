@@ -5,3 +5,5 @@
 .#*
 .sessions.json
 .*.backup
+.config.users.json
+.config.runtime.json

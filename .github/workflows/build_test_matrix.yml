@@ -34,7 +34,9 @@ jobs:
       run: |
         if [[ "${{ matrix.config.os }}" == "macos-latest" ]]; then
           brew install docker docker-compose colima
-          colima start
+          mkdir -p ~/.docker
+          echo '{"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]}' > ~/.docker/config.json
+          colima start --cpu 2 --memory 4 --vm-type=vz --arch x86_64
         elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
           echo "Setting up Docker for Ubuntu..."
           sudo apt-get update

@@ -36,8 +36,8 @@ jobs:
           brew install docker docker-compose colima
           mkdir -p ~/.docker
           echo '{"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]}' > ~/.docker/config.json
-          colima start --cpu 2 --memory 4 --vm-type=vz --arch arm64
-        elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
+          sudo launchctl load /Library/LaunchDaemons/com.docker.docker.plist
+          elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
           echo "Setting up Docker for Ubuntu..."
           sudo apt-get update
           sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose

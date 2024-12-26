@@ -1,4 +1,6 @@
 FROM nodered/node-red:latest-18
+
+RUN npm install @prescient-devices/node-red-contrib-downloadfile
 RUN npm install node-red-contrib-os
 RUN npm install node-red-contrib-fs-ops
 RUN npm install node-red-contrib-cpu

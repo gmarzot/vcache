@@ -66,13 +66,17 @@ jobs:
         EOF
 
     - name: Compose Build
-      run: docker-compose --env-file .env build --no-cache 2>&1 | tee compose-build.log
+      run: docker-compose build --no-cache 2>&1 | tee compose-build.log
     - name: Upload Build Logs
       if: always()
       uses: actions/upload-artifact@v3
       with:
         name: compose-build-log-${{ matrix.config.os }}
         path: compose-build.log
+
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      timeout-minutes: 15
 
     - name: Compose Up
       run: docker-compose --env-file .env up -d 2>&1 | tee compose-up.log

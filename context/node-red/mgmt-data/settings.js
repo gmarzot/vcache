@@ -307,6 +307,12 @@ module.exports = {
             metrics: false,
             /** Whether or not to include audit events in the log output */
             audit: false
+        },
+        file: {
+            level: "debug",
+            filename: "/var/log/node-red.log",
+            maxFiles: 5,
+            maxSize: "10M"
         }
     },
 

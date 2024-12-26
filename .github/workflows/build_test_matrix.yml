@@ -87,7 +87,7 @@ jobs:
       run: |
         timeout=500
         docker-compose logs -f | while read line; do
-          echo "$line" | tee compose-logs.log
+          echo "$line" | tee -a compose-logs.log
           if echo "$line" | grep -q "Configuration complete"; then
             echo "Found success pattern"
             exit 0

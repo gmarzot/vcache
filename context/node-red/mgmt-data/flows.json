@@ -3402,7 +3402,9 @@
         "wires": [
             [],
             [],
-            []
+            [
+                "154aafc2659f6bf2"
+            ]
         ]
     },
     {
@@ -4180,13 +4182,49 @@
         ]
     },
     {
+        "id": "154aafc2659f6bf2",
+        "type": "function",
+        "z": "6e1fffded33ce50f",
+        "name": "cfg update ret",
+        "func": "if(msg.payload.code != 0) \n    node.warn(\"vcache-cfg-update error: \" + msg.payload.code);\nelse\n    node.warn(\"vcache-cfg-update success\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 220,
+        "wires": [
+            [
+                "36014e524866ad2e"
+            ]
+        ]
+    },
+    {
+        "id": "36014e524866ad2e",
+        "type": "debug",
+        "z": "6e1fffded33ce50f",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 220,
+        "wires": []
+    },
+    {
         "id": "eed8a4d834e410d8",
         "type": "downloadfile",
         "z": "bb164eb378c70360",
         "name": "",
         "filename": "",
         "encoding": "binary",
-        "x": 710,
+        "x": 630,
         "y": 180,
         "wires": []
     },
@@ -4283,7 +4321,7 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 590,
+        "x": 610,
         "y": 120,
         "wires": [
             [
@@ -4304,7 +4342,7 @@
         "sendError": false,
         "encoding": "binary",
         "allProps": false,
-        "x": 360,
+        "x": 280,
         "y": 180,
         "wires": [
             [
@@ -4316,14 +4354,15 @@
         "id": "876b56020ec3d701",
         "type": "function",
         "z": "bb164eb378c70360",
-        "name": "basename",
+        "name": "name",
         "func": "msg.filename =  msg.basename;\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
+        "x": 450,
         "y": 180,
         "wires": [
             [
@@ -4344,7 +4383,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 700,
+        "x": 620,
         "y": 60,
         "wires": []
     }

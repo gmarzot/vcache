@@ -85,7 +85,7 @@ jobs:
 
     - name: Compose Logs Test
       run: |
-        timeout=1200
+        timeout=500
         docker-compose logs -f | while read line; do
           echo "$line" | tee compose-logs.log
           if echo "$line" | grep -q "Configuration complete"; then

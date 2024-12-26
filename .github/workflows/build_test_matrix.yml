@@ -115,7 +115,10 @@ jobs:
           echo "vCache containers not running"
           exit 1
         fi
-        if ! health_response=$(curl -m 5 -k -s https://localhost:8443/health); then
+        curl -m 5 -k -s https://localhost:8443/
+        curl -m 5 -k -s https://localhost:8443/health
+        health=$(curl -m 5 -k -s https://localhost:8443/health)
+        if ! echo "$health" | jq -e '.status == "up"' > /dev/null; then
           echo "Health Check Failed"
           exit 1
         fi

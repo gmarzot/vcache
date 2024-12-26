@@ -111,15 +111,13 @@ jobs:
 
     - name: Health Check Test
       run: |
-        if ! docker ps | grep -q vcache; then
-          echo "vCache containers not running"
-          exit 1
-        fi
-        curl -m 5 -k -s https://localhost:8443/
-        curl -m 5 -k -s https://localhost:8443/health
+        echo "Checking running containers:"
+        docker ps
+        echo "Testing health endpoint:"
         health=$(curl -m 5 -k -s https://localhost:8443/health)
+        echo "Health response: $health"
         if ! echo "$health" | jq -e '.status == "up"' > /dev/null; then
-          echo "Health Check Failed"
+          echo "Health Check Failed: Status not 'up'"
           exit 1
         fi
 

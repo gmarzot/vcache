@@ -76,7 +76,7 @@ jobs:
 
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
-      timeout-minutes: 15
+      timeout-minutes: 30
 
     - name: Compose Up
       run: docker-compose --env-file .env up -d 2>&1 | tee compose-up.log

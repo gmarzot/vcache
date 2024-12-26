@@ -302,17 +302,11 @@ module.exports = {
              * trace - record very detailed logging + debug + info + warn + error + fatal errors
              * off - turn off all logging (doesn't affect metrics or audit)
              */
-            level: "info",
+            level: "trace",
             /** Whether or not to include metric events in the log output */
             metrics: false,
             /** Whether or not to include audit events in the log output */
             audit: false
-        },
-        file: {
-            level: "debug",
-            filename: "/var/log/node-red.log",
-            maxFiles: 5,
-            maxSize: "10M"
         }
     },
 

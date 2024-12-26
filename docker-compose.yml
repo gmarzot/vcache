@@ -21,7 +21,6 @@ services:
     networks:
       - vcache_net
     environment:
-      - NODE_RED_ENABLE_VERBOSE="true"
       - VCACHE_VERSION=${VCACHE_VERSION}
       - VCACHE_HOSTNAME=${VCACHE_HOSTNAME}
       - VCACHE_MGR_ADDR=${VCACHE_MGR_ADDR}

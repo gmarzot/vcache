@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
     - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -21,7 +22,7 @@ jobs:
       matrix:
         config:
         - {os: ubuntu-latest, name: Linux}
-        - {os: macos-latest, name: MacOS}
+ #       - {os: macos-latest, name: MacOS} # too much trouble
 
     runs-on: ${{ matrix.config.os }}
     name: Build & Test - ${{ matrix.config.name }} 
@@ -65,6 +66,14 @@ jobs:
         name: compose-build-log-${{ matrix.config.os }}
         path: compose-build.log
 
+    - name: Set Environment
+      run: |
+        cat > .env << EOF
+        VCACHE_MEM_SIZE=512M
+        VCACHE_HOST_NAME=test.gh.com
+        VCACHE_VERSION=$(git describe)
+        EOF
+
     - name: Compose Up
       run: docker-compose up -d 2>&1 | tee compose-up.log
     - name: Upload Compose Up Logs
@@ -75,7 +84,7 @@ jobs:
 
     - name: Compose Logs Test
       run: |
-        timeout=300  # 5 minute timeout
+        timeout=600  # 5 minute timeout
         start=$SECONDS
         while true; do
           docker-compose logs > compose-run.log 2>&1

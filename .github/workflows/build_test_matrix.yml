@@ -158,9 +158,4 @@ jobs:
 
     - name: Compose Down
       if: always()
-      run: docker-compose down 2>&1 | tee compose-down.log
-    - name: Upload Compose Down Logs
-      uses: actions/upload-artifact@v3
-      with:
-        name: compose-down-${{ matrix.config.os }}.log
-        path: compose-down.log
+      run: docker-compose down

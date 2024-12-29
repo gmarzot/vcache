@@ -1,25 +1,41 @@
 #!/usr/bin/env bash
 
-die() { echo "$*" >&2; exit 6; }  # complain to STDERR and exit with error
-needs_arg() { if [ -z "$OPTARG" ]; then die "No arg for --$OPT option"; fi; }
+usage() {
+    echo "Usage: $0 [-d|--debug] [-h|--help]"
+    echo "Options:"
+    echo "  -d, --debug  Enable debug mode - no detach, compose output to stdout "
+    echo "  -h, --help   Show this help message"
+}
 
-while getopts d-: OPT; do
-  # support long options: https://stackoverflow.com/a/28466267/519360
-  if [ "$OPT" = "-" ]; then   # long option: reformulate OPT and OPTARG
-    OPT="${OPTARG%%=*}"       # extract long option name
-    OPTARG="${OPTARG#$OPT}"   # extract long option argument (may be empty)
-    OPTARG="${OPTARG#=}"      # if long option argument, remove assigning `=`
-  fi
-  case "$OPT" in
-    d | debug )    debug=true ;;
-#    b | bravo )    needs_arg; bravo="$OPTARG" ;;
-#    c | charlie )  needs_arg; charlie="$OPTARG" ;;
-    ??* )          die "Illegal option --$OPT" ;;  # bad long option
-    ? )            exit 5 ;;  # bad short option (error reported via getopts)
-  esac
+options=$(getopt -l "help,debug" -o "hd" -n "$0" -- "$@")
+
+if [ $? -ne 0 ]; then
+    usage
+    exit 1
+fi
+
+eval set -- "$options"
+while true
+do
+    case "$1" in
+        -d|--debug )
+            debug=true
+            shift
+            ;;
+        -h|--help )
+            usage
+            exit 0
+            ;;
+        -- )
+            shift
+            break
+            ;;
+        * )
+            usage
+            exit 1
+            ;;
+    esac
 done
-shift $((OPTIND-1)) # remove parsed options and args from $@ list
-
 
 SOURCE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && pwd )
 
@@ -41,13 +57,13 @@ if [ $? != 0 ]; then
     echo "please install docker-compose and provide sudo access..."
     exit 2
 else
-	echo "running docker-compose (>= 1.29 required): ${DC_VERSION}"
+	echo "running docker-compose: ${DC_VERSION} (>= 1.29 required)"
 fi
 
 $SUDO docker-compose ps --services --filter "status=running" 2>/dev/null | grep "vcache_mgr_agent" > /dev/null
 
 if [ $? == 0 ]; then
-	echo "vcache containers already running..."
+	echo "vcache containers already running: exiting..."
 	exit 3
 fi
 
@@ -78,7 +94,7 @@ fi
 if [[ "$VCACHE_VERSION" != "0.0.0" ]]; then
 	# update or add the VCACHE_VERSION to .env
     # XXX Rocky does not have perl?? that won't work for us
-    #	perl -i -ne "\$found++ if s/VCACHE_VERSION=\S+/VCACHE_VERSION=${VCACHE_VERSION}/; \$_ .= \"VCACHE_VERSION=${VCACHE_VERSION}\\n\" if eof and not \$found; print;" .env
+    # perl -i -ne "\$found++ if s/VCACHE_VERSION=\S+/VCACHE_VERSION=${VCACHE_VERSION}/; \$_ .= \"VCACHE_VERSION=${VCACHE_VERSION}\\n\" if eof and not \$found; print;" .env
     sed -i "/^VCACHE_VERSION=/{h;s/=.*/=${VCACHE_VERSION}/};\${x;/^\$/{s//VCACHE_VERSION=${VCACHE_VERSION}/;H};x}" .env
 fi
 

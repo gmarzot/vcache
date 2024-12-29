@@ -108,6 +108,7 @@ COPY perllib /var/lib/nginx/perllib
 COPY nginx/etc/nginx/nginx-be.conf /etc/nginx/nginx.conf
 COPY nginx/etc/nginx/pki /etc/nginx/pki
 COPY nginx/etc/nginx/modules-enabled /etc/nginx/modules-enabled
+RUN rm /etc/nginx/modules-enabled/40-mod-http-lua.conf
 COPY nginx/etc/nginx/sites-enabled/backend.cfg /etc/nginx/sites-enabled/backend.cfg
 
 VOLUME /etc/nginx

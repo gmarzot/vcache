@@ -111,6 +111,7 @@ RUN cd lua-resty-lrucache && make install PREFIX=/usr/local
 RUN wget https://nginx.org/download/nginx-1.25.0.tar.gz
 RUN tar xzvf nginx-1.25.0.tar.gz
 RUN cd nginx-1.25.0 && LUAJIT_INC=/usr/local/include/luajit-2.1 LUAJIT_LIB=/usr/local/lib  ./configure --with-compat --add-dynamic-module=../ngx_http_substitutions_filter_module --with-ld-opt="-Wl,-rpath,/usr/local/lib -lpcre" --add-dynamic-module=../ngx_devel_kit --add-dynamic-module=../lua-nginx-module && make modules && cp objs/ngx_http_subs_filter_module.so /etc/nginx/modules/ && cp objs/ngx_http_lua_module.so /etc/nginx/modules/ && cp objs/ndk_http_module.so /etc/nginx/modules/
+RUN apt-get install -y luarocks && luarocks install lua-cjson
 
 RUN apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx.list \
     \

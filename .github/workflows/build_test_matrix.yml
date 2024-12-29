@@ -1,0 +1,166 @@
+name: Build & Test Matrix
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  build:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - {os: ubuntu-latest, name: Linux}
+ #       - {os: macos-latest, name: MacOS} # too much trouble
+
+    runs-on: ${{ matrix.config.os }}
+    name: Build & Test - ${{ matrix.config.name }} 
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Platform Setup
+      run: |
+        if [[ "${{ matrix.config.os }}" == "macos-latest" ]]; then
+          brew install docker docker-compose
+          # Link the Docker Compose v2 plugin so it's understood by the docker CLI
+          mkdir -p ~/.docker/cli-plugins
+          ln -sfn /usr/local/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
+          brew install colima qemu
+          colima version
+          colima start --cpu 3 --memory 6 --disk 100 --vm-type=qemu --mount-type=sshfs --dns=1.1.1.1
+        elif [[ "${{ matrix.config.os }}" == "ubuntu-latest" ]]; then
+          echo "Setting up Docker for Ubuntu..."
+          sudo apt-get update
+          sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+        fi
+    
+    - name: Docker Versions
+      run: |
+        while ! docker info > /dev/null 2>&1; do
+          echo "Waiting for Docker daemon..."
+          sleep 2
+        done
+        docker --version
+        docker-compose --version
+
+    - name: Generate SSL Certs
+      run: |
+        mkdir -p context/nginx/etc/nginx/pki
+        cd context/nginx/etc/nginx/pki
+        openssl req -x509 -newkey rsa:4096 -sha256 -days 365 -nodes \
+          -keyout cache-cert.key -out cache-cert.crt \
+          -subj "/CN=localhost" \
+          -addext "subjectAltName=DNS:test.gh.com,DNS:live-ak.vimeocdn.com,DNS:ontime.demo.vivoh.com" \
+          -addext "keyUsage=digitalSignature,keyEncipherment" \
+          -addext "extendedKeyUsage=serverAuth"
+        cp cache-cert.key live-ak.vimeocdn.com.key
+        cp cache-cert.key ontime.demo.vivoh.com.key
+        cp cache-cert.crt live-ak.vimeocdn.com.crt
+        cp cache-cert.crt ontime.demo.vivoh.com.crt
+
+    - name: Compose Build
+      run: docker-compose build --no-cache 2>&1 | tee compose-build.log
+    - name: Upload Build Logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: compose-build-${{ matrix.config.os }}.log
+        path: compose-build.log
+
+# name: Setup tmate session
+#   uses: mxschmitt/action-tmate@v3
+#   timeout-minutes: 30
+
+    - name: Set Environment
+      run: |
+        cat > .env << EOF
+        VCACHE_MEM_SIZE=512M
+        VCACHE_HOSTNAME=test.gh.com
+        VCACHE_VERSION=$(git describe)
+        EOF
+
+    - name: Compose Up
+      run: docker-compose --env-file .env up -d 2>&1 | tee compose-up.log
+    - name: Upload Compose Up Logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: compose-up-${{ matrix.config.os }}.log
+        path: compose-up.log
+
+    - name: Compose Logs Test
+      run: |
+        timeout=500
+        docker-compose logs -f | while read line; do
+          echo "$line" | tee -a compose-run.log
+          if echo "$line" | grep -q "Configuration complete"; then
+            echo "Found success pattern"
+            exit 0
+          fi
+          if (( SECONDS > timeout )); then
+            echo "Timed out waiting for success pattern"
+            exit 1
+          fi
+          done
+
+    - name: Upload Compose Run Logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: compose-run-${{ matrix.config.os }}.log
+        path: compose-run.log
+
+    - name: Health Check Test
+      run: |
+        sleep 5
+        echo "Checking running containers:"
+        docker ps
+        sleep 5
+        echo "Checking running containers:"
+        docker ps
+        echo "Testing health endpoint:"
+        health=$(curl -m 5 -k -s https://localhost:8443/health)
+        echo "Health response: $health ($?)"
+        if ! echo "$health" | jq -e '.status == "up"' > /dev/null; then
+          echo "Health Check Failed: Status not 'up'"
+          exit 1
+        fi
+
+    - name: Collect Logs
+      if: always()
+      run: |
+        mkdir -p logs
+        docker cp vcache_mgr_agent:/var/log-fe logs/frontend
+        docker cp vcache_mgr_agent:/var/log-be logs/backend
+        docker cp vcache_mgr_agent:/var/log logs/system
+      
+    - name: Upload Logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: container-logs-${{ matrix.config.os }}
+        path: logs
+        retention-days: 7
+
+    - name: Compose Down
+      if: always()
+      run: docker-compose down 2>&1 | tee compose-down.log
+    - name: Upload Compose Down Logs
+      uses: actions/upload-artifact@v3
+      with:
+        name: compose-down-${{ matrix.config.os }}.log
+        path: compose-down.log

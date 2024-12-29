@@ -1,0 +1,84 @@
+name: Build and Publish Docker Images
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag'
+        required: true
+        default: '0.0.0'
+
+env:
+  REGISTRY: ghcr.io
+  OWNER: ${{ github.repository_owner }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    strategy:
+      matrix:
+        image: [nginx-fe, nginx-be, node-red, varnish]
+        platform: [linux/amd64, linux/arm64]
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.OWNER }}/vcache-${{ matrix.image }}
+          tags: |
+            type=ref,event=tag
+            type=raw,value=${{ github.event.inputs.version }},enable=${{ github.event_name == 'workflow_dispatch' }}
+
+      - name: Set Dockerfile path
+        id: dockerfile
+        run: |
+          case "${{ matrix.image }}" in
+            "nginx-fe")
+              echo "path=./context/nginx/Dockerfile.frontend" >> $GITHUB_OUTPUT
+              ;;
+            "nginx-be")
+              echo "path=./context/nginx/Dockerfile.backend" >> $GITHUB_OUTPUT
+              ;;
+            "node-red")
+              echo "path=./context/node-red/Dockerfile.release" >> $GITHUB_OUTPUT
+              ;;
+            "varnish")
+              echo "path=./context/Dockerfile" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
+      - name: Build and push image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./context
+          file: ${{ steps.dockerfile.outputs.path }}
+          platforms: ${{ matrix.platform }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

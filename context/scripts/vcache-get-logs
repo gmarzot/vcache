@@ -1,0 +1,12 @@
+#!/bin/bash
+
+bname=${1:-"$(hostname)-$(date +'%Y%m%d%H%M%S')"}
+
+cd /tmp
+mkdir ${bname}
+ln -s /var/log-fe ${bname}/
+ln -s /var/log-be ${bname}/
+ln -s /var/log/salt ${bname}/
+
+zip -r /tmp/${bname}.zip ${bname}
+rm -rf ${bname}

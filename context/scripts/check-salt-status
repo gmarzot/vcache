@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Check if output is 'local: True'
+if ! timeout 10 salt-call test.ping --out=txt | grep -q "local: True"; then
+    exit 1
+fi
+
+exit 0

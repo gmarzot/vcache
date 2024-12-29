@@ -9,15 +9,15 @@ services:
     container_name: vcache_mgr_agent
     hostname: ${VCACHE_HOSTNAME}
     volumes:
-      - ./context/node-red/mgmt-data:/data # comment out for production
-      - var_run:/var/run
-      - var_log_fe:/var/log-fe
-      - var_log_be:/var/log-be
-      - etc_salt:/etc/salt
-      - etc_vcache:/etc/vcache
-      - etc_frontend:/etc/nginx-fe
-      - etc_varnish:/etc/varnish
-      - etc_backend:/etc/nginx-be
+      - ./context/node-red/mgmt-data:/data:rw # comment out for production
+      - var_run:/var/run:rw
+      - var_log_fe:/var/log-fe:ro
+      - var_log_be:/var/log-be:ro
+      - etc_salt:/etc/salt:rw
+      - etc_vcache:/etc/vcache:rw
+      - etc_frontend:/etc/nginx-fe:rw
+      - etc_varnish:/etc/varnish:rw
+      - etc_backend:/etc/nginx-be:rw
     networks:
       - vcache_net
     environment:

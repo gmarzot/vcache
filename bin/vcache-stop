@@ -1,24 +1,52 @@
 #!/usr/bin/env bash
+# set -x
 
-die() { echo "$*" >&2; exit 6; }  # complain to STDERR and exit with error
-needs_arg() { if [ -z "$OPTARG" ]; then die "No arg for --$OPT option"; fi; }
+usage() {
+    echo "Usage: $0 [-c|--clean] [-r|--real-clean] [-A|--no-ansi] [-h|--help]"
+    echo "Options:"
+    echo "  -c, --clean       stop, down, and remove volumes "
+    echo "  -r, --real-clean  stop, down, remove volumes, remove images "
+    echo "  -A, --no-ansi     do not output ansi control characters"
+    echo "  -h, --help        show this help message"
+}
 
-while getopts Acr-: OPT; do
-  # support long options: https://stackoverflow.com/a/28466267/519360
-  if [ "$OPT" = "-" ]; then   # long option: reformulate OPT and OPTARG
-    OPT="${OPTARG%%=*}"       # extract long option name
-    OPTARG="${OPTARG#$OPT}"   # extract long option argument (may be empty)
-    OPTARG="${OPTARG#=}"      # if long option argument, remove assigning `=`
-  fi
-  case "$OPT" in
-    c | clean )    clean=true ;;
-    r | real-clean )    real_clean=true ;;
-    A | no-ansi )    no_ansi=true ;;
-    ??* )          die "Illegal option --$OPT" ;;  # bad long option
-    ? )            exit 5 ;;  # bad short option (error reported via getopts)
-  esac
+options=$(getopt -l "help,clean,real-clean,no-ansi" -o "hcrA" -n "$0" -- "$@")
+
+if [ $? -ne 0 ]; then
+    usage
+    exit 1
+fi
+
+eval set -- "$options"
+while true
+do
+    case "$1" in
+        -c|--clean )
+            clean=true
+            shift
+            ;;
+        -r|--real-clean )
+            real_clean=true
+            shift
+            ;;
+        -A|--no-ansi )
+            no_ansi=true
+            shift
+            ;;
+        -h|--help )
+            usage
+            exit 0
+            ;;
+        -- )
+            shift
+            break
+            ;;
+        * )
+            usage
+            exit 1
+            ;;
+    esac
 done
-shift $((OPTIND-1)) # remove parsed options and args from $@ list
 
 SOURCE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && pwd )
 

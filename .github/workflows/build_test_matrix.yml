@@ -57,13 +57,20 @@ jobs:
         docker --version
         docker-compose --version
 
-    - name: Set Environment
+    - name: Generate SSL Certs
       run: |
-        cat > .env << EOF
-        VCACHE_MEM_SIZE=512M
-        VCACHE_HOSTNAME=test.gh.com
-        VCACHE_VERSION=$(git describe)
-        EOF
+        mkdir -p context/nginx/etc/nginx/pki
+        cd context/nginx/etc/nginx/pki
+        openssl req -x509 -newkey rsa:4096 -sha256 -days 365 -nodes \
+          -keyout cache-crt.key -out cache-crt.crt \
+          -subj "/CN=localhost" \
+          -addext "subjectAltName=DNS:test.gh.com,DNS:live-ak.vimeocdn.com,DNS:ontime.demo.vivoh.com" \
+          -addext "keyUsage=digitalSignature,keyEncipherment" \
+          -addext "extendedKeyUsage=serverAuth"
+        cp cache-crt.key live-ak.vimeocdn.com.key
+        cp cache-crt.key ontime.demo.vivoh.com.key
+        cp cache-crt.crt live-ak.vimeocdn.com.crt
+        cp cache-crt.crt ontime.demo.vivoh.com.crt
 
     - name: Compose Build
       run: docker-compose build --no-cache 2>&1 | tee compose-build.log
@@ -74,23 +81,17 @@ jobs:
         name: compose-build-${{ matrix.config.os }}.log
         path: compose-build.log
 
-    - name: Generate SSL Cert
-      run: |
-        mkdir -p /etc/nginx-fe/pki
-        openssl req -x509 -newkey rsa:4096 -sha256 -days 365 -nodes \
-          -keyout /etc/nginx-fe/pki/cache-crt.key -out /etc/nginx-fe/pki/cache-crt.crt \
-          -subj "/CN=localhost" \
-          -addext "subjectAltName=DNS:test.gh.com,DNS:live-ak.vimeocdn.com,DNS:ontime.demo.vivoh.com" \
-          -addext "keyUsage=digitalSignature,keyEncipherment" \
-          -addext "extendedKeyUsage=serverAuth"
-        cp /etc/nginx-fe/pki/cache-crt.key /etc/nginx-fe/pki/live-ak.vimeocdn.com.key \
-        cp /etc/nginx-fe/pki/cache-crt.key /etc/nginx-fe/pki/ontime.demo.vivoh.com.key \
-        cp /etc/nginx-fe/pki/cache-crt.crt /etc/nginx-fe/pki/live-ak.vimeocdn.com.crt \
-        cp /etc/nginx-fe/pki/cache-crt.crt /etc/nginx-fe/pki/ontime.demo.vivoh.com.crt
-
 # name: Setup tmate session
 #   uses: mxschmitt/action-tmate@v3
 #   timeout-minutes: 30
+
+    - name: Set Environment
+      run: |
+        cat > .env << EOF
+        VCACHE_MEM_SIZE=512M
+        VCACHE_HOSTNAME=test.gh.com
+        VCACHE_VERSION=$(git describe)
+        EOF
 
     - name: Compose Up
       run: docker-compose --env-file .env up -d 2>&1 | tee compose-up.log

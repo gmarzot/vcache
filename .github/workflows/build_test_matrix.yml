@@ -98,7 +98,7 @@ jobs:
         VCACHE_HOSTNAME=test.gh.com
         VCACHE_VERSION=${{ steps.gdesc.outputs.describe }}
         EOF
-        docker-compose up -d --quiet-pull 2>&1 | tee compose-up.log
+        docker-compose --env-file .env up --quiet-pull -d 2>&1 | tee compose-up.log
     - name: Upload Compose Up Logs
       if: always()
       uses: actions/upload-artifact@v3

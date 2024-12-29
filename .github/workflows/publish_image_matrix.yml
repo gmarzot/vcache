@@ -79,7 +79,7 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v5
         with:
-          context: ./context
+          context: ${{ matrix.image == 'varnish' && './context/varnish' || './context' }}
           file: ${{ steps.dockerfile.outputs.path }}
           platforms: ${{ matrix.platform }}
           push: true

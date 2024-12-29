@@ -61,7 +61,7 @@ jobs:
       run: |
         cat > .env << EOF
         VCACHE_MEM_SIZE=512M
-        VCACHE_HOST_NAME=test.gh.com
+        VCACHE_HOSTNAME=test.gh.com
         VCACHE_VERSION=$(git describe)
         EOF
 

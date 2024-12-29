@@ -87,13 +87,16 @@ jobs:
 #   uses: mxschmitt/action-tmate@v3
 #   timeout-minutes: 30
 
+    - name: Git describe
+      id: gdesc
+      uses: proudust/gh-describe@v2
+
     - name: Compose Up
       run: |
-        VERSION=$(git describe)
         cat > .env << EOF
         VCACHE_MEM_SIZE=512M
         VCACHE_HOSTNAME=test.gh.com
-        VCACHE_VERSION=$VERSION
+        VCACHE_VERSION=${{ steps.gdesc.outputs.describe }}
         EOF
         docker-compose up -d --quiet-pull 2>&1 | tee compose-up.log
     - name: Upload Compose Up Logs

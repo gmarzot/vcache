@@ -30,7 +30,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    
+      with:
+        fetch-depth: 0   # Need this for git describe
+
     - name: Platform Setup
       run: |
         if [[ "${{ matrix.config.os }}" == "macos-latest" ]]; then
@@ -85,16 +87,18 @@ jobs:
 #   uses: mxschmitt/action-tmate@v3
 #   timeout-minutes: 30
 
-    - name: Set Environment
+    - name: Git describe
+      id: gdesc
+      uses: proudust/gh-describe@v2
+
+    - name: Compose Up
       run: |
         cat > .env << EOF
         VCACHE_MEM_SIZE=512M
         VCACHE_HOSTNAME=test.gh.com
-        VCACHE_VERSION=$(git describe)
+        VCACHE_VERSION=${{ steps.gdesc.outputs.describe }}
         EOF
-
-    - name: Compose Up
-      run: docker-compose --env-file .env up -d 2>&1 | tee compose-up.log
+        docker-compose --env-file .env up --quiet-pull -d 2>&1 | tee compose-up.log
     - name: Upload Compose Up Logs
       if: always()
       uses: actions/upload-artifact@v3
@@ -158,9 +162,4 @@ jobs:
 
     - name: Compose Down
       if: always()
-      run: docker-compose down 2>&1 | tee compose-down.log
-    - name: Upload Compose Down Logs
-      uses: actions/upload-artifact@v3
-      with:
-        name: compose-down-${{ matrix.config.os }}.log
-        path: compose-down.log
+      run: docker-compose down

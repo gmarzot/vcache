@@ -43,13 +43,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get version from git
-        id: get_version
-        run: |
-          VERSION=$(git describe --tags --always)
-          # Trim hash if version contains a -g followed by hash
-          VERSION=$(echo $VERSION | sed 's/-g[0-9a-f]\+$//')
-          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Git describe
+        id: gdesc
+        uses: proudust/gh-describe@v2
 
       - name: Extract metadata
         id: meta
@@ -58,7 +55,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.OWNER }}/vcache-${{ matrix.image }}
           tags: |
             type=ref,event=tag
-            type=raw,value=${{ steps.get_version.outputs.version }},enable=${{ github.event_name == 'workflow_dispatch' }}
+            type=raw,value=${{ steps.gdesc.outputs.tag }}-${{ steps.gdesc.outputs.distance }}
 
       - name: Set Dockerfile path
         id: dockerfile

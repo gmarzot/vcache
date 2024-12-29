@@ -74,6 +74,20 @@ jobs:
         name: compose-build-${{ matrix.config.os }}.log
         path: compose-build.log
 
+    - name: Generate SSL Cert
+      run: |
+        mkdir -p /etc/nginx-fe/pki
+        openssl req -x509 -newkey rsa:4096 -sha256 -days 365 -nodes \
+          -keyout /etc/nginx-fe/pki/cache-crt.key -out /etc/nginx-fe/pki/cache-crt.crt \
+          -subj "/CN=localhost" \
+          -addext "subjectAltName=DNS:test.gh.com,DNS:live-ak.vimeocdn.com,DNS:ontime.demo.vivoh.com" \
+          -addext "keyUsage=digitalSignature,keyEncipherment" \
+          -addext "extendedKeyUsage=serverAuth"
+        cp /etc/nginx-fe/pki/cache-crt.key /etc/nginx-fe/pki/live-ak.vimeocdn.com.key \
+        cp /etc/nginx-fe/pki/cache-crt.key /etc/nginx-fe/pki/ontime.demo.vivoh.com.key \
+        cp /etc/nginx-fe/pki/cache-crt.crt /etc/nginx-fe/pki/live-ak.vimeocdn.com.crt \
+        cp /etc/nginx-fe/pki/cache-crt.crt /etc/nginx-fe/pki/ontime.demo.vivoh.com.crt
+
 # name: Setup tmate session
 #   uses: mxschmitt/action-tmate@v3
 #   timeout-minutes: 30
@@ -132,14 +146,13 @@ jobs:
         docker cp vcache_mgr_agent:/var/log-fe logs/frontend
         docker cp vcache_mgr_agent:/var/log-be logs/backend
         docker cp vcache_mgr_agent:/var/log logs/system
-        tar -czf all-logs.tar.gz logs/
       
     - name: Upload Logs
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: container-logs-${{ matrix.config.os }}.tgz
-        path: all-logs.tar.gz
+        name: container-logs-${{ matrix.config.os }}
+        path: logs
         retention-days: 7
 
     - name: Compose Down

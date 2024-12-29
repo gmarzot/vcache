@@ -94,7 +94,7 @@ jobs:
         EOF
 
     - name: Compose Up
-      run: docker-compose --env-file .env up -d 2>&1 | tee compose-up.log
+      run: docker-compose --env-file .env up -d --quiet-pull 2>&1 | tee compose-up.log
     - name: Upload Compose Up Logs
       if: always()
       uses: actions/upload-artifact@v3

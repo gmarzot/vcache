@@ -67,7 +67,7 @@ jobs:
               echo "path=./context/node-red/Dockerfile.release" >> $GITHUB_OUTPUT
               ;;
             "varnish")
-              echo "path=./context/Dockerfile" >> $GITHUB_OUTPUT
+              echo "path=./context/varnish/Dockerfile" >> $GITHUB_OUTPUT
               ;;
           esac
 

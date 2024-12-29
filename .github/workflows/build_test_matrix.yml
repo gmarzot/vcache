@@ -71,7 +71,7 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: compose-build-log-${{ matrix.config.os }}
+        name: compose-build-${{ matrix.config.os }}.log
         path: compose-build.log
 
 # name: Setup tmate session
@@ -91,7 +91,7 @@ jobs:
       run: |
         timeout=500
         docker-compose logs -f | while read line; do
-          echo "$line" | tee -a compose-logs.log
+          echo "$line" | tee -a compose-run.log
           if echo "$line" | grep -q "Configuration complete"; then
             echo "Found success pattern"
             exit 0
@@ -106,22 +106,44 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: compose-logs-${{ matrix.config.os }}.log
-        path: compose-logs.log
+        name: compose-run-${{ matrix.config.os }}.log
+        path: compose-run.log
 
     - name: Health Check Test
       run: |
+        sleep 5
+        echo "Checking running containers:"
+        docker ps
+        sleep 5
         echo "Checking running containers:"
         docker ps
         echo "Testing health endpoint:"
         health=$(curl -m 5 -k -s https://localhost:8443/health)
-        echo "Health response: $health"
+        echo "Health response: $health ($?)"
         if ! echo "$health" | jq -e '.status == "up"' > /dev/null; then
           echo "Health Check Failed: Status not 'up'"
           exit 1
         fi
 
+    - name: Collect Logs
+      if: always()
+      run: |
+        mkdir -p logs
+        docker cp vcache_mgr_agent:/var/log-fe logs/frontend
+        docker cp vcache_mgr_agent:/var/log-be logs/backend
+        docker cp vcache_mgr_agent:/var/log logs/system
+        tar -czf all-logs.tar.gz logs/
+      
+    - name: Upload Logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: container-logs-${{ matrix.config.os }}.tgz
+        path: all-logs.tar.gz
+        retention-days: 7
+
     - name: Compose Down
+      if: always()
       run: docker-compose down 2>&1 | tee compose-down.log
     - name: Upload Compose Down Logs
       uses: actions/upload-artifact@v3

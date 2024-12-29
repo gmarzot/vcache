@@ -11,8 +11,8 @@ services:
     volumes:
       - ./context/node-red/mgmt-data:/data:rw # comment out for production
       - var_run:/var/run:rw
-      - var_log_fe:/var/log-fe:rw
-      - var_log_be:/var/log-be:rw
+      - var_log_fe:/var/log-fe:ro
+      - var_log_be:/var/log-be:ro
       - etc_salt:/etc/salt:rw
       - etc_vcache:/etc/vcache:rw
       - etc_frontend:/etc/nginx-fe:rw
